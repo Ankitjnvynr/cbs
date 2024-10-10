@@ -9,34 +9,50 @@ const menus = [
         id: 1,
         title: 'Home',
         link: '/',
-        submenu: [
-            {
-                id: 11,
-                title: '',
-                link: '/'
-            },
-            {
-                id: 12,
-                title: '',
-                link: '/home-2'
-            },
-            {
-                id: 13,
-                title: '',
-                link: '/home-3'
-            },
-           
-        ]
+      
     },
 
     {
         id: 6,
         title: 'About',
         link: '/',
+        submenu: [
+            {
+                id: 11,
+                title: 'Vision and Mission',
+                link: '/Vision And mission'
+            },
+            {
+                id: 12,
+                title: 'President’s Message',
+                link: '/Presidents message'
+            },
+            {
+                id: 13,
+                title: 'Director’s Message',
+                link: '/Director Message'
+            },
+            {
+                id: 14,
+                title: 'Director General’s Message',
+                link: '/Director General Message'
+            },
+            {
+                id: 15,
+                title: 'Governing Body of Institution',
+                link: '/Governing Body of Institution'
+            },
+            {
+                id: 16,
+                title: 'Grievance Committee',
+                link: '/Grievance Committee'
+            },
+        ]
+        
     },
     {
         id: 7,
-        title: 'Services',
+        title: 'Alumni',
         link: '/',
         submenu: [
             {
@@ -136,9 +152,25 @@ const menus = [
 
     {
         id: 88,
-        title: 'Contact',
+        title: 'Research',
         link: '/',
-    }
+    },
+    {
+        id: 89,
+        title: 'Events',
+        link: '/',
+    },
+    {
+        id: 90,
+        title: 'Placement',
+        link: '/',
+    },
+    {
+        id: 91,
+        title: 'Contact Us',
+        link: '/',
+    },
+ 
 
 
 ]
