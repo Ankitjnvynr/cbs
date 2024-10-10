@@ -15,6 +15,7 @@ import CursorMaus from '../components/CursorMaus/CursorMaus';
 import Phone from '/public/images/telephone.svg'
 import Logo from '/public/images/logo.svg'
 
+
 const HomePage = () => {
     return (
         <Fragment>
@@ -29,7 +30,9 @@ const HomePage = () => {
             <CtaSection />
             <BlogSection />
             <Footer />
+            
             <Scrollbar />
+          
             <CursorMaus />
         </Fragment>
     )

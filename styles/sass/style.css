@@ -1475,7 +1475,7 @@ img {
     font-size: 11px;
     font-size: 0.73333rem;
     position: absolute;
-    right: 15px;
+    /* right: 15px; */
     top: 58%;
     transform: translateY(-50%);
   }
@@ -2124,7 +2124,7 @@ img {
     position: relative;
     color: #323232;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
+    font-size: 12px ;
     font-weight: 500;
     text-transform: uppercase;
   }
@@ -7451,3 +7451,5 @@ input[type=checkbox]:checked:disabled + label:before {
 .error-404-section .error-message p {
   margin-bottom: 1.8em;
 }/*# sourceMappingURL=style.css.map */
+
+
