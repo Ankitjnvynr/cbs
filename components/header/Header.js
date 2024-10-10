@@ -415,9 +415,9 @@ const Header = (props) => {
               </li>
               <li className="menu-item-has-children">
                 <Link onClick={ClickHandler} href="#" className="text-xs">
-                  Alumni
+                  Research
                 </Link>
-                <ul className="sub-menu text-xs">
+                {/* <ul className="sub-menu text-xs">
                   <li>
                     <Link onClick={ClickHandler} href="/">
                       Registration form
@@ -438,13 +438,13 @@ const Header = (props) => {
                       Gallery
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
               </li>
               <li className="menu-item-has-children">
                 <Link onClick={ClickHandler} href="#" className="text-xs">
-                  Alumni
+                  Events
                 </Link>
-                <ul className="sub-menu text-xs">
+                {/* <ul className="sub-menu text-xs">
                   <li>
                     <Link onClick={ClickHandler} href="/">
                       Registration form
@@ -465,31 +465,31 @@ const Header = (props) => {
                       Gallery
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
               </li>
               <li className="menu-item-has-children">
                 <Link onClick={ClickHandler} href="#" className="text-xs">
-                  Alumni
+                  Placement
                 </Link>
                 <ul className="sub-menu text-xs">
                   <li>
                     <Link onClick={ClickHandler} href="/">
-                      Registration form
+                     Carrer Development cell
                     </Link>
                   </li>
                   <li>
                     <Link onClick={ClickHandler} href="/">
-                      Alumni Testimonials
+                      Traning Programmes
                     </Link>
                   </li>
                   <li>
                     <Link onClick={ClickHandler} href="/">
-                      Alumni videos
+                     Placement Gallery
                     </Link>
                   </li>
                   <li>
                     <Link onClick={ClickHandler} href="/">
-                      Gallery
+                      Our Recruiters
                     </Link>
                   </li>
                 </ul>
