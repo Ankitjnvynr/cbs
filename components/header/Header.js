@@ -243,7 +243,7 @@ const Header = (props) => {
           <Link className="navbar-brand" href="/home">
             <Image width="200" src={props.Logo} alt="logo" />
           </Link>
-          <div className="col-lg-3 col-md-1 col-3 d-lg-none block">
+          <div className="">
                 <MobileMenu />
               </div>
           <div
