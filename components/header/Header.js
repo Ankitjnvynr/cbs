@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import Image from "next/image";
+
 
 const Header = (props) => {
   const ClickHandler = () => {
     window.scrollTo(10, 0);
   };
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [actualPosition,setActualPosition]   = useState(null);
+
+
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+    if (position > 100) {
+      setActualPosition('fixed');
+    } else {
+      setActualPosition(null);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header id="header">
+    <header  id="header">
       <div className={" " + props.hclass}>
         {/* <nav className="navigation navbar navbar-expand-lg navbar-light ">
           <div className="container-fluid ">
@@ -239,16 +263,32 @@ const Header = (props) => {
           </div>
         </nav> */}
 
-        <nav className="navigation navbar navbar-expand-lg navbar-light ">
-          <Link className="navbar-brand" href="/home">
-            <Image width="200" src={props.Logo} alt="logo" />
+        <nav style={{
+          flexDirection:'column',
+          backgroundColor:'#fff'
+        }} className="navigation navbar navbar-expand-lg navbar-light ">
+          <Link className="navbar-brand py-3" href="/home">
+            <Image width="300" src={props.Logo} alt="logo" />
           </Link>
           <div className="">
                 <MobileMenu />
               </div>
           <div
+            style={{
+              position: actualPosition,
+              backgroundColor: '#fff',
+              background: 'rgba(255, 255, 255, 0.45)', // Corrected as string
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)', // Corrected as string
+              backdropFilter: 'blur(4.5px)', // CamelCased property
+              WebkitBackdropFilter: 'blur(4.5px)', // Webkit prefix also camelCased
+              borderRadius: '10px', // Corrected as string
+              border: '1px solid rgba(255, 255, 255, 0.18)', // Corrected as string
+              width:'100%',
+              zIndex:200,
+            }}
+            
             id="navbar"
-            className="collapse navbar-collapse navigation-holder"
+            className="collapse navbar-collapse navigation-holder "
           >
             <ul className="nav navbar-nav mb-2 mb-lg-0 text-xs">
               <li>

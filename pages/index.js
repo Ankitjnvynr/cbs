@@ -13,13 +13,13 @@ import Footer from '../components/footer/Footer';
 import Scrollbar from '../components/scrollbar/scrollbar';
 import CursorMaus from '../components/CursorMaus/CursorMaus';
 import Phone from '/public/images/telephone.svg'
-import Logo from '/public/images/logo.svg'
+import Logo from '/public/images/cbslogo.png'
 
 
 const HomePage = () => {
     return (
         <Fragment>
-            <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
+            <Navbar  Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
             <Hero />
             <FunfactSecion hclass="funfact-section" />
             <About />

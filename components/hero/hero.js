@@ -120,7 +120,9 @@ const Hero = () => {
         </Swiper>
       </div>
 
-      <div className="award">
+      <div style={{
+        zIndex:100
+      }} className="award">
         <div className="icon">
           <Image src={Arrow} alt="Award Icon" width={50} height={50} />
         </div>
