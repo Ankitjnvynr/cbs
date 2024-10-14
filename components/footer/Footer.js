@@ -26,7 +26,7 @@ const Footer = (props) => {
                                     <Image src={logo} alt="Logo" />
                                 </div>
                                 <p>Empowering Minds, Shaping Futures – CBS Group of Institution.
-                                    
+
                                 </p>
 
                                 <div className="social-widget">
@@ -53,6 +53,20 @@ const Footer = (props) => {
                                 </ul>
                             </div>
                         </div>
+                        {/* <div className="col col-lg-3 col-md-6 col-sm-12 col-12">
+                            <div className="widget link-widget">
+                                <div className="widget-title">
+                                    <h3>Abc</h3>
+                                </div>
+                                <ul>
+                                    <li><Link onClick={ClickHandler} href="/">Home</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/">Acadmics</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/">Admission</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/">Latest News</Link></li>
+                                    <li><Link onClick={ClickHandler} href="/">Carrer</Link></li>
+                                </ul>
+                            </div>
+                        </div> */}
                         <div className="col col-lg-3 col-md-6 col-sm-12 col-12">
                             <div className="widget link-widget s2">
                                 <div className="widget-title">
@@ -60,7 +74,9 @@ const Footer = (props) => {
                                 </div>
                                 <ul>
                                     <li><Link onClick={ClickHandler} href="#">Admission</Link></li>
-                                    <li><Link onClick={ClickHandler} href="#">Courses</Link></li>
+                                   <li><Link onClick={ClickHandler} href="/about2/about2.js">
+                                                         UG/PG Syllabi
+                                                          </Link></li> 
                                     <li><Link onClick={ClickHandler} href="#">Result</Link></li>
                                     <li><Link onClick={ClickHandler} href="#">Faq</Link></li>
                                     <li><Link onClick={ClickHandler} href="#">contact</Link></li>
@@ -77,9 +93,9 @@ const Footer = (props) => {
                                     <li><Image src={Shape1} alt="" /><span>ceo@cbscolleges.com</span>
                                     </li>
                                     <li><Image src={News1} alt="" /> <span>+91-8053111222-666
-                                        </span></li>
+                                    </span></li>
                                     <li><Image src={News2} alt="" /><span>8 KM. Mile Stone, Jhajjar-Kosli Raod, <br />
-                                    Fatehpuri , Jhajjar Delhi-NCR (Haryana)</span></li>
+                                        Fatehpuri , Jhajjar Delhi-NCR (Haryana)</span></li>
                                 </ul>
                             </div>
                         </div>
