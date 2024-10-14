@@ -88,7 +88,8 @@ const Hero3 = () => {
               maxWidth:500,
               padding:10,
               //textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)",
-              color:'black'
+              color:'black',
+              lineHeight:'25px'
             }}
             
             >
@@ -97,8 +98,8 @@ const Hero3 = () => {
               meet your needs but also exceed your expectations.
             </p>
             <div className="hero-btn">
-              <Link href="/about" className="theme-btn">
-                Get Started<i className="ti-arrow-right"></i>
+              <Link href="/about" className="theme-btn border ">
+                Go To Alumni<i className="ti-arrow-right"></i>
               </Link>
               <div
                 style={{
