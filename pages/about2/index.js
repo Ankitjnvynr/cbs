@@ -16,11 +16,11 @@ const AboutPage = () => {
     return (
         <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
-            <PageTitle pageTitle={'About Us'} pagesub={'About'} />
-            <About />
-            <VideosSection />
-            <TestimonialSection />
-            <CtaSection />
+            <PageTitle pageTitle={'Syllabus'} />
+            {/* <About /> */}
+            {/* <VideosSection /> */}
+            {/* <TestimonialSection /> */}
+            {/* <CtaSection /> */}
             <BlogSection />
             <Footer />
             <Scrollbar />
