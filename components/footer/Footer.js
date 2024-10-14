@@ -94,7 +94,7 @@ const Footer = (props) => {
                                     </li>
                                     <li><Image src={News1} alt="" /> <span>+91-8053111222-666
                                     </span></li>
-                                    <li><Image src={News2} alt="" /><span>8 KM. Mile Stone, Jhajjar-Kosli Raod, <br />
+                                    <li><Image src={News2} alt="" /><span>8 KM. Mile Stone, Jhajjar-Kosli Road, <br />
                                         Fatehpuri , Jhajjar Delhi-NCR (Haryana)</span></li>
                                 </ul>
                             </div>
@@ -106,7 +106,7 @@ const Footer = (props) => {
                 <div className="container">
                     <div className="row g-0">
                         <div className="col col-lg-6 col-12">
-                            <p className="copyright"> Copyright &copy; 2024  <Link onClick={ClickHandler} href="/">BigByte Innovations Pvt. Ltd</Link>. All
+                            <p className="copyright"> Copyright &copy; 2024  <Link onClick={ClickHandler} href="/">Big Byte Innovations Pvt. Ltd</Link>. All
                                 Rights Reserved.</p>
                         </div>
                         <div className="col col-lg-6 col-12">
