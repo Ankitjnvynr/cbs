@@ -59,6 +59,30 @@ const Header = (props) => {
       ],
     },
     {
+      label: "Research",
+      link: "/research",
+      subMenu: [
+        { label: "Research Supervisors", link: "/research/supervisors", className: "text-red-500" }, // Red color for the link text
+        { label: "Recent Publication & Patents", link: "/research/publications-patents" },
+        { label: "VTU Research Approval", link: "/research/vtu-approval" },
+        { label: "Regulation", link: "/research/regulation" },
+      ],
+    },
+    {
+      label: "Events",
+      link: "/events",
+    },
+    {
+      label: "Placement",
+      link: "/placement",
+      subMenu: [
+        { label: "Career Development Cell", link: "/placement/career-development-cell" },
+        { label: "Training Programmes", link: "/placement/training-programmes" },
+        { label: "Placement Gallery", link: "/placement/placement-gallery" },
+        { label: "Our Recruiters", link: "/placement/our-recruiters" },
+      ],
+    },
+    {
       label: "Alumni",
       link: "#",
       subMenu: [
