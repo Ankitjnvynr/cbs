@@ -28,7 +28,7 @@ const Hero3 = () => {
               <div className="icon">
                 <Image src={hero2} alt="" />
               </div>
-              <span>Create Your Dream Project With Us</span>
+              <span>have a great Learning</span>
             </div>
             <div className="sub-title "
             
