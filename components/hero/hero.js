@@ -48,7 +48,8 @@ const Hero3 = () => {
                 WebkitBackdropFilter: "blur(10px)", // For Safari support
                 //borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
                 //border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
-                maxWidth:500
+                maxWidth:500,
+                paddingLeft:3
               }}
               >
                  <span>CBS GROUP OF INSTITUTIONS</span>
@@ -84,8 +85,12 @@ const Hero3 = () => {
               WebkitBackdropFilter: "blur(5px)", // For Safari support
               borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
               border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
-              maxWidth:500
+              maxWidth:500,
+              padding:10,
+              //textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)",
+              color:'black'
             }}
+            
             >
               Your success is our success. We prioritize understanding your
               unique business requirements, tailoring solutions that not only
