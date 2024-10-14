@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import hero1 from "/public/images/slider/slider-1.jpg";
+import hero1 from "/public/images/slider/slider-1abc.jpg";
 import hero2 from "/public/images/slider/like.svg";
 import VideoModal from "../ModalVideo/VideoModal";
 import Image from "next/image";
