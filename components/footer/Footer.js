@@ -25,7 +25,9 @@ const Footer = (props) => {
                                 <div className="logo widget-title">
                                     <Image src={logo} alt="Logo" />
                                 </div>
-                                <p>Empowering Minds, Shaping Futures – CBS Group of Institution.</p>
+                                <p>Empowering Minds, Shaping Futures – CBS Group of Institution.
+                                    
+                                </p>
 
                                 <div className="social-widget">
                                     <ul>
