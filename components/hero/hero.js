@@ -14,8 +14,14 @@ const Hero3 = () => {
   };
 
   return (
-    <section className="hero-slide">
-      <div className="hero-slider-section">
+    <section
+    
+    className="hero-slide ">
+      <div 
+      style={{
+        paddingTop:150
+      }}
+      className="hero-slider-section">
         <div className="hero-bg">
           <Image src={hero1} alt="" />
         </div>
@@ -48,6 +54,9 @@ const Hero3 = () => {
                  <span>CBS GROUP OF INSTITUTIONS</span>
               </h1>
               <h2
+            style={{
+              textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)"
+            }}
             
             >
               <Typewriter
