@@ -14,84 +14,76 @@ const Hero3 = () => {
   };
 
   return (
-    <section
-    
-    className="hero-slide ">
-      <div 
-      style={{
-        paddingTop:150
-      }}
-      className="hero-slider-section">
+    <section className="hero-slide ">
+      <div
+        style={{
+          paddingTop: 150,
+        }}
+        className="hero-slider-section"
+      >
         <div className="hero-bg">
           <Image src={hero1} alt="" />
         </div>
         <div className="container-fluid">
-          <div
-            
-            className="content mt-10 "
-          >
+          <div className="content mt-10 ">
             <div className="title ">
               <div className="icon">
                 <Image src={hero2} alt="" />
               </div>
               <span>have a great Learning</span>
             </div>
-            <div className="sub-title "
-            
-            >
+            <div className="sub-title ">
               <h1
+                style={{
+                  flexDirection: "column",
+                  background:
+                    "linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7),rgba(255, 255, 255, 0))",
+                  // backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)", // For Safari support
+                  //borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
+                  //border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
+                  maxWidth: 500,
+                  paddingLeft: 3,
+                }}
+              >
+                <span>CBS GROUP OF INSTITUTIONS</span>
+              </h1>
+              <h2
+                style={{
+                  textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)",
+                }}
+              >
+                <Typewriter
+                  options={{
+                    strings: [
+                      "For Best Education",
+                      "For Best Placement",
+                      "For Best Campus",
+                    ],
+                    autoStart: true,
+                    loop: true,
+                    delay: 50,
+                  }}
+                  style={{ color: "red" }}
+                />
+              </h2>
+            </div>
+
+            <p
               style={{
                 flexDirection: "column",
                 background:
-                  "linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7),rgba(255, 255, 255, 0))",
-                // backdropFilter: "blur(10px)",
+                  "linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3))",
+                backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)", // For Safari support
-                //borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
-                //border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
-                maxWidth:500,
-                paddingLeft:3
+                borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
+                border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
+                maxWidth: 500,
+                padding: 10,
+                //textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)",
+                // color:'black',
+                lineHeight: "25px",
               }}
-              >
-                 <span>CBS GROUP OF INSTITUTIONS</span>
-              </h1>
-              <h2
-            style={{
-              textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)"
-            }}
-            
-            >
-              <Typewriter
-                options={{
-                  strings: [
-                    "For Best Education",
-                    "For Best Placement",
-                    "For Best Campus",
-                  ],
-                  autoStart: true,
-                  loop: true,
-                  delay: 50,
-                }}
-                style={{ color: "red" }}
-              />
-            </h2>
-            </div>
-            
-            <p 
-            style={{
-              flexDirection: "column",
-              background:
-                "linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3))",
-              backdropFilter: "blur(7px)",
-              WebkitBackdropFilter: "blur(7px)", // For Safari support
-              borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
-              border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
-              maxWidth:500,
-              padding:10,
-              //textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)",
-              // color:'black',
-              lineHeight:'25px'
-            }}
-            
             >
               Your success is our success. We prioritize understanding your
               unique business requirements, tailoring solutions that not only
@@ -122,6 +114,10 @@ const Hero3 = () => {
               </div>
             </div>
           </div>
+          <div className="left-bar" >
+
+          </div>
+
         </div>
         {/* <div className="video" >
                     <VideoModal />
