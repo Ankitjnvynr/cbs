@@ -102,9 +102,15 @@ const Hero3 = () => {
                 Go To Alumni<i className="ti-arrow-right"></i>
               </Link>
               <div
-                style={{
-                  zIndex: 100,
-                }}
+              style={{
+                zIndex: 100,
+                backdropFilter: "blur(3px)", // Adds the blur for the glass effect
+                backgroundColor: "rgba(255, 255, 255, 0.5)", // Lightens the background with some transparency
+                borderRadius: "40px", // Optional, for rounded corners
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.5)", // Optional, adds a subtle shadow to lift the glass effect
+                border: "1px solid rgba(255, 255, 255, 0.7)", // Optional, a soft border to enhance the glass effect
+             
+              }}
                 className="award"
               >
                 <div className="icon">
