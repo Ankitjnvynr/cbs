@@ -73,6 +73,25 @@ const Header = (props) => {
       link: "/",
     },
     {
+      label: "Facilities",
+      link: "/",
+      subMenu: [
+        { label: "Class Rooms & campus", link: "/" },
+        { label: "Library", link: "/" },
+        { label: "Computer Center", link: "/" },
+        {
+          label: "All Facilities",
+          link: "/",
+          subMenu: [
+            { label: "Laboratories & Workshop", link: "/" },
+            { label: "Canteen & Cafeteria", link: "/" },
+            { label: "Dispensary/Health Zone", link: "/" },
+            { label: "Hostels", link: "/" },
+          ],
+        },
+      ],
+    },
+    {
       label: "Departments",
       link: "/",
       subMenu: [
@@ -205,25 +224,7 @@ const Header = (props) => {
         { label: "Admission Procedure", link: "/" },
       ],
     },
-    {
-      label: "Facilities",
-      link: "/",
-      subMenu: [
-        { label: "Class Rooms & campus", link: "/" },
-        { label: "Library", link: "/" },
-        { label: "Computer Center", link: "/" },
-        {
-          label: "All Facilities",
-          link: "/",
-          subMenu: [
-            { label: "Laboratories & Workshop", link: "/" },
-            { label: "Canteen & Cafeteria", link: "/" },
-            { label: "Dispensary/Health Zone", link: "/" },
-            { label: "Hostels", link: "/" },
-          ],
-        },
-      ],
-    },
+   
    
     {
       label: "Career",
