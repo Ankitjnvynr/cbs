@@ -80,15 +80,15 @@ const Hero3 = () => {
             style={{
               flexDirection: "column",
               background:
-                "linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
-              backdropFilter: "blur(5px)",
-              WebkitBackdropFilter: "blur(5px)", // For Safari support
+                "linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3))",
+              backdropFilter: "blur(7px)",
+              WebkitBackdropFilter: "blur(7px)", // For Safari support
               borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
               border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
               maxWidth:500,
               padding:10,
               //textShadow: "2px 2px 5px rgba(0, 0, 0, 0.9)",
-              color:'black',
+              // color:'black',
               lineHeight:'25px'
             }}
             
