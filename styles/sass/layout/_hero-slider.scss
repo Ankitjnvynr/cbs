@@ -5,11 +5,11 @@
 /* 3.1 static-hero */
 .static-hero,
 .hero-slider-section {
-	height: 1025px;
+	height: 700px;
 	position: relative;
 	display: flex;
 	align-items: center;
-	padding: 0 150px;
+	padding: 0px 150px;
 
 	@media (max-width:1700px) {
 		padding: 0 30px;
