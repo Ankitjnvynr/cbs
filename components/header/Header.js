@@ -260,11 +260,21 @@ const Header = (props) => {
   };
 
   return (
-    <header id="header">
-      <div className={" " + props.hclass}>
+    <header style={{
+      width:'100%'
+    }} id="header">
+      <div className={" " + props.hclass} 
+      style={{
+        padding:0
+      }}
+      >
         <nav
-          style={{ flexDirection: "column", backgroundColor: "#fff" }}
-          className="navigation navbar navbar-expand-lg navbar-light"
+         
+         style={{
+          flexDirection: "column",
+          background: "linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7), transparent)"
+        }}
+          className="navigation navbar navbar-expand-lg navbar-light w-screen"
         >
           <Link className="navbar-brand py-3" href="/home">
             <Image width="300" src={props.Logo} alt="logo" />
