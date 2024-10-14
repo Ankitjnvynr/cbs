@@ -742,7 +742,7 @@
 }
 
 .project-card {
-    max-width: 800px;
+    max-width: 200px;
     position: relative;
     z-index: 1;
     transition: all .3s ease-in-out;
@@ -766,7 +766,7 @@
     }
 
     img {
-        width: 100%;
+        width:400px;
         object-fit: cover;
         border-radius: 20px;
         transition: all .3s ease-in-out;
