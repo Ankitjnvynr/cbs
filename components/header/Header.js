@@ -49,42 +49,147 @@ const Header = (props) => {
     },
     {
       label: "Academics",
-      link: "#",
+      link: "/",
       subMenu: [
-        { label: "Academic Calendar", link: "/academics/calendar" },
-        { label: "Examinations", link: "/academics/examinations" },
-        { label: "Curriculum", link: "/academics/curriculum" },
-        { label: "Departments", link: "/academics/departments" },
-        { label: "Research & Development", link: "/academics/research" },
+        { label: "Academic Calendar", link: "/" },
+        { label: "Examinations", link: "/" },
+        { label: "Curriculum", link: "/" },
+        { label: "Departments", link: "/" },
+        { label: "Research & Development", link: "/" },
       ],
     },
     {
       label: "Research",
-      link: "/research",
+      link: "/",
       subMenu: [
-        { label: "Research Supervisors", link: "/research/supervisors", className: "text-red-500" }, // Red color for the link text
-        { label: "Recent Publication & Patents", link: "/research/publications-patents" },
-        { label: "VTU Research Approval", link: "/research/vtu-approval" },
-        { label: "Regulation", link: "/research/regulation" },
+        { label: "Research Supervisors", link: "/" },
+        { label: "Recent Publication & Patents", link: "/" },
+        { label: "VTU Research Approval", link: "/" },
+        { label: "Regulation", link: "/" },
       ],
     },
     {
       label: "Events",
-      link: "/events",
+      link: "/",
+    },
+    {
+      label: "Departments",
+      link: "/",
+      subMenu: [
+        {
+          label: "Computer Science & Engg.",
+          link: "/",
+          subMenu: [
+            { label: "About CSE", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+          ],
+        },
+        {
+          label: "Mechanical Engg.",
+          link: "/",
+          subMenu: [
+            { label: "About ME", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+            { label: "News Letters and Magazines-ME", link: "/" },
+            { label: "Teaching-Learning ME", link: "/" },
+          ],
+        },
+        {
+          label: "Electronics & Comm. Engg.",
+          link: "/",
+          subMenu: [
+            { label: "About ECE", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+          ],
+        },
+        {
+          label: "Electrical Engg.",
+          link: "/",
+          subMenu: [
+            { label: "About EE", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Patents", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+          ],
+        },
+        {
+          label: "Fire Technology & Safety",
+          link: "/",
+          subMenu: [
+            { label: "About FTS", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+          ],
+        },
+        {
+          label: "Civil Engg.",
+          link: "/",
+          subMenu: [
+            { label: "About CE", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+          ],
+        },
+        {
+          label: "Management",
+          link: "/",
+          subMenu: [
+            { label: "About", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+          ],
+        },
+        {
+          label: "Computer Applications",
+          link: "/",
+          subMenu: [
+            { label: "About CA", link: "/" },
+            { label: "Vision & Mission", link: "/" },
+            { label: "Course Outcomes", link: "/" },
+            { label: "Program Outcomes", link: "/" },
+            { label: "Program Educational Objectives", link: "/" },
+            { label: "Program Specific Outcomes", link: "/" },
+          ],
+        },
+       
+      ],
     },
     {
       label: "Placement",
-      link: "/placement",
+      link: "/",
       subMenu: [
-        { label: "Career Development Cell", link: "/placement/career-development-cell" },
-        { label: "Training Programmes", link: "/placement/training-programmes" },
-        { label: "Placement Gallery", link: "/placement/placement-gallery" },
-        { label: "Our Recruiters", link: "/placement/our-recruiters" },
+        { label: "Career Development Cell", link: "/" },
+        { label: "Training Programmes", link: "/" },
+        { label: "Placement Gallery", link: "/" },
+        { label: "Our Recruiters", link: "/" },
       ],
     },
     {
       label: "Alumni",
-      link: "#",
+      link: "/",
       subMenu: [
         { label: "Registration form", link: "/" },
         { label: "Alumni Testimonials", link: "/" },
@@ -94,7 +199,7 @@ const Header = (props) => {
     },
     {
       label: "Admission",
-      link: "#",
+      link: "/",
       subMenu: [
         { label: "Eligibility", link: "/" },
         { label: "Admission Procedure", link: "/" },
@@ -102,14 +207,14 @@ const Header = (props) => {
     },
     {
       label: "Facilities",
-      link: "#",
+      link: "/",
       subMenu: [
         { label: "Class Rooms & campus", link: "/" },
         { label: "Library", link: "/" },
         { label: "Computer Center", link: "/" },
         {
           label: "All Facilities",
-          link: "#",
+          link: "/",
           subMenu: [
             { label: "Laboratories & Workshop", link: "/" },
             { label: "Canteen & Cafeteria", link: "/" },
@@ -119,126 +224,23 @@ const Header = (props) => {
         },
       ],
     },
-    {
-      label: "Departments",
-      link: "#",
-      subMenu: [
-        {
-          label: "Computer Science & Engg.",
-          link: "/departments/cse",
-          subMenu: [
-            { label: "About CSE", link: "/departments/cse/about" },
-            { label: "Vision & Mission", link: "/departments/cse/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/cse/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/cse/program-outcomes" },
-            { label: "Program Specific Outcomes", link: "/departments/cse/program-specific-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/cse/program-educational-objectives" },
-          ],
-        },
-        {
-          label: "Mechanical Engg.",
-          link: "/departments/mechanical",
-          subMenu: [
-            { label: "About ME", link: "/departments/mechanical/about" },
-            { label: "Vision & Mission", link: "/departments/mechanical/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/mechanical/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/mechanical/program-outcomes" },
-            { label: "Program Specific Outcomes", link: "/departments/mechanical/program-specific-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/mechanical/program-educational-objectives" },
-            { label: "News Letters and Magazines-ME", link: "/departments/mechanical/news-letters" },
-            { label: "Teaching-Learning ME", link: "/departments/mechanical/teaching-learning" },
-          ],
-        },
-        {
-          label: "Electronics & Comm. Engg.",
-          link: "/departments/ece",
-          subMenu: [
-            { label: "About ECE", link: "/departments/ece/about" },
-            { label: "Vision & Mission", link: "/departments/ece/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/ece/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/ece/program-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/ece/program-educational-objectives" },
-            { label: "Program Specific Outcomes", link: "/departments/ece/program-specific-outcomes" },
-          ],
-        },
-        {
-          label: "Electrical Engg.",
-          link: "/departments/electrical",
-          subMenu: [
-            { label: "About EE", link: "/departments/electrical/about" },
-            { label: "Vision & Mission", link: "/departments/electrical/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/electrical/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/electrical/program-outcomes" },
-            { label: "Patents", link: "/departments/electrical/patents" },
-            { label: "Program Specific Outcomes", link: "/departments/electrical/program-specific-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/electrical/program-educational-objectives" },
-          ],
-        },
-        {
-          label: "Fire Technology & Safety",
-          link: "/departments/fire-tech",
-          subMenu: [
-            { label: "About FTS", link: "/departments/fire-tech/about" },
-            { label: "Vision & Mission", link: "/departments/fire-tech/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/fire-tech/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/fire-tech/program-outcomes" },
-            { label: "Program Specific Outcomes", link: "/departments/fire-tech/program-specific-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/fire-tech/program-educational-objectives" },
-          ],
-        },
-        {
-          label: "Civil Engg.",
-          link: "/departments/civil",
-          subMenu: [
-            { label: "About CE", link: "/departments/civil/about" },
-            { label: "Vision & Mission", link: "/departments/civil/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/civil/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/civil/program-outcomes" },
-            { label: "Program Specific Outcomes", link: "/departments/civil/program-specific-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/civil/program-educational-objectives" },
-          ],
-        },
-        {
-          label: "Management",
-          link: "/departments/management",
-          subMenu: [
-            { label: "About", link: "/departments/management/about" },
-            { label: "Vision & Mission", link: "/departments/management/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/management/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/management/program-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/management/program-educational-objectives" },
-          ],
-        },
-        {
-          label: "Computer Applications",
-          link: "/departments/computer-apps",
-          subMenu: [
-            { label: "About CA", link: "/departments/computer-apps/about" },
-            { label: "Vision & Mission", link: "/departments/computer-apps/vision-mission" },
-            { label: "Course Outcomes", link: "/departments/computer-apps/course-outcomes" },
-            { label: "Program Outcomes", link: "/departments/computer-apps/program-outcomes" },
-            { label: "Program Educational Objectives", link: "/departments/computer-apps/program-educational-objectives" },
-            { label: "Program Specific Outcomes", link: "/departments/computer-apps/program-specific-outcomes" },
-          ],
-        },
-       
-      ],
-    },
+   
     {
       label: "Career",
-      link: "#",
+      link: "/",
       subMenu: [
-        { label: "Testimonials", link: "/testimonials" },
-        { label: "Login", link: "/login" },
-        { label: "Register", link: "/register" },
-        { label: "404 Error", link: "/404" },
+        { label: "Testimonials", link: "/" },
+        { label: "Login", link: "/" },
+        { label: "Register", link: "/" },
+        { label: "404 Error", link: "/" },
       ],
     },
     {
       label: "Contact Us",
-      link: "/contact",
+      link: "/",
     },
   ];
+  
 
   // Recursive function to render sub-menu items
   const renderSubMenu = (subMenu) => {
