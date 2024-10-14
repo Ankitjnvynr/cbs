@@ -20,34 +20,64 @@ const Hero3 = () => {
           <Image src={hero1} alt="" />
         </div>
         <div className="container-fluid">
-          <div className="content pt-10 ">
+          <div
+            
+            className="content mt-10 "
+          >
             <div className="title ">
               <div className="icon">
                 <Image src={hero2} alt="" />
               </div>
               <span>Create Your Dream Project With Us</span>
             </div>
-            <div className="sub-title ">
-              <h1>
-                Best <span>CBS COLLEGE</span> 
-              </h1>
-            </div>
-           <h2>
-           <Typewriter
-              options={{
-                strings: [
-                  "For Best Education",
-                  "For Best Placement",
-                  "For Best Campus",
-                ],
-                autoStart: true,
-                loop: true,
-                delay: 50,
+            <div className="sub-title "
+            
+            >
+              <h1
+              style={{
+                flexDirection: "column",
+                background:
+                  "linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7),rgba(255, 255, 255, 0))",
+                // backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)", // For Safari support
+                //borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
+                //border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
+                maxWidth:500
               }}
-              style={{ color: "red" }}
-            />
-           </h2>
-            <p>
+              >
+                 <span>CBS GROUP OF INSTITUTIONS</span>
+              </h1>
+              <h2
+            
+            >
+              <Typewriter
+                options={{
+                  strings: [
+                    "For Best Education",
+                    "For Best Placement",
+                    "For Best Campus",
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  delay: 50,
+                }}
+                style={{ color: "red" }}
+              />
+            </h2>
+            </div>
+            
+            <p 
+            style={{
+              flexDirection: "column",
+              background:
+                "linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
+              backdropFilter: "blur(5px)",
+              WebkitBackdropFilter: "blur(5px)", // For Safari support
+              borderRadius: "10px", // Optional: Add some rounding for a glass panel effect
+              border: "1px solid rgba(255, 255, 255, 0.2)", // Optional: A subtle border for emphasis
+              maxWidth:500
+            }}
+            >
               Your success is our success. We prioritize understanding your
               unique business requirements, tailoring solutions that not only
               meet your needs but also exceed your expectations.
@@ -56,22 +86,25 @@ const Hero3 = () => {
               <Link href="/about" className="theme-btn">
                 Get Started<i className="ti-arrow-right"></i>
               </Link>
-              <div style={{
-        zIndex:100
-      }} className="award">
-        <div className="icon">
-          <Image src={Arrow} alt="Award Icon" width={50} height={50} />
-        </div>
-        <div className="text">
-          <h3>
-            <span>
-              <CountUp enableScrollSpy end={25} />
-            </span>
-            +
-          </h3>
-          <span>Years Of Experience</span>
-        </div>
-      </div>
+              <div
+                style={{
+                  zIndex: 100,
+                }}
+                className="award"
+              >
+                <div className="icon">
+                  <Image src={Arrow} alt="Award Icon" width={50} height={50} />
+                </div>
+                <div className="text">
+                  <h3>
+                    <span>
+                      <CountUp enableScrollSpy end={25} />
+                    </span>
+                    +
+                  </h3>
+                  <span>Years Of Experience</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
