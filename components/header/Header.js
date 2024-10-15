@@ -257,6 +257,7 @@ const Header = (props) => {
         padding:0
       }}
       >
+        
         <nav
          
          style={{
@@ -271,6 +272,7 @@ const Header = (props) => {
           <div className="">
             <MobileMenu menus={menuItems}/>
           </div>
+          
           <div
             style={{
               position: actualPosition,

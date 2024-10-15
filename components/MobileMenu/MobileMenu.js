@@ -347,9 +347,14 @@ const MobileMenu = () => {
     }
 
     return (
-        <div>
+        <div style={{
+            width:'90vw',
+            
+        }}>
             <div className={`mobileMenu ${menuActive ? "show" : ""}`}>
-                <div className="menu-close">
+                <div
+               
+                className="menu-close ">
                     <div className="clox" onClick={() => setMenuState(!menuActive)}><i className="ti-close"></i></div>
                 </div>
 
@@ -387,7 +392,7 @@ const MobileMenu = () => {
 
             </div>
 
-            <div className="showmenu mobail-menu" onClick={() => setMenuState(!menuActive)}>
+            <div className="showmenu mobail-menu  " onClick={() => setMenuState(!menuActive)}>
                 <button type="button" className="navbar-toggler open-btn">
                     <span className="icon-bar first-angle"></span>
                     <span className="icon-bar middle-angle"></span>
