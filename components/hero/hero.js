@@ -7,6 +7,8 @@ import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import Arrow from "/public/images/slider/award.svg";
 import CountUp from "react-countup";
+import NoticeBoard from "./NoticeBoard";
+
 
 const Hero3 = () => {
   const ClickHandler = () => {
@@ -24,7 +26,9 @@ const Hero3 = () => {
         <div className="hero-bg">
           <Image src={hero1} alt="" />
         </div>
-        <div className="container-fluid">
+        <div
+       
+        className="container-fluid herosec">
           <div className="content mt-10 ">
             <div className="title ">
               <div className="icon">
@@ -119,18 +123,20 @@ const Hero3 = () => {
                 </div>
               </div>
             </div>
+            
           </div>
-          <div className="left-bar" >
-
-          </div>
+        
 
         </div>
         {/* <div className="video" >
                     <VideoModal />
                 </div> */}
+
       </div>
+      
     </section>
   );
 };
 
 export default Hero3;
+
