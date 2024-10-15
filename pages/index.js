@@ -14,6 +14,7 @@ import Scrollbar from '../components/scrollbar/scrollbar';
 import CursorMaus from '../components/CursorMaus/CursorMaus';
 import Phone from '/public/images/telephone.svg'
 import Logo from '/public/images/cbslogo.png'
+import NoticeBoard from '../components/hero/NoticeBoard';
 
 
 const HomePage = () => {
@@ -21,6 +22,7 @@ const HomePage = () => {
         <Fragment>
             <Navbar  Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
             <Hero />
+            <NoticeBoard/>
             <FunfactSecion hclass="funfact-section" />
             <About />
             <ServiceSection hclass={'services-section'} />

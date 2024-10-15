@@ -133,15 +133,7 @@ const Hero3 = () => {
                 </div> */}
 
       </div>
-      <div
-      style={{
-        position:'relative'
-      }}
-      >
-        
-        hello
-        <NoticeBoard/>
-      </div>
+      
     </section>
   );
 };
