@@ -146,18 +146,7 @@ const Header = (props) => {
             { label: "Program Educational Objectives", link: "/" },
           ],
         },
-        {
-          label: "Fire Technology & Safety",
-          link: "/",
-          subMenu: [
-            { label: "About FTS", link: "/" },
-            { label: "Vision & Mission", link: "/" },
-            { label: "Course Outcomes", link: "/" },
-            { label: "Program Outcomes", link: "/" },
-            { label: "Program Specific Outcomes", link: "/" },
-            { label: "Program Educational Objectives", link: "/" },
-          ],
-        },
+        
         {
           label: "Civil Engg.",
           link: "/",
