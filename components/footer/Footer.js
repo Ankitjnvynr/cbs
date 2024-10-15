@@ -74,7 +74,7 @@ const Footer = (props) => {
                                 </div>
                                 <ul>
                                     <li><Link onClick={ClickHandler} href="#">Admission</Link></li>
-                                   <li><Link onClick={ClickHandler} href="/about2/about2.js">
+                                   <li><Link onClick={ClickHandler} href="/about2">
                                                          UG/PG Syllabi
                                                           </Link></li> 
                                     <li><Link onClick={ClickHandler} href="#">Result</Link></li>
@@ -94,7 +94,7 @@ const Footer = (props) => {
                                     </li>
                                     <li><Image src={News1} alt="" /> <span>+91-8053111222-666
                                     </span></li>
-                                    <li><Image src={News2} alt="" /><span>8 KM. Mile Stone, Jhajjar-Kosli Raod, <br />
+                                    <li><Image src={News2} alt="" /><span>8 KM. Mile Stone, Jhajjar-Kosli Road, <br />
                                         Fatehpuri , Jhajjar Delhi-NCR (Haryana)</span></li>
                                 </ul>
                             </div>
