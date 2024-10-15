@@ -280,7 +280,7 @@ const Header = (props) => {
             <Image width="300" src={props.Logo} alt="logo" />
           </Link>
           <div className="">
-            <MobileMenu />
+            <MobileMenu menus={menuItems}/>
           </div>
           <div
             style={{
