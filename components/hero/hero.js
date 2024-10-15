@@ -23,14 +23,14 @@ const Hero3 = () => {
         }}
         className="hero-slider-section"
       >
-        <div className="hero-bg">
+        <div className="hero-bg  ">
           <Image src={hero1} alt="" />
         </div>
         <div
        
         className="container-fluid herosec">
-          <div className="content mt-10 ">
-            <div className="title ">
+          <div className="content mt-10 hidden md:block ">
+          <div className="title ">
               <div className="icon">
                 <Image src={hero2} alt="" />
               </div>
