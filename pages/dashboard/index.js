@@ -41,7 +41,7 @@ const Sidebar = () => {
                     }
                 } className="p-2 hover:bg-gray-700 rounded bg-red-50">Logout</li>
             </ul>
-
+                
         </div>
     );
 };
