@@ -55,7 +55,7 @@ const menus =[
             {
                 "id": 71,
                 "title": "Registration Form",
-                "link": "/"
+                "link": "/alumni/registration"
             },
             {
                 "id": 72,
