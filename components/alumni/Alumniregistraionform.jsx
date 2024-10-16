@@ -54,19 +54,21 @@ const Alumniregistrationform = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const formErrors = validateForm();
-  
+    
     // Check for form errors
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      return;
-    }
+    console.log("sdfhskdh");
+    // if (Object.keys(formErrors).length > 0) {
+    //   setErrors(formErrors);
+    //   return;
+    // }
   
     setIsLoading(true);
   
     try {
       // Make the POST request to the backend
-      const response = await fetch('http://cbs.bigbyteworld.com/submit_aluminai.php', {
+      const response = await fetch('https://cbs.bigbyteworld.com/submit_aluminai.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,6 +77,8 @@ const Alumniregistrationform = () => {
       });
   
       const result = await response.json();
+      console.log(result);
+      
   
       // Handle success or error response from the server
       if (response.ok) {
