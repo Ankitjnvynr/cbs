@@ -199,7 +199,7 @@ const Header = (props) => {
       label: "Alumni",
       link: "/",
       subMenu: [
-        { label: "Registration form", link: "/" },
+        { label: "Registration form", link: "/alumni/registration" },
         { label: "Alumni Testimonials", link: "/" },
         { label: "Alumni videos", link: "/" },
         { label: "Gallery", link: "/" },
