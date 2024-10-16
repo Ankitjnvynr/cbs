@@ -73,7 +73,7 @@ const Hero3 = () => {
               </h2>
             </div>
 
-            <p
+            {/* <p
               style={{
                 flexDirection: "column",
                 background:
@@ -92,7 +92,7 @@ const Hero3 = () => {
               Your success is our success. We prioritize understanding your
               unique business requirements, tailoring solutions that not only
               meet your needs but also exceed your expectations.
-            </p>
+            </p> */}
             <div className="hero-btn">
               <Link href="/about" className="theme-btn border ">
                 Go To Alumni<i className="ti-arrow-right"></i>
@@ -105,9 +105,9 @@ const Hero3 = () => {
                 borderRadius: "40px", // Optional, for rounded corners
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.5)", // Optional, adds a subtle shadow to lift the glass effect
                 border: "1px solid rgba(255, 255, 255, 0.7)", // Optional, a soft border to enhance the glass effect
-             
+                marginTop:'10px',
               }}
-                className="award"
+                className="award "
               >
                 <div className="icon">
                   <Image src={Arrow} alt="Award Icon" width={50} height={50} />

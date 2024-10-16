@@ -203,6 +203,7 @@ const Header = (props) => {
         { label: "Alumni Testimonials", link: "/" },
         { label: "Alumni videos", link: "/" },
         { label: "Gallery", link: "/" },
+        // { label: "Alumni Form", link: "/" },
       ],
     },
     {
@@ -284,7 +285,7 @@ const Header = (props) => {
               borderRadius: "10px",
               border: "1px solid rgba(255, 255, 255, 0.18)",
               width: "100%",
-              zIndex: 200,
+              zIndex: 900,
             }}
             id="navbar"
             className="collapse navbar-collapse navigation-holder"
