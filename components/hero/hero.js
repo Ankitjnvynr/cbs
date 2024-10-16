@@ -73,7 +73,7 @@ const Hero3 = () => {
               </h2>
             </div>
 
-            <p
+            {/* <p
               style={{
                 flexDirection: "column",
                 background:
@@ -92,7 +92,7 @@ const Hero3 = () => {
               Your success is our success. We prioritize understanding your
               unique business requirements, tailoring solutions that not only
               meet your needs but also exceed your expectations.
-            </p>
+            </p> */}
             <div className="hero-btn">
               <Link href="/about" className="theme-btn border ">
                 Go To Alumni<i className="ti-arrow-right"></i>
