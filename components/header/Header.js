@@ -203,7 +203,7 @@ const Header = (props) => {
         { label: "Alumni Testimonials", link: "/" },
         { label: "Alumni videos", link: "/" },
         { label: "Gallery", link: "/" },
-        { label: "Alumni Form", link: "/" },
+        // { label: "Alumni Form", link: "/" },
       ],
     },
     {
