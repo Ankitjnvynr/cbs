@@ -52,43 +52,71 @@ const Alumniregistrationform = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
+  
+    // Check for form errors
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
     }
+  
     setIsLoading(true);
-
-    setTimeout(() => {
-      console.log('Form Data:', formData);
-      alert('Form submitted successfully!');
-      setFormData({
-        studentName: '',
-        dob: '',
-        placeOfBirth: '',
-        guardianName: '',
-        nationality: '',
-        occupation: '',
-        state: '',
-        city: '',
-        pinCode: '',
-        email: '',
-        mobile: '',
-        otherContact: '',
-        rollNo: '',
-        session: '',
-        currentOrgDesignation: '',
-        pastOrgDesignation: '',
-        contactNo: '',
-        course: '',
-        branch: '',
+  
+    try {
+      // Make the POST request to the backend
+      const response = await fetch('http://cbs.bigbyteworld.com/submit_aluminai.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      setErrors({});
+  
+      const result = await response.json();
+  
+      // Handle success or error response from the server
+      if (response.ok) {
+        alert('Form submitted successfully!');
+        console.log('Response:', result);
+  
+        // Reset the form
+        setFormData({
+          studentName: '',
+          dob: '',
+          placeOfBirth: '',
+          guardianName: '',
+          nationality: '',
+          occupation: '',
+          state: '',
+          city: '',
+          pinCode: '',
+          email: '',
+          mobile: '',
+          otherContact: '',
+          rollNo: '',
+          session: '',
+          currentOrgDesignation: '',
+          pastOrgDesignation: '',
+          contactNo: '',
+          course: '',
+          branch: '',
+        });
+        setErrors({});
+      } else {
+        alert(`Error: ${result.error || 'Something went wrong'}`);
+        console.error('Error response:', result);
+      }
+    } catch (error) {
+      // Handle network or unexpected errors
+      console.error('Network error:', error);
+      alert('Network error. Please try again later.');
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
+  
 
   const branches = {
     BTech: ['Mechanical', 'Computer Science', 'Civil', 'Electronics', 'Electrical', 'Other'],
@@ -104,7 +132,7 @@ const Alumniregistrationform = () => {
       <div style={styles.formWrapper}>
         <h1 style={styles.title}>Alumni Registration Form</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.grid}>
+          <div style={styles.flex}>
             {/* Student Information */}
             <input
               type="text"
@@ -338,13 +366,21 @@ const styles = {
     gridTemplateColumns: '1fr 1fr',
     gap: '25px',
   },
+  flex:{
+    display:'flex',
+    flexWrap:'wrap',
+    gap: '25px',
+
+  },
   input: {
     padding: '10px',
     borderRadius: '8px',
     border: 'none',
-    background: 'rgba(255, 255, 255, 0.7)',
+    background: 'rgba(255, 255, 255, 0.9)',
     color: 'black',
     outline: 'none',
+    border:'1px solid gray',
+    flex:'1 0 250px'
   },
   button: {
     padding: '15px',
@@ -365,6 +401,7 @@ const styles = {
     color: 'red',
     fontSize: '0.8rem',
   },
+
 };
 
 export default Alumniregistrationform;
