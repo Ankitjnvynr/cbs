@@ -228,7 +228,7 @@ const Header = (props) => {
     },
     {
       label: "Contact Us",
-      link: "/",
+      link: "/contact",
     },
   ];
   
