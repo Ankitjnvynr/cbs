@@ -54,38 +54,30 @@ const Alumniregistrationform = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formErrors = validateForm();
-    
-    // Check for form errors
-    console.log("sdfhskdh");
-    // if (Object.keys(formErrors).length > 0) {
-    //   setErrors(formErrors);
-    //   return;
-    // }
-  
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
     setIsLoading(true);
-  
+
     try {
-      // Make the POST request to the backend
-      const response = await fetch('https://cbs.bigbyteworld.com/submit_aluminai.php', {
+      const response = await fetch('/api/alumni', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
-  
+
       const result = await response.json();
-      console.log(result);
-      
-  
-      // Handle success or error response from the server
+
       if (response.ok) {
         alert('Form submitted successfully!');
         console.log('Response:', result);
-  
-        // Reset the form
+
         setFormData({
           studentName: '',
           dob: '',
@@ -109,18 +101,16 @@ const Alumniregistrationform = () => {
         });
         setErrors({});
       } else {
-        alert(`Error: ${result.error || 'Something went wrong'}`);
+        alert(`Error: ${result.message}`);
         console.error('Error response:', result);
       }
     } catch (error) {
-      // Handle network or unexpected errors
       console.error('Network error:', error);
       alert('Network error. Please try again later.');
     } finally {
       setIsLoading(false);
     }
   };
-  
 
   const branches = {
     BTech: ['Mechanical', 'Computer Science', 'Civil', 'Electronics', 'Electrical', 'Other'],
@@ -137,185 +127,54 @@ const Alumniregistrationform = () => {
         <h1 style={styles.title}>Alumni Registration Form</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.flex}>
-            {/* Student Information */}
-            <input
-              type="text"
-              name="studentName"
-              value={formData.studentName}
-              onChange={handleChange}
-              placeholder="Full Name of Student"
-              style={styles.input}
-            />
-            <input
-              type="date"
-              name="dob"
-              value={formData.dob}
-              onChange={handleChange}
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="placeOfBirth"
-              value={formData.placeOfBirth}
-              onChange={handleChange}
-              placeholder="Place of Birth"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="nationality"
-              value={formData.nationality}
-              onChange={handleChange}
-              placeholder="Nationality"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="occupation"
-              value={formData.occupation}
-              onChange={handleChange}
-              placeholder="Occupation"
-              style={styles.input}
-            />
-
-            {/* Guardian Information */}
-            <input
-              type="text"
-              name="guardianName"
-              value={formData.guardianName}
-              onChange={handleChange}
-              placeholder="Guardian's Name"
-              style={styles.input}
-            />
-
-            {/* Address Information */}
-            <input
-              type="text"
-              name="state"
-              value={formData.state}
-              onChange={handleChange}
-              placeholder="State"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              placeholder="City"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="pinCode"
-              value={formData.pinCode}
-              onChange={handleChange}
-              placeholder="Pin Code"
-              style={styles.input}
-            />
-
-            {/* Contact Information */}
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="mobile"
-              value={formData.mobile}
-              onChange={handleChange}
-              placeholder="Mobile Number"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="otherContact"
-              value={formData.otherContact}
-              onChange={handleChange}
-              placeholder="Other Contact"
-              style={styles.input}
-            />
-
-            {/* Academic Information */}
-            <input
-              type="text"
-              name="rollNo"
-              value={formData.rollNo}
-              onChange={handleChange}
-              placeholder="Roll Number"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="session"
-              value={formData.session}
-              onChange={handleChange}
-              placeholder="Session"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="currentOrgDesignation"
-              value={formData.currentOrgDesignation}
-              onChange={handleChange}
-              placeholder="Current Organization & Designation"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="pastOrgDesignation"
-              value={formData.pastOrgDesignation}
-              onChange={handleChange}
-              placeholder="Past Organization & Designation"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="contactNo"
-              value={formData.contactNo}
-              onChange={handleChange}
-              placeholder="Contact Number"
-              style={styles.input}
-            />
-
-            {/* Course and Branch Information */}
-            <select
-              name="course"
-              value={formData.course}
-              onChange={handleChange}
-              style={styles.input}
-            >
-              <option value="">Select a Course</option>
-              {Object.keys(branches).map((course) => (
-                <option key={course} value={course}>
-                  {course}
-                </option>
-              ))}
-            </select>
-            {formData.course && (
-              <select
-                name="branch"
-                value={formData.branch}
-                onChange={handleChange}
-                style={styles.input}
-              >
-                <option value="">Select a Branch</option>
-                {branches[formData.course].map((branch) => (
-                  <option key={branch} value={branch}>
-                    {branch}
-                  </option>
-                ))}
-              </select>
-            )}
+            {Object.keys(formData).map((key, index) => (
+              <div key={index} style={styles.inputBox}>
+                {key === 'course' ? (
+                  <select
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    style={styles.input}
+                  >
+                    <option value="">Select a Course</option>
+                    {Object.keys(branches).map((course) => (
+                      <option key={course} value={course}>
+                        {course}
+                      </option>
+                    ))}
+                  </select>
+                ) : key === 'branch' && formData.course ? (
+                  <select
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    style={styles.input}
+                  >
+                    <option value="">Select a Branch</option>
+                    {branches[formData.course].map((branch) => (
+                      <option key={branch} value={branch}>
+                        {branch}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <>
+                    <input
+                      type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleChange}
+                      placeholder={key.replace(/([A-Z])/g, ' $1').trim()}
+                      style={styles.input}
+                    />
+                    {errors[key] && <span style={styles.error}>{errors[key]}</span>}
+                  </>
+                )}
+              </div>
+            ))}
           </div>
-
           <button
-          
-          className='my-3  '
+            className="my-3"
             type="submit"
             style={styles.button}
             onMouseOver={(e) => (e.target.style.background = styles.buttonHover.background)}
@@ -328,6 +187,7 @@ const Alumniregistrationform = () => {
     </div>
   );
 };
+
 const styles = {
   container: {
     minHeight: '100vh',
@@ -339,7 +199,6 @@ const styles = {
     backgroundAttachment: 'fixed',
     backgroundPosition: 'full',
     padding: '20px',
-    
   },
   formWrapper: {
     background: 'rgba(255, 255, 255, 0.1)',
@@ -356,25 +215,20 @@ const styles = {
     marginBottom: '20px',
     fontSize: '2rem',
   },
-  fieldset: {
+  flex: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '25px',
+  },
+  inputBox: {
+    padding: '10px',
+    borderRadius: '8px',
     border: 'none',
-    padding: '10px 0',
-  },
-  legend: {
-    marginBottom: '10px',
-    color: 'white',
-    fontSize: '1.2rem',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '25px',
-  },
-  flex:{
-    display:'flex',
-    flexWrap:'wrap',
-    gap: '25px',
-
+    background: 'rgba(255, 255, 255, 0.9)',
+    color: 'black',
+    outline: 'none',
+    border: '1px solid gray',
+    flex: '1 0 250px',
   },
   input: {
     padding: '10px',
@@ -383,8 +237,8 @@ const styles = {
     background: 'rgba(255, 255, 255, 0.9)',
     color: 'black',
     outline: 'none',
-    border:'1px solid gray',
-    flex:'1 0 250px'
+    border: '1px solid gray',
+    width: '100%',
   },
   button: {
     padding: '15px',
@@ -395,8 +249,7 @@ const styles = {
     fontSize: '1rem',
     cursor: 'pointer',
     transition: 'background 0.3s',
-    width:'100%'
-    
+    width: '100%',
   },
   buttonHover: {
     background: '#08122d',
@@ -405,7 +258,6 @@ const styles = {
     color: 'red',
     fontSize: '0.8rem',
   },
-
 };
 
 export default Alumniregistrationform;
