@@ -275,10 +275,12 @@ const Header = (props) => {
   // Recursive function to render sub-menu items
   const renderSubMenu = (subMenu) => {
     return (
-      <ul className="sub-menu text-xs py-2 ">
+      <ul className="sub-menu  py-2 ">
         {subMenu.map((item, index) => (
           <li key={index}>
-            <Link  className ='py-1' onClick={ClickHandler} href={item.link}>
+            <Link style={{
+              margin:'1'
+            }}  className ='py-1' onClick={ClickHandler} href={item.link}>
               {item.label}
             </Link>
             {item.subMenu && renderSubMenu(item.subMenu)} {/* Render sub-sub menu if exists */}
