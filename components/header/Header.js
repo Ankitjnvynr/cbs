@@ -331,10 +331,10 @@ const Header = (props) => {
             id="navbar"
             className="collapse navbar-collapse navigation-holder"
           >
-            <ul className="nav navbar-nav mb-2 mb-lg-0 text-xs">
+            <ul className="nav navbar-nav mb-2 mb-lg-0 ">
               {menuItems.map((item, index) => (
                 <li key={index} className={item.subMenu ? "menu-item-has-children" : ""}>
-                  <Link onClick={ClickHandler} href={item.link} className="text-xs">
+                  <Link onClick={ClickHandler} href={item.link} >
                     {item.label}
                   </Link>
                   {item.subMenu && renderSubMenu(item.subMenu)}
