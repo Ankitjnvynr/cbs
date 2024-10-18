@@ -8,21 +8,22 @@ import CtaSection from '../../components/CtaSection/CtaSection';
 import BlogSection from '../../components/BlogSection/BlogSection';
 import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
-import Logo from '/public/images/logo.svg'
+import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 import SyllabusCard from '../../components/SyllabusCard/SyllabusCard';
+import Syllabuses from '../../components/syllabus/Syllabuses';
 
 const AboutPage = () => {
     return (
         <Fragment>
-            <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'Syllabus'} />
             {/* <About /> */}
             {/* <VideosSection /> */}
             {/* <TestimonialSection /> */}
             {/* <CtaSection /> */}
-            <SyllabusCard/>
+            <Syllabuses/>
             <BlogSection />
             <Footer />
             <Scrollbar />

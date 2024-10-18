@@ -5,7 +5,7 @@ import Footer from '../../../components/footer/Footer';
 import Scrollbar from '../../../components/scrollbar/scrollbar';
 import CursorMaus from '../../../components/CursorMaus/CursorMaus';
 import Phone from '/public/images/telephone.svg'
-import Logo from '/public/images/logo.svg'
+import Logo from '/public/images/cbslogo.png'
 import Alumniregistraionform from '../../../components/alumni/Alumniregistraionform';
 
 const HomePage = () => {

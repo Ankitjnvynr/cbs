@@ -11,6 +11,8 @@ import Footer from '../../components/footer/Footer';
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
+import SyllabusCard from '../../components/SyllabusCard/SyllabusCard';
+import Syllabuses2 from '../../components/syllabus/Syllabuses2';
 
 const AboutPage = () => {
     return (
@@ -21,6 +23,7 @@ const AboutPage = () => {
             {/* <VideosSection /> */}
             {/* <TestimonialSection /> */}
             {/* <CtaSection /> */}
+            <Syllabuses2/>
             <BlogSection />
             <Footer />
             <Scrollbar />

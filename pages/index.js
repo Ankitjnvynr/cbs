@@ -17,6 +17,7 @@ import Logo from '/public/images/cbslogo.png'
 import NoticeBoard from '../components/hero/NoticeBoard';
 
 
+
 const HomePage = () => {
     return (
         <Fragment>

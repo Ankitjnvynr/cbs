@@ -4,7 +4,7 @@ import PageTitle from '../../components/pagetitle/PageTitle'
 import Contactpage from '../../components/Contactpage/Contactpage'
 import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
-import Logo from '/public/images/logo.svg'
+import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 
