@@ -28,11 +28,11 @@ export default function Syllabuses() {
           syllabus: 'B.TECH CIVIL G Scheme', 
           link: '/syllabus/b.techcivilg.pdf' 
         },
-        { 
-          program: 'B.Tech FTS', 
-          syllabus: 'B.TECH FTS G Scheme', 
-          link: '/syllabus/b.techftsg.pdf' 
-        },
+        // { 
+        //   program: 'B.Tech FTS', 
+        //   syllabus: 'B.TECH FTS G Scheme', 
+        //   link: '/syllabus/b.techftsg.pdf' 
+        // },
         { 
           program: 'B.Tech EE', 
           syllabus: 'B.TECH EE G Scheme', 
@@ -63,11 +63,11 @@ export default function Syllabuses() {
           syllabus: 'M.TECH CSE SYLLABUS', 
           link: '/syllabus/m.techcse.pdf' 
         },
-        { 
-          program: 'M.Tech CFIS', 
-          syllabus: 'M.TECH CFIS SYLLABUS', 
-          link: '/syllabus/m.techcfis.pdf' 
-        },
+        // { 
+        //   program: 'M.Tech CFIS', 
+        //   syllabus: 'M.TECH CFIS SYLLABUS', 
+        //   link: '/syllabus/m.techcfis.pdf' 
+        // },
         { 
           program: 'M.Tech M&A', 
           syllabus: 'M.TECH M&A SYLLABUS', 
@@ -78,11 +78,11 @@ export default function Syllabuses() {
           syllabus: 'M.TECH MD SYLLABUS', 
           link: '/syllabus/m.techmd.pdf' 
         },
-        { 
-          program: 'M.Tech EPS', 
-          syllabus: 'M.TECH EPS SYLLABUS', 
-          link: '/syllabus/m.techeps.pdf' 
-        },
+        // { 
+        //   program: 'M.Tech EPS', 
+        //   syllabus: 'M.TECH EPS SYLLABUS', 
+        //   link: '/syllabus/m.techeps.pdf' 
+        // },
         { 
           program: 'M.Tech ECE', 
           syllabus: 'M.TECH ECE SYLLABUS', 
