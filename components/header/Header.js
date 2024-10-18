@@ -266,7 +266,7 @@ const Header = (props) => {
       ],
     },
     {
-      label: "Contact Us",
+      label: "Contact",
       link: "/contact",
     },
   ];
@@ -334,7 +334,7 @@ const Header = (props) => {
             <ul className="nav navbar-nav mb-2 mb-lg-0 ">
               {menuItems.map((item, index) => (
                 <li key={index} className={item.subMenu ? "menu-item-has-children" : ""}>
-                  <Link onClick={ClickHandler} href={item.link} >
+                  <Link  onClick={ClickHandler} href={item.link} >
                     {item.label}
                   </Link>
                   {item.subMenu && renderSubMenu(item.subMenu)}
