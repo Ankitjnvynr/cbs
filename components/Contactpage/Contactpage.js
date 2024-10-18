@@ -50,8 +50,8 @@ const Contactpage = () => {
                                         
                                         className="office-info-text">
                                             <h2 style={styles.colorWhite} >Address</h2>
-                                            <p style={styles.colorWhite} >CBS GROUP OF INSTITUTIONS, 8 KM. Mile Stone,
-                                                Jhajjar-Kosli Raod,Fatehpuri , Jhajjar
+                                            <p style={styles.colorWhite} >CBS GROUP OF INSTITUTIONS, 8Km. Mile Stone,
+                                                Jhajjar-Kosli Road,Fatehpuri , Jhajjar
                                                 Delhi-NCR (Haryana)</p>
                                         </div>
                                     </div>

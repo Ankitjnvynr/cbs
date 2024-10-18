@@ -58,7 +58,7 @@ const Header = (props) => {
         
         { label: "NAAC", link: "/" },
         { label: "AQAR", link: "/" },
-        { label: "OInitiatives", link: "/" },
+        { label: "Initiatives", link: "/" },
        
       ],
     },
@@ -224,7 +224,7 @@ const Header = (props) => {
         { label: "Auditing Statement", link: "/" },
         { label: "Affilation & Accrediation status", link: "/" },
         { label: "Memberships & MOU", link: "/" },
-        { label: "Memberships & MOU", link: "/" },
+        // { label: "Memberships & MOU", link: "/" },
         
       ],
     },
@@ -258,12 +258,7 @@ const Header = (props) => {
     {
       label: "Career",
       link: "/",
-      subMenu: [
-        { label: "Testimonials", link: "/" },
-        { label: "Login", link: "/" },
-        { label: "Register", link: "/" },
-        { label: "404 Error", link: "/" },
-      ],
+     
     },
     {
       label: "Contact Us",
