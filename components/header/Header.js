@@ -279,7 +279,8 @@ const Header = (props) => {
         {subMenu.map((item, index) => (
           <li key={index}>
             <Link style={{
-              margin:'1'
+              margin:'1',
+              fontSize:'13px'
             }}  className ='py-1' onClick={ClickHandler} href={item.link}>
               {item.label}
             </Link>
