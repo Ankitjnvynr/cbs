@@ -89,41 +89,6 @@ const Header = (props) => {
       ],
     },
     {
-      label: "Research",
-      link: "/",
-      subMenu: [
-        { label: "Research Supervisors", link: "/" },
-        { label: "Recent Publication & Patents", link: "/" },
-        { label: "MDU Research Approval", link: "/" },  
-        { label: "Regulation", link: "/" },
-      ],
-    },
-   
-    {
-      label: "Facilities",
-      link: "/",
-      subMenu: [
-        { label: "Class Rooms & campus", link: "/" },
-        { label: "Library", link: "/" },
-        { label: "Computer Center", link: "/" },
-        { label: "Sports", link: "/" },
-        { label: "Infrastructure", link: "/" },
-        {
-          label: "All Facilities",
-          link: "/",
-          subMenu: [
-            { label: "Laboratories & Workshop", link: "/" },
-            { label: "Canteen & Cafeteria", link: "/" },
-            { label: "Dispensary/Health Zone", link: "/" },
-            { label: "Hostels", link: "/" },
-            { label: "Transport", link: "/" },
-            { label: "Anti Rangging Comunity", link: "/" },
-            { label: "College Internal Complaint Committee", link: "/" },
-          ],
-        },
-      ],
-    },
-    {
       label: "Departments",
       link: "/",
       subMenu: [
@@ -218,6 +183,42 @@ const Header = (props) => {
       ],
     },
     {
+      label: "Research",
+      link: "/",
+      subMenu: [
+        { label: "Research Supervisors", link: "/" },
+        { label: "Recent Publication & Patents", link: "/" },
+        { label: "MDU Research Approval", link: "/" },  
+        { label: "Regulation", link: "/" },
+      ],
+    },
+   
+    {
+      label: "Facilities",
+      link: "/",
+      subMenu: [
+        { label: "Class Rooms & campus", link: "/" },
+        { label: "Library", link: "/" },
+        { label: "Computer Center", link: "/" },
+        { label: "Sports", link: "/" },
+        { label: "Infrastructure", link: "/" },
+        {
+          label: "All Facilities",
+          link: "/",
+          subMenu: [
+            { label: "Laboratories & Workshop", link: "/" },
+            { label: "Canteen & Cafeteria", link: "/" },
+            { label: "Dispensary/Health Zone", link: "/" },
+            { label: "Hostels", link: "/" },
+            { label: "Transport", link: "/" },
+            { label: "Anti Rangging Comunity", link: "/" },
+            { label: "College Internal Complaint Committee", link: "/" },
+          ],
+        },
+      ],
+    },
+   
+    {
       label: "Placement",
       link: "/",
       subMenu: [
@@ -258,6 +259,11 @@ const Header = (props) => {
    
     {
       label: "Career",
+      link: "/",
+     
+    },
+    {
+      label: "Blogs",
       link: "/",
      
     },
