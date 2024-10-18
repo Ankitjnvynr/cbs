@@ -18,7 +18,7 @@ const menus =[
             {
                 "id": 11,
                 "title": "Vision and Mission",
-                "link": "/"
+                "link": "/vision-mission"
             },
             {
                 "id": 12,
