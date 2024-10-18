@@ -75,6 +75,20 @@ const Header = (props) => {
       ],
     },
     {
+      label: "Admission",
+      link: "/",
+      subMenu: [
+        { label: "Course Programme Offered", link: "/" },
+        { label: "Fee Structure", link: "/" },
+        { label: "Scholarships Scheme", link: "/" },
+        { label: "Eligibility", link: "/" },
+        { label: "Documents Required", link: "/" },
+        { label: "Admission Form", link: "/" },
+        { label: "Admission Prospectos", link: "/" },
+        
+      ],
+    },
+    {
       label: "Research",
       link: "/",
       subMenu: [
@@ -84,10 +98,7 @@ const Header = (props) => {
         { label: "Regulation", link: "/" },
       ],
     },
-    {
-      label: "Events",
-      link: "/",
-    },
+   
     {
       label: "Facilities",
       link: "/",
@@ -239,21 +250,11 @@ const Header = (props) => {
         // { label: "Alumni Form", link: "/" },
       ],
     },
-    {
-      label: "Admission",
-      link: "/",
-      subMenu: [
-        { label: "Course Programme Offered", link: "/" },
-        { label: "Fee Structure", link: "/" },
-        { label: "Scholarships Scheme", link: "/" },
-        { label: "Eligibility", link: "/" },
-        { label: "Documents Required", link: "/" },
-        { label: "Admission Form", link: "/" },
-        { label: "Admission Prospectos", link: "/" },
-        
-      ],
-    },
    
+    {
+      label: "Events",
+      link: "/",
+    },
    
     {
       label: "Career",
