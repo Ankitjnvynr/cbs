@@ -4,7 +4,7 @@ import { useState } from 'react';
 const Alumniregistrationform = () => {
   const [formData, setFormData] = useState({
     StudentName: '',
-    Dob: '',
+    DOB: '',
     PlaceOfBirth: '',
     GuardianName: '',
     Nationality: '',
