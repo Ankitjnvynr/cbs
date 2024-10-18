@@ -4,24 +4,23 @@ import { useState } from 'react';
 const Alumniregistrationform = () => {
   const [formData, setFormData] = useState({
     StudentName: '',
-    DOB: '',
-    PlaceOfBirth: '',
-    GuardianName: '',
+        
+         
     Nationality: '',
     Occupation: '',
-    State: '',
+    
     City: '',
-    PinCode: '',
+    
     Email: '',
     Mobile: '',
-    OtherContact: '',
-    RollNo: '',
-    Session: '',
-    CurrentOrgDesignation: '',
-    PastOrgDesignation: '',
-    ContactNo: '',
+    
     Course: '',
     Branch: '',
+    
+    RollNo: '',
+    Session: '',
+    'Current Org & Designation': '',
+    PastOrgDesignation: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -80,24 +79,23 @@ const Alumniregistrationform = () => {
 
         setFormData({
           studentName: '',
-          dob: '',
-          placeOfBirth: '',
-          guardianName: '',
+        
+         
           nationality: '',
           occupation: '',
-          state: '',
+          
           city: '',
-          pinCode: '',
+          
           email: '',
           mobile: '',
-          otherContact: '',
-          rollNo: '',
-          session: '',
-          currentOrgDesignation: '',
-          pastOrgDesignation: '',
-          contactNo: '',
           course: '',
           branch: '',
+          
+          rollNo: '',
+          session: '',
+          'current Org & Designation': '',
+          pastOrgDesignation: '',
+         
         });
         setErrors({});
       } else {
