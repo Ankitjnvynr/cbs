@@ -39,13 +39,8 @@ const Header = (props) => {
       label: "About",
       link: "/",
       subMenu: [
-<<<<<<< HEAD
         { label: "Vision & Mission", link: "/vision" },
-        { label: "President's Message", link: "/" },
-=======
-        { label: "Vision & Mission", link: "/" },
         
->>>>>>> 38b46c357351eea7075bc50f701415d36eb037aa
         { label: "Director's Message", link: "/" },
         { label: "Chairman's Message", link: "/" },
         { label: "Organisation Chart", link: "/" },
