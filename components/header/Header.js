@@ -40,17 +40,33 @@ const Header = (props) => {
       link: "/",
       subMenu: [
         { label: "Vision & Mission", link: "/" },
-        { label: "President's Message", link: "/" },
+        
         { label: "Director's Message", link: "/" },
-        { label: "Director General's Message", link: "/" },
-        { label: "Governing Body of Institution", link: "/" },
-        { label: "Grievance Committee", link: "/" },
+        { label: "Chairman's Message", link: "/" },
+        { label: "Organisation Chart", link: "/" },
+        { label: "Approvals & Affiliations", link: "/" },
+        { label: "Code of Conduct", link: "/" },
+        { label: "Mandatory Disclosures", link: "/" },
+        { label: "Financial Audit", link: "/" },
+      ],
+    },
+    {
+      label: "IQAC",
+      link: "/",
+      subMenu: [
+        { label: "About IQAC", link: "/" },
+        
+        { label: "NAAC", link: "/" },
+        { label: "AQAR", link: "/" },
+        { label: "OInitiatives", link: "/" },
+       
       ],
     },
     {
       label: "Academics",
       link: "/",
       subMenu: [
+        { label: "Courses", link: "/" },
         { label: "Academic Calendar", link: "/" },
         { label: "Examinations", link: "/" },
         { label: "Curriculum", link: "/" },
@@ -64,7 +80,7 @@ const Header = (props) => {
       subMenu: [
         { label: "Research Supervisors", link: "/" },
         { label: "Recent Publication & Patents", link: "/" },
-        { label: "VTU Research Approval", link: "/" },
+        { label: "MDU Research Approval", link: "/" },  
         { label: "Regulation", link: "/" },
       ],
     },
@@ -79,6 +95,8 @@ const Header = (props) => {
         { label: "Class Rooms & campus", link: "/" },
         { label: "Library", link: "/" },
         { label: "Computer Center", link: "/" },
+        { label: "Sports", link: "/" },
+        { label: "Infrastructure", link: "/" },
         {
           label: "All Facilities",
           link: "/",
@@ -87,6 +105,9 @@ const Header = (props) => {
             { label: "Canteen & Cafeteria", link: "/" },
             { label: "Dispensary/Health Zone", link: "/" },
             { label: "Hostels", link: "/" },
+            { label: "Transport", link: "/" },
+            { label: "Anti Rangging Comunity", link: "/" },
+            { label: "College Internal Complaint Committee", link: "/" },
           ],
         },
       ],
@@ -192,7 +213,19 @@ const Header = (props) => {
         { label: "Career Development Cell", link: "/" },
         { label: "Training Programmes", link: "/" },
         { label: "Placement Gallery", link: "/" },
+        { label: "Placement Statistics", link: "/" },
         { label: "Our Recruiters", link: "/" },
+      ],
+    },
+    {
+      label: "Affilation",
+      link: "/",
+      subMenu: [
+        { label: "Auditing Statement", link: "/" },
+        { label: "Affilation & Accrediation status", link: "/" },
+        { label: "Memberships & MOU", link: "/" },
+        { label: "Memberships & MOU", link: "/" },
+        
       ],
     },
     {
@@ -210,8 +243,14 @@ const Header = (props) => {
       label: "Admission",
       link: "/",
       subMenu: [
+        { label: "Course Programme Offered", link: "/" },
+        { label: "Fee Structure", link: "/" },
+        { label: "Scholarships Scheme", link: "/" },
         { label: "Eligibility", link: "/" },
-        { label: "Admission Procedure", link: "/" },
+        { label: "Documents Required", link: "/" },
+        { label: "Admission Form", link: "/" },
+        { label: "Admission Prospectos", link: "/" },
+        
       ],
     },
    
