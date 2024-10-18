@@ -105,7 +105,8 @@ const Hero3 = () => {
                 borderRadius: "40px", // Optional, for rounded corners
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.5)", // Optional, adds a subtle shadow to lift the glass effect
                 border: "1px solid rgba(255, 255, 255, 0.7)", // Optional, a soft border to enhance the glass effect
-                marginTop:'10px',
+                // marginTop:'15px',
+                bottom:'5%',
               }}
                 className="award "
               >
