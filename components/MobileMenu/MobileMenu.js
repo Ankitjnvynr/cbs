@@ -330,7 +330,7 @@ const menus =[
     {
         "id": 91,
         "title": "Contact Us",
-        "link": "/"
+        "link": "/contact"
     }
 ]
 
