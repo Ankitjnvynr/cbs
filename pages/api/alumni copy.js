@@ -5,45 +5,51 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const {
       studentName,
+      dob,
+      placeOfBirth,
+      guardianName,
       nationality,
       occupation,
+      state,
       city,
+      pinCode,
       email,
       mobile,
-      course,
-      branch,
+      otherContact,
       rollNo,
       session,
       currentOrgDesignation,
       pastOrgDesignation,
+      contactNo,
+      course,
+      branch,
     } = req.body;
-
-    // Validation to ensure required fields are present
-    if (
-      !studentName || !nationality || !city || !email || 
-      !mobile || !course || !branch || !rollNo || !session
-    ) {
-      return res.status(400).json({ message: 'All required fields must be filled.' });
-    }
 
     try {
       const [result] = await pool.query(
         `INSERT INTO alumni_registration 
-        (studentName, nationality, occupation, city, email, mobile, course, branch, rollNo, session, currentOrgDesignation, pastOrgDesignation) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        (studentName, dob, placeOfBirth, guardianName, nationality, occupation, state, city, pinCode, email, mobile, otherContact, rollNo, session, currentOrgDesignation, pastOrgDesignation, contactNo, course, branch) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           studentName,
+          dob,
+          placeOfBirth,
+          guardianName,
           nationality,
-          occupation || null,
+          occupation,
+          state,
           city,
+          pinCode,
           email,
           mobile,
-          course,
-          branch,
+          otherContact,
           rollNo,
           session,
-          currentOrgDesignation || null,
-          pastOrgDesignation || null,
+          currentOrgDesignation,
+          pastOrgDesignation,
+          contactNo,
+          course,
+          branch,
         ]
       );
 

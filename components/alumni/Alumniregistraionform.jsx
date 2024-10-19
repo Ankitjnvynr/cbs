@@ -1,26 +1,20 @@
 'use client';
 import { useState } from 'react';
 
-const Alumniregistrationform = () => {
+const AlumniRegistrationForm = () => {
   const [formData, setFormData] = useState({
-    StudentName: '',
-        
-         
-    Nationality: '',
-    Occupation: '',
-    
-    City: '',
-    
-    Email: '',
-    Mobile: '',
-    
-    Course: '',
-    Branch: '',
-    
-    RollNo: '',
-    Session: '',
-    'Current Org & Designation': '',
-    PastOrgDesignation: '',
+    studentName: '',
+    nationality: '',
+    occupation: '',
+    city: '',
+    email: '',
+    mobile: '',
+    course: '',
+    branch: '',
+    rollNo: '',
+    session: '',
+    currentOrgDesignation: '',
+    pastOrgDesignation: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -34,27 +28,32 @@ const Alumniregistrationform = () => {
 
   const validateField = (name, value) => {
     const error = value ? '' : `${name} is required`;
-    setErrors({ ...errors, [name]: error });
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
   const validateForm = () => {
     const newErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
-      if (!value) newErrors[key] = `${key} is required`;
+      if (!value && key !== 'occupation' && key !== 'currentOrgDesignation' && key !== 'pastOrgDesignation') {
+        newErrors[key] = `${key.replace(/([A-Z])/g, ' $1').trim()} is required`;
+      }
     });
+
     if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Invalid email format';
     }
+
     if (formData.mobile && !/^\d{10}$/.test(formData.mobile)) {
       newErrors.mobile = 'Mobile number must be 10 digits';
     }
+
     return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formErrors = validateForm();
+
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
@@ -65,9 +64,7 @@ const Alumniregistrationform = () => {
     try {
       const response = await fetch('/api/alumni', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
@@ -75,36 +72,27 @@ const Alumniregistrationform = () => {
 
       if (response.ok) {
         alert('Form submitted successfully!');
-        console.log('Response:', result);
-
         setFormData({
           studentName: '',
-        
-         
           nationality: '',
           occupation: '',
-          
           city: '',
-          
           email: '',
           mobile: '',
           course: '',
           branch: '',
-          
           rollNo: '',
           session: '',
-          'current Org & Designation': '',
+          currentOrgDesignation: '',
           pastOrgDesignation: '',
-         
         });
         setErrors({});
       } else {
         alert(`Error: ${result.message}`);
-        console.error('Error response:', result);
       }
     } catch (error) {
-      console.error('Network error:', error);
       alert('Network error. Please try again later.');
+      console.error('Network error:', error);
     } finally {
       setIsLoading(false);
     }
@@ -158,7 +146,7 @@ const Alumniregistrationform = () => {
                 ) : (
                   <>
                     <input
-                      type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+                      type={key === 'email' ? 'email' : 'text'}
                       name={key}
                       value={formData[key]}
                       onChange={handleChange}
@@ -172,7 +160,6 @@ const Alumniregistrationform = () => {
             ))}
           </div>
           <button
-            className="my-3"
             type="submit"
             style={styles.button}
             onMouseOver={(e) => (e.target.style.background = styles.buttonHover.background)}
@@ -194,8 +181,6 @@ const styles = {
     justifyContent: 'center',
     backgroundImage: 'url("/images/bgdash.jpg")',
     backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
-    backgroundPosition: 'full',
     padding: '20px',
   },
   formWrapper: {
@@ -203,7 +188,6 @@ const styles = {
     backdropFilter: 'blur(1px)',
     borderRadius: '15px',
     padding: '30px',
-    width: '100%',
     maxWidth: '800px',
     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.37)',
   },
@@ -221,33 +205,25 @@ const styles = {
   inputBox: {
     padding: '10px',
     borderRadius: '8px',
-    border: 'none',
     background: 'rgba(255, 255, 255, 0.9)',
-    color: 'black',
-    outline: 'none',
     border: '1px solid gray',
     flex: '1 0 250px',
   },
   input: {
     padding: '10px',
     borderRadius: '8px',
-    border: 'none',
-    background: 'rgba(255, 255, 255, 0.9)',
-    color: 'black',
-    outline: 'none',
-    border: '1px solid gray',
     width: '100%',
+    border: '1px solid gray',
   },
   button: {
     padding: '15px',
     borderRadius: '8px',
-    border: 'none',
     background: '#08124d',
     color: 'white',
     fontSize: '1rem',
     cursor: 'pointer',
-    transition: 'background 0.3s',
     width: '100%',
+    transition: 'background 0.3s',
   },
   buttonHover: {
     background: '#08122d',
@@ -258,4 +234,4 @@ const styles = {
   },
 };
 
-export default Alumniregistrationform;
+export default AlumniRegistrationForm;
