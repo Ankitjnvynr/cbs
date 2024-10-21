@@ -11,6 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // React Icons for eye
 import { useRouter } from 'next/router';
 import Link from "next/link";
+import Image from 'next/image'; // Import Image from Next.js
 
 const LoginPage = () => {
     const router = useRouter();
@@ -21,18 +22,18 @@ const LoginPage = () => {
         remember: false,
     });
 
-    const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
+    const [showPassword, setShowPassword] = useState(false);
     const [validator] = useState(new SimpleReactValidator({ className: 'errorMessage' }));
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (token) {
-            router.push('/dashboard'); // Redirect if authenticated
+            router.push('/dashboard');
         }
     }, [router]);
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword); // Toggle visibility state
+        setShowPassword(!showPassword);
     };
 
     const changeHandler = (e) => {
@@ -51,7 +52,7 @@ const LoginPage = () => {
             if (email === 'cbs@gmail.com' && password === '1234') {
                 toast.success('Successfully logged in to CBS College!');
                 localStorage.setItem('authToken', 'mockToken123');
-                router.push('/dashboard'); // Redirect to dashboard
+                router.push('/dashboard');
             } else {
                 toast.error('Invalid email or password!');
             }
@@ -62,15 +63,47 @@ const LoginPage = () => {
     };
 
     return (
-        <Grid className="loginWrapper">
-            <Grid className="loginForm">
-                <h2>CBS GROUP OF INSTITUTION</h2>
-                <p>ADMIN LOGIN</p>
+        <Grid 
+            container 
+            justifyContent="center" 
+            alignItems="center" 
+            style={{
+                minHeight: '100vh',
+                backgroundImage: "url('/images/bgdash.jpg')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+        >
+            <Grid 
+                item 
+                xs={10} 
+                sm={8} 
+                md={5} 
+                lg={4} 
+                style={{
+                    padding: '30px',
+                    borderRadius: '16px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)', // Safari support
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    textAlign: 'center',
+                }}
+            >
+                <Image 
+                    src="/images/cbslogo.png" 
+                    alt="CBS Logo" 
+                    width={300} 
+                    height={100} 
+                    style={{ marginBottom: '20px' }} 
+                />
+                <h2 style={{ color: '#fff', marginBottom: '5px' }}>CBS GROUP OF INSTITUTION</h2>
+                <p style={{  marginBottom: '20px' }}>ADMIN LOGIN</p>
                 <form onSubmit={submitForm}>
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <TextField
-                                className="inputOutline"
                                 fullWidth
                                 placeholder="E-mail"
                                 value={value.email}
@@ -80,18 +113,18 @@ const LoginPage = () => {
                                 InputLabelProps={{ shrink: true }}
                                 onBlur={changeHandler}
                                 onChange={changeHandler}
+                                style={{ marginBottom: '10px' }}
                             />
                             {validator.message('email', value.email, 'required|email')}
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                className="inputOutline"
                                 fullWidth
                                 placeholder="Password"
                                 value={value.password}
                                 variant="outlined"
                                 name="password"
-                                type={showPassword ? 'text' : 'password'} // Toggle type based on visibility
+                                type={showPassword ? 'text' : 'password'}
                                 label="Password"
                                 InputLabelProps={{ shrink: true }}
                                 onBlur={changeHandler}
@@ -105,11 +138,17 @@ const LoginPage = () => {
                                         </InputAdornment>
                                     ),
                                 }}
+                                style={{ marginBottom: '10px' }}
                             />
                             {validator.message('password', value.password, 'required')}
                         </Grid>
                         <Grid item xs={12}>
-                            <Grid className="formAction">
+                            <Grid 
+                                container 
+                                justifyContent="space-between" 
+                                alignItems="center" 
+                                style={{ marginTop: '10px' }}
+                            >
                                 <FormControlLabel
                                     control={
                                         <Checkbox
@@ -121,9 +160,22 @@ const LoginPage = () => {
                                 />
                                 <Link href="/forgot-password">Forgot Password?</Link>
                             </Grid>
-                            <Grid className="formFooter">
-                                <Button fullWidth className="cBtnTheme" type="submit">Login</Button>
-                            </Grid>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button 
+                                fullWidth 
+                                type="submit" 
+                                style={{
+                                    backgroundColor: '#6200ea',
+                                    color: '#fff',
+                                    padding: '10px',
+                                    borderRadius: '8px',
+                                    textTransform: 'none',
+                                    marginTop: '20px',
+                                }}
+                            >
+                                Login
+                            </Button>
                         </Grid>
                     </Grid>
                 </form>
