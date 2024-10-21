@@ -4,6 +4,7 @@ import Image from 'next/image';
 import bgImage from '/public/images/bgdash.jpg'; // Background image
 import pool from '../../lib/db'; // Database connection
 import { useRouter } from 'next/router';
+import { FiLogOut } from 'react-icons/fi'; // Import logout icon
 
 const DashboardPage = ({ alumniData }) => {
     const router = useRouter();
@@ -13,12 +14,12 @@ const DashboardPage = ({ alumniData }) => {
     const handleLogout = () => {
         localStorage.removeItem('authToken'); // Remove the token
         router.push('/login'); // Redirect to login page
-        console.log("User has logged out"); // Confirm logout
+        console.log('User has logged out'); // Confirm logout
     };
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-        
+
         if (token) {
             setIsAuthenticated(true); // Set authenticated if token exists
         } else {
@@ -65,10 +66,17 @@ const DashboardPage = ({ alumniData }) => {
                     </ul>
                     <ul className="mt-10">
                         <li
-                            style={{ background: 'black', cursor: 'pointer' }}
+                            style={{
+                                background: 'black',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                            }}
                             onClick={handleLogout}
                             className="mb-3 mx-1 p-2 hover:bg-gray-700 rounded bg-red-50"
                         >
+                            <FiLogOut size={20} /> {/* Logout Icon */}
                             Logout
                         </li>
                     </ul>
