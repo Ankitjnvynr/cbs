@@ -1,8 +1,13 @@
 // pages/api/alumni.js
-import pool from '../../lib/db'; // Ensure the pool is correctly imported and configured
+import pool from '../../lib/db'; // Ensure the pool is correctly configured
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', ['POST']);
+    return res.status(405).json({ message: `Method ${req.method} Not Allowed` });
+  }
+
+  try {
     const {
       studentName,
       nationality,
@@ -26,43 +31,45 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'All required fields must be filled.' });
     }
 
-    try {
-      const query = `
-        INSERT INTO alumni_registration 
-        (studentName, nationality, occupation, city, email, mobile, course, branch, rollNo, session, currentOrgDesignation, pastOrgDesignation) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `;
+    // Optional: Log received data to debug issues
+    console.log('Received data:', req.body);
 
-      const values = [
-        studentName,
-        nationality,
-        occupation || null,
-        city,
-        email,
-        mobile,
-        course,
-        branch,
-        rollNo,
-        session,
-        currentOrgDesignation || null,
-        pastOrgDesignation || null,
-      ];
+    // SQL query to insert data
+    const query = `
+      INSERT INTO alumni_registration 
+      (studentName, nationality, occupation, city, email, mobile, course, branch, rollNo, session, currentOrgDesignation, pastOrgDesignation) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
 
-      const [result] = await pool.query(query, values);
+    const values = [
+      studentName,
+      nationality,
+      occupation || null,
+      city,
+      email,
+      mobile,
+      course,
+      branch,
+      rollNo,
+      session,
+      currentOrgDesignation || null,
+      pastOrgDesignation || null,
+    ];
 
-      res.status(201).json({
-        message: 'Data inserted successfully!',
-        id: result.insertId,
-      });
-    } catch (error) {
-      console.error('Database error:', error); // Log the actual error message
-      res.status(500).json({
-        message: 'Database insertion failed',
-        error: error.message, // Send the error message for debugging
-      });
-    }
-  } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(405).json({ message: `Method ${req.method} Not Allowed` });
+    // Execute the query
+    const [result] = await pool.query(query, values);
+
+    // Respond with success message
+    res.status(201).json({
+      message: 'Data inserted successfully!',
+      id: result.insertId,
+    });
+
+  } catch (error) {
+    console.error('Database error:', error); // Log the actual error
+    res.status(500).json({
+      message: 'Database insertion failed',
+      error: error.message, // Send error message for debugging
+    });
   }
 }
