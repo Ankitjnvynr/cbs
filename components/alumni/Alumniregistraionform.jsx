@@ -3,18 +3,18 @@ import { useState } from 'react';
 
 const AlumniRegistrationForm = () => {
   const [formData, setFormData] = useState({
-    studentName: '',
-    nationality: '',
-    occupation: '',
-    city: '',
-    email: '',
-    mobile: '',
-    course: '',
-    branch: '',
-    rollNo: '',
-    session: '',
-    currentOrgDesignation: '',
-    pastOrgDesignation: '',
+    StudentName: '',
+    Nationality: '',
+    Occupation: '',
+    City: '',
+    Email: '',
+    Mobile: '',
+    Course: '',
+    Branch: '',
+    RollNo: '',
+    Session: '',
+    CurrentOrgAndDesignation: '',
+    PastOrgAndDesignation: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -73,18 +73,18 @@ const AlumniRegistrationForm = () => {
       if (response.ok) {
         alert('Form submitted successfully!');
         setFormData({
-          studentName: '',
-          nationality: '',
-          occupation: '',
-          city: '',
-          email: '',
-          mobile: '',
-          course: '',
-          branch: '',
-          rollNo: '',
-          session: '',
-          currentOrgDesignation: '',
-          pastOrgDesignation: '',
+          StudentName: '',
+          Nationality: '',
+          Occupation: '',
+          City: '',
+          Email: '',
+          Mobile: '',
+          Course: '',
+          Branch: '',
+          RollNo: '',
+          Session: '',
+          CurrentOrgDesignation: '',
+         PastOrgAndDesignation: ''
         });
         setErrors({});
       } else {
