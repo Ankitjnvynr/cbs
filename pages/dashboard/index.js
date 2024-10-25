@@ -61,7 +61,7 @@ const DashboardPage = ({ alumniData }) => {
                 >
                     <ul className="mt-10">
                         <li className="p-4 hover:bg-gray-700">Dashboard</li>
-                        <li className="p-4 hover:bg-gray-700"></li>
+                        <li className="p-4 hover:bg-gray-700">Alumni data</li>
                         <li className="p-4 hover:bg-gray-700"></li>
                     </ul>
                     <ul className="mt-10">
