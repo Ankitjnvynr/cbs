@@ -13,7 +13,7 @@ function organisation() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'organisation-chart '} pagesub={'vision'} />
+            <PageTitle pageTitle={'Organisation-Chart '} pagesub={'vision'} />
          <Organisationchart/>
             <Footer />
             <Scrollbar />
