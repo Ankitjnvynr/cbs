@@ -13,7 +13,7 @@ function codeofconduct() {
   return (
     <Fragment>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={'code of conduct '} pagesub={'vision'} />
+    <PageTitle pageTitle={'Code of Conduct '} pagesub={'vision'} />
     <Code/>
     <Footer />
     <Scrollbar />
