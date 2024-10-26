@@ -15,7 +15,7 @@ const Visionpage = () => {
     return (
         <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'Vision&Mission'} pagesub={'vision'} />
+            <PageTitle pageTitle={'Vision & Mission'} pagesub={'vision'} />
            <Vision/>
             <Footer />
             <Scrollbar />
