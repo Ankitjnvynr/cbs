@@ -13,7 +13,7 @@ function chairman() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'Chaiman message '} pagesub={'vision'} />
+            <PageTitle pageTitle={'Chairman message '} pagesub={'vision'} />
            <Chairman/>
             <Footer />
             <Scrollbar />
