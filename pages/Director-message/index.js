@@ -1,4 +1,4 @@
-import React from 'react'
+
 import React, { Fragment } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import PageTitle from '../../components/pagetitle/PageTitle'
@@ -13,7 +13,7 @@ function director() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'Vision&Mission'} pagesub={'vision'} />
+            <PageTitle pageTitle={'Director message '} pagesub={'vision'} />
              <Director/>
             <Footer />
             <Scrollbar />
