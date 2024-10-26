@@ -23,17 +23,17 @@ const menus =[
             {
                 "id": 12,
                 "title": "President’s Message",
-                "link": "/"
+                "link": "//president"
             },
             {
                 "id": 13,
                 "title": "Director’s Message",
-                "link": "/"
+                "link": "/Director-message"
             },
             {
                 "id": 14,
-                "title": "Director General’s Message",
-                "link": "/"
+                "title": "Organisation Chart",
+                "link": "/organisation-chart"
             },
             {
                 "id": 15,
