@@ -45,7 +45,7 @@ const Header = (props) => {
         { label: "President's Message", link: "/president" },
         { label: "Organisation Chart", link: "/organisation-chart" },
         { label: "Approvals & Affiliations", link: "/" },
-        { label: "Code of Conduct", link: "/" },
+        { label: "Code of Conduct", link: "/codeofconduct" },
         { label: "Mandatory Disclosures", link: "/" },
         { label: "Financial Audit", link: "/" },
       ],
