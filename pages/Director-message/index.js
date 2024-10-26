@@ -13,7 +13,7 @@ function director() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'Director message '} pagesub={'vision'} />
+            <PageTitle pageTitle={'Director Message '} pagesub={'vision'} />
              <Director/>
             <Footer />
             <Scrollbar />
