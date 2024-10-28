@@ -56,7 +56,7 @@ const Hostel = () => {
       {/* Image Section */}
       <div style={styles.imageWrapper}>
         <Image
-          src="/images/hostel_(1).jpg" // Replace with the correct image path
+          src="/images/CBSJHL-5142.jpg" // Replace with the correct image path
           alt="Hostel Facilities at CBS Group"
           layout="fill"
           objectFit="cover"
