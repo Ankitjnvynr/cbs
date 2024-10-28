@@ -12,7 +12,7 @@ function hostels() {
   return (
     <Fragment>
     <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
-    <PageTitle pageTitle={"Sports"} pagesub={"About"} />
+    <PageTitle pageTitle={"Hostels"} pagesub={"About"} />
     <Hostel/>
     <Footer />
     <Scrollbar />
