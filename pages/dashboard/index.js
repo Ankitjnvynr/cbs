@@ -59,11 +59,22 @@ const DashboardPage = ({ alumniData }) => {
           }}
           className="w-64 bg-gray-800 text-white h-full fixed p-1"
         >
-          <ul className="mt-10">
-            <li className="p-4 hover:bg-gray-700">Dashboard</li>
-            <li className="p-4 hover:bg-gray-700">Alumni data</li>
-            <li className="p-4 hover:bg-gray-700"></li>
+          <ul className="mt-10 hover:cursor-pointer">
+            <li style={{
+                // background: "black",
+                cursor: "pointer",
+               
+              }} className="p-4 hover:bg-gray-700 cursor-pointer">Dashboard</li>
+            <li style={{
+                //  background: "red",
+                cursor: "pointer",
+              
+              }} className="p-4 hover:bg-gray-700 cursor-pointer">
+              Alumni data
+            </li>
+            <li className="p-4 hover:bg-gray-700 cursor-pointer"> Notice Board</li>
           </ul>
+
           <ul className="mt-10">
             <li
               style={{
