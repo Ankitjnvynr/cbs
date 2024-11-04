@@ -7,6 +7,8 @@ import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import Arrow from "/public/images/slider/award.svg";
 import CountUp from "react-countup";
+import NoticeBoard from "./NoticeBoard";
+
 
 const Hero3 = () => {
   const ClickHandler = () => {
@@ -21,12 +23,14 @@ const Hero3 = () => {
         }}
         className="hero-slider-section"
       >
-        <div className="hero-bg">
+        <div className="hero-bg  ">
           <Image src={hero1} alt="" />
         </div>
-        <div className="container-fluid">
-          <div className="content mt-10 ">
-            <div className="title ">
+        <div
+       
+        className="container-fluid herosec">
+          <div className="content mt-10 hidden md:block ">
+          <div className="title ">
               <div className="icon">
                 <Image src={hero2} alt="" />
               </div>
@@ -69,7 +73,7 @@ const Hero3 = () => {
               </h2>
             </div>
 
-            <p
+            {/* <p
               style={{
                 flexDirection: "column",
                 background:
@@ -88,7 +92,7 @@ const Hero3 = () => {
               Your success is our success. We prioritize understanding your
               unique business requirements, tailoring solutions that not only
               meet your needs but also exceed your expectations.
-            </p>
+            </p> */}
             <div className="hero-btn">
               <Link href="/about" className="theme-btn border ">
                 Go To Alumni<i className="ti-arrow-right"></i>
@@ -101,9 +105,10 @@ const Hero3 = () => {
                 borderRadius: "40px", // Optional, for rounded corners
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.5)", // Optional, adds a subtle shadow to lift the glass effect
                 border: "1px solid rgba(255, 255, 255, 0.7)", // Optional, a soft border to enhance the glass effect
-             
+                // marginTop:'15px',
+                bottom:'5%',
               }}
-                className="award"
+                className="award "
               >
                 <div className="icon">
                   <Image src={Arrow} alt="Award Icon" width={50} height={50} />
@@ -119,18 +124,20 @@ const Hero3 = () => {
                 </div>
               </div>
             </div>
+            
           </div>
-          <div className="left-bar" >
-
-          </div>
+        
 
         </div>
         {/* <div className="video" >
                     <VideoModal />
                 </div> */}
+
       </div>
+      
     </section>
   );
 };
 
 export default Hero3;
+

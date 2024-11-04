@@ -275,7 +275,7 @@
 	}
 
 	.wpo-site-header #navbar>ul>li>a:before {
-		position: absolute;
+		// position: absolute;
 		left: 50%;
 		bottom: 10%;
 		width: 2px;
@@ -1064,13 +1064,13 @@
 				position: relative;
 				color: #323232;
 				font-family: $base-font;
-				font-size: 15px;
+				font-size: 12px;
 				font-weight: 500;
 				text-transform: uppercase;
 
 
 				@media(max-width:1870px) {
-					padding:  18px;
+					padding:  10px;
 				}
 
 				&.active {
@@ -1465,7 +1465,7 @@
 
 @media(max-width: 1500px) {
 	.wpo-site-header #navbar>ul>li>a {
-		padding: 30px 15px;
+		// padding: 30px 15px;
 	}
 
 	.wpo-site-header {

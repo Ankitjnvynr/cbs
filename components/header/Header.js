@@ -39,18 +39,34 @@ const Header = (props) => {
       label: "About",
       link: "/",
       subMenu: [
-        { label: "Vision & Mission", link: "/" },
-        { label: "President's Message", link: "/" },
-        { label: "Director's Message", link: "/" },
-        { label: "Director General's Message", link: "/" },
-        { label: "Governing Body of Institution", link: "/" },
-        { label: "Grievance Committee", link: "/" },
+        { label: "Vision & Mission", link: "/vision-mission" },
+        
+        { label: "Director's Message", link: "/Director-message" },
+        { label: "President's Message", link: "/president" },
+        { label: "Organisation Chart", link: "/organisation-chart" },
+        { label: "Approvals & Affiliations", link: "/" },
+        { label: "Code of Conduct", link: "/codeofconduct" },
+        { label: "Mandatory Disclosures", link: "/" },
+        { label: "Financial Audit", link: "/" },
+      ],
+    },
+    {
+      label: "IQAC",
+      link: "/",
+      subMenu: [
+        { label: "About IQAC", link: "/" },
+        
+        { label: "NAAC", link: "/" },
+        { label: "AQAR", link: "/" },
+        { label: "Initiatives", link: "/" },
+       
       ],
     },
     {
       label: "Academics",
       link: "/",
       subMenu: [
+        { label: "Courses", link: "/" },
         { label: "Academic Calendar", link: "/" },
         { label: "Examinations", link: "/" },
         { label: "Curriculum", link: "/" },
@@ -59,36 +75,17 @@ const Header = (props) => {
       ],
     },
     {
-      label: "Research",
+      label: "Admission",
       link: "/",
       subMenu: [
-        { label: "Research Supervisors", link: "/" },
-        { label: "Recent Publication & Patents", link: "/" },
-        { label: "VTU Research Approval", link: "/" },
-        { label: "Regulation", link: "/" },
-      ],
-    },
-    {
-      label: "Events",
-      link: "/",
-    },
-    {
-      label: "Facilities",
-      link: "/",
-      subMenu: [
-        { label: "Class Rooms & campus", link: "/" },
-        { label: "Library", link: "/" },
-        { label: "Computer Center", link: "/" },
-        {
-          label: "All Facilities",
-          link: "/",
-          subMenu: [
-            { label: "Laboratories & Workshop", link: "/" },
-            { label: "Canteen & Cafeteria", link: "/" },
-            { label: "Dispensary/Health Zone", link: "/" },
-            { label: "Hostels", link: "/" },
-          ],
-        },
+        { label: "Course Programme Offered", link: "/" },
+        { label: "Fee Structure", link: "/" },
+        { label: "Scholarships Scheme", link: "/" },
+        { label: "Eligibility", link: "/" },
+        { label: "Documents Required", link: "/" },
+        { label: "Admission Form", link: "/" },
+        { label: "Admission Prospectos", link: "/" },
+        
       ],
     },
     {
@@ -186,48 +183,99 @@ const Header = (props) => {
       ],
     },
     {
+      label: "Research",
+      link: "/",
+      subMenu: [
+        { label: "Research Supervisors", link: "/" },
+        { label: "Recent Publication & Patents", link: "/" },
+        { label: "MDU Research Approval", link: "/" },  
+        { label: "Regulation", link: "/" },
+      ],
+    },
+   
+    {
+      label: "Facilities",
+      link: "/",
+      subMenu: [
+        { label: "Class Rooms & campus", link: "/" },
+        { label: "Library", link: "/" },
+        { label: "Computer Center", link: "/" },
+        { label: "Sports", link: "/" },
+        { label: "Infrastructure", link: "/" },
+        {
+          label: "All Facilities",
+          link: "/",
+          subMenu: [
+            { label: "Laboratories & Workshop", link: "/" },
+            { label: "Canteen & Cafeteria", link: "/" },
+            { label: "Dispensary/Health Zone", link: "/" },
+            { label: "Hostels", link: "/" },
+            { label: "Transport", link: "/" },
+            { label: "Anti Rangging Comunity", link: "/" },
+            { label: "College Internal Complaint Committee", link: "/" },
+          ],
+        },
+      ],
+    },
+   
+    {
       label: "Placement",
       link: "/",
       subMenu: [
         { label: "Career Development Cell", link: "/" },
         { label: "Training Programmes", link: "/" },
         { label: "Placement Gallery", link: "/" },
+        { label: "Placement Statistics", link: "/" },
         { label: "Our Recruiters", link: "/" },
+      ],
+    },
+    {
+      label: "Affilation",
+      link: "/",
+      subMenu: [
+        { label: "Auditing Statement", link: "/" },
+        { label: "Affilation & Accrediation status", link: "/" },
+        { label: "Memberships & MOU", link: "/" },
+        // { label: "Memberships & MOU", link: "/" },
+        
       ],
     },
     {
       label: "Alumni",
       link: "/",
       subMenu: [
-        { label: "Registration form", link: "/" },
+        { label: "Registration form", link: "/alumni/registration" },
         { label: "Alumni Testimonials", link: "/" },
         { label: "Alumni videos", link: "/" },
         { label: "Gallery", link: "/" },
-      ],
-    },
-    {
-      label: "Admission",
-      link: "/",
-      subMenu: [
-        { label: "Eligibility", link: "/" },
-        { label: "Admission Procedure", link: "/" },
+        // { label: "Alumni Form", link: "/" },
       ],
     },
    
+    {
+      label: "Events",
+      link: "/",
+    },
    
     {
       label: "Career",
       link: "/",
       subMenu: [
-        { label: "Testimonials", link: "/" },
-        { label: "Login", link: "/" },
-        { label: "Register", link: "/" },
-        { label: "404 Error", link: "/" },
+        { label: "Current opening", link: "/" },
+        
+        { label: "upload resume", link: "/" },
+       
+       
       ],
     },
     {
-      label: "Contact Us",
+      label: "Blogs",
       link: "/",
+     
+    },
+    {
+      label: "Contact",
+      link: "/contact",
     },
   ];
   
@@ -235,10 +283,13 @@ const Header = (props) => {
   // Recursive function to render sub-menu items
   const renderSubMenu = (subMenu) => {
     return (
-      <ul className="sub-menu text-sm py-3 ">
+      <ul className="sub-menu  py-2 ">
         {subMenu.map((item, index) => (
           <li key={index}>
-            <Link  className ='py-1' onClick={ClickHandler} href={item.link}>
+            <Link style={{
+              margin:'1',
+              fontSize:'13px'
+            }}  className ='py-1' onClick={ClickHandler} href={item.link}>
               {item.label}
             </Link>
             {item.subMenu && renderSubMenu(item.subMenu)} {/* Render sub-sub menu if exists */}
@@ -257,6 +308,7 @@ const Header = (props) => {
         padding:0
       }}
       >
+        
         <nav
          
          style={{
@@ -271,6 +323,7 @@ const Header = (props) => {
           <div className="">
             <MobileMenu menus={menuItems}/>
           </div>
+          
           <div
             style={{
               position: actualPosition,
@@ -282,15 +335,15 @@ const Header = (props) => {
               borderRadius: "10px",
               border: "1px solid rgba(255, 255, 255, 0.18)",
               width: "100%",
-              zIndex: 200,
+              zIndex: 900,
             }}
             id="navbar"
             className="collapse navbar-collapse navigation-holder"
           >
-            <ul className="nav navbar-nav mb-2 mb-lg-0 text-xs">
+            <ul className="nav navbar-nav mb-2 mb-lg-0 ">
               {menuItems.map((item, index) => (
                 <li key={index} className={item.subMenu ? "menu-item-has-children" : ""}>
-                  <Link onClick={ClickHandler} href={item.link} className="text-xs">
+                  <Link  onClick={ClickHandler} href={item.link} >
                     {item.label}
                   </Link>
                   {item.subMenu && renderSubMenu(item.subMenu)}

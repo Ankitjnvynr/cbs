@@ -18,22 +18,22 @@ const menus =[
             {
                 "id": 11,
                 "title": "Vision and Mission",
-                "link": "/"
+                "link": "/vision-mission"
             },
             {
                 "id": 12,
                 "title": "President’s Message",
-                "link": "/"
+                "link": "//president"
             },
             {
                 "id": 13,
                 "title": "Director’s Message",
-                "link": "/"
+                "link": "/Director-message"
             },
             {
                 "id": 14,
-                "title": "Director General’s Message",
-                "link": "/"
+                "title": "Organisation Chart",
+                "link": "/organisation-chart"
             },
             {
                 "id": 15,
@@ -55,7 +55,7 @@ const menus =[
             {
                 "id": 71,
                 "title": "Registration Form",
-                "link": "/"
+                "link": "/alumni/registration"
             },
             {
                 "id": 72,
@@ -330,7 +330,7 @@ const menus =[
     {
         "id": 91,
         "title": "Contact Us",
-        "link": "/"
+        "link": "/contact"
     }
 ]
 
@@ -347,9 +347,14 @@ const MobileMenu = () => {
     }
 
     return (
-        <div>
+        <div style={{
+            width:'90vw',
+            
+        }}>
             <div className={`mobileMenu ${menuActive ? "show" : ""}`}>
-                <div className="menu-close">
+                <div
+               
+                className="menu-close ">
                     <div className="clox" onClick={() => setMenuState(!menuActive)}><i className="ti-close"></i></div>
                 </div>
 
@@ -387,7 +392,7 @@ const MobileMenu = () => {
 
             </div>
 
-            <div className="showmenu mobail-menu" onClick={() => setMenuState(!menuActive)}>
+            <div className="showmenu mobail-menu  " onClick={() => setMenuState(!menuActive)}>
                 <button type="button" className="navbar-toggler open-btn">
                     <span className="icon-bar first-angle"></span>
                     <span className="icon-bar middle-angle"></span>

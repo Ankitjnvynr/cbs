@@ -8,7 +8,7 @@ import CtaSection from '../../components/CtaSection/CtaSection';
 import BlogSection from '../../components/BlogSection/BlogSection';
 import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
-import Logo from '/public/images/logo-2.svg'
+import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 
