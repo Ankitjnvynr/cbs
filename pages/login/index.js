@@ -48,7 +48,7 @@ const LoginPage = () => {
         e.preventDefault();
         if (validator.allValid()) {
             const { email, password } = value;
-            if (email === 'cbs@gmail.com' && password === '1234') {
+            if (email === 'cbs@gmail.com' && password === '1234' || email === 'ankitbkana@outlook.com' && password === 'ankit') {
                 toast.success('Successfully logged in to CBS College!');
                 localStorage.setItem('authToken', 'mockToken123');
                 router.push('/dashboard'); // Redirect to dashboard
