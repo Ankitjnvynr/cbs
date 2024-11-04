@@ -17,7 +17,7 @@ const DashboardPage = () => {
   const [notices, setNotices] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const allNotices = async () => {
+  const fetchNotices = async () => {
     try {
       const response = await fetch("/api/notices");
       if (!response.ok) {
@@ -31,7 +31,7 @@ const DashboardPage = () => {
   };
 
   useEffect(() => {
-    allNotices(); // Fetch notices when the component mounts
+    fetchNotices(); // Fetch notices when the component mounts
   }, []);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const DashboardPage = () => {
         });
         if (response.ok) {
           alert("Notice deleted successfully");
-          allNotices(); // Refresh the notices after deletion
+          fetchNotices(); // Refresh the notices after deletion
         } else {
           alert("Failed to delete notice");
         }
@@ -98,29 +98,6 @@ const DashboardPage = () => {
               <h1 className="text-white text-4xl">CBS INSTITUTE</h1>
             </div>
 
-            <div className="absolute top-4 right-4">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="flex items-center bg-blue-600 text-white p-2 rounded shadow hover:bg-blue-700 transition"
-              >
-                <FaPlus className="mr-2" /> Create New
-              </button>
-            </div>
-
-            {isModalOpen && (
-              <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out">
-                <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 animate-fade-in">
-                  <CreateNotice />
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="mt-4 text-red-500"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            )}
-
             <div
               style={{
                 backdropFilter: "blur(5px)",
@@ -131,68 +108,121 @@ const DashboardPage = () => {
                 justifyContent: "space-between",
                 overflow: "hidden",
                 minWidth: 180,
-                height: "87vh",
                 width: "88%",
                 background: "rgba(0,0,30,0.3)",
               }}
               className="p-2 table-auto"
             >
-              <div style={{ overflowX: "scroll" }}>
-                <table className="table-auto w-full text-white">
-                  <caption className="caption-top text-white">Notices List</caption>
-                  <thead>
-                    <tr>
-                      <th className="border p-2">ID</th>
-                      <th className="border p-2">Title</th>
-                      <th className="border p-2">Content</th>
-                      <th className="border p-2">Author</th>
-                      <th className="border p-2">Date Posted</th>
-                      <th className="border p-2">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {notices.length === 0 ? (
+              <div className="absolute top-4 right-4">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="flex items-center bg-blue-600 p-2 rounded shadow hover:bg-blue-700 transition"
+                >
+                  <FaPlus className="mr-2" /> Create New
+                </button>
+              </div>
+
+              {isModalOpen && (
+                <div 
+                  style={{
+                    position: "fixed",
+                    zIndex: 1100,
+                    width:'100%'
+                    
+                  }}
+                  className="fixed inset-0 flex items-center  justify-center z-50 bg-opacity-90 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
+                >
+                  <div
+                  style={{
+                    background: "rgba(0,0,0,0.9)",
+                    color:'white'
+                  }}
+                  className="p-6 rounded-lg shadow-lg w-1/3 animate-fade-in">
+                    <CreateNotice onClose={() => setIsModalOpen(false)} />
+                    <button
+                      onClick={() => setIsModalOpen(false)}
+                      className="mt-4 text-red-500"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <div
+                style={{
+                  backdropFilter: "blur(5px)",
+                  border: "1px solid gray",
+                  borderRadius: 20,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  overflow: "hidden",
+                  minWidth: 180,
+                  height: "87vh",
+                  width: "88%",
+                  background: "rgba(0,0,30,0.3)",
+                }}
+                className="p-2 table-auto"
+              >
+                <div style={{ overflowX: "scroll" }}>
+                  <table className="table-auto w-full text-white">
+                    <caption className="caption-top text-white">Notices List</caption>
+                    <thead>
                       <tr>
-                        <td colSpan="6" className="text-center p-4">
-                          No notices available.
-                        </td>
+                        <th className="border p-2">ID</th>
+                        <th className="border p-2">Title</th>
+                        <th className="border p-2">Content</th>
+                        <th className="border p-2">Author</th>
+                        <th className="border p-2">Date Posted</th>
+                        <th className="border p-2">Actions</th>
                       </tr>
-                    ) : (
-                      notices.map((notice, index) => (
-                        <tr key={notice.notice_id}>
-                          <td className="border p-2">{index + 1}</td>
-                          <td className="border p-2">{notice.title || "N/A"}</td>
-                          <td className="border p-2">{notice.content || "N/A"}</td>
-                          <td className="border p-2">{notice.author || "N/A"}</td>
-                          <td className="border p-2">
-                            {new Date(notice.date_posted).toLocaleDateString() || "N/A"}
-                          </td>
-                          <td className="border p-2 flex space-x-2">
-                            <button
-                              onClick={() =>
-                                router.push(`/notices/edit/${notice.notice_id}`)
-                              }
-                              className="text-blue-500"
-                            >
-                              <FaEdit />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(notice.notice_id)}
-                              className="text-red-500"
-                            >
-                              <FaTrash />
-                            </button>
+                    </thead>
+                    <tbody>
+                      {notices.length === 0 ? (
+                        <tr>
+                          <td colSpan="6" className="text-center p-4">
+                            No notices available.
                           </td>
                         </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
+                      ) : (
+                        notices.map((notice, index) => (
+                          <tr key={notice.notice_id}>
+                            <td className="border p-2">{index + 1}</td>
+                            <td className="border p-2">{notice.title || "N/A"}</td>
+                            <td className="border p-2">{notice.content || "N/A"}</td>
+                            <td className="border p-2">{notice.author || "N/A"}</td>
+                            <td className="border p-2">
+                              {new Date(notice.date_posted).toLocaleDateString() || "N/A"}
+                            </td>
+                            <td className="border p-2 flex space-x-2">
+                              <button
+                                onClick={() =>
+                                  router.push(`/notices/edit/${notice.notice_id}`)
+                                }
+                                className="text-blue-500"
+                              >
+                                <FaEdit />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(notice.notice_id)}
+                                className="text-red-500"
+                              >
+                                <FaTrash />
+                              </button>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <style jsx>{`
         .animate-fade-in {
           opacity: 0;
@@ -218,7 +248,7 @@ export async function getServerSideProps() {
       FROM notice_board
     `);
 
-    const notices = rows.map((notice, index) => ({
+    const notices = rows.map((notice) => ({
       ...notice,
       date_posted: notice.date_posted ? notice.date_posted.toISOString() : null,
     }));
