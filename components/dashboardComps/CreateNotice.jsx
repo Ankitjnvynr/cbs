@@ -1,4 +1,3 @@
-// components/CreateNotice.js
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -10,10 +9,16 @@ const CreateNotice = ({ onClose }) => {
   const [expirationDate, setExpirationDate] = useState('');
   const [priority, setPriority] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Reset any previous error message
+    setError('');
+
+    if (!title || !content || !author) {
+      setError('Please fill in all required fields.');
+      return;
+    }
 
     const noticeData = {
       title,
@@ -24,101 +29,116 @@ const CreateNotice = ({ onClose }) => {
     };
 
     try {
+      setIsLoading(true);
       const response = await fetch('/api/notices', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noticeData),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to create notice');
-      }
+      if (!response.ok) throw new Error('Failed to create notice');
 
       const data = await response.json();
-      alert(data.message); // Notify success
-      router.push('/dashboard'); // Redirect to the dashboard or notices list
+      alert(data.message);
+      router.push('/dashboard');
     } catch (error) {
-      setError(error.message); // Display error message
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center backdrop-blur-md bg-black bg-opacity-50">
-      <div
+    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md">
+      {/* Background overlay */}
+      <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
+      
+      {/* Modal content */}
+      <div className="relative z-10 p-8 w-full max-w-lg mx-4 md:mx-auto rounded-lg shadow-xl"
         style={{
-          backdropFilter: "blur(5px)",
-          border: "1px solid gray",
-          borderRadius: 20,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          overflow: "hidden",
-          minWidth: 180,
-          height: "95vh",
-          background: "rgba(0, 0, 30, 0.3)",
+          backgroundColor: 'rgba(255, 255, 255, 0.3)', // semi-transparent white background
+          backdropFilter: 'blur(10px)', // frosted glass effect
+          border: '1px solid rgba(255, 255, 255, 0.25)', // soft border to enhance glassy look
         }}
-        className="max-w-lg p-6 shadow-lg"
       >
-        <h2 className="text-white text-3xl font-semibold mb-6 text-center">Add New Notice</h2>
-        {error && <p className="text-red-300 mb-4 text-center">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex flex-col">
-            <label className="block text-white font-medium">Title</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-3 rounded-md bg-white bg-opacity-90 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
-              required
-            />
+        <h2 className="text-3xl font-semibold text-center text-gray-700 mb-6">Add New Notice</h2>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label className="flex flex-col">
+              <span className="text-sm font-medium text-gray-600">Title</span>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="p-3 mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </label>
+            <label className="flex flex-col">
+              <span className="text-sm font-medium text-gray-600">Author</span>
+              <input
+                type="text"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                className="p-3 mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </label>
           </div>
-          <div className="flex flex-col">
-            <label className="block text-white font-medium">Content</label>
+          
+          <label className="flex flex-col">
+            <span className="text-sm font-medium text-gray-600">Content</span>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full p-3 rounded-md bg-white bg-opacity-90 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
-              rows="4"
+              className="p-3 mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows="5"
               required
             />
+          </label>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label className="flex flex-col">
+              <span className="text-sm font-medium text-gray-600">Expiration Date</span>
+              <input
+                type="date"
+                value={expirationDate}
+                onChange={(e) => setExpirationDate(e.target.value)}
+                className="p-3 mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </label>
+            <label className="flex flex-col">
+              <span className="text-sm font-medium text-gray-600">Priority</span>
+              <input
+                type="number"
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+                className="p-3 mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                min="1"
+                max="5"
+              />
+            </label>
           </div>
-          <div className="flex flex-col">
-            <label className="block text-white font-medium">Author</label>
-            <input
-              type="text"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              className="w-full p-3 rounded-md bg-white bg-opacity-90 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
-              required
-            />
+
+          <div className="flex justify-end space-x-3 mt-6">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition duration-200"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-200"
+            >
+              {isLoading ? 'Adding...' : 'Add Notice'}
+            </button>
           </div>
-          <div className="flex flex-col">
-            <label className="block text-white font-medium">Expiration Date</label>
-            <input
-              type="date"
-              value={expirationDate}
-              onChange={(e) => setExpirationDate(e.target.value)}
-              className="w-full p-3 rounded-md bg-white bg-opacity-90 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="block text-white font-medium">Priority</label>
-            <input
-              type="number"
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
-              className="w-full p-3 rounded-md bg-white bg-opacity-90 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
-              min="1"
-              max="5"
-            />
-          </div>
-          <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-200">
-            Add Notice
-          </button>
         </form>
-        <button onClick={onClose} className="mt-4 text-red-500">Cancel</button>
       </div>
     </div>
   );
