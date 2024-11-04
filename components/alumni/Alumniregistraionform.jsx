@@ -13,49 +13,57 @@ const AlumniRegistrationForm = () => {
     Branch: '',
     RollNo: '',
     Session: '',
-    CurrentOrgAndDesignation: '',
-    PastOrgAndDesignation: ''
+    CurrentOrganisationandDesignation: '',
+    PastOrganisationandDesignation: '',
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    if (errors[name]) validateField(name, value);
+  // Helper function to capitalize the first letter of each word (for non-email and non-mobile fields)
+  const capitalizeFirstLetter = (text) => {
+    return text.replace(/\b\w/g, char => char.toUpperCase());
   };
 
-  const validateField = (name, value) => {
-    const error = value ? '' : `${name} is required`;
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const capitalizedValue = name === 'Email' || name === 'Mobile' ? value : capitalizeFirstLetter(value);
+    setFormData((prevData) => ({ ...prevData, [name]: capitalizedValue }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-    Object.entries(formData).forEach(([key, value]) => {
-      if (!value && key !== 'occupation' && key !== 'currentOrgDesignation' && key !== 'pastOrgDesignation') {
-        newErrors[key] = `${key.replace(/([A-Z])/g, ' $1').trim()} is required`;
+    const requiredFields = ['StudentName', 'Nationality', 'City', 'Email', 'Mobile', 'Course', 'Branch', 'RollNo', 'Session'];
+    
+    // Check required fields
+    requiredFields.forEach((field) => {
+      const value = formData[field]?.trim();
+      if (!value) {
+        newErrors[field] = `${field.replace(/([A-Z])/g, ' $1').trim()} is required`;
       }
     });
 
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+    // Validate Email
+    if (formData.Email && !/\S+@\S+\.\S+/.test(formData.Email)) {
+      newErrors.Email = 'Invalid email format';
     }
 
-    if (formData.mobile && !/^\d{10}$/.test(formData.mobile)) {
-      newErrors.mobile = 'Mobile number must be 10 digits';
+    // Validate Mobile
+    if (formData.Mobile && !/^\d{10}$/.test(formData.Mobile)) {
+      newErrors.Mobile = 'Mobile number must be 10 digits';
     }
 
-    return newErrors;
+    setErrors(newErrors);
+    console.log("Validation errors:", newErrors); // Logging for debugging
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
 
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
+    // Validate the form before submission
+    if (!validateForm()) {
+      alert("Error: Please fill out all required fields correctly.");
       return;
     }
 
@@ -83,8 +91,8 @@ const AlumniRegistrationForm = () => {
           Branch: '',
           RollNo: '',
           Session: '',
-          CurrentOrgDesignation: '',
-         PastOrgAndDesignation: ''
+          CurrentOrganisationandDesignation: '',
+          PastOrganisationandDesignation: '',
         });
         setErrors({});
       } else {
@@ -98,7 +106,7 @@ const AlumniRegistrationForm = () => {
     }
   };
 
-  const branches = {
+  const Branches = {
     BTech: ['Mechanical', 'Computer Science', 'Civil', 'Electronics', 'Electrical', 'Other'],
     MTech: ['Mechanical', 'Computer Science', 'Civil', 'Electronics', 'Electrical', 'Other'],
     MBA: ['Marketing', 'Finance', 'Human Resource', 'International Business', 'IT', 'Other'],
@@ -113,9 +121,9 @@ const AlumniRegistrationForm = () => {
         <h1 style={styles.title}>Alumni Registration Form</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.flex}>
-            {Object.keys(formData).map((key, index) => (
-              <div key={index} style={styles.inputBox}>
-                {key === 'course' ? (
+            {Object.keys(formData).map((key) => (
+              <div key={key} style={styles.inputBox}>
+                {key === 'Course' ? (
                   <select
                     name={key}
                     value={formData[key]}
@@ -123,13 +131,13 @@ const AlumniRegistrationForm = () => {
                     style={styles.input}
                   >
                     <option value="">Select a Course</option>
-                    {Object.keys(branches).map((course) => (
+                    {Object.keys(Branches).map((course) => (
                       <option key={course} value={course}>
                         {course}
                       </option>
                     ))}
                   </select>
-                ) : key === 'branch' && formData.course ? (
+                ) : key === 'Branch' && formData.Course ? (
                   <select
                     name={key}
                     value={formData[key]}
@@ -137,7 +145,7 @@ const AlumniRegistrationForm = () => {
                     style={styles.input}
                   >
                     <option value="">Select a Branch</option>
-                    {branches[formData.course].map((branch) => (
+                    {Branches[formData.Course].map((branch) => (
                       <option key={branch} value={branch}>
                         {branch}
                       </option>
@@ -146,7 +154,7 @@ const AlumniRegistrationForm = () => {
                 ) : (
                   <>
                     <input
-                      type={key === 'email' ? 'email' : 'text'}
+                      type={key === 'Email' ? 'email' : 'text'}
                       name={key}
                       value={formData[key]}
                       onChange={handleChange}
@@ -159,12 +167,7 @@ const AlumniRegistrationForm = () => {
               </div>
             ))}
           </div>
-          <button
-            type="submit"
-            style={styles.button}
-            onMouseOver={(e) => (e.target.style.background = styles.buttonHover.background)}
-            onMouseOut={(e) => (e.target.style.background = styles.button.background)}
-          >
+          <button type="submit" style={styles.button} disabled={isLoading}>
             {isLoading ? 'Submitting...' : 'Submit'}
           </button>
         </form>
@@ -224,9 +227,6 @@ const styles = {
     cursor: 'pointer',
     width: '100%',
     transition: 'background 0.3s',
-  },
-  buttonHover: {
-    background: '#08122d',
   },
   error: {
     color: 'red',
