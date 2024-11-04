@@ -1,51 +1,95 @@
-"use client"; // Mark this as a client component
+import Link from 'next/link'
+import React from 'react'
+import { FiLogOut } from "react-icons/fi"; // Import logout icon
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
-const Sidebar = () => {
-  const router = useRouter();
-
+export default function Sidebar() {
   const handleLogout = () => {
-    // Clear user cookie
-    document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    localStorage.removeItem("user")
-    router.push("/login");
-    };
-    
-    const navs = {
-        "Home":'/dashboard',
-        "Images":'/dashboard/images',
-        "Videos":'/dashboard/videos',
-        "Websites":'/dashboard/websites',
-    }
-
+    localStorage.removeItem("authToken"); // Remove the token
+    router.push("/login"); // Redirect to login page
+    console.log("User has logged out"); // Confirm logout
+  };
   return (
-    <div className="w-64 bg-blue-800 text-white min-h-[55vh] p-4">
-      <h2 className="text-xl font-semibold mb-4">Welcome Ankit</h2>
-          <ul className="space-y-2">
-              {
-                  Object.entries(navs).map((nav) => {
-                      return (
-                        <li>
-                          <Link
-                            href={nav[1]}
-                            className="block p-2 hover:bg-blue-700 rounded">
-                            {nav[0]}
-                          </Link>
-                        </li>
-                      );
-                  })
-              }
-        
-      </ul>
-      <button
-        onClick={handleLogout}
-        className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-500">
-        Logout
-      </button>
-    </div>
-  );
-};
+   <>
+   {/* Sidebar Section */}
+<div
+style={{
+  backdropFilter: "blur(5px)",
+  border: "1px solid gray",
+  borderRadius: 20,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  overflow: "hidden",
+  minWidth: 180,
+  height: "95vh",
+  background: "rgba(0,0,30,0.3)",
+}}
+className="w-64 bg-gray-800 text-white h-full fixed p-1"
+>
+<ul 
+style={{
+  display:'flex',
+  flexDirection:'column',
+  gap: 20,
+}} className="mt-10 hover:cursor-pointer ">
+  <li
+    style={{
+      // background: "black",
+      cursor: "pointer",
+    }}
+    className="p-4 hover:bg-gray-700 cursor-pointer"
+  >
+    Dashboard
+  </li>
 
-export default Sidebar;
+  <li>
+    <Link
+      style={{
+        //  background: "red",
+        cursor: "pointer",
+      }}
+      className="p-4 hover:bg-gray-900 cursor-pointer text-white "
+      href="/dashboard/alumni"
+    >
+      Alumni
+    </Link>
+  </li>
+  <li 
+  style={{
+    
+  }}
+  >
+    <Link
+      style={{
+        //  background: "red",
+        cursor: "pointer",
+      }}
+      className="p-4 hover:bg-gray-900 cursor-pointer text-white "
+      href="/dashboard/notices"
+    >
+      Notice Board
+    </Link>
+  </li>
+  
+</ul>
+
+<ul className="mt-10">
+  <li
+    style={{
+      background: "black",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+    }}
+    onClick={handleLogout}
+    className="mb-3 mx-1 p-2 hover:bg-gray-700 rounded bg-red-50"
+  >
+    <FiLogOut size={20} /> {/* Logout Icon */}
+    Logout
+  </li>
+</ul>
+</div>
+   </>
+  )
+}
