@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
     // Validate required fields
     if (
-      !studentName || !nationality || !city || !email ||
+      !studentName || !nationality || !city  ||
       !mobile || !course || !branch || !rollNo || !session
     ) {
       return res.status(400).json({ message: 'All required fields must be filled.' });

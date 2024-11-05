@@ -3,18 +3,18 @@ import { useState } from 'react';
 
 const AlumniRegistrationForm = () => {
   const [formData, setFormData] = useState({
-    StudentName: '',
-    Nationality: '',
-    Occupation: '',
-    City: '',
-    Email: '',
-    Mobile: '',
-    Course: '',
-    Branch: '',
-    RollNo: '',
-    Session: '',
-    CurrentOrganisationandDesignation: '',
-    PastOrganisationandDesignation: '',
+    studentName: '',
+    nationality: '',
+    occupation: '',
+    city: '',
+    email: '',
+    mobile: '',
+    course: '',
+    branch: '',
+    rollNo: '',
+    session: '',
+    currentOrgDesignation: '',
+    pastOrgDesignation: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -33,7 +33,7 @@ const AlumniRegistrationForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    const requiredFields = ['StudentName', 'Nationality', 'City', 'Email', 'Mobile', 'Course', 'Branch', 'RollNo', 'Session'];
+    const requiredFields = ['StudentName', 'Nationality', 'City',  'Mobile', 'Course', 'Branch', 'RollNo', 'Session'];
     
     // Check required fields
     requiredFields.forEach((field) => {
@@ -81,18 +81,18 @@ const AlumniRegistrationForm = () => {
       if (response.ok) {
         alert('Form submitted successfully!');
         setFormData({
-          StudentName: '',
-          Nationality: '',
-          Occupation: '',
-          City: '',
-          Email: '',
-          Mobile: '',
-          Course: '',
-          Branch: '',
-          RollNo: '',
-          Session: '',
-          CurrentOrganisationandDesignation: '',
-          PastOrganisationandDesignation: '',
+          studentName: '',
+          nationality: '',
+          occupation: '',
+          city: '',
+          email: '',
+          mobile: '',
+          course: '',
+          branch: '',
+          rollNo: '',
+          session: '',
+          currentOrgDesignation: '',
+          pastOrgDesignation: '',
         });
         setErrors({});
       } else {

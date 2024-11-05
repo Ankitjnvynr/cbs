@@ -33,7 +33,7 @@ const DashboardPage = () => {
   };
 
   const handleEdit =(notice)=>{
-    console.log(notice);
+    // console.log(notice);
     setIsModalOpen(true);
     setEditNotice(notice)
     
@@ -121,7 +121,7 @@ const DashboardPage = () => {
             >
               <IoMdCloseCircle color="black" size={30} />
             </span>
-            <h4>Create New Notice</h4>
+            
             <CreateNotice editNotice={editNotice} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
