@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
 
-const CreateNotice = ({ onClose }) => {
+// Dynamically import the Quill editor for client-side rendering
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+const CreateNoticeForm = ({ onClose }) => {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
-  const [priority, setPriority] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const MAX_TITLE_LENGTH = 80;
+  const MAX_CONTENT_LENGTH = 2000;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    if (!title || !content ) {
+    if (!title || !content) {
       setError("Please fill in all required fields.");
       return;
     }
@@ -23,9 +29,7 @@ const CreateNotice = ({ onClose }) => {
     const noticeData = {
       title,
       content,
-    
       expiration_date: expirationDate,
-      
     };
 
     try {
@@ -49,128 +53,152 @@ const CreateNotice = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md">
-      {/* Background overlay */}
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 p-3"
-        onClick={onClose}
-      ></div>
-
-      {/* Modal content */}
-      <div className="relative z-10 p-8 w-full max-w-lg mx-4 md:mx-auto rounded-lg shadow-xl">
-        <h2 className="text-3xl font-semibold text-center text-white mb-6">
-          Add New Notice
-        </h2>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div
-            style={{
-              display: "flex",
-              flexWrap:'wrap'
-            }}
-            className="flex"
-          >
-            <label style={styles.formItem} className="form-item flex flex-col">
-              <span className="text-sm font-medium  text-white">Title</span>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className=" mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </label>
-            {/* <label style={styles.formItem} className="form-item flex flex-col">
-              <span className="text-sm font-medium  text-white">Author</span>
-              <input
-                type="text"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
-                className=" mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </label> */}
-            <label style={styles.formItem} className="form-item flex flex-col">
-              <span className="text-sm font-medium  text-white">Content</span>
-              <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                className=" mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                rows="1"
-                required
-              />
-            </label>
-            <label style={styles.formItem} className="form-item flex flex-col">
-              <span className="text-sm font-medium  text-white">
-                Expiration Date
-              </span>
-              <input
-                type="date"
-                value={expirationDate}
-                onChange={(e) => setExpirationDate(e.target.value)}
-                className=" mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </label>
-            {/* <label style={styles.formItem} className="form-item flex flex-col">
-              <span className="text-sm font-medium  text-white">
-                Priority
-              </span>
-              <input
-                type="number"
-                value={priority}
-                onChange={(e) => setPriority(e.target.value)}
-                className=" mt-1 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                min="1"
-                max="5"
-              />
-            </label> */}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-
-          <div className="flex justify-end space-x-3 mt-6">
-            
+    <form onSubmit={handleSubmit} style={styles.form}>
+      {error && <p style={styles.errorText}>{error}</p>}
+      <div style={styles.fieldContainer}>
+        <div style={styles.sideFields}>
+          <label style={styles.label}>
+            <span style={styles.labelText}>Title</span>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => {
+                if (e.target.value.length <= MAX_TITLE_LENGTH) {
+                  setTitle(e.target.value);
+                }
+              }}
+              style={styles.input}
+              required
+            />
+            <span style={styles.charCount}>
+              {title.length}/{MAX_TITLE_LENGTH}
+            </span>
+          </label>
+          <label style={styles.label}>
+            <span style={styles.labelText}>Expiration Date</span>
+            <input
+              type="date"
+              value={expirationDate}
+              onChange={(e) => setExpirationDate(e.target.value)}
+              style={styles.input}
+            />
+          </label>
+          <div style={styles.buttonContainer}>
             <button
               type="submit"
-              style={styles.base}
               disabled={isLoading}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-black rounded font-semibold  transition duration-200"
+              style={{
+                ...styles.button,
+                ...(isLoading ? styles.loadingButton : {}),
+              }}
             >
               {isLoading ? "Adding..." : "Add Notice"}
             </button>
           </div>
-        </form>
+        </div>
+
+        <div style={styles.contentField}>
+          <label style={styles.label}>
+            <span style={styles.labelText}>Content</span>
+            <ReactQuill
+              value={content}
+              onChange={(value) => {
+                if (value.length <= MAX_CONTENT_LENGTH) {
+                  setContent(value);
+                }
+              }}
+              style={styles.richTextEditor}
+            />
+            <span style={styles.charCount}>
+              {content.length}/{MAX_CONTENT_LENGTH}
+            </span>
+          </label>
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 
-export default CreateNotice;
+export default CreateNoticeForm;
 
-const styles =  {
-    formItem: {
-        "flex": "1 0 322px",
-        
-        color:'black',
-        margin:5,
-        padding:'3',
-        'border-radius':10,
-        display:'flex',
-        'flex-direction':'column'
-    },
-    base: {
-        padding: '0.75rem 1.5rem',
-        borderRadius: '0.375rem',
-        fontWeight: '600',
-        fontSize: '1rem',
-        transition: 'background-color 0.3s, transform 0.2s',
-        outline: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        display: 'inline-block',
-        textAlign: 'center',
-        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-      },
-}
-
+const styles = {
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.25rem",
+  },
+  errorText: {
+    color: "red",
+    textAlign: "center",
+    marginBottom: "1rem",
+  },
+  fieldContainer: {
+    display: "flex",
+    gap: "1rem",
+    flexWrap: "wrap",
+  },
+  sideFields: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    flex: "1 0 20%",
+  },
+  contentField: {
+    flex: "1 0 48%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  label: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.25rem",
+  },
+  labelText: {
+    fontSize: "0.875rem",
+    fontWeight: "500",
+    color: "#333",
+  },
+  input: {
+    padding: "0.5rem",
+    backgroundColor: "#f0f0f0",
+    border: "1px solid #ccc",
+    borderRadius: "0.375rem",
+    outline: "none",
+    transition: "border-color 0.2s",
+  },
+  richTextEditor: {
+    backgroundColor: "#f0f0f0",
+    border: "1px solid #ccc",
+    borderRadius: "0.375rem",
+    minHeight: "12rem",
+    maxHeight: "20rem",
+    padding: "0.5rem", // Added padding to match other input fields
+  },
+  charCount: {
+    fontSize: "0.75rem",
+    color: "#666",
+    marginTop: "0.25rem",
+    alignSelf: "flex-end",
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    marginTop: "1rem",
+  },
+  button: {
+    padding: "0.75rem 1.5rem",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    borderRadius: "0.375rem",
+    fontWeight: "600",
+    fontSize: "1rem",
+    border: "none",
+    cursor: "pointer",
+    transition: "background-color 0.3s, transform 0.2s",
+    outline: "none",
+  },
+  loadingButton: {
+    backgroundColor: "#0056b3",
+    cursor: "not-allowed",
+  },
+};

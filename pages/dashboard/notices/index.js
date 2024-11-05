@@ -99,19 +99,21 @@ const DashboardPage = () => {
               color: "white",
               margin: "auto",
               marginTop: "10%",
-              background: "rgba(0,0,0,0.7)",
+              background: "rgba(255,255,255,0.9)",
               transform: "translateY(-50%)",
               maxWidth: "80%",
+              padding:20,
+              color:'white'
             }}
-            className="p-6 rounded-lg shadow-lg w-1/3 animate-fade-in "
+            className="p-6  shadow-lg w-1/3 animate-fade-in rounded"
           >
             <span
               onClick={() => setIsModalOpen(false)}
               className=" text-right float-end text-lg "
             >
-              <IoMdCloseCircle color="yellow" size={30} />
+              <IoMdCloseCircle color="black" size={30} />
             </span>
-
+            <h4>Create New Notice</h4>
             <CreateNotice onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
@@ -223,11 +225,7 @@ const DashboardPage = () => {
                             </td>
                             <td className="border p-2 flex space-x-2">
                               <button
-                                onClick={() =>
-                                  router.push(
-                                    `/notices/edit/${notice.notice_id}`
-                                  )
-                                }
+                                onClick={() => setIsModalOpen(true)}
                                 className="text-blue-500"
                               >
                                 <FaEdit />
