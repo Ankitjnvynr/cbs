@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./NoticeBoard.module.css"; // Import the CSS module
 import { FaLocationArrow } from "react-icons/fa";
 import { Rotate } from "react-awesome-reveal";
+import Link from "next/link";
 
 const NoticeBoard = () => {
   const [notices, setNotices] = useState([
@@ -72,7 +73,13 @@ const NoticeBoard = () => {
               }}>
                 <FaLocationArrow /> 
               </span>
+              <Link
+              style={{
+                color:'white'
+              }}
+              href={`/notice/${notice.notice_id}`}>
                 { notice.title}
+                </Link>
               </div>
             ))}
           </div>
