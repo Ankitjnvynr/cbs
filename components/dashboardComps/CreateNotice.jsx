@@ -28,7 +28,6 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
       setTitle(editNotice.title);
       setContent(editNotice.content);
       setExpirationDate(editNotice.expirationDate);
-
     }
   
   }, [])
