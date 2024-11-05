@@ -6,9 +6,11 @@ import "react-quill/dist/quill.snow.css";
 // Dynamically import the Quill editor for client-side rendering
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-const CreateNoticeForm = ({ onClose }) => {
+const CreateNoticeForm = ({ onClose, editNotice }) => {
+  console.log(editNotice);
+  
   const router = useRouter();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [error, setError] = useState("");

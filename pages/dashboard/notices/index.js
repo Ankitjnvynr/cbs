@@ -17,6 +17,7 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [notices, setNotices] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editNotice,setEditNotice] = useState({})
 
   const fetchNotices = async () => {
     try {
@@ -30,6 +31,13 @@ const DashboardPage = () => {
       console.error("Error fetching notices:", error);
     }
   };
+
+  const handleEdit =(notice)=>{
+    console.log(notice);
+    setIsModalOpen(true);
+    setEditNotice(notice)
+    
+  }
 
   useEffect(() => {
     fetchNotices(); // Fetch notices when the component mounts
@@ -114,7 +122,7 @@ const DashboardPage = () => {
               <IoMdCloseCircle color="black" size={30} />
             </span>
             <h4>Create New Notice</h4>
-            <CreateNotice onClose={() => setIsModalOpen(false)} />
+            <CreateNotice editNotice={editNotice} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
       )}
@@ -225,7 +233,7 @@ const DashboardPage = () => {
                             </td>
                             <td className="border p-2 flex space-x-2">
                               <button
-                                onClick={() => setIsModalOpen(true)}
+                                onClick={()=>handleEdit(notice)}
                                 className="text-blue-500"
                               >
                                 <FaEdit />
