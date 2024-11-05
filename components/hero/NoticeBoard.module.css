@@ -52,6 +52,9 @@
 .noticeContainer:hover {
   animation-play-state: paused;
 }
+.noticeContainer:hover  {
+  animation-play-state: paused;
+}
 
 .noticeItem {
   padding: 0.5rem;

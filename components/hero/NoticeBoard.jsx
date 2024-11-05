@@ -78,8 +78,8 @@ const NoticeBoard = () => {
                 color:'white'
               }}
               href={`/notice/${notice.notice_id}`}>
-                { notice.title}
                 </Link>
+                { notice.title}
               </div>
             ))}
           </div>
