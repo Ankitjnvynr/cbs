@@ -43,16 +43,17 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
       return;
     }
 
+    // URL encode the content before sending it to the database
+    const encodedContent = encodeURIComponent(content);  // Encode the content
+
     const noticeData = {
       id: editing ? editNoticeId : null, // Include id in the body if updating
       title,
-      content,
+      content: encodedContent, // Use the encoded content
       expiration_date: expirationDate,
     };
 
     try {
-      //console.table(noticeData);
-
       setIsLoading(true);
       const response = await fetch("/api/notices", {
         method: editing ? "PUT" : "POST",
@@ -60,7 +61,6 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
         body: JSON.stringify(noticeData),
       });
 
-      // Check if the response is okay
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
@@ -73,7 +73,6 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
       alert(data.message);
       router.push("/dashboard");
     } catch (error) {
-      // Display error message if the request fails
       setError(error.message || "An error occurred. Please try again later.");
     } finally {
       setIsLoading(false);

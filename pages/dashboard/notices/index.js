@@ -17,8 +17,9 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [notices, setNotices] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editNotice,setEditNotice] = useState({})
+  const [editNotice, setEditNotice] = useState({});
 
+  // Fetch notices from the API
   const fetchNotices = async () => {
     try {
       const response = await fetch("/api/notices");
@@ -26,18 +27,24 @@ const DashboardPage = () => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setNotices(data.data);
+
+      // Decode the content using decodeURIComponent
+      const decodedNotices = data.data.map((notice) => ({
+        ...notice,
+        content: decodeURIComponent(notice.content), // Decode the content
+      }));
+
+      setNotices(decodedNotices);
     } catch (error) {
       console.error("Error fetching notices:", error);
     }
   };
 
-  const handleEdit =(notice)=>{
-    // console.log(notice);
+  // Handle the edit action for a specific notice
+  const handleEdit = (notice) => {
     setIsModalOpen(true);
-    setEditNotice(notice)
-    
-  }
+    setEditNotice(notice);
+  };
 
   useEffect(() => {
     fetchNotices(); // Fetch notices when the component mounts
@@ -87,8 +94,7 @@ const DashboardPage = () => {
 
   return (
     <Fragment>
-      {/* new addon form for  notices */}
-
+      {/* new addon form for notices */}
       {isModalOpen && (
         <div
           style={{
@@ -100,7 +106,7 @@ const DashboardPage = () => {
             alignItems: "center",
             justifyContent: "center",
           }}
-          className="fixed inset-0 flex items-center  justify-center z-50 bg-opacity-90 backdrop-blur-sm transition-opacity duration-300 ease-in-out "
+          className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-90 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
         >
           <div
             style={{
@@ -110,18 +116,17 @@ const DashboardPage = () => {
               background: "rgba(255,255,255,0.9)",
               transform: "translateY(-50%)",
               maxWidth: "80%",
-              padding:20,
-              color:'white'
+              padding: 20,
+              color: "white",
             }}
-            className="p-6  shadow-lg w-1/3 animate-fade-in rounded"
+            className="p-6 shadow-lg w-1/3 animate-fade-in rounded"
           >
             <span
               onClick={() => setIsModalOpen(false)}
-              className=" text-right float-end text-lg "
+              className="text-right float-end text-lg"
             >
               <IoMdCloseCircle color="black" size={30} />
             </span>
-            
             <CreateNotice editNotice={editNotice} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
@@ -129,13 +134,13 @@ const DashboardPage = () => {
 
       <div
         style={{ display: "flex", gap: 20, padding: 20 }}
-        className="relative min-h-screen flex "
+        className="relative min-h-screen flex"
       >
         <Sidebar />
 
         {/* Main Content Section */}
         <div className="flex-1 ml-64">
-          <div className="relative w-full h-screen  flex">
+          <div className="relative w-full h-screen flex">
             {/* Background Image */}
             <Image
               src={bgImage}
@@ -146,7 +151,7 @@ const DashboardPage = () => {
               style={{ zIndex: "-1" }}
             />
 
-            <div className="absolute inset-0 bg-black bg-opacity-10 backdrop-blur-sm flex items-center justify-center rounded-lg ">
+            <div className="absolute inset-0 bg-black bg-opacity-10 backdrop-blur-sm flex items-center justify-center rounded-lg">
               <h1 className="text-white text-4xl">CBS INSTITUTE</h1>
             </div>
 
@@ -160,16 +165,15 @@ const DashboardPage = () => {
                 justifyContent: "space-between",
                 overflow: "hidden",
                 minWidth: 180,
-                // width: "88%",
                 background: "rgba(0,0,30,0.3)",
               }}
               className="p-2 table-auto flex flex-1"
             >
-              <div className="absolute top-4 right-4 flex-1 ">
+              <div className="absolute top-4 right-4 flex-1">
                 <button
                   onClick={() => {
-                    setIsModalOpen(true)
-                    setEditNotice({})
+                    setIsModalOpen(true);
+                    setEditNotice({});
                   }}
                   className="flex items-center bg-blue-600 p-2 rounded shadow hover:bg-blue-700 transition"
                 >
@@ -188,11 +192,10 @@ const DashboardPage = () => {
                   overflow: "hidden",
                   minWidth: "80vw",
                   height: "75vh",
-                  // width: "88%",
                   background: "rgba(0,0,30,0.3)",
                   fontSize: "0.8rem",
                 }}
-                className="p-2 table-auto flex-1 "
+                className="p-2 table-auto flex-1"
               >
                 <div style={{ overflowX: "scroll" }}>
                   <table className="table-auto w-full text-white">
@@ -223,28 +226,16 @@ const DashboardPage = () => {
                             <td className="border p-2">
                               {notice.title || "N/A"}
                             </td>
+                            <td className="border p-2" dangerouslySetInnerHTML={{ __html: notice.content || "N/A" }} />
+                            <td className="border p-2">{notice.author || "N/A"}</td>
                             <td className="border p-2">
-                              {notice.content || "N/A"}
-                            </td>
-                            <td className="border p-2">
-                              {notice.author || "N/A"}
-                            </td>
-                            <td className="border p-2">
-                              {new Date(
-                                notice.date_posted
-                              ).toLocaleDateString() || "N/A"}
+                              {new Date(notice.date_posted).toLocaleDateString() || "N/A"}
                             </td>
                             <td className="border p-2 flex space-x-2">
-                              <button
-                                onClick={()=>handleEdit(notice)}
-                                className="text-blue-500"
-                              >
+                              <button onClick={() => handleEdit(notice)} className="text-blue-500">
                                 <FaEdit />
                               </button>
-                              <button
-                                onClick={() => handleDelete(notice.notice_id)}
-                                className="text-red-500"
-                              >
+                              <button onClick={() => handleDelete(notice.notice_id)} className="text-red-500">
                                 <FaTrash />
                               </button>
                             </td>
