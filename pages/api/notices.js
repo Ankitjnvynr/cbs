@@ -34,12 +34,12 @@ export default async function handler(req, res) {
     } else if (req.method === 'PUT') {
         // Handle PUT request (Update)
         try {
-            const { id, title, content, author, expiration_date, priority } = req.body;
+            const { id, title, content, author, expiration_date, status,priority } = req.body;
             const [result] = await pool.query(`
                 UPDATE notice_board 
-                SET title = ?, content = ?, author = ?, expiration_date = ?, priority = ? 
+                SET title = ?, content = ?, author = ?, expiration_date = ?, status=?, priority = ? 
                 WHERE notice_id = ?
-            `, [title, content, author, expiration_date, priority, id]);
+            `, [title, content, author, expiration_date,  status, priority, id]);
 
             if (result.affectedRows > 0) {
                 res.status(200).json({ message: 'Notice updated successfully' });

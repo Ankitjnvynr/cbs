@@ -8,7 +8,7 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
   const [expirationDate, setExpirationDate] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const [modalTitle, setModalTitle] = useState("Create");
   const [editing, setEditing] = useState(false);
   const [editNoticeId, setEditNoticeId] = useState(null);
@@ -24,7 +24,7 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
       setTitle(editNotice.title);
       setContent(editNotice.content);
       setExpirationDate(editNotice.expirationDate);
-      setIsActive(editNotice.isActive ?? true);
+      setIsActive(editNotice.status=='Active' ? true:false);
       setEditing(true);
     }
   }, [editNotice]);
@@ -43,7 +43,7 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
       title,
       content,
       expiration_date: expirationDate,
-      isActive,
+      status: isActive?'Active':'Expired',
     };
 
     try {

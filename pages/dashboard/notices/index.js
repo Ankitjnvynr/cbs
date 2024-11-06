@@ -207,7 +207,7 @@ const DashboardPage = () => {
                         <th className="border p-2">ID</th>
                         <th className="border p-2">Title</th>
                         <th className="border p-2">Target Link</th>
-                        <th className="border p-2">Author</th>
+                        <th className="border p-2">Status</th>
                         <th className="border p-2">Date Posted</th>
                         <th className="border p-2">Actions</th>
                       </tr>
@@ -227,7 +227,7 @@ const DashboardPage = () => {
                               {notice.title || "N/A"}
                             </td>
                             <td className="border p-2" dangerouslySetInnerHTML={{ __html: notice.content || "N/A" }} />
-                            <td className="border p-2">{notice.author || "N/A"}</td>
+                            <td className="border p-2">{notice.status || "N/A"}</td>
                             <td className="border p-2">
                               {new Date(notice.date_posted).toLocaleDateString() || "N/A"}
                             </td>

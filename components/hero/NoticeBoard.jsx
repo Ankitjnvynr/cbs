@@ -21,8 +21,8 @@ const NoticeBoard = () => {
       }
       const data = await response.json();
       
-      setNotices(data.data);
-      console.log(data.data)
+      setNotices((data.data).filter(item=>item.status=='Active'));
+      // console.log((data.data).filter(item=>item.status=='Active'))
 
       //setNotices(data.data);
     } catch (error) {
