@@ -5,19 +5,34 @@ const AlumniRegistrationForm = () => {
   const [formData, setFormData] = useState({
     studentName: '',
     nationality: '',
-    occupation: '',
-    city: '',
-    email: '',
-    mobile: '',
-    course: '',
+    fatherName: '',
+    dateOfBirth: '',
+    gender: '',
+    degree: '',
     branch: '',
-    rollNo: '',
-    session: '',
-    currentOrgDesignation: '',
-    pastOrgDesignation: '',
+    yearOfPassing: '',
+    yearOfJoining: '',
+    batch: '',
+    maritalStatus: '',
+    telephone: '',
+    mobile: '',
+    email: '',
+    currentAddress: '',
+    permanentAddress: '',
+    higherEducation: '',
+    exams: '',
+    scoreCard: '',
+    companyName: '',
+    designation: '',
+    currentLocation: '',
+    salaryPackage: '',
+    offerLetter: '',
+    experience: '',
+    achievements: '',
   });
 
   const [errors, setErrors] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -34,7 +49,7 @@ const AlumniRegistrationForm = () => {
   const validateForm = () => {
     const newErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
-      if (!value && key !== 'occupation' && key !== 'currentOrgDesignation' && key !== 'pastOrgDesignation') {
+      if (!value && key !== 'achievements' && key !== 'offerLetter' && key !== 'experience') {
         newErrors[key] = `${key.replace(/([A-Z])/g, ' $1').trim()} is required`;
       }
     });
@@ -75,18 +90,33 @@ const AlumniRegistrationForm = () => {
         setFormData({
           studentName: '',
           nationality: '',
-          occupation: '',
-          city: '',
-          email: '',
-          mobile: '',
-          course: '',
+          fatherName: '',
+          dateOfBirth: '',
+          gender: '',
+          degree: '',
           branch: '',
-          rollNo: '',
-          session: '',
-          currentOrgDesignation: '',
-          pastOrgDesignation: '',
+          yearOfPassing: '',
+          yearOfJoining: '',
+          batch: '',
+          maritalStatus: '',
+          telephone: '',
+          mobile: '',
+          email: '',
+          currentAddress: '',
+          permanentAddress: '',
+          higherEducation: '',
+          exams: '',
+          scoreCard: '',
+          companyName: '',
+          designation: '',
+          currentLocation: '',
+          salaryPackage: '',
+          offerLetter: '',
+          experience: '',
+          achievements: '',
         });
         setErrors({});
+        setCurrentPage(1);
       } else {
         alert(`Error: ${result.message}`);
       }
@@ -98,13 +128,152 @@ const AlumniRegistrationForm = () => {
     }
   };
 
-  const branches = {
-    BTech: ['Mechanical', 'Computer Science', 'Civil', 'Electronics', 'Electrical', 'Other'],
-    MTech: ['Mechanical', 'Computer Science', 'Civil', 'Electronics', 'Electrical', 'Other'],
-    MBA: ['Marketing', 'Finance', 'Human Resource', 'International Business', 'IT', 'Other'],
-    BCA: ['Software Development', 'AI & ML', 'Data Science', 'Other'],
-    MCA: ['Software Engineering', 'Cyber Security', 'AI & Data Science', 'Other'],
-    BBA: ['Marketing', 'Finance', 'Human Resource', 'International Business', 'Other'],
+  const nextPage = () => setCurrentPage((prevPage) => prevPage + 1);
+  const prevPage = () => setCurrentPage((prevPage) => prevPage - 1);
+
+  const renderPageContent = () => {
+    switch (currentPage) {
+      case 1:
+        return (
+          <>
+            <input
+              type="text"
+              name="studentName"
+              value={formData.studentName}
+              onChange={handleChange}
+              placeholder="Student Name"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="nationality"
+              value={formData.nationality}
+              onChange={handleChange}
+              placeholder="Nationality"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="fatherName"
+              value={formData.fatherName}
+              onChange={handleChange}
+              placeholder="Father's Name"
+              style={styles.input}
+            />
+            <input
+              type="date"
+              name="dateOfBirth"
+              value={formData.dateOfBirth}
+              onChange={handleChange}
+              placeholder="Date of Birth"
+              style={styles.input}
+            />
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              style={styles.input}
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <input
+              type="text"
+              name="degree"
+              value={formData.degree}
+              onChange={handleChange}
+              placeholder="Degree"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="branch"
+              value={formData.branch}
+              onChange={handleChange}
+              placeholder="Branch"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="yearOfPassing"
+              value={formData.yearOfPassing}
+              onChange={handleChange}
+              placeholder="Year of Passing"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="yearOfJoining"
+              value={formData.yearOfJoining}
+              onChange={handleChange}
+              placeholder="Year of Joining"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="batch"
+              value={formData.batch}
+              onChange={handleChange}
+              placeholder="Batch"
+              style={styles.input}
+            />
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <input
+              type="text"
+              name="currentAddress"
+              value={formData.currentAddress}
+              onChange={handleChange}
+              placeholder="Current Address"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="permanentAddress"
+              value={formData.permanentAddress}
+              onChange={handleChange}
+              placeholder="Permanent Address"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="higherEducation"
+              value={formData.higherEducation}
+              onChange={handleChange}
+              placeholder="Higher Education"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="exams"
+              value={formData.exams}
+              onChange={handleChange}
+              placeholder="Exams"
+              style={styles.input}
+            />
+            <input
+              type="text"
+              name="scoreCard"
+              value={formData.scoreCard}
+              onChange={handleChange}
+              placeholder="Score Card"
+              style={styles.input}
+            />
+          </>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -112,61 +281,23 @@ const AlumniRegistrationForm = () => {
       <div style={styles.formWrapper}>
         <h1 style={styles.title}>Alumni Registration Form</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.flex}>
-            {Object.keys(formData).map((key, index) => (
-              <div key={index} style={styles.inputBox}>
-                {key === 'course' ? (
-                  <select
-                    name={key}
-                    value={formData[key]}
-                    onChange={handleChange}
-                    style={styles.input}
-                  >
-                    <option value="">Select a Course</option>
-                    {Object.keys(branches).map((course) => (
-                      <option key={course} value={course}>
-                        {course}
-                      </option>
-                    ))}
-                  </select>
-                ) : key === 'branch' && formData.course ? (
-                  <select
-                    name={key}
-                    value={formData[key]}
-                    onChange={handleChange}
-                    style={styles.input}
-                  >
-                    <option value="">Select a Branch</option>
-                    {branches[formData.course].map((branch) => (
-                      <option key={branch} value={branch}>
-                        {branch}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <>
-                    <input
-                      type={key === 'email' ? 'email' : 'text'}
-                      name={key}
-                      value={formData[key]}
-                      onChange={handleChange}
-                      placeholder={key.replace(/([A-Z])/g, ' $1').trim()}
-                      style={styles.input}
-                    />
-                    {errors[key] && <span style={styles.error}>{errors[key]}</span>}
-                  </>
-                )}
-              </div>
-            ))}
+          {renderPageContent()}
+          <div style={styles.buttonContainer}>
+            {currentPage > 1 && (
+              <button type="button" onClick={prevPage} style={styles.button}>
+                Previous
+              </button>
+            )}
+            {currentPage < 3 ? (
+              <button type="button" onClick={nextPage} style={styles.button}>
+                Next
+              </button>
+            ) : (
+              <button type="submit" style={styles.button}>
+                {isLoading ? 'Submitting...' : 'Submit'}
+              </button>
+            )}
           </div>
-          <button
-            type="submit"
-            style={styles.button}
-            onMouseOver={(e) => (e.target.style.background = styles.buttonHover.background)}
-            onMouseOut={(e) => (e.target.style.background = styles.button.background)}
-          >
-            {isLoading ? 'Submitting...' : 'Submit'}
-          </button>
         </form>
       </div>
     </div>
@@ -197,40 +328,25 @@ const styles = {
     marginBottom: '20px',
     fontSize: '2rem',
   },
-  flex: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '25px',
-  },
-  inputBox: {
-    padding: '10px',
-    borderRadius: '8px',
-    background: 'rgba(255, 255, 255, 0.9)',
-    border: '1px solid gray',
-    flex: '1 0 250px',
-  },
   input: {
     padding: '10px',
     borderRadius: '8px',
     width: '100%',
     border: '1px solid gray',
+    marginBottom: '10px',
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   button: {
-    padding: '15px',
+    padding: '10px',
     borderRadius: '8px',
     background: '#08124d',
     color: 'white',
-    fontSize: '1rem',
     cursor: 'pointer',
-    width: '100%',
-    transition: 'background 0.3s',
-  },
-  buttonHover: {
-    background: '#08122d',
-  },
-  error: {
-    color: 'red',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
+    width: '100px',
   },
 };
 
