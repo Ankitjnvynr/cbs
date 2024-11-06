@@ -13,7 +13,7 @@ function index() {
   return (
     <Fragment>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={'Director Message '} pagesub={'vision'} />
+    <PageTitle pageTitle={'Approval & Affiliation '} pagesub={'vision'} />
     <Approval/>
     <Footer />
     <Scrollbar />
