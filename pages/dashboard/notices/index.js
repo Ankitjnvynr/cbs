@@ -206,7 +206,7 @@ const DashboardPage = () => {
                       <tr>
                         <th className="border p-2">ID</th>
                         <th className="border p-2">Title</th>
-                        <th className="border p-2">Content</th>
+                        <th className="border p-2">Target Link</th>
                         <th className="border p-2">Author</th>
                         <th className="border p-2">Date Posted</th>
                         <th className="border p-2">Actions</th>

@@ -22,6 +22,7 @@ const NoticeBoard = () => {
       const data = await response.json();
       
       setNotices(data.data);
+      console.log(data.data)
 
       //setNotices(data.data);
     } catch (error) {
@@ -77,9 +78,9 @@ const NoticeBoard = () => {
               style={{
                 color:'white'
               }}
-              href={`/notice/${notice.notice_id}`}>
-                </Link>
+              href={`${notice.content}`}>
                 { notice.title}
+                </Link>
               </div>
             ))}
           </div>
