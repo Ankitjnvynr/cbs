@@ -7,31 +7,32 @@ import "react-quill/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateNoticeForm = ({ onClose, editNotice }) => {
-  
   const router = useRouter();
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [modalTitle ,setModalTitle] = useState('Create')
+  const [modalTitle, setModalTitle] = useState("Create");
+  const [editing, setEditing] = useState(false);
+  const [editNoticeId, setEditNoticeId] = useState(null);
 
   const MAX_TITLE_LENGTH = 80;
   const MAX_CONTENT_LENGTH = 2000;
 
+  // Initialize form values if editing a notice
   useEffect(() => {
     if (Object.keys(editNotice).length === 0) {
-      setModalTitle('Create New')
-    }else{
-      setModalTitle('Update ')
-      console.log(editNotice);
+      setModalTitle("Create New");
+    } else {
+      setModalTitle("Update");
+      setEditNoticeId(editNotice.notice_id);
       setTitle(editNotice.title);
       setContent(editNotice.content);
       setExpirationDate(editNotice.expirationDate);
+      setEditing(true);
     }
-  
-  }, [])
-  
+  }, [editNotice]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,26 +44,37 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
     }
 
     const noticeData = {
+      id: editing ? editNoticeId : null, // Include id in the body if updating
       title,
       content,
       expiration_date: expirationDate,
     };
 
     try {
+      //console.table(noticeData);
+
       setIsLoading(true);
       const response = await fetch("/api/notices", {
-        method: "POST",
+        method: editing ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(noticeData),
       });
 
-      if (!response.ok) throw new Error("Failed to create notice");
+      // Check if the response is okay
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData?.message ||
+            `Failed to ${editing ? "update" : "create"} notice`
+        );
+      }
 
       const data = await response.json();
       alert(data.message);
       router.push("/dashboard");
     } catch (error) {
-      setError(error.message);
+      // Display error message if the request fails
+      setError(error.message || "An error occurred. Please try again later.");
     } finally {
       setIsLoading(false);
     }
@@ -70,70 +82,76 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
 
   return (
     <>
-    <h4> {modalTitle} Notice</h4>
-    <form onSubmit={handleSubmit} style={styles.form}>
-      {error && <p style={styles.errorText}>{error}</p>}
-      <div style={styles.fieldContainer}>
-        <div style={styles.sideFields}>
-          <label style={styles.label}>
-            <span style={styles.labelText}>Title</span>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => {
-                if (e.target.value.length <= MAX_TITLE_LENGTH) {
-                  setTitle(e.target.value);
-                }
-              }}
-              style={styles.input}
-              required
-            />
-            <span style={styles.charCount}>
-              {title.length}/{MAX_TITLE_LENGTH}
-            </span>
-          </label>
-          <label style={styles.label}>
-            <span style={styles.labelText}>Expiration Date</span>
-            <input
-              type="date"
-              value={expirationDate}
-              onChange={(e) => setExpirationDate(e.target.value)}
-              style={styles.input}
-            />
-          </label>
-          <div style={styles.buttonContainer}>
-            <button
-              type="submit"
-              disabled={isLoading}
-              style={{
-                ...styles.button,
-                ...(isLoading ? styles.loadingButton : {}),
-              }}
-            >
-              {isLoading ? "Adding..." : "Add Notice"}
-            </button>
+      <h4>{modalTitle} Notice</h4>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        {error && <p style={styles.errorText}>{error}</p>}
+        <div style={styles.fieldContainer}>
+          <div style={styles.sideFields}>
+            <label style={styles.label}>
+              <span style={styles.labelText}>Title</span>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => {
+                  if (e.target.value.length <= MAX_TITLE_LENGTH) {
+                    setTitle(e.target.value);
+                  }
+                }}
+                style={styles.input}
+                required
+              />
+              <span style={styles.charCount}>
+                {title.length}/{MAX_TITLE_LENGTH}
+              </span>
+            </label>
+            <label style={styles.label}>
+              <span style={styles.labelText}>Expiration Date</span>
+              <input
+                type="date"
+                value={expirationDate}
+                onChange={(e) => setExpirationDate(e.target.value)}
+                style={styles.input}
+              />
+            </label>
+            <div style={styles.buttonContainer}>
+              <button
+                type="submit"
+                disabled={isLoading}
+                style={{
+                  ...styles.button,
+                  ...(isLoading ? styles.loadingButton : {}),
+                }}
+              >
+                {isLoading
+                  ? editing
+                    ? "Updating..."
+                    : "Adding..."
+                  : editing
+                  ? "Update Notice"
+                  : "Add Notice"}
+              </button>
+            </div>
+          </div>
+
+          <div style={styles.contentField}>
+            <label style={styles.label}>
+              <span style={styles.labelText}>Content</span>
+              <ReactQuill
+                value={content}
+                onChange={(value) => {
+                  if (value.length <= MAX_CONTENT_LENGTH) {
+                    setContent(value);
+                  }
+                }}
+                style={styles.richTextEditor}
+              />
+              <span style={styles.charCount}>
+                {content.length}/{MAX_CONTENT_LENGTH}
+              </span>
+            </label>
           </div>
         </div>
-
-        <div style={styles.contentField}>
-          <label style={styles.label}>
-            <span style={styles.labelText}>Content</span>
-            <ReactQuill
-              value={content}
-              onChange={(value) => {
-                if (value.length <= MAX_CONTENT_LENGTH) {
-                  setContent(value);
-                }
-              }}
-              style={styles.richTextEditor}
-            />
-            <span style={styles.charCount}>
-              {content.length}/{MAX_CONTENT_LENGTH}
-            </span>
-          </label>
-        </div>
-      </div>
-    </form>
+      </form>
     </>
   );
 };
@@ -191,7 +209,7 @@ const styles = {
     borderRadius: "0.375rem",
     minHeight: "12rem",
     maxHeight: "20rem",
-    padding: "0.5rem", // Added padding to match other input fields
+    padding: "0.5rem",
   },
   charCount: {
     fontSize: "0.75rem",

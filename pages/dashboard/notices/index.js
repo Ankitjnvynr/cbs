@@ -167,7 +167,10 @@ const DashboardPage = () => {
             >
               <div className="absolute top-4 right-4 flex-1 ">
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {
+                    setIsModalOpen(true)
+                    setEditNotice({})
+                  }}
                   className="flex items-center bg-blue-600 p-2 rounded shadow hover:bg-blue-700 transition"
                 >
                   <FaPlus className="mr-2" /> Create New
