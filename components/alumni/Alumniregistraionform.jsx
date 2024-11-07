@@ -174,7 +174,7 @@ const AlumniRegistrationForm = () => {
               placeholder="Father's Name"
               style={styles.input}
             />
-            <label htmlFor="dateOfBirth" style={styles.label} onClick={() => setShowDateOfBirth(true)}>
+            <label htmlFor="dateOfBirth" style={styles.input} onClick={() => setShowDateOfBirth(true)}>
               Date of Birth
             </label>
             {showDateOfBirth && (
