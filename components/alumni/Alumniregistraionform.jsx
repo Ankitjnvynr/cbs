@@ -57,7 +57,7 @@ const AlumniRegistrationForm = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [currentPage, setCurrentPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
 
