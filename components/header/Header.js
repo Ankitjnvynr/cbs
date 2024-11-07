@@ -48,6 +48,7 @@ const Header = (props) => {
         { label: "Code of Conduct", link: "/codeofconduct" },
         { label: "Mandatory Disclosures", link: "/" },
         { label: "Financial Audit", link: "/" },
+        { label: "Governing Body of Institution", link: "/governing" },
       ],
     },
     {
