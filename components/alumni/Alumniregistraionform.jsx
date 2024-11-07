@@ -916,12 +916,12 @@ const AlumniRegistrationForm = () => {
             Previous
           </button>
         )}
-        {currentPage < 6 && (
+        {currentPage < 7 && (
           <button type="button" onClick={nextPage} style={styles.button}>
             Next
           </button>
         )}
-        {currentPage === 6 && (
+        {currentPage === 7 && (
           <button type="submit" style={styles.submitButton}>
             {isLoading ? "Submitting..." : "Submit"}
           </button>
