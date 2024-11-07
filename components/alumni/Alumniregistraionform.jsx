@@ -305,72 +305,137 @@ const AlumniRegistrationForm = () => {
             />
           </>
         );
-      case 2:
+        case 2:
+  return (
+    <>
+      <input
+        type="text"
+        name="internshipDetails"
+        value={formData.internshipDetails}
+        onChange={handleChange}
+        placeholder="Internship Details"
+        style={styles.input}
+      />
+      <input
+        type="text"
+        name="internshipDescription"
+        value={formData.internshipDescription}
+        onChange={handleChange}
+        placeholder="Details about Internship"
+        style={styles.input}
+      />
+      <input
+        type="text"
+        name="internshipYear"
+        value={formData.internshipYear}
+        onChange={handleChange}
+        placeholder="Year of Internship"
+        style={styles.input}
+      />
+      <label htmlFor="internshipCertificate" style={styles.input}>
+                  {formData.internshipCertificate
+                    ? formData.internshipCertificate.name
+                    : "Upload your internshipCertificate"}
+                </label>
+                <input
+                  type="file"
+                  id="internshipCertificate"
+                  name="internshipCertificate"
+                  onChange={handleFileChange}
+                  style={styles.hiddenInput}
+                />
+    </>
+  );
+
+      case 3:
         return (
           <>
-            <input
-              type="text"
-              name="degree"
-              value={formData.degree}
-              onChange={handleChange}
-              placeholder="Degree of Joining in CBS"
-              style={styles.input}
-            />
-            <select
-              name="branch"
-              value={formData.branch}
-              onChange={handleChange}
-              style={styles.input}
-            >
-              <option value="">Select Branch</option>
-              <option value="B.Tech (CE)">B.Tech (CE)</option>
-              <option value="B.Tech (CSE)">B.Tech (CSE)</option>
-              <option value="B.Tech (EE)">B.Tech (EE)</option>
-              <option value="B.Tech (ECE)">B.Tech (ECE)</option>
-              <option value="B.Tech (ME)">B.Tech (ME)</option>
-              <option value="M.Tech (SE)">M.Tech (EE)</option>
-              <option value="M.Tech (M&A)">M.Tech (M&A)</option>
-              <option value="M.Tech (ECE)">M.Tech (ECE)</option>
-              <option value="M.Tech (CSE)">M.Tech (CSE)</option>
-              <option value="M.Tech (CE) (Transp. Eng.)">
-                M.Tech (CE) (Transp. Eng.)
-              </option>
-              <option value="M.Tech (MD)">M.Tech (MD)</option>
-              <option value="M.Tech (CE) (Struct. Eng.)">
-                M.Tech (CE) (Struct. Eng.)
-              </option>
-              <option value="BCA">BCA</option>
-              <option value="BBA">BBA</option>
-              <option value="MCA">MCA</option>
-              <option value="MBA">MBA</option>
-            </select>
-            <input
-              type="text"
-              name="yearOfJoining"
-              value={formData.yearOfJoining}
-              onChange={handleChange}
-              placeholder="Year of Joining"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="percentageOfPassing"
-              value={formData.percentageOfPassing}
-              onChange={handleChange}
-              placeholder="Percentage in Degree"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="yearOfPassing"
-              value={formData.yearOfPassing}
-              onChange={handleChange}
-              placeholder="Year of Passing"
-              style={styles.input}
-            />
-          </>
+          <input
+            type="text"
+            name="degree"
+            value={formData.degree}
+            onChange={handleChange}
+            placeholder="Degree of Joining in CBS"
+            style={styles.input}
+          />
+          <select
+            name="branch"
+            value={formData.branch}
+            onChange={handleChange}
+            style={styles.input}
+          >
+            <option value="">Select Branch</option>
+            <option value="B.Tech (CE)">B.Tech (CE)</option>
+            <option value="B.Tech (CSE)">B.Tech (CSE)</option>
+            <option value="B.Tech (EE)">B.Tech (EE)</option>
+            <option value="B.Tech (ECE)">B.Tech (ECE)</option>
+            <option value="B.Tech (ME)">B.Tech (ME)</option>
+            <option value="M.Tech (SE)">M.Tech (EE)</option>
+            <option value="M.Tech (M&A)">M.Tech (M&A)</option>
+            <option value="M.Tech (ECE)">M.Tech (ECE)</option>
+            <option value="M.Tech (CSE)">M.Tech (CSE)</option>
+            <option value="M.Tech (CE) (Transp. Eng.)">M.Tech (CE) (Transp. Eng.)</option>
+            <option value="M.Tech (MD)">M.Tech (MD)</option>
+            <option value="M.Tech (CE) (Struct. Eng.)">M.Tech (CE) (Struct. Eng.)</option>
+            <option value="BCA">BCA</option>
+            <option value="BBA">BBA</option>
+            <option value="MCA">MCA</option>
+            <option value="MBA">MBA</option>
+          </select>
+          <input
+            type="text"
+            name="yearOfJoining"
+            value={formData.yearOfJoining}
+            onChange={handleChange}
+            placeholder="Year of Joining"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="percentageOfPassing"
+            value={formData.percentageOfPassing}
+            onChange={handleChange}
+            placeholder="Percentage in Degree"
+            style={styles.input}
+          />
+          
+          {/* Additional fields from the screenshot */}
+          <input
+            type="text"
+            name="passingDegreeInCBS"
+            value={formData.passingDegreeInCBS}
+            onChange={handleChange}
+            placeholder="Passing Degree in CBS"
+            style={styles.input}
+          />
+          <select
+            name="branchSelection"
+            value={formData.branchSelection}
+            onChange={handleChange}
+            style={styles.input}
+          >
+            <option value="">Select Branch</option>
+            {/* Repeat options if needed */}
+          </select>
+          <input
+            type="text"
+            name="passingYear"
+            value={formData.passingYear}
+            onChange={handleChange}
+            placeholder="Passing Year"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="passingPercentage"
+            value={formData.passingPercentage}
+            onChange={handleChange}
+            placeholder="Percentage in Passing Degree"
+            style={styles.input}
+          />
+        </>
         );
-      case 3:
+      case 4:
         return (
           <>
             <input
@@ -456,7 +521,7 @@ const AlumniRegistrationForm = () => {
             />
           </>
         );
-      case 4:
+      case 5:
         return (
           <>
             {/* Checkbox for "If got any job" */}
@@ -642,7 +707,7 @@ const AlumniRegistrationForm = () => {
           </>
         );
 
-      case 5:
+      case 6:
         return (
           <div>
             <h3>Additional Details</h3>
@@ -681,7 +746,7 @@ const AlumniRegistrationForm = () => {
           </div>
         ); // existing cases 1 to 5 for your form fields
 
-      case 6:
+      case 7:
         return (
           <>
             <h5>Rate the Following Aspects</h5>
