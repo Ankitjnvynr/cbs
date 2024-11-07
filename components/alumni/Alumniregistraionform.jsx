@@ -365,76 +365,180 @@ const AlumniRegistrationForm = () => {
             />
           </>
         );
-      case 4:
-        return (
-          <>
-            <label style={styles.checkboxLabel}>
-              <input
-                type="checkbox"
-                name="gotJob"
-                checked={formData.gotJob}
-                onChange={(e) => setFormData({ ...formData, gotJob: e.target.checked })}
-                style={styles.checkbox}
-              />
-              If got any job
-            </label>
+        case 4:
+  return (
+    <>
+      {/* Checkbox for "If got any job" */}
+      <label style={styles.checkboxLabel}>
+        <input
+          type="checkbox"
+          name="gotJob"
+          checked={formData.gotJob}
+          onChange={(e) => setFormData({ ...formData, gotJob: e.target.checked })}
+          style={styles.checkbox}
+        />
+        If got any job
+      </label>
 
-            {formData.gotJob && (
-              <>
-                <input
-                  type="text"
-                  name="designation"
-                  value={formData.designation}
-                  onChange={handleChange}
-                  placeholder="Designation"
-                  style={styles.input}
-                />
-                <label htmlFor="offerLetter" style={styles.fileLabel}>
-                  {formData.offerLetter ? formData.offerLetter.name : "Upload Offer Letter"}
-                </label>
-                <input
-                  type="file"
-                  id="offerLetter"
-                  name="offerLetter"
-                  onChange={handleFileChange}
-                  style={styles.hiddenInput}
-                />
-                <input
-                  type="text"
-                  name="salaryOffered"
-                  value={formData.salaryOffered}
-                  onChange={handleChange}
-                  placeholder="Salary Offered"
-                  style={styles.input}
-                />
-                <input
-                  type="text"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleChange}
-                  placeholder="Company Name"
-                  style={styles.input}
-                />
-                <input
-                  type="text"
-                  name="companyAddress"
-                  value={formData.companyAddress}
-                  onChange={handleChange}
-                  placeholder="Company Address"
-                  style={styles.input}
-                />
-                <input
-                  type="text"
-                  name="yearOfJoining"
-                  value={formData.yearOfJoining}
-                  onChange={handleChange}
-                  placeholder="Year of Joining"
-                  style={styles.input}
-                />
-              </>
-            )}
-          </>
-        );
+      {formData.gotJob && (
+        <>
+          <input
+            type="text"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            placeholder="Company Name"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="companyAddress"
+            value={formData.companyAddress}
+            onChange={handleChange}
+            placeholder="Company Address"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="yearOfJoining"
+            value={formData.yearOfJoining}
+            onChange={handleChange}
+            placeholder="Year of Joining"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="designation"
+            value={formData.designation}
+            onChange={handleChange}
+            placeholder="Designation"
+            style={styles.input}
+          />
+
+          <label htmlFor="idcard" style={styles.input}>
+            {formData.idcard ? formData.idcard.name : "Upload your ID card"}
+          </label>
+          <input
+            type="file"
+            id="idcard"
+            name="idcard"
+            onChange={handleFileChange}
+            style={styles.hiddenInput}
+          />
+
+          <label htmlFor="offerLetter" style={styles.input}>
+            {formData.offerLetter ? formData.offerLetter.name : "Upload your offer letter"}
+          </label>
+          <input
+            type="file"
+            id="offerLetter"
+            name="offerLetter"
+            onChange={handleFileChange}
+            style={styles.hiddenInput}
+          />
+
+          {/* Nested Checkbox for "Job in Another Country" */}
+          <label style={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              name="jobInAnotherCountry"
+              checked={formData.jobInAnotherCountry}
+              onChange={(e) =>
+                setFormData({ ...formData, jobInAnotherCountry: e.target.checked })
+              }
+              style={styles.checkbox}
+            />
+            Job in Another Country?
+          </label>
+
+          {formData.jobInAnotherCountry && (
+            <>
+              <input
+                type="text"
+                name="countryName"
+                value={formData.countryName || ""}
+                onChange={handleChange}
+                placeholder="Country Name"
+                style={styles.input}
+              />
+              <input
+                type="text"
+                name="visaType"
+                value={formData.visaType || ""}
+                onChange={handleChange}
+                placeholder="Visa Type"
+                style={styles.input}
+              />
+              <input
+                type="text"
+                name="workPermit"
+                value={formData.workPermit || ""}
+                onChange={handleChange}
+                placeholder="Work Permit Details"
+                style={styles.input}
+              />
+              <input
+            type="text"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            placeholder="Company Name"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="companyAddress"
+            value={formData.companyAddress}
+            onChange={handleChange}
+            placeholder="Company Address"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="yearOfJoining"
+            value={formData.yearOfJoining}
+            onChange={handleChange}
+            placeholder="Year of Joining"
+            style={styles.input}
+          />
+          <input
+            type="text"
+            name="designation"
+            value={formData.designation}
+            onChange={handleChange}
+            placeholder="Designation"
+            style={styles.input}
+          />
+
+          <label htmlFor="idcard1" style={styles.input}>
+            {formData.idcard1? formData.idcard1.name : "Upload your ID card"}
+          </label>
+          <input
+            type="file"
+            id="idcard1"
+            name="idcard1"
+            onChange={handleFileChange}
+            style={styles.hiddenInput}
+          />
+
+          <label htmlFor="offerLetter1" style={styles.input}>
+            {formData.offerLetter1 ? formData.offerLetter1.name : "Upload your offer letter"}
+          </label>
+          <input
+            type="file"
+            id="offerLetter1"
+            name="offerLetter1"
+            onChange={handleFileChange}
+            style={styles.hiddenInput}
+          />
+            </>
+          )}
+        </>
+      )}
+    </>
+  );
+
+        
       case 5:
         return (
           <div>
@@ -471,17 +575,7 @@ const AlumniRegistrationForm = () => {
               value={formData.publishedPaper || ""}
               onChange={handleChange}
             />
-            <select
-              style={styles.input}
-              id="jobInAnotherCountry"
-              name="jobInAnotherCountry"
-              value={formData.jobInAnotherCountry || ""}
-              onChange={handleChange}
-            >
-              <option value="">Job in Another Country?</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
+          
           </div>
         );
       default:
