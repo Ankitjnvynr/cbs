@@ -764,7 +764,7 @@ const AlumniRegistrationForm = () => {
     <form onSubmit={handleSubmit} style={styles.form}>
       <h2>Alumni Registration Form</h2>
       {renderPageContent()}
-      <div style={styles.navigation}>
+      <div style={{ ...styles.navigation, flexDirection: currentPage === 1 ? "row-reverse" : "row" }}>
         {currentPage > 1 && (
           <button type="button" onClick={prevPage} style={styles.button}>
             Previous
@@ -784,6 +784,8 @@ const AlumniRegistrationForm = () => {
     </form>
   );
 };
+
+
 
 const styles = {
   tableContainer: {
@@ -849,7 +851,9 @@ const styles = {
   navigation: {
     display: "flex",
     justifyContent: "space-between",
+   
   },
+  
   table: {
     width: "100%",
     borderCollapse: "collapse", // Ensures the borders of cells merge together
