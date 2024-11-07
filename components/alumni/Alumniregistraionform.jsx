@@ -89,7 +89,13 @@ const AlumniRegistrationForm = () => {
   const validateForm = () => {
     const newErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
-      if (!value && key !== "achievements" && key !== "offerLetter" && key !== "experience" && key !== "idcard") {
+      if (
+        !value &&
+        key !== "achievements" &&
+        key !== "offerLetter" &&
+        key !== "experience" &&
+        key !== "idcard"
+      ) {
         newErrors[key] = `${key.replace(/([A-Z])/g, " $1").trim()} is required`;
       }
     });
@@ -245,7 +251,11 @@ const AlumniRegistrationForm = () => {
               placeholder="Father's Name"
               style={styles.input}
             />
-            <label htmlFor="dateOfBirth" style={styles.input} onClick={() => setShowDateOfBirth(true)}>
+            <label
+              htmlFor="dateOfBirth"
+              style={styles.input}
+              onClick={() => setShowDateOfBirth(true)}
+            >
               Date of Birth
             </label>
             {showDateOfBirth && (
@@ -313,19 +323,25 @@ const AlumniRegistrationForm = () => {
               style={styles.input}
             >
               <option value="">Select Branch</option>
-              <option value="BTech (CSE)">BTech (CSE)</option>
-              <option value="BTech (ECE)">BTech (ECE)</option>
-              <option value="BTech (EE)">BTech (EE)</option>
-              <option value="BTech (ME)">BTech (ME)</option>
-              <option value="MTech (CSE)">MTech (CSE)</option>
-              <option value="MTech (ECE)">MTech (ECE)</option>
-              <option value="MTech (EE)">MTech (EE)</option>
-              <option value="MTech (MA)">MTech (MA)</option>
-              <option value="MTech (CE)">MTech (CE)</option>
-              <option value="MTech (EET)">MTech (EET)</option>
+              <option value="B.Tech (CE)">B.Tech (CE)</option>
+              <option value="B.Tech (CSE)">B.Tech (CSE)</option>
+              <option value="B.Tech (EE)">B.Tech (EE)</option>
+              <option value="B.Tech (ECE)">B.Tech (ECE)</option>
+              <option value="B.Tech (ME)">B.Tech (ME)</option>
+              <option value="M.Tech (SE)">M.Tech (SE)</option>
+              <option value="M.Tech (M&A)">M.Tech (M&A)</option>
+              <option value="M.Tech (ECE)">M.Tech (ECE)</option>
+              <option value="M.Tech (CSE)">M.Tech (CSE)</option>
+              <option value="M.Tech (CE) (Transp. Eng.)">
+                M.Tech (CE) (Transp. Eng.)
+              </option>
+              <option value="M.Tech (MD)">M.Tech (MD)</option>
+              <option value="M.Tech (CE) (Struct. Eng.)">
+                M.Tech (CE) (Struct. Eng.)
+              </option>
               <option value="BCA">BCA</option>
-              <option value="MCA">MCA</option>
               <option value="BBA">BBA</option>
+              <option value="MCA">MCA</option>
               <option value="MBA">MBA</option>
             </select>
             <input
@@ -398,7 +414,9 @@ const AlumniRegistrationForm = () => {
               <option value="GRE">GRE</option>
               <option value="TOEFL">TOEFL</option>
               <option value="Civil Services">Civil Services</option>
-              <option value="State Gov. Examination">State Gov. Examination</option>
+              <option value="State Gov. Examination">
+                State Gov. Examination
+              </option>
               <option value="Other">Other</option>
             </select>
             <input
@@ -418,7 +436,9 @@ const AlumniRegistrationForm = () => {
               style={styles.input}
             />
             <label htmlFor="scoreCard" style={styles.input}>
-              {formData.scoreCard ? formData.scoreCard.name : "Upload Your Score Card"}
+              {formData.scoreCard
+                ? formData.scoreCard.name
+                : "Upload Your Score Card"}
             </label>
             <input
               type="file"
@@ -436,180 +456,192 @@ const AlumniRegistrationForm = () => {
             />
           </>
         );
-        case 4:
-  return (
-    <>
-      {/* Checkbox for "If got any job" */}
-      <label style={styles.checkboxLabel}>
-        <input
-          type="checkbox"
-          name="gotJob"
-          checked={formData.gotJob}
-          onChange={(e) => setFormData({ ...formData, gotJob: e.target.checked })}
-          style={styles.checkbox}
-        />
-        If got any job
-      </label>
-
-      {formData.gotJob && (
-        <>
-          <input
-            type="text"
-            name="companyName"
-            value={formData.companyName}
-            onChange={handleChange}
-            placeholder="Company Name"
-            style={styles.input}
-          />
-          <input
-            type="text"
-            name="companyAddress"
-            value={formData.companyAddress}
-            onChange={handleChange}
-            placeholder="Company Address"
-            style={styles.input}
-          />
-          <input
-            type="text"
-            name="yearOfJoining"
-            value={formData.yearOfJoining}
-            onChange={handleChange}
-            placeholder="Year of Joining"
-            style={styles.input}
-          />
-          <input
-            type="text"
-            name="designation"
-            value={formData.designation}
-            onChange={handleChange}
-            placeholder="Designation"
-            style={styles.input}
-          />
-
-          <label htmlFor="idcard" style={styles.input}>
-            {formData.idcard ? formData.idcard.name : "Upload your ID card"}
-          </label>
-          <input
-            type="file"
-            id="idcard"
-            name="idcard"
-            onChange={handleFileChange}
-            style={styles.hiddenInput}
-          />
-
-          <label htmlFor="offerLetter" style={styles.input}>
-            {formData.offerLetter ? formData.offerLetter.name : "Upload your offer letter"}
-          </label>
-          <input
-            type="file"
-            id="offerLetter"
-            name="offerLetter"
-            onChange={handleFileChange}
-            style={styles.hiddenInput}
-          />
-
-          {/* Nested Checkbox for "Job in Another Country" */}
-          <label style={styles.checkboxLabel}>
-            <input
-              type="checkbox"
-              name="jobInAnotherCountry"
-              checked={formData.jobInAnotherCountry}
-              onChange={(e) =>
-                setFormData({ ...formData, jobInAnotherCountry: e.target.checked })
-              }
-              style={styles.checkbox}
-            />
-            Job in Another Country?
-          </label>
-
-          {formData.jobInAnotherCountry && (
-            <>
+      case 4:
+        return (
+          <>
+            {/* Checkbox for "If got any job" */}
+            <label style={styles.checkboxLabel}>
               <input
-                type="text"
-                name="countryName"
-                value={formData.countryName || ""}
-                onChange={handleChange}
-                placeholder="Country Name"
-                style={styles.input}
+                type="checkbox"
+                name="gotJob"
+                checked={formData.gotJob}
+                onChange={(e) =>
+                  setFormData({ ...formData, gotJob: e.target.checked })
+                }
+                style={styles.checkbox}
               />
-              <input
-                type="text"
-                name="visaType"
-                value={formData.visaType || ""}
-                onChange={handleChange}
-                placeholder="Visa Type"
-                style={styles.input}
-              />
-              <input
-                type="text"
-                name="workPermit"
-                value={formData.workPermit || ""}
-                onChange={handleChange}
-                placeholder="Work Permit Details"
-                style={styles.input}
-              />
-              <input
-            type="text"
-            name="companyName"
-            value={formData.companyName}
-            onChange={handleChange}
-            placeholder="Company Name"
-            style={styles.input}
-          />
-          <input
-            type="text"
-            name="companyAddress"
-            value={formData.companyAddress}
-            onChange={handleChange}
-            placeholder="Company Address"
-            style={styles.input}
-          />
-          <input
-            type="text"
-            name="yearOfJoining"
-            value={formData.yearOfJoining}
-            onChange={handleChange}
-            placeholder="Year of Joining"
-            style={styles.input}
-          />
-          <input
-            type="text"
-            name="designation"
-            value={formData.designation}
-            onChange={handleChange}
-            placeholder="Designation"
-            style={styles.input}
-          />
+              If got any job
+            </label>
 
-          <label htmlFor="idcard1" style={styles.input}>
-            {formData.idcard1? formData.idcard1.name : "Upload your ID card"}
-          </label>
-          <input
-            type="file"
-            id="idcard1"
-            name="idcard1"
-            onChange={handleFileChange}
-            style={styles.hiddenInput}
-          />
+            {formData.gotJob && (
+              <>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleChange}
+                  placeholder="Company Name"
+                  style={styles.input}
+                />
+                <input
+                  type="text"
+                  name="companyAddress"
+                  value={formData.companyAddress}
+                  onChange={handleChange}
+                  placeholder="Company Address"
+                  style={styles.input}
+                />
+                <input
+                  type="text"
+                  name="yearOfJoining"
+                  value={formData.yearOfJoining}
+                  onChange={handleChange}
+                  placeholder="Year of Joining"
+                  style={styles.input}
+                />
+                <input
+                  type="text"
+                  name="designation"
+                  value={formData.designation}
+                  onChange={handleChange}
+                  placeholder="Designation"
+                  style={styles.input}
+                />
 
-          <label htmlFor="offerLetter1" style={styles.input}>
-            {formData.offerLetter1 ? formData.offerLetter1.name : "Upload your offer letter"}
-          </label>
-          <input
-            type="file"
-            id="offerLetter1"
-            name="offerLetter1"
-            onChange={handleFileChange}
-            style={styles.hiddenInput}
-          />
-            </>
-          )}
-        </>
-      )}
-    </>
-  );
+                <label htmlFor="idcard" style={styles.input}>
+                  {formData.idcard
+                    ? formData.idcard.name
+                    : "Upload your ID card"}
+                </label>
+                <input
+                  type="file"
+                  id="idcard"
+                  name="idcard"
+                  onChange={handleFileChange}
+                  style={styles.hiddenInput}
+                />
 
-        
+                <label htmlFor="offerLetter" style={styles.input}>
+                  {formData.offerLetter
+                    ? formData.offerLetter.name
+                    : "Upload your offer letter"}
+                </label>
+                <input
+                  type="file"
+                  id="offerLetter"
+                  name="offerLetter"
+                  onChange={handleFileChange}
+                  style={styles.hiddenInput}
+                />
+
+                {/* Nested Checkbox for "Job in Another Country" */}
+                <label style={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    name="jobInAnotherCountry"
+                    checked={formData.jobInAnotherCountry}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        jobInAnotherCountry: e.target.checked,
+                      })
+                    }
+                    style={styles.checkbox}
+                  />
+                  Job in Another Country?
+                </label>
+
+                {formData.jobInAnotherCountry && (
+                  <>
+                    <input
+                      type="text"
+                      name="countryName"
+                      value={formData.countryName || ""}
+                      onChange={handleChange}
+                      placeholder="Country Name"
+                      style={styles.input}
+                    />
+                    <input
+                      type="text"
+                      name="visaType"
+                      value={formData.visaType || ""}
+                      onChange={handleChange}
+                      placeholder="Visa Type"
+                      style={styles.input}
+                    />
+                    <input
+                      type="text"
+                      name="workPermit"
+                      value={formData.workPermit || ""}
+                      onChange={handleChange}
+                      placeholder="Work Permit Details"
+                      style={styles.input}
+                    />
+                    <input
+                      type="text"
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleChange}
+                      placeholder="Company Name"
+                      style={styles.input}
+                    />
+                    <input
+                      type="text"
+                      name="companyAddress"
+                      value={formData.companyAddress}
+                      onChange={handleChange}
+                      placeholder="Company Address"
+                      style={styles.input}
+                    />
+                    <input
+                      type="text"
+                      name="yearOfJoining"
+                      value={formData.yearOfJoining}
+                      onChange={handleChange}
+                      placeholder="Year of Joining"
+                      style={styles.input}
+                    />
+                    <input
+                      type="text"
+                      name="designation"
+                      value={formData.designation}
+                      onChange={handleChange}
+                      placeholder="Designation"
+                      style={styles.input}
+                    />
+
+                    <label htmlFor="idcard1" style={styles.input}>
+                      {formData.idcard1
+                        ? formData.idcard1.name
+                        : "Upload your ID card"}
+                    </label>
+                    <input
+                      type="file"
+                      id="idcard1"
+                      name="idcard1"
+                      onChange={handleFileChange}
+                      style={styles.hiddenInput}
+                    />
+
+                    <label htmlFor="offerLetter1" style={styles.input}>
+                      {formData.offerLetter1
+                        ? formData.offerLetter1.name
+                        : "Upload your offer letter"}
+                    </label>
+                    <input
+                      type="file"
+                      id="offerLetter1"
+                      name="offerLetter1"
+                      onChange={handleFileChange}
+                      style={styles.hiddenInput}
+                    />
+                  </>
+                )}
+              </>
+            )}
+          </>
+        );
+
       case 5:
         return (
           <div>
@@ -646,15 +678,14 @@ const AlumniRegistrationForm = () => {
               value={formData.publishedPaper || ""}
               onChange={handleChange}
             />
-          
           </div>
         ); // existing cases 1 to 5 for your form fields
 
-        case 6:
-          return (
-            <>
-              <h5>Rate the Following Aspects</h5>
-              <div style={styles.tableContainer}>
+      case 6:
+        return (
+          <>
+            <h5>Rate the Following Aspects</h5>
+            <div style={styles.tableContainer}>
               <table style={styles.table}>
                 <thead>
                   <tr>
@@ -669,20 +700,53 @@ const AlumniRegistrationForm = () => {
                 </thead>
                 <tbody>
                   {[
-                    { text: "I feel proud to be a student of CBS GROUP OF INSTITUTIONS", name: "q1" },
-                    { text: "How do you rate the learning experience in terms of relevance?", name: "q2" },
-                    { text: "The developments in the College in recent years are appreciable", name: "q3" },
-                    { text: "CBS GROUP OF INSTITUTIONS involves alumni in its activities", name: "q4" },
-                    { text: "The alumni have a role in academically strengthening the College", name: "q5" },
-                    { text: "On/Off-campus Training & Placement opportunities", name: "q6" },
-                    { text: "The alumni have a role in financially strengthening the College", name: "q7" },
-                    { text: "Formation of department-wise alumni associations", name: "q8" },
-                    { text: "Initiative to enroll and strengthen the alumni association", name: "q9" },
+                    {
+                      text: "I feel proud to be a student of CBS GROUP OF INSTITUTIONS",
+                      name: "q1",
+                    },
+                    {
+                      text: "How do you rate the learning experience in terms of relevance?",
+                      name: "q2",
+                    },
+                    {
+                      text: "The developments in the College in recent years are appreciable",
+                      name: "q3",
+                    },
+                    {
+                      text: "CBS GROUP OF INSTITUTIONS involves alumni in its activities",
+                      name: "q4",
+                    },
+                    {
+                      text: "The alumni have a role in academically strengthening the College",
+                      name: "q5",
+                    },
+                    {
+                      text: "On/Off-campus Training & Placement opportunities",
+                      name: "q6",
+                    },
+                    {
+                      text: "The alumni have a role in financially strengthening the College",
+                      name: "q7",
+                    },
+                    {
+                      text: "Formation of department-wise alumni associations",
+                      name: "q8",
+                    },
+                    {
+                      text: "Initiative to enroll and strengthen the alumni association",
+                      name: "q9",
+                    },
                   ].map((item, index) => (
                     <tr key={item.name}>
                       <td style={styles.td}>{index + 1}</td>
                       <td style={styles.td}>{item.text}</td>
-                      {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
+                      {[
+                        "Excellent",
+                        "Very Good",
+                        "Good",
+                        "Average",
+                        "Poor",
+                      ].map((option) => (
                         <td style={styles.td} key={option}>
                           <input
                             type="radio"
@@ -697,10 +761,10 @@ const AlumniRegistrationForm = () => {
                   ))}
                 </tbody>
               </table>
-              </div>
-              
-              <h5>Rate Other Attributes</h5>
-              <div style={styles.tableContainer}>
+            </div>
+
+            <h5>Rate Other Attributes</h5>
+            <div style={styles.tableContainer}>
               <table style={styles.table}>
                 <thead>
                   <tr>
@@ -716,20 +780,32 @@ const AlumniRegistrationForm = () => {
                 <tbody>
                   {[
                     { text: "Environment", name: "a1" },
-                    { text: "Teaching, Learning & Evaluation Process", name: "a2" },
+                    {
+                      text: "Teaching, Learning & Evaluation Process",
+                      name: "a2",
+                    },
                     { text: "Faculty", name: "a3" },
                     { text: "Quality of support material", name: "a4" },
-                    { text: "Co-curricular & extra-curricular activities", name: "a5" },
+                    {
+                      text: "Co-curricular & extra-curricular activities",
+                      name: "a5",
+                    },
                     { text: "Training & Placement", name: "a6" },
                     { text: "Library", name: "a7" },
                     { text: "Project Guidance", name: "a8" },
                     { text: "Overall Rating of the College", name: "a9" },
                   ].map((item, index) => (
-                    <tr  key={item.name}>
+                    <tr key={item.name}>
                       <td style={styles.td}>{index + 1}</td>
                       <td style={styles.td}>{item.text}</td>
 
-                      {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
+                      {[
+                        "Excellent",
+                        "Very Good",
+                        "Good",
+                        "Average",
+                        "Poor",
+                      ].map((option) => (
                         <td style={styles.td} key={option}>
                           <input
                             type="radio"
@@ -744,17 +820,17 @@ const AlumniRegistrationForm = () => {
                   ))}
                 </tbody>
               </table>
-              </div>
-              <textarea
-                name="suggestions"
-                value={formData.suggestions}
-                onChange={handleChange}
-                placeholder="Suggestions for further improvement"
-                style={styles.textarea}
-              />
-            </>
-          );
-        
+            </div>
+            <textarea
+              name="suggestions"
+              value={formData.suggestions}
+              onChange={handleChange}
+              placeholder="Suggestions for further improvement"
+              style={styles.textarea}
+            />
+          </>
+        );
+
       default:
         return null;
     }
@@ -764,7 +840,12 @@ const AlumniRegistrationForm = () => {
     <form onSubmit={handleSubmit} style={styles.form}>
       <h2>Alumni Registration Form</h2>
       {renderPageContent()}
-      <div style={{ ...styles.navigation, flexDirection: currentPage === 1 ? "row-reverse" : "row" }}>
+      <div
+        style={{
+          ...styles.navigation,
+          flexDirection: currentPage === 1 ? "row-reverse" : "row",
+        }}
+      >
         {currentPage > 1 && (
           <button type="button" onClick={prevPage} style={styles.button}>
             Previous
@@ -784,8 +865,6 @@ const AlumniRegistrationForm = () => {
     </form>
   );
 };
-
-
 
 const styles = {
   tableContainer: {
@@ -851,14 +930,12 @@ const styles = {
   navigation: {
     display: "flex",
     justifyContent: "space-between",
-   
   },
-  
+
   table: {
     width: "100%",
     borderCollapse: "collapse", // Ensures the borders of cells merge together
     marginBottom: "20px",
-    
   },
   th: {
     border: "1px solid #000", // Adds a border to header cells
@@ -870,8 +947,7 @@ const styles = {
     border: "1px solid #7b7b7b", // Adds a border to data cells
     padding: "8px",
     textAlign: "center",
-    fontSize:'12px',
-
+    fontSize: "12px",
   },
   textarea: {
     width: "100%",
@@ -881,7 +957,7 @@ const styles = {
     border: "1px solid #ddd",
     height: "100px",
   },
-  '@media (max-width: 768px)': {
+  "@media (max-width: 768px)": {
     form: {
       padding: "10px", // Reduced padding for smaller screens
     },
