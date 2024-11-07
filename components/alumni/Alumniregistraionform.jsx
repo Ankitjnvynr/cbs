@@ -20,7 +20,7 @@ const AlumniRegistrationForm = () => {
     permanentAddress: "",
     higherEducation: "",
     exams: "",
-    scoreCard: null, // file upload
+    scoreCard: null,
     companyName: "",
     designation: "",
     currentLocation: "",
@@ -32,6 +32,28 @@ const AlumniRegistrationForm = () => {
     companyAddress: "",
     salaryOffered: "",
     gotJob: false,
+    jobInAnotherCountry: false,
+    ratings: {
+      q1: "",
+      q2: "",
+      q3: "",
+      q4: "",
+      q5: "",
+      q6: "",
+      q7: "",
+      q8: "",
+      q9: "",
+      a1: "",
+      a2: "",
+      a3: "",
+      a4: "",
+      a5: "",
+      a6: "",
+      a7: "",
+      a8: "",
+      a9: "",
+    },
+    suggestions: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -51,16 +73,24 @@ const AlumniRegistrationForm = () => {
     setFormData({ ...formData, [name]: file });
   };
 
+  const handleRatingChange = (e, group) => {
+    const { value } = e.target;
+    setFormData({
+      ...formData,
+      ratings: { ...formData.ratings, [group]: value },
+    });
+  };
+
   const validateField = (name, value) => {
-    const error = value ? "" : `${name} `;
+    const error = value ? "" : `${name} is required`;
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
   const validateForm = () => {
     const newErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
-      if (!value && key !== "achievements" && key !== "offerLetter" && key !== "experience") {
-        newErrors[key] = `${key.replace(/([A-Z])/g, " $1").trim()} `;
+      if (!value && key !== "achievements" && key !== "offerLetter" && key !== "experience" && key !== "idcard") {
+        newErrors[key] = `${key.replace(/([A-Z])/g, " $1").trim()} is required`;
       }
     });
 
@@ -97,6 +127,7 @@ const AlumniRegistrationForm = () => {
 
       if (response.ok) {
         alert("Form submitted successfully!");
+        // reset form data
         setFormData({
           studentName: "",
           fatherName: "",
@@ -128,6 +159,28 @@ const AlumniRegistrationForm = () => {
           companyAddress: "",
           salaryOffered: "",
           gotJob: false,
+          jobInAnotherCountry: false,
+          ratings: {
+            q1: "",
+            q2: "",
+            q3: "",
+            q4: "",
+            q5: "",
+            q6: "",
+            q7: "",
+            q8: "",
+            q9: "",
+            a1: "",
+            a2: "",
+            a3: "",
+            a4: "",
+            a5: "",
+            a6: "",
+            a7: "",
+            a8: "",
+            a9: "",
+          },
+          suggestions: "",
         });
         setErrors({});
         setCurrentPage(1);
@@ -144,6 +197,24 @@ const AlumniRegistrationForm = () => {
 
   const nextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const prevPage = () => setCurrentPage((prevPage) => prevPage - 1);
+
+  const renderRatingRow = (question, name) => (
+    <div style={styles.row}>
+      <label>{question}</label>
+      {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
+        <label key={option}>
+          <input
+            type="radio"
+            name={name}
+            value={option}
+            checked={formData.ratings[name] === option}
+            onChange={(e) => handleRatingChange(e, name)}
+          />
+          {option}
+        </label>
+      ))}
+    </div>
+  );
 
   const renderPageContent = () => {
     switch (currentPage) {
@@ -577,7 +648,109 @@ const AlumniRegistrationForm = () => {
             />
           
           </div>
-        );
+        ); // existing cases 1 to 5 for your form fields
+
+        case 6:
+          return (
+            <>
+              <h3>Rate the Following Aspects</h3>
+              <table style={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>Particulars</th>
+                    <th>Excellent</th>
+                    <th>Very Good</th>
+                    <th>Good</th>
+                    <th>Average</th>
+                    <th>Poor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { text: "I feel proud to be a student of CBS GROUP OF INSTITUTIONS", name: "q1" },
+                    { text: "How do you rate the learning experience in terms of relevance?", name: "q2" },
+                    { text: "The developments in the College in recent years are appreciable", name: "q3" },
+                    { text: "CBS GROUP OF INSTITUTIONS involves alumni in its activities", name: "q4" },
+                    { text: "The alumni have a role in academically strengthening the College", name: "q5" },
+                    { text: "On/Off-campus Training & Placement opportunities", name: "q6" },
+                    { text: "The alumni have a role in financially strengthening the College", name: "q7" },
+                    { text: "Formation of department-wise alumni associations", name: "q8" },
+                    { text: "Initiative to enroll and strengthen the alumni association", name: "q9" },
+                  ].map((item, index) => (
+                    <tr key={item.name}>
+                      <td>{index + 1}</td>
+                      <td>{item.text}</td>
+                      {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
+                        <td key={option}>
+                          <input
+                            type="radio"
+                            name={item.name}
+                            value={option}
+                            checked={formData.ratings[item.name] === option}
+                            onChange={(e) => handleRatingChange(e, item.name)}
+                          />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              
+              <h3>Rate Other Attributes</h3>
+              <table style={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>Attributes</th>
+                    <th>Excellent</th>
+                    <th>Very Good</th>
+                    <th>Good</th>
+                    <th>Average</th>
+                    <th>Poor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { text: "Environment", name: "a1" },
+                    { text: "Teaching, Learning & Evaluation Process", name: "a2" },
+                    { text: "Faculty", name: "a3" },
+                    { text: "Quality of support material", name: "a4" },
+                    { text: "Co-curricular & extra-curricular activities", name: "a5" },
+                    { text: "Training & Placement", name: "a6" },
+                    { text: "Library", name: "a7" },
+                    { text: "Project Guidance", name: "a8" },
+                    { text: "Overall Rating of the College", name: "a9" },
+                  ].map((item, index) => (
+                    <tr key={item.name}>
+                      <td>{index + 1}</td>
+                      <td>{item.text}</td>
+                      {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
+                        <td key={option}>
+                          <input
+                            type="radio"
+                            name={item.name}
+                            value={option}
+                            checked={formData.ratings[item.name] === option}
+                            onChange={(e) => handleRatingChange(e, item.name)}
+                          />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+        
+              <textarea
+                name="suggestions"
+                value={formData.suggestions}
+                onChange={handleChange}
+                placeholder="Suggestions for further improvement"
+                style={styles.textarea}
+              />
+            </>
+          );
+        
       default:
         return null;
     }
@@ -589,16 +762,16 @@ const AlumniRegistrationForm = () => {
       {renderPageContent()}
       <div style={styles.navigation}>
         {currentPage > 1 && (
-          <button onClick={prevPage} style={styles.button}>
+          <button type="button" onClick={prevPage} style={styles.button}>
             Previous
           </button>
         )}
-        {currentPage < 5 && (
-          <button onClick={nextPage} style={styles.button}>
+        {currentPage < 6 && (
+          <button type="button" onClick={nextPage} style={styles.button}>
             Next
           </button>
         )}
-        {currentPage === 5 && (
+        {currentPage === 6 && (
           <button type="submit" style={styles.submitButton}>
             {isLoading ? "Submitting..." : "Submit"}
           </button>
@@ -610,7 +783,7 @@ const AlumniRegistrationForm = () => {
 
 const styles = {
   form: {
-    maxWidth: "500px",
+    maxWidth: "600px",
     margin: "0 auto",
     padding: "20px",
     border: "1px solid #ddd",
@@ -627,6 +800,9 @@ const styles = {
     cursor: "pointer",
     marginBottom: "8px",
     display: "block",
+  },
+  row: {
+    margin: "8px 0",
   },
   textarea: {
     width: "100%",
@@ -662,7 +838,34 @@ const styles = {
     backgroundColor: "blue",
     color: "white",
   },
-  navigation: { display: "flex", justifyContent: "space-between" },
+  navigation: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse", // Ensures the borders of cells merge together
+    marginBottom: "20px",
+  },
+  th: {
+    border: "1px solid #000", // Adds a border to header cells
+    padding: "8px",
+    textAlign: "center",
+    backgroundColor: "#f5f5f5",
+  },
+  td: {
+    border: "1px solid #000", // Adds a border to data cells
+    padding: "8px",
+    textAlign: "center",
+  },
+  textarea: {
+    width: "100%",
+    padding: "8px",
+    margin: "8px 0",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    height: "100px",
+  },
 };
 
 export default AlumniRegistrationForm;
