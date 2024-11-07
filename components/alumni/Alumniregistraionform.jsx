@@ -57,7 +57,7 @@ const AlumniRegistrationForm = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(6);
   const [isLoading, setIsLoading] = useState(false);
   const [showDateOfBirth, setShowDateOfBirth] = useState(false);
 
@@ -653,17 +653,18 @@ const AlumniRegistrationForm = () => {
         case 6:
           return (
             <>
-              <h3>Rate the Following Aspects</h3>
+              <h5>Rate the Following Aspects</h5>
+              <div style={styles.tableContainer}>
               <table style={styles.table}>
                 <thead>
                   <tr>
-                    <th>Sr. No.</th>
-                    <th>Particulars</th>
-                    <th>Excellent</th>
-                    <th>Very Good</th>
-                    <th>Good</th>
-                    <th>Average</th>
-                    <th>Poor</th>
+                    <th style={styles.td}>Sr. No.</th>
+                    <th style={styles.td}>Particulars</th>
+                    <th style={styles.td}>Excellent</th>
+                    <th style={styles.td}>Very Good</th>
+                    <th style={styles.td}>Good</th>
+                    <th style={styles.td}>Average</th>
+                    <th style={styles.td}>Poor</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -679,10 +680,10 @@ const AlumniRegistrationForm = () => {
                     { text: "Initiative to enroll and strengthen the alumni association", name: "q9" },
                   ].map((item, index) => (
                     <tr key={item.name}>
-                      <td>{index + 1}</td>
-                      <td>{item.text}</td>
+                      <td style={styles.td}>{index + 1}</td>
+                      <td style={styles.td}>{item.text}</td>
                       {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
-                        <td key={option}>
+                        <td style={styles.td} key={option}>
                           <input
                             type="radio"
                             name={item.name}
@@ -696,18 +697,20 @@ const AlumniRegistrationForm = () => {
                   ))}
                 </tbody>
               </table>
+              </div>
               
-              <h3>Rate Other Attributes</h3>
+              <h5>Rate Other Attributes</h5>
+              <div style={styles.tableContainer}>
               <table style={styles.table}>
                 <thead>
                   <tr>
-                    <th>Sr. No.</th>
-                    <th>Attributes</th>
-                    <th>Excellent</th>
-                    <th>Very Good</th>
-                    <th>Good</th>
-                    <th>Average</th>
-                    <th>Poor</th>
+                    <th style={styles.td}>Sr. No.</th>
+                    <th style={styles.td}>Attributes</th>
+                    <th style={styles.td}>Excellent</th>
+                    <th style={styles.td}>Very Good</th>
+                    <th style={styles.td}>Good</th>
+                    <th style={styles.td}>Average</th>
+                    <th style={styles.td}>Poor</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -722,11 +725,12 @@ const AlumniRegistrationForm = () => {
                     { text: "Project Guidance", name: "a8" },
                     { text: "Overall Rating of the College", name: "a9" },
                   ].map((item, index) => (
-                    <tr key={item.name}>
-                      <td>{index + 1}</td>
-                      <td>{item.text}</td>
+                    <tr  key={item.name}>
+                      <td style={styles.td}>{index + 1}</td>
+                      <td style={styles.td}>{item.text}</td>
+
                       {["Excellent", "Very Good", "Good", "Average", "Poor"].map((option) => (
-                        <td key={option}>
+                        <td style={styles.td} key={option}>
                           <input
                             type="radio"
                             name={item.name}
@@ -740,7 +744,7 @@ const AlumniRegistrationForm = () => {
                   ))}
                 </tbody>
               </table>
-        
+              </div>
               <textarea
                 name="suggestions"
                 value={formData.suggestions}
@@ -782,6 +786,10 @@ const AlumniRegistrationForm = () => {
 };
 
 const styles = {
+  tableContainer: {
+    overflowX: "auto", // Allows horizontal scrolling
+    marginBottom: "20px",
+  },
   form: {
     maxWidth: "600px",
     margin: "0 auto",
@@ -846,6 +854,7 @@ const styles = {
     width: "100%",
     borderCollapse: "collapse", // Ensures the borders of cells merge together
     marginBottom: "20px",
+    
   },
   th: {
     border: "1px solid #000", // Adds a border to header cells
@@ -854,9 +863,11 @@ const styles = {
     backgroundColor: "#f5f5f5",
   },
   td: {
-    border: "1px solid #000", // Adds a border to data cells
+    border: "1px solid #7b7b7b", // Adds a border to data cells
     padding: "8px",
     textAlign: "center",
+    fontSize:'12px',
+
   },
   textarea: {
     width: "100%",
@@ -865,6 +876,31 @@ const styles = {
     borderRadius: "4px",
     border: "1px solid #ddd",
     height: "100px",
+  },
+  '@media (max-width: 768px)': {
+    form: {
+      padding: "10px", // Reduced padding for smaller screens
+    },
+    input: {
+      padding: "6px", // Adjusts padding for smaller screens
+      margin: "6px 0",
+    },
+    textarea: {
+      padding: "6px",
+      margin: "6px 0",
+    },
+    table: {
+      fontSize: "0.8em", // Smaller font for tables on mobile
+    },
+    navigation: {
+      flexDirection: "column", // Stacks buttons on smaller screens
+    },
+    button: {
+      width: "100%", // Full width for better tap area
+    },
+    submitButton: {
+      width: "100%", // Full width for better tap area
+    },
   },
 };
 
