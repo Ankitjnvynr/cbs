@@ -328,7 +328,7 @@ const AlumniRegistrationForm = () => {
               <option value="B.Tech (EE)">B.Tech (EE)</option>
               <option value="B.Tech (ECE)">B.Tech (ECE)</option>
               <option value="B.Tech (ME)">B.Tech (ME)</option>
-              <option value="M.Tech (SE)">M.Tech (SE)</option>
+              <option value="M.Tech (SE)">M.Tech (EE)</option>
               <option value="M.Tech (M&A)">M.Tech (M&A)</option>
               <option value="M.Tech (ECE)">M.Tech (ECE)</option>
               <option value="M.Tech (CSE)">M.Tech (CSE)</option>
