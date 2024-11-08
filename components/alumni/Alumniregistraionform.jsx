@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
+
 const AlumniRegistrationForm = () => {
+
   const [formData, setFormData] = useState({
     studentName: "",
     fatherName: "",
@@ -917,7 +919,10 @@ const AlumniRegistrationForm = () => {
           </button>
         )}
         {currentPage < 7 && (
-          <button type="button" onClick={nextPage} style={styles.button}>
+          <button type="button" onClick={nextPage} 
+          style={styles.button}
+
+          >
             Next
           </button>
         )}
@@ -942,6 +947,8 @@ const styles = {
     padding: "20px",
     border: "1px solid #ddd",
     borderRadius: "8px",
+    backdropFilter: 'blur(10px)', // Apply the backdrop filter
+    backgroundColor: 'rgba(255, 255, 255, 0.6)', // Semi-transparent color overlay
   },
   input: {
     width: "100%",
@@ -949,6 +956,8 @@ const styles = {
     margin: "8px 0",
     borderRadius: "4px",
     border: "1px solid #ddd",
+    backgroundColor:'#fff',
+    cursor:'pointer',
   },
   label: {
     cursor: "pointer",
@@ -983,14 +992,18 @@ const styles = {
     margin: "8px",
     borderRadius: "4px",
     cursor: "pointer",
+    background:'#054377',
+    color:'#fff',
+    border:'0',
   },
   submitButton: {
     padding: "8px 16px",
     margin: "8px",
     borderRadius: "4px",
     cursor: "pointer",
-    backgroundColor: "blue",
-    color: "white",
+    background:'#054377',
+    color:'#fff',
+    border:'0',
   },
   navigation: {
     display: "flex",
@@ -1048,5 +1061,72 @@ const styles = {
     },
   },
 };
+
+const buttonStyles = {
+  buttonanother: {
+    all: 'unset',
+    width: '100px',
+    height: '30px',
+    fontSize: '16px',
+    background: 'transparent',
+    border: 'none',
+    position: 'relative',
+    color: '#f0f0f0',
+    cursor: 'pointer',
+    zIndex: 1,
+    padding: '10px 20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    whiteSpace: 'nowrap',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    touchAction: 'manipulation',
+  },
+  before: {
+    content: "''",
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    zIndex: -99999,
+    transition: 'all 0.4s',
+    transform: 'translate(0%, 0%)',
+    width: '100%',
+    height: '100%',
+    background: '#28282d',
+    borderRadius: '10px',
+  },
+  after: {
+    content: "''",
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    zIndex: -99999,
+    transition: 'all 0.4s',
+    transform: 'translate(10px, 10px)',
+    width: '35px',
+    height: '35px',
+    background: '#ffffff15',
+    backdropFilter: 'blur(5px)',
+    WebkitBackdropFilter: 'blur(5px)',
+    borderRadius: '50px',
+  },
+  hoverBefore: {
+    transform: 'translate(5%, 20%)',
+    width: '110%',
+    height: '110%',
+  },
+  hoverAfter: {
+    borderRadius: '10px',
+    transform: 'translate(0, 0)',
+    width: '100%',
+    height: '100%',
+  },
+  activeAfter: {
+    transition: '0s',
+    transform: 'translate(0, 5%)',
+  },
+};
+
 
 export default AlumniRegistrationForm;
