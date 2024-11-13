@@ -262,7 +262,7 @@ const Header = (props) => {
       label: "Career",
       link: "/",
       subMenu: [
-        { label: "Current opening", link: "/" },
+        { label: "Current opening", link: "/current" },
         
         { label: "upload resume", link: "/" },
        
