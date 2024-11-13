@@ -264,7 +264,7 @@ const Header = (props) => {
       subMenu: [
         { label: "Current opening", link: "/current" },
         
-        { label: "upload resume", link: "/" },
+        { label: "upload resume", link: "/upload" },
        
        
       ],
