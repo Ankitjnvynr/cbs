@@ -223,7 +223,7 @@ const Header = (props) => {
       label: "Placement",
       link: "/",
       subMenu: [
-        { label: "Career Development Cell", link: "/" },
+        { label: "Career Development Cell", link: "/placementcell" },
         { label: "Training Programmes", link: "/" },
         { label: "Placement Gallery", link: "/" },
         { label: "Placement Statistics", link: "/" },
