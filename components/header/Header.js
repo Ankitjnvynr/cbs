@@ -239,11 +239,11 @@ const Header = (props) => {
         { label: "Our Recruiters", link: "/" },
         { label: "Personality Development", link: "/",
           subMenu:[
-            {label:'Communication Skills',link:'/'},
-            {label:'Group Discussions, Debates',link:'/'},
-            {label:'Resume Writing Tips',link:'/'},
-            {label:'Interviews Tips/Questions',link:'/'},
-            {label:'Do & Dont While Handling Interview',link:'/'},
+            {label:'Communication Skills',link:'/communication'},
+            {label:'Group Discussions, Debates',link:'/groupdiscuss'},
+            {label:'Resume Writing Tips',link:'/resumewriting'},
+            {label:'Interviews Tips/Questions',link:'/interview'},
+            {label:'Do & Dont While Handling Interview',link:'/doanddonot'},
           ]
          },
       ],
