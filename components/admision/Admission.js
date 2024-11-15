@@ -140,17 +140,18 @@ const Admission = () => {
 const formContainerStyle = {
   display: 'flex',
   justifyContent: 'center',
-  padding: '2rem',
+  padding: '1rem',
   background: '#f8f9fa',
 };
 
 const formStyle = {
-  width: '80%',
+  width: '100%',
   maxWidth: '700px',
   backgroundColor: 'white',
   padding: '1.5rem',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   borderRadius: '0.5rem',
+  
 };
 
 const sectionHeadingStyle = {
@@ -173,6 +174,8 @@ const inputGroupStyle = {
   flex: '1 1 45%',
   display: 'flex',
   flexDirection: 'column',
+  
+  width:'100%'
 };
 
 const inputStyle = {
@@ -180,6 +183,7 @@ const inputStyle = {
   fontSize: '1rem',
   borderRadius: '0.25rem',
   border: '1px solid #cbd5e0',
+  width:'100%',
 };
 
 const checkboxGroupStyle = {
