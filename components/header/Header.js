@@ -84,7 +84,7 @@ const Header = (props) => {
         { label: "Scholarships Scheme", link: "/" },
         { label: "Eligibility", link: "/" },
         { label: "Documents Required", link: "/" },
-        { label: "Admission Form", link: "/" },
+        { label: "Admission Form", link: "/admission" },
         { label: "Admission Prospectos", link: "/" },
         
       ],
