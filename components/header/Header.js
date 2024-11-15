@@ -224,10 +224,28 @@ const Header = (props) => {
       link: "/",
       subMenu: [
         { label: "Career Development Cell", link: "/placementcell" },
+        { label: "Placement Cell", link: "#",
+          subMenu:[
+            {label:'Objective of Placement Cell', link:'/'},
+            {label:'Activities of the Cell', link:'/'},
+            {label:'Placement Policy', link:'/'},
+            {label:'Placement Procedure', link:'/'},
+            {label:'FAQs', link:'/'},
+          ]
+         },
         { label: "Training Programmes", link: "/internship" },
         { label: "Placement Gallery", link: "/" },
         { label: "Placement Statistics", link: "/" },
         { label: "Our Recruiters", link: "/" },
+        { label: "Personality Development", link: "/",
+          subMenu:[
+            {label:'Communication Skills',link:'/'},
+            {label:'Group Discussions, Debates',link:'/'},
+            {label:'Resume Writing Tips',link:'/'},
+            {label:'Interviews Tips/Questions',link:'/'},
+            {label:'Do & Dont While Handling Interview',link:'/'},
+          ]
+         },
       ],
     },
     {
