@@ -226,11 +226,11 @@ const Header = (props) => {
         { label: "Career Development Cell", link: "/placementcell" },
         { label: "Placement Cell", link: "#",
           subMenu:[
-            {label:'Objective of Placement Cell', link:'/'},
-            {label:'Activities of the Cell', link:'/'},
-            {label:'Placement Policy', link:'/'},
-            {label:'Placement Procedure', link:'/'},
-            {label:'FAQs', link:'/'},
+            {label:'Objective of Placement Cell', link:'/objective-of-placement-cell'},
+            {label:'Activities of the Cell', link:'/activity-of-placement-cell'},
+            {label:'Placement Policy', link:'/placement-policy'},
+            {label:'Placement Procedure', link:'/placement-procedure'},
+            {label:'FAQs', link:'/placement-faqs'},
           ]
          },
         { label: "Training Programmes", link: "/internship" },
