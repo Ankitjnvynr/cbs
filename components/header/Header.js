@@ -234,6 +234,8 @@ const Header = (props) => {
           ]
          },
         { label: "Training Programmes", link: "/internship" },
+        { label: "Industrial Visits", link: "/industrial-visits" },
+        { label: "Seminars & Guest Lectures", link: "/seminar-guest-lectures" },
         { label: "Placement Gallery", link: "/" },
         { label: "Placement Statistics", link: "/" },
         { label: "Our Recruiters", link: "/" },
