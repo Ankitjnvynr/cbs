@@ -69,6 +69,11 @@
   backdrop-filter: blur(10px) !important;
   line-height: 15px;
   background: rgba(255, 255, 255, 0.1);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.noticeItem:hover{
+  background:black;
 }
 
 /* Keyframe animation for scrolling */
