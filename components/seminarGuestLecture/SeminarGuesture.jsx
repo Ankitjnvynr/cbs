@@ -1,6 +1,6 @@
 import React from 'react';
 
-function IndustrialVisits() {
+function SeminarGuesture() {
   const containerStyle = {
     // backgroundColor: '#0D47A1', // Dark blue background
     color: '#ffffff',
@@ -45,21 +45,15 @@ function IndustrialVisits() {
   return (
     <div style={containerStyle}>
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 1rem' }}>
-        <h1 style={headerStyle}>Industrial Visits</h1>
-        
+        <h1 style={headerStyle}>Seminars & Guest Lectures</h1><div style={breadcrumbStyle}>HOME &nbsp; &gt; &nbsp; INDUSTRIAL VISITS</div>
         <div style={contentStyle}>
           <img
-            src="/images/visit.png" // Placeholder image URL; replace with your actual image
+            src="/images/seminar.jpg" // Placeholder image URL; replace with your actual image
             alt="Industrial Visit"
             style={imageStyle}
           />
           <p style={paragraphStyle}>
-            Industry visits fill in the gap between the content of study at the institute level and
-            the ground reality. They enrich practical knowledge of the students and broaden their
-            vision of the corporate world. The Industrial Projects and Visits to different Industrial
-            Organizations are arranged from Second year onwards for all the Engineering and Management
-            Students, mostly in the months of January and February, or immediately after the completion
-            of their course curriculum.
+          From time to time, eminent industry and corporate doyens are invited as guest lecturers or as resource persons for various seminars & workshops. They share their valuable experiences and during the question-answer session they interact freely with inquisitive students, adding to their know-how and broadening their perspective.
           </p>
         </div>
       </div>
@@ -67,4 +61,4 @@ function IndustrialVisits() {
   );
 }
 
-export default IndustrialVisits;
+export default SeminarGuesture;
