@@ -18,7 +18,7 @@ const blogs = [
     {
         id: '1',
         title: 'Alumni meet',
-        catagory: 'Btech',
+        catagory: 'Alumni',
         slug: '',
         description: 'It has survived not only five but also the leap intona electronic typesetting remaining unchanged.',
         create_at: 'Sep 03, 2024',
@@ -35,7 +35,7 @@ const blogs = [
     {
         id: '2',
         title: 'Admission Open ',
-        catagory: 'MBA',
+        catagory: 'Admission',
         slug: '',
         description: 'It has survived not only five but also the leap intona electronic typesetting remaining unchanged.',
         create_at: 'Sep 06, 2024',
@@ -52,8 +52,8 @@ const blogs = [
  
     {
         id: '3',
-        title: 'Vacant Seats',
-        catagory: 'BBA',
+        title: 'Current opening',
+        catagory: 'opening',
         slug: '',
         description: 'It has survived not only five but also the leap intona electronic typesetting remaining unchanged.',
         create_at: 'Sep 06, 2024',
