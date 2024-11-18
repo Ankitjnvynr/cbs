@@ -37,7 +37,7 @@ const BlogSection = (props) => {
                                     </ul>
                                     <h2><Link onClick={ClickHandler} href={'/blog-single/[slug]'} as={`/${blog.slug}`}>{blog.title}</Link></h2>
                                     <div className="link">
-                                        <Link onClick={ClickHandler} href={'/blog-single/[slug]'} as={`/${blog.slug}`}><span>Check Result</span>
+                                        <Link onClick={ClickHandler} href={'/blog-single/[slug]'} as={`/${blog.slug}`}><span>Read more</span>
                                             <i className="ti-arrow-right"></i></Link>
                                     </div>
                                 </div>
