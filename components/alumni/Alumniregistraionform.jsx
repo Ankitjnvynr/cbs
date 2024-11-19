@@ -4,56 +4,35 @@ const AlumniRegistrationForm = () => {
   const [formData, setFormData] = useState({
     studentName: "",
     fatherName: "",
-    dateOfBirth: "",
-    gender: "",
     nationality: "",
     mobile: "",
     email: "",
-    degree: "",
-    branch: "",
-    yearOfJoining: "",
-    yearOfPassing: "",
-    batch: "",
-    maritalStatus: "",
-    telephone: "",
-    currentAddress: "",
-    permanentAddress: "",
-    higherEducation: "",
-    exams: "",
+    internshipDescription: "",
+    internshipYear: "",
+    internshipCertificate: null,
+    educationDetails: "",
+    university: "",
+    yearOfAdmission: "",
+    percentage: "",
+    examGiven: "",
+    yearOfExamGiven: "",
+    examPercentage: "",
     scoreCard: null,
-    companyName: "",
-    designation: "",
-    currentLocation: "",
-    salaryPackage: "",
-    offerLetter: null,
-    experience: "",
-    achievements: "",
-    percentageOfPassing: "",
-    companyAddress: "",
-    salaryOffered: "",
     gotJob: false,
+    OrganisationName: "",
+    Address: "",
+    yearOfJoining: "",
+    designation: "",
+    idcard: null,
+    offerLetter: null,
     jobInAnotherCountry: false,
-    ratings: {
-      q1: "",
-      q2: "",
-      q3: "",
-      q4: "",
-      q5: "",
-      q6: "",
-      q7: "",
-      q8: "",
-      q9: "",
-      a1: "",
-      a2: "",
-      a3: "",
-      a4: "",
-      a5: "",
-      a6: "",
-      a7: "",
-      a8: "",
-      a9: "",
-    },
-    suggestions: "",
+    countryName: "",
+    visaType: "",
+    workPermit: "",
+    achievement: "",
+    award: "",
+    research: "",
+    publishedPaper: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -64,7 +43,10 @@ const AlumniRegistrationForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (errors[name]) validateField(name, value);
+    console.log(formData);
+    
   };
+
 
   const handleFileChange = (e) => {
     const { name } = e.target;
@@ -77,122 +59,31 @@ const AlumniRegistrationForm = () => {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    Object.entries(formData).forEach(([key, value]) => {
-      if (
-        !value &&
-        key !== "achievements" &&
-        key !== "offerLetter" &&
-        key !== "experience" &&
-        key !== "idcard"
-      ) {
-        newErrors[key] = `${key.replace(/([A-Z])/g, " $1").trim()} is required`;
-      }
-    });
-
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+  const validatePageOne = () => {
+    const pageOneErrors = {};
+    if (!formData.studentName) {
+      pageOneErrors.studentName = "Student Name is required";
     }
-
-    if (formData.mobile && !/^\d{10}$/.test(formData.mobile)) {
-      newErrors.mobile = "Mobile number must be 10 digits";
+    if (!formData.fatherName) {
+      pageOneErrors.fatherName = "Father's Name is required";
     }
-
-    return newErrors;
+    setErrors(pageOneErrors);
+    return Object.keys(pageOneErrors).length === 0;
   };
+
+  const nextPage = () => {
+    if (currentPage === 1 && !validatePageOne()) return;
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const prevPage = () => setCurrentPage((prevPage) => prevPage - 1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
-
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      return;
-    }
-
     setIsLoading(true);
-
-    try {
-      const response = await fetch("/api/alumni", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert("Form submitted successfully!");
-        setFormData({
-          studentName: "",
-          fatherName: "",
-          dateOfBirth: "",
-          gender: "",
-          nationality: "",
-          mobile: "",
-          email: "",
-          degree: "",
-          branch: "",
-          yearOfJoining: "",
-          yearOfPassing: "",
-          batch: "",
-          maritalStatus: "",
-          telephone: "",
-          currentAddress: "",
-          permanentAddress: "",
-          higherEducation: "",
-          exams: "",
-          scoreCard: null,
-          companyName: "",
-          designation: "",
-          currentLocation: "",
-          salaryPackage: "",
-          offerLetter: null,
-          experience: "",
-          achievements: "",
-          percentageOfPassing: "",
-          companyAddress: "",
-          salaryOffered: "",
-          gotJob: false,
-          jobInAnotherCountry: false,
-          ratings: {
-            q1: "",
-            q2: "",
-            q3: "",
-            q4: "",
-            q5: "",
-            q6: "",
-            q7: "",
-            q8: "",
-            q9: "",
-            a1: "",
-            a2: "",
-            a3: "",
-            a4: "",
-            a5: "",
-            a6: "",
-            a7: "",
-            a8: "",
-            a9: "",
-          },
-          suggestions: "",
-        });
-        setErrors({});
-        setCurrentPage(1);
-      } else {
-        alert(`Error: ${result.message}`);
-      }
-    } catch (error) {
-      alert("Network error. Please try again later.");
-      console.error("Network error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    // Add form submission logic here
+    setIsLoading(false);
   };
-
-  const nextPage = () => setCurrentPage((prevPage) => prevPage + 1);
-  const prevPage = () => setCurrentPage((prevPage) => prevPage - 1);
 
   const renderPageContent = () => {
     switch (currentPage) {
@@ -204,17 +95,25 @@ const AlumniRegistrationForm = () => {
               name="studentName"
               value={formData.studentName}
               onChange={handleChange}
-              placeholder="Student Name"
+              placeholder="Student Name *"
               style={styles.input}
+              required
             />
+            {errors.studentName && (
+              <span style={styles.error}>{errors.studentName}</span>
+            )}
             <input
               type="text"
               name="fatherName"
               value={formData.fatherName}
               onChange={handleChange}
-              placeholder="Father's Name"
+              placeholder="Father's Name *"
               style={styles.input}
+              required
             />
+            {errors.fatherName && (
+              <span style={styles.error}>{errors.fatherName}</span>
+            )}
             <input
               type="text"
               name="nationality"
@@ -242,40 +141,41 @@ const AlumniRegistrationForm = () => {
           </>
         );
 
-      case 2:
-        return (
-          <>
-           
-            <input
-              type="text"
-              name="internshipDescription"
-              value={formData.internshipDescription}
-              onChange={handleChange}
-              placeholder="Details about Internship"
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="internshipYear"
-              value={formData.internshipYear}
-              onChange={handleChange}
-              placeholder="Year of Internship"
-              style={styles.input}
-            />
-            <label htmlFor="internshipCertificate" style={styles.input}>
-              {formData.internshipCertificate
-                ? formData.internshipCertificate.name
-                : "Upload your internship certificate"}
-            </label>
-            <input
-              type="file"
-              id="internshipCertificate"
-              name="internshipCertificate"
-              onChange={handleFileChange}
-              style={styles.hiddenInput}
-            />
-          </>
-        );
+        case 2:
+          return (
+            <>
+             
+              <input
+                type="text"
+                name="internshipDescription"
+                value={formData.internshipDescription}
+                onChange={handleChange}
+                placeholder="Internship Details"
+                style={styles.input}
+              />
+              <input
+                type="text"
+                name="internshipYear"
+                value={formData.internshipYear}
+                onChange={handleChange}
+                placeholder="Year of Internship"
+                style={styles.input}
+              />
+              <label htmlFor="internshipCertificate" style={styles.input}>
+                {formData.internshipCertificate
+                  ? formData.internshipCertificate.name
+                  : "Upload your internship certificate"}
+              </label>
+              <input
+                type="file"
+                id="internshipCertificate"
+                name="internshipCertificate"
+                onChange={handleFileChange}
+                style={styles.hiddenInput}
+              />
+            </>
+          );
+  
 
       case 3:
         return (
@@ -362,13 +262,6 @@ const AlumniRegistrationForm = () => {
               onChange={handleFileChange}
               style={styles.hiddenInput}
             />
-            <textarea
-              name="admissionDetails"
-              value={formData.admissionDetails}
-              onChange={handleChange}
-              placeholder="Exam Details"
-              style={styles.textarea}
-            />
           </>
         );
 
@@ -406,6 +299,7 @@ const AlumniRegistrationForm = () => {
                     placeholder="Address"
                     style={styles.input}
                   />
+
                   <input
                     type="text"
                     name="yearOfJoining"
@@ -422,9 +316,16 @@ const AlumniRegistrationForm = () => {
                     placeholder="Designation"
                     style={styles.input}
                   />
+                   <input
+                    type="text"
+                    name="Salary offered"
+                    value={formData.Salaryoffered}
+                    onChange={handleChange}
+                    placeholder="Salary offered"
+                    style={styles.input}
+                  />
                   <label htmlFor="idcard" style={styles.input}>
                     {formData.idcard ? formData.idcard.name : "Upload your ID card"}
-                  </label>
                   <input
                     type="file"
                     id="idcard"
@@ -432,11 +333,11 @@ const AlumniRegistrationForm = () => {
                     onChange={handleFileChange}
                     style={styles.hiddenInput}
                   />
+                  </label>
                   <label htmlFor="offerLetter" style={styles.input}>
                     {formData.offerLetter
                       ? formData.offerLetter.name
                       : "Upload your offer letter"}
-                  </label>
                   <input
                     type="file"
                     id="offerLetter"
@@ -444,6 +345,7 @@ const AlumniRegistrationForm = () => {
                     onChange={handleFileChange}
                     style={styles.hiddenInput}
                   />
+                  </label>
         
                   {/* Nested Checkbox for "Job in Another Country" */}
                   <label style={styles.checkboxLabel}>
@@ -551,44 +453,44 @@ const AlumniRegistrationForm = () => {
             </>
           );
         
-      case 5:
-        return (
-          <div>
-            <h3>Additional Details</h3>
-            <textarea
-              id="achievement"
-              name="achievement"
-              style={styles.textarea}
-              placeholder="Any other Achievements or Achievements in curriculum"
-              value={formData.achievement || ""}
-              onChange={handleChange}
-            />
-            <textarea
-              style={styles.textarea}
-              id="award"
-              name="award"
-              placeholder="Awards received"
-              value={formData.award || ""}
-              onChange={handleChange}
-            />
-            <textarea
-              style={styles.textarea}
-              id="research"
-              name="research"
-              placeholder="Describe research if you have any conducted"
-              value={formData.research || ""}
-              onChange={handleChange}
-            />
-            <textarea
-              style={styles.textarea}
-              id="publishedPaper"
-              name="publishedPaper"
-              placeholder="Research paper published if any"
-              value={formData.publishedPaper || ""}
-              onChange={handleChange}
-            />
-          </div>
-        );
+          case 5:
+            return (
+              <div>
+                <h3>Additional Details</h3>
+                <textarea
+                  id="achievement"
+                  name="achievement"
+                  style={styles.textarea}
+                  placeholder="Any other Achievements or Achievements in curriculum"
+                  value={formData.achievement || ""}
+                  onChange={handleChange}
+                />
+                <textarea
+                  style={styles.textarea}
+                  id="award"
+                  name="award"
+                  placeholder="Awards received"
+                  value={formData.award || ""}
+                  onChange={handleChange}
+                />
+                <textarea
+                  style={styles.textarea}
+                  id="research"
+                  name="research"
+                  placeholder="Describe research if you have any conducted"
+                  value={formData.research || ""}
+                  onChange={handleChange}
+                />
+                <textarea
+                  style={styles.textarea}
+                  id="publishedPaper"
+                  name="publishedPaper"
+                  placeholder="Research paper published if any"
+                  value={formData.publishedPaper || ""}
+                  onChange={handleChange}
+                />
+              </div>
+            );
 
       default:
         return null;
@@ -632,8 +534,8 @@ const styles = {
     padding: "20px",
     border: "1px solid #ddd",
     borderRadius: "8px",
-    backdropFilter: 'blur(10px)',
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    backdropFilter: "blur(10px)",
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
   },
   input: {
     width: "100%",
@@ -641,24 +543,12 @@ const styles = {
     margin: "8px 0",
     borderRadius: "4px",
     border: "1px solid #ddd",
-    backgroundColor: '#fff',
-    cursor: 'pointer',
+    backgroundColor:'#fff',
   },
-  label: {
-    cursor: "pointer",
-    marginBottom: "8px",
-    display: "block",
-  },
-  row: {
-    margin: "8px 0",
-  },
-  textarea: {
-    width: "100%",
-    padding: "8px",
-    margin: "8px 0",
-    borderRadius: "4px",
-    border: "1px solid #ddd",
-    height: "100px",
+  error: {
+    color: "red",
+    fontSize: "0.875em",
+    marginTop: "4px",
   },
   fileLabel: {
     display: "inline-block",
@@ -677,22 +567,30 @@ const styles = {
     margin: "8px",
     borderRadius: "4px",
     cursor: "pointer",
-    background: '#054377',
-    color: '#fff',
-    border: '0',
+    background: "#054377",
+    color: "#fff",
+    border: "0",
   },
   submitButton: {
     padding: "8px 16px",
     margin: "8px",
     borderRadius: "4px",
     cursor: "pointer",
-    background: '#054377',
-    color: '#fff',
-    border: '0',
+    background: "#054377",
+    color: "#fff",
+    border: "0",
   },
   navigation: {
     display: "flex",
     justifyContent: "space-between",
+  },
+  textarea: {
+    width: "100%",
+    padding: "8px",
+    margin: "8px 0",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    height: "100px",
   },
 };
 
