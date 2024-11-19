@@ -8,13 +8,13 @@ import Footer from '../../components/footer/Footer';
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
-import Chairman from '../../components/chairman/Chairman';
-function chairman() {
+import Director from '../../components/director/Director';
+function director() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'President Message '} pagesub={'vision'} />
-           <Chairman/>
+            <PageTitle pageTitle={'Gallery '} pagesub={'vision'} />
+             <Director/>
             <Footer />
             <Scrollbar />
             <CursorMaus />
@@ -22,4 +22,4 @@ function chairman() {
   )
 }
 
-export default chairman
+export default director

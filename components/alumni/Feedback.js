@@ -5,6 +5,7 @@ const Feedback = () => {
     studentName: "",
     fatherName: "",
     phoneNumber: "",
+    email: "",
     ratings: {
       q1: "",
       q2: "",
@@ -39,6 +40,7 @@ const Feedback = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    
   };
 
   const handleSubmit = (e) => {
@@ -90,6 +92,18 @@ const Feedback = () => {
         value={formData.phoneNumber}
         onChange={handleChange}
         placeholder="Phone Number"
+        style={styles.input}
+      />
+
+      <label style={styles.label}>
+        Email
+      </label>
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
         style={styles.input}
       />
 
@@ -205,7 +219,7 @@ const Feedback = () => {
 
 const styles = {
   form: {
-    maxWidth: "600px",
+    maxWidth: "800px",
     margin: "0 auto",
     padding: "20px",
     border: "1px solid #ddd",
