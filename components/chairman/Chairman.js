@@ -67,12 +67,12 @@ function Chairman() {
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <img
             src="/images/chairman-cbs.jpg"
-            alt="President Hansraj Dhankar"
+            alt="Chairman Hansraj Dhankar"
             style={imageStyle}
           />
-          <h1 style={headingStyle}>Message from the President</h1>
+          <h1 style={headingStyle}>Message from the Chairman</h1>
           <p style={subheadingStyle}>Hansraj Dhankar</p>
-          <p style={smallTextStyle}>President, CBS Group of Institutions</p>
+          <p style={smallTextStyle}>Chairman, CBS Group of Institutions</p>
         </div>
 
         <div>
