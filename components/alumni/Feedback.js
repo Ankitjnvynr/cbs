@@ -4,6 +4,7 @@ const Feedback = () => {
   const [formData, setFormData] = useState({
     studentName: "",
     fatherName: "",
+    phoneNumber: "",
     ratings: {
       q1: "",
       q2: "",
@@ -42,6 +43,10 @@ const Feedback = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.studentName || !formData.fatherName) {
+      alert("Student Name and Father's Name are required.");
+      return;
+    }
     console.log("Submitted Feedback:", formData);
     // Add your submission logic here
   };
@@ -49,7 +54,10 @@ const Feedback = () => {
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
       <h2>Feedback Form</h2>
-      
+
+      <label style={styles.label}>
+        Student Name <span style={styles.required}>*</span>
+      </label>
       <input
         type="text"
         name="studentName"
@@ -57,13 +65,31 @@ const Feedback = () => {
         onChange={handleChange}
         placeholder="Student Name"
         style={styles.input}
+        required
       />
+
+      <label style={styles.label}>
+        Father's Name <span style={styles.required}>*</span>
+      </label>
       <input
         type="text"
         name="fatherName"
         value={formData.fatherName}
         onChange={handleChange}
         placeholder="Father's Name"
+        style={styles.input}
+        required
+      />
+
+      <label style={styles.label}>
+        Phone Number
+      </label>
+      <input
+        type="tel"
+        name="phoneNumber"
+        value={formData.phoneNumber}
+        onChange={handleChange}
+        placeholder="Phone Number"
         style={styles.input}
       />
 
@@ -161,6 +187,7 @@ const Feedback = () => {
         </div>
       </div>
 
+      <label style={styles.label}>Suggestions for further improvement</label>
       <textarea
         name="suggestions"
         value={formData.suggestions}
@@ -186,6 +213,15 @@ const styles = {
     backdropFilter: 'blur(10px)',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
+  label: {
+    fontWeight: "bold",
+    display: "block",
+    margin: "8px 0 4px",
+  },
+  required: {
+    color: "red",
+    marginLeft: "2px",
+  },
   input: {
     width: "100%",
     padding: "8px",
@@ -198,7 +234,6 @@ const styles = {
   tableContainer: {
     overflowX: "auto",
     marginBottom: "20px",
-   
   },
   table: {
     width: "100%",
