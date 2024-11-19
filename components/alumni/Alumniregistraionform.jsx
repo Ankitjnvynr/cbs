@@ -245,14 +245,7 @@ const AlumniRegistrationForm = () => {
       case 2:
         return (
           <>
-            <input
-              type="text"
-              name="internshipDetails"
-              value={formData.internshipDetails}
-              onChange={handleChange}
-              placeholder="Internship Details"
-              style={styles.input}
-            />
+           
             <input
               type="text"
               name="internshipDescription"
@@ -379,83 +372,185 @@ const AlumniRegistrationForm = () => {
           </>
         );
 
-      case 4:
-        return (
-          <>
-            <label style={styles.checkboxLabel}>
-              <input
-                type="checkbox"
-                name="gotJob"
-                checked={formData.gotJob}
-                onChange={(e) =>
-                  setFormData({ ...formData, gotJob: e.target.checked })
-                }
-                style={styles.checkbox}
-              />
-              If got any job
-            </label>
-
-            {formData.gotJob && (
-              <>
+        case 4:
+          return (
+            <>
+              <label style={styles.checkboxLabel}>
                 <input
-                  type="text"
-                  name="Organisation Name"
-                  value={formData.OrganisationName}
-                  onChange={handleChange}
-                  placeholder="Organisation Name"
-                  style={styles.input}
+                  type="checkbox"
+                  name="gotJob"
+                  checked={formData.gotJob}
+                  onChange={(e) =>
+                    setFormData({ ...formData, gotJob: e.target.checked })
+                  }
+                  style={styles.checkbox}
                 />
-                <input
-                  type="text"
-                  name="Address"
-                  value={formData.Address}
-                  onChange={handleChange}
-                  placeholder="Address"
-                  style={styles.input}
-                />
-                <input
-                  type="text"
-                  name="yearOfJoining"
-                  value={formData.yearOfJoining}
-                  onChange={handleChange}
-                  placeholder="Year of Joining"
-                  style={styles.input}
-                />
-                <input
-                  type="text"
-                  name="designation"
-                  value={formData.designation}
-                  onChange={handleChange}
-                  placeholder="Designation"
-                  style={styles.input}
-                />
-                <label htmlFor="idcard" style={styles.input}>
-                  {formData.idcard ? formData.idcard.name : "Upload your ID card"}
-                </label>
-                <input
-                  type="file"
-                  id="idcard"
-                  name="idcard"
-                  onChange={handleFileChange}
-                  style={styles.hiddenInput}
-                />
-                <label htmlFor="offerLetter" style={styles.input}>
-                  {formData.offerLetter
-                    ? formData.offerLetter.name
-                    : "Upload your offer letter"}
-                </label>
-                <input
-                  type="file"
-                  id="offerLetter"
-                  name="offerLetter"
-                  onChange={handleFileChange}
-                  style={styles.hiddenInput}
-                />
-              </>
-            )}
-          </>
-        );
-
+                If got any job
+              </label>
+        
+              {formData.gotJob && (
+                <>
+                  <input
+                    type="text"
+                    name="Organisation Name"
+                    value={formData.OrganisationName}
+                    onChange={handleChange}
+                    placeholder="Organisation Name"
+                    style={styles.input}
+                  />
+                  <input
+                    type="text"
+                    name="Address"
+                    value={formData.Address}
+                    onChange={handleChange}
+                    placeholder="Address"
+                    style={styles.input}
+                  />
+                  <input
+                    type="text"
+                    name="yearOfJoining"
+                    value={formData.yearOfJoining}
+                    onChange={handleChange}
+                    placeholder="Year of Joining"
+                    style={styles.input}
+                  />
+                  <input
+                    type="text"
+                    name="designation"
+                    value={formData.designation}
+                    onChange={handleChange}
+                    placeholder="Designation"
+                    style={styles.input}
+                  />
+                  <label htmlFor="idcard" style={styles.input}>
+                    {formData.idcard ? formData.idcard.name : "Upload your ID card"}
+                  </label>
+                  <input
+                    type="file"
+                    id="idcard"
+                    name="idcard"
+                    onChange={handleFileChange}
+                    style={styles.hiddenInput}
+                  />
+                  <label htmlFor="offerLetter" style={styles.input}>
+                    {formData.offerLetter
+                      ? formData.offerLetter.name
+                      : "Upload your offer letter"}
+                  </label>
+                  <input
+                    type="file"
+                    id="offerLetter"
+                    name="offerLetter"
+                    onChange={handleFileChange}
+                    style={styles.hiddenInput}
+                  />
+        
+                  {/* Nested Checkbox for "Job in Another Country" */}
+                  <label style={styles.checkboxLabel}>
+                    <input
+                      type="checkbox"
+                      name="jobInAnotherCountry"
+                      checked={formData.jobInAnotherCountry}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          jobInAnotherCountry: e.target.checked,
+                        })
+                      }
+                      style={styles.checkbox}
+                    />
+                    Job in Another Country?
+                  </label>
+        
+                  {formData.jobInAnotherCountry && (
+                    <>
+                      <input
+                        type="text"
+                        name="countryName"
+                        value={formData.countryName || ""}
+                        onChange={handleChange}
+                        placeholder="Country Name"
+                        style={styles.input}
+                      />
+                      <input
+                        type="text"
+                        name="visaType"
+                        value={formData.visaType || ""}
+                        onChange={handleChange}
+                        placeholder="Visa Type"
+                        style={styles.input}
+                      />
+                      <input
+                        type="text"
+                        name="workPermit"
+                        value={formData.workPermit || ""}
+                        onChange={handleChange}
+                        placeholder="Work Permit Details"
+                        style={styles.input}
+                      />
+                      <input
+                        type="text"
+                        name="OrganisationName"
+                        value={formData.OrganisationName}
+                        onChange={handleChange}
+                        placeholder="Organisation Name"
+                        style={styles.input}
+                      />
+                      <input
+                        type="text"
+                        name="Address"
+                        value={formData.Address}
+                        onChange={handleChange}
+                        placeholder="Address"
+                        style={styles.input}
+                      />
+                      <input
+                        type="text"
+                        name="yearOfJoining"
+                        value={formData.yearOfJoining}
+                        onChange={handleChange}
+                        placeholder="Year of Joining"
+                        style={styles.input}
+                      />
+                      <input
+                        type="text"
+                        name="designation"
+                        value={formData.designation}
+                        onChange={handleChange}
+                        placeholder="Designation"
+                        style={styles.input}
+                      />
+                      <label htmlFor="idcard1" style={styles.input}>
+                        {formData.idcard1
+                          ? formData.idcard1.name
+                          : "Upload your ID card"}
+                      </label>
+                      <input
+                        type="file"
+                        id="idcard1"
+                        name="idcard1"
+                        onChange={handleFileChange}
+                        style={styles.hiddenInput}
+                      />
+                      <label htmlFor="offerLetter1" style={styles.input}>
+                        {formData.offerLetter1
+                          ? formData.offerLetter1.name
+                          : "Upload your offer letter"}
+                      </label>
+                      <input
+                        type="file"
+                        id="offerLetter1"
+                        name="offerLetter1"
+                        onChange={handleFileChange}
+                        style={styles.hiddenInput}
+                      />
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          );
+        
       case 5:
         return (
           <div>
