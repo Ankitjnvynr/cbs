@@ -269,6 +269,7 @@ const Header = (props) => {
         { label: "Alumni Testimonials", link: "/" },
         { label: "Alumni videos", link: "/" },
         { label: "Gallery", link: "/" },
+        { label: "Feedback form", link: "/feedback" },
         // { label: "Alumni Form", link: "/" },
       ],
     },
