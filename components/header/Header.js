@@ -42,7 +42,7 @@ const Header = (props) => {
         { label: "Vision & Mission", link: "/vision-mission" },
         { label: "Director's Message", link: "/Director-message" },
         { label: "Director's General Message", link: "/directorgeneral-message" },
-        { label: "President's Message", link: "/president" },
+        { label: "Chairman's Message", link: "/chairman" },
         { label: "Organisation Chart", link: "/organisation-chart" },
         { label: "Approvals & Affiliations", link: "/approvals" },
         { label: "Code of Conduct", link: "/codeofconduct" },
