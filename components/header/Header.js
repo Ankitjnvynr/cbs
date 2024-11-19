@@ -40,9 +40,9 @@ const Header = (props) => {
       link: "/",
       subMenu: [
         { label: "Vision & Mission", link: "/vision-mission" },
+        { label: "Chairman's Message", link: "/chairman" },
         { label: "Director's Message", link: "/Director-message" },
         { label: "Director's General Message", link: "/directorgeneral-message" },
-        { label: "Chairman's Message", link: "/chairman" },
         { label: "Organisation Chart", link: "/organisation-chart" },
         { label: "Approvals & Affiliations", link: "/approvals" },
         { label: "Code of Conduct", link: "/codeofconduct" },
