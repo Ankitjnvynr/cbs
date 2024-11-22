@@ -1,10 +1,13 @@
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { FiLogOut } from "react-icons/fi"; // Import logout icon
 
 export default function Sidebar() {
+  const router = useRouter()
   const handleLogout = () => {
     localStorage.removeItem("authToken"); // Remove the token
+    localStorage.removeItem("user"); // Remove the token
     router.push("/login"); // Redirect to login page
     console.log("User has logged out"); // Confirm logout
   };

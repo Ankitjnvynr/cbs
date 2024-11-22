@@ -11,6 +11,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // React Icons for eye
 import { useRouter } from 'next/router';
 import Link from "next/link";
+import conf from '../../lib/conf';
+import authService from '../../services/auth';
 
 const LoginPage = () => {
     const router = useRouter();
@@ -44,17 +46,33 @@ const LoginPage = () => {
         setValue({ ...value, remember: !value.remember });
     };
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
         if (validator.allValid()) {
             const { email, password } = value;
-            if (email === 'cbs@gmail.com' && password === '1234' || email === 'ankitbkana@outlook.com' && password === 'ankit') {
+            
+            const res = await authService.login(email,password)
+            // user = await JSON.parse(res)
+            if(res.data){
                 toast.success('Successfully logged in to CBS College!');
-                localStorage.setItem('authToken', 'mockToken123');
-                router.push('/dashboard'); // Redirect to dashboard
-            } else {
+                localStorage.setItem('authToken', res.data.token)
+                localStorage.setItem('user',JSON.stringify(res.data))
+                router.push('/dashboard')
+            }else{
                 toast.error('Invalid email or password!');
             }
+            
+            
+            
+            
+            
+            // if (email === 'cbs@gmail.com' && password === '1234' || email === 'ankitbkana@outlook.com' && password === 'ankit') {
+            //     toast.success('Successfully logged in to CBS College!');
+            //     localStorage.setItem('authToken', 'mockToken123');
+            //     router.push('/dashboard'); // Redirect to dashboard
+            // } else {
+            //     toast.error('Invalid email or password!');
+            // }
         } else {
             validator.showMessages();
             toast.error('Please fill all required fields!');
