@@ -327,7 +327,8 @@ const Header = (props) => {
     }} id="header">
       <div className={" " + props.hclass} 
       style={{
-        padding:0
+        padding:0,
+        
       }}
       >
         
@@ -335,7 +336,8 @@ const Header = (props) => {
          
          style={{
           flexDirection: "column",
-          background: "linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7), transparent)"
+          background: "linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7), transparent)",
+          position:'relative',
         }}
           className="navigation navbar navbar-expand-lg navbar-light w-screen"
         >
@@ -373,7 +375,9 @@ const Header = (props) => {
               ))}
             </ul>
           </div>
+          
         </nav>
+      
       </div>
     </header>
   );

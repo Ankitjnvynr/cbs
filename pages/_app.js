@@ -14,12 +14,13 @@ import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <div className="relative"> 
       <Head>
         <title>cbscolleges</title>
       </Head>
       <Component {...pageProps} />
       <ToastContainer />
+      
     </div>
 
   )
