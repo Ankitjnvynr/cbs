@@ -5,7 +5,7 @@ import bgImage from "/public/images/bgdash.jpg"; // Background image
 import pool from "../../../lib/db"; // Database connection
 import { useRouter } from "next/router";
 import { FiLogOut } from "react-icons/fi"; // Import logout icon
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa"; // Import edit, delete, and add icons
+import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 import Sidebar from "../../../components/dashboardComps/Sidebar";
 import CreateNotice from "../../../components/dashboardComps/CreateNotice";
@@ -175,9 +175,9 @@ const DashboardPage = () => {
                     setIsModalOpen(true);
                     setEditNotice({});
                   }}
-                  className="flex items-center bg-blue-600 p-2 rounded shadow hover:bg-blue-700 transition"
+                  className="flex items-center bg-blue-600 p-2 rounded outline-none border-0 mb-2 shadow hover:bg-blue-700 transition"
                 >
-                  <FaPlus className="mr-2" /> Create New
+                  <FaPlus className="mr-2" /> Create New Notice
                 </button>
               </div>
 
@@ -232,13 +232,15 @@ const DashboardPage = () => {
                             <td className="border p-2">
                               {new Date(notice.date_posted).toLocaleDateString() || "N/A"}
                             </td>
-                            <td className="border p-2 flex space-x-2">
-                              <button onClick={() => handleEdit(notice)} className="text-blue-500">
-                                <FaEdit />
-                              </button>
-                              <button onClick={() => handleDelete(notice.notice_id)} className="text-red-500">
-                                <FaTrash />
-                              </button>
+                            <td className="border p-2 flex space-x-2 ">
+                              <span onClick={() => handleEdit(notice)} className=" p-1 cursor-pointer">
+                                <FaEdit className="cursor-pointer" size={15}/>
+                              </span>
+                             
+                              <span onClick={() => handleDelete(notice.notice_id)} className="text-red-500 p-1 cursor-pointer" >
+
+                                <FaTrash className="cursor-pointer" size={15}  />
+                              </span>
                             </td>
                            
                           </tr>
