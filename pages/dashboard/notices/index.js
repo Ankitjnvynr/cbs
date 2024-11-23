@@ -48,7 +48,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     fetchNotices(); // Fetch notices when the component mounts
-  }, []);
+  }, [isModalOpen]);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -127,7 +127,7 @@ const DashboardPage = () => {
             >
               <IoMdCloseCircle color="black" size={30} />
             </span>
-            <CreateNotice editNotice={editNotice} onClose={() => setIsModalOpen(false)} />
+            <CreateNotice editNotice={editNotice} setIsModalOpen={setIsModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
       )}
@@ -197,8 +197,9 @@ const DashboardPage = () => {
                 }}
                 className="p-2 table-auto flex-1"
               >
-                <div style={{ overflowX: "scroll" }}>
-                  <table className="table-auto w-full text-white">
+                
+              
+                <table className="table-auto w-[100%] overflow-x-auto  text-white">
                     <caption className="caption-top text-white">
                       Notices List
                     </caption>
@@ -239,12 +240,15 @@ const DashboardPage = () => {
                                 <FaTrash />
                               </button>
                             </td>
+                           
                           </tr>
                         ))
                       )}
                     </tbody>
                   </table>
-                </div>
+                  
+               
+                
               </div>
             </div>
           </div>

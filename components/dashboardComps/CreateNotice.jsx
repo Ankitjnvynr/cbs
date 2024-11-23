@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const CreateNoticeForm = ({ onClose, editNotice }) => {
+const CreateNoticeForm = ({ onClose, editNotice,setIsModalOpen }) => {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -63,7 +63,7 @@ const CreateNoticeForm = ({ onClose, editNotice }) => {
 
       const data = await response.json();
       alert(data.message);
-      router.push("/dashboard");
+      setIsModalOpen(false)
     } catch (error) {
       setError(error.message || "An error occurred. Please try again later.");
     } finally {
