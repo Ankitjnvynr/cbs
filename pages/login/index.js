@@ -66,6 +66,7 @@ const LoginPage = () => {
             
             
             
+            
             // if (email === 'cbs@gmail.com' && password === '1234' || email === 'ankitbkana@outlook.com' && password === 'ankit') {
             //     toast.success('Successfully logged in to CBS College!');
             //     localStorage.setItem('authToken', 'mockToken123');
