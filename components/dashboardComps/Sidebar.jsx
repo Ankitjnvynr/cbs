@@ -73,7 +73,22 @@ style={{
       Notice Board
     </Link>
   </li>
-  
+    <li 
+  style={{
+
+  }}
+  >
+    <Link
+      style={{
+        //  background: "red",
+        cursor: "pointer",
+      }}
+      className="p-4 hover:bg-gray-900 cursor-pointer text-white "
+      href="/dashboard/notices"
+    >
+      Update Password
+    </Link>
+  </li>
 </ul>
 
 <ul className="mt-10">
