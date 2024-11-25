@@ -67,7 +67,7 @@ const Header = (props) => {
       label: "Academics",
       link: "/",
       subMenu: [
-        { label: "Courses", link: "/" },
+        { label: "Courses", link: "/courses" },
         { label: "Academic Calendar", link: "/" },
         { label: "Examinations", link: "/" },
         { label: "Curriculum", link: "/" },

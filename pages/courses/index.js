@@ -9,12 +9,13 @@ import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 import Director from '../../components/director/Director';
+import CoursesTable from '../../components/acadmics/CoursesTable';
 function director() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'Courses '} pagesub={'vision'} />
-             
+             <CoursesTable/>
             <Footer />
             <Scrollbar />
             <CursorMaus />
