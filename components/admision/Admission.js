@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const AdmissionForm = () => {
   const [formData, setFormData] = useState({
-    programme: '',
-    subject: '',
-    candidateName: '',
-    fatherName: '',
-    motherName: '',
-    gender: '',
-    category: '',
-    district: '',
-    mobile: '',
+    programme: "",
+    candidateName: "",
+    fatherName: "",
+    motherName: "",
+    gender: "",
+    category: "",
+    district: "",
+    mobile: "",
+    email: "",
   });
-
-  const subjectsList = {
-    "B.Tech": ["Maths", "Physics", "Computer Science", "Electronics"],
-    "B.Tech (LEET)": ["Advanced Mathematics", "Electrical Engineering", "Mechanical Engineering"],
-    MBA: ["Marketing", "Finance", "HR Management", "Business Analytics"],
-    BBA: ["Principles of Management", "Business Communication", "Economics"],
-    MCA: ["Algorithms", "Operating Systems", "Database Management"],
-    BCA: ["Programming", "Web Development", "Data Structures"],
-    "M.Tech": ["Artificial Intelligence", "Machine Learning", "Cyber Security"],
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,75 +20,75 @@ const AdmissionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
-    alert('Form Submitted Successfully!');
+    console.log("Form Submitted:", formData);
+    alert("Form Submitted Successfully!");
   };
 
   // Styles
   const containerStyle = {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'linear-gradient(to right, #ebf8ff, #fff, #e9d8fd)',
-    padding: '2rem',
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "linear-gradient(to right, #ebf8ff, #fff, #e9d8fd)",
+    padding: "2rem",
   };
 
   const cardStyle = {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    borderRadius: '1rem',
-    padding: '2rem',
-    maxWidth: '800px',
-    width: '100%',
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    borderRadius: "1rem",
+    padding: "2rem",
+    maxWidth: "800px",
+    width: "100%",
   };
 
   const headingStyle = {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#2d3748',
-    marginBottom: '1rem',
-    textAlign: 'center',
+    fontSize: "2rem",
+    fontWeight: "bold",
+    color: "#2d3748",
+    marginBottom: "1rem",
+    textAlign: "center",
   };
 
   const sectionHeadingStyle = {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#4a5568',
-    marginBottom: '0.5rem',
-    marginTop: '1.5rem',
-    borderBottom: '2px solid #e2e8f0',
-    paddingBottom: '0.5rem',
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    color: "#4a5568",
+    marginBottom: "0.5rem",
+    marginTop: "1.5rem",
+    borderBottom: "2px solid #e2e8f0",
+    paddingBottom: "0.5rem",
   };
 
   const formGroupStyle = {
-    marginBottom: '1rem',
+    marginBottom: "1rem",
   };
 
   const labelStyle = {
-    display: 'block',
-    marginBottom: '0.5rem',
-    fontWeight: 'bold',
-    color: '#4a5568',
+    display: "block",
+    marginBottom: "0.5rem",
+    fontWeight: "bold",
+    color: "#4a5568",
   };
 
   const inputStyle = {
-    width: '100%',
-    padding: '0.5rem',
-    borderRadius: '0.25rem',
-    border: '1px solid #cbd5e0',
+    width: "100%",
+    padding: "0.5rem",
+    borderRadius: "0.25rem",
+    border: "1px solid #cbd5e0",
   };
 
   const buttonStyle = {
-    padding: '0.75rem 1.5rem',
-    backgroundColor: '#2b6cb0',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '0.25rem',
-    cursor: 'pointer',
-    fontSize: '1rem',
-    marginTop: '1.5rem',
-    width: '100%',
+    padding: "0.75rem 1.5rem",
+    backgroundColor: "#2b6cb0",
+    color: "#fff",
+    border: "none",
+    borderRadius: "0.25rem",
+    cursor: "pointer",
+    fontSize: "1rem",
+    marginTop: "1.5rem",
+    width: "100%",
   };
 
   return (
@@ -121,40 +111,29 @@ const AdmissionForm = () => {
                 style={inputStyle}
                 required
               >
-                <option value="">Choose</option>
-                <option value="B.Tech">B.Tech</option>
-                <option value="B.Tech (LEET)">B.Tech (LEET)</option>
-                <option value="MBA">MBA</option>
+                <option value="">Select Branch</option>
+                <option value="B.Tech (CE)">B.Tech (CE)</option>
+                <option value="B.Tech (CSE)">B.Tech (CSE)</option>
+                <option value="B.Tech (EE)">B.Tech (EE)</option>
+                <option value="B.Tech (ECE)">B.Tech (ECE)</option>
+                <option value="B.Tech (ME)">B.Tech (ME)</option>
+                <option value="M.Tech (SE)">M.Tech (EE)</option>
+                <option value="M.Tech (M&A)">M.Tech (M&A)</option>
+                <option value="M.Tech (ECE)">M.Tech (ECE)</option>
+                <option value="M.Tech (CSE)">M.Tech (CSE)</option>
+                <option value="M.Tech (CE) (Transp. Eng.)">
+                  M.Tech (CE) (Transp. Eng.)
+                </option>
+                <option value="M.Tech (MD)">M.Tech (MD)</option>
+                <option value="M.Tech (CE) (Struct. Eng.)">
+                  M.Tech (CE) (Struct. Eng.)
+                </option>
+                <option value="BCA">BCA</option>
                 <option value="BBA">BBA</option>
                 <option value="MCA">MCA</option>
-                <option value="BCA">BCA</option>
-                <option value="M.Tech">M.Tech</option>
+                <option value="MBA">MBA</option>
               </select>
             </div>
-
-            {/* Subject Section */}
-            {formData.programme && (
-              <div style={formGroupStyle}>
-                <label style={labelStyle} htmlFor="subject">
-                  Subject *
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  style={inputStyle}
-                  required
-                >
-                  <option value="">Choose</option>
-                  {subjectsList[formData.programme]?.map((subject, index) => (
-                    <option key={index} value={subject}>
-                      {subject}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
           </div>
 
           {/* Personal Details Section */}
@@ -256,6 +235,20 @@ const AdmissionForm = () => {
                 id="mobile"
                 name="mobile"
                 value={formData.mobile}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="email">
+                Email *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
                 style={inputStyle}
                 required
