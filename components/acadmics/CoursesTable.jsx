@@ -115,6 +115,7 @@ const CoursesTable = () => {
       Intake2023_24: 60,
     },
   ];
+
   const containerStyle = {
     minHeight: "100vh",
     display: "flex",
@@ -123,82 +124,73 @@ const CoursesTable = () => {
     padding: "2rem",
     background: "linear-gradient(to right, #ebf8ff, #fff, #e9d8fd)",
   };
-  const tableWrapper = {};
+
   return (
-    <>
-      <div
-        style={containerStyle}
-        className="p-1 max-w-[900px] border overflow-hidden"
-      >
-        <div style={tableWrapper}>
-          <table style={styles.table}>
-            <thead>
-              <tr>
-                <th style={styles.headerCell}>Level</th>
-                <th style={styles.headerCell}>Program</th>
-                <th style={styles.headerCell}>Course</th>
-                <th style={styles.headerCell}>
-                  Affiliating Body (University / Body)
-                </th>
-                <th style={styles.headerCell}>Intake Approved </th>
+    <div style={containerStyle}>
+      <div style={styles.tableWrapper}>
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              <th style={styles.headerCell}>Level</th>
+              <th style={styles.headerCell}>Program</th>
+              <th style={styles.headerCell}>Course</th>
+              <th style={styles.headerCell}>Affiliating Body (University / Body)</th>
+              <th style={styles.headerCell}>Intake Approved for 2023-24</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr
+                key={index}
+                style={index % 2 === 0 ? styles.evenRow : styles.oddRow}
+              >
+                <td style={styles.cell}>{row.Level}</td>
+                <td style={styles.cell}>{row.Program}</td>
+                <td style={styles.cell}>{row.Course}</td>
+                <td style={styles.cell}>{row.AffiliatingBody}</td>
+                <td style={styles.cell}>{row.Intake2023_24}</td>
               </tr>
-            </thead>
-            <tbody>
-              {tableData.map((row, index) => (
-                <tr
-                  key={index}
-                  style={index % 2 === 0 ? styles.evenRow : styles.oddRow}
-                >
-                  <td style={styles.cell}>{row.Level}</td>
-                  <td style={styles.cell}>{row.Program}</td>
-                  <td style={styles.cell}>{row.Course}</td>
-                  <td style={styles.cell}>{row.AffiliatingBody}</td>
-                  <td style={styles.cell}>{row.Intake2023_24}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </>
+    </div>
   );
 };
 
 export default CoursesTable;
 
-
-
 const styles = {
-    table: {
-      width: "100%",
-      borderCollapse: "separate",
-      borderSpacing: "0",
-      border: "1px solid #ddd",
-      borderRadius: "8px",
-      overflow: "hidden",
-      fontSize:'12px',
-      marginTop:'3rem'
-    },
-    headerCell: {
-      backgroundColor: "#f4f4f4",
-      color: "#333",
-      fontWeight: "bold",
-      textAlign: "left",
-      padding: "10px",
-      borderBottom: "2px solid #ddd",
-      textAlign:'center',
-    },
-    cell: {
-      padding: "10px",
-      textAlign: "left",
-      borderBottom: "1px solid #ddd",
-      textAlign:'center',
-      color:'#333'
-    },
-    evenRow: {
-      backgroundColor: "#fff",
-    },
-    oddRow: {
-      backgroundColor: "#f9f9f9",
-    },
-  };
+  tableWrapper: {
+    overflowX: "auto",
+    maxWidth: "100%",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "separate",
+    borderSpacing: "0",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    minWidth: "800px",
+    fontSize: "12px",
+  },
+  headerCell: {
+    backgroundColor: "#f4f4f4",
+    color: "#333",
+    fontWeight: "bold",
+    textAlign: "left",
+    padding: "10px",
+    borderBottom: "2px solid #ddd",
+  },
+  cell: {
+    padding: "10px",
+    textAlign: "left",
+    borderBottom: "1px solid #ddd",
+  },
+  evenRow: {
+    backgroundColor: "#fff",
+  },
+  oddRow: {
+    backgroundColor: "#f9f9f9",
+  },
+};
