@@ -1,217 +1,276 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const Admission = () => {
-  const [isMounted, setIsMounted] = useState(false);
+const AdmissionForm = () => {
+  const [formData, setFormData] = useState({
+    programme: '',
+    subject: '',
+    candidateName: '',
+    fatherName: '',
+    motherName: '',
+    gender: '',
+    category: '',
+    district: '',
+    mobile: '',
+  });
 
-  useEffect(() => {
-    setIsMounted(true); // Ensures component is fully mounted on the client
-  }, []);
+  const subjectsList = {
+    "B.Tech": ["Maths", "Physics", "Computer Science", "Electronics"],
+    "B.Tech (LEET)": ["Advanced Mathematics", "Electrical Engineering", "Mechanical Engineering"],
+    MBA: ["Marketing", "Finance", "HR Management", "Business Analytics"],
+    BBA: ["Principles of Management", "Business Communication", "Economics"],
+    MCA: ["Algorithms", "Operating Systems", "Database Management"],
+    BCA: ["Programming", "Web Development", "Data Structures"],
+    "M.Tech": ["Artificial Intelligence", "Machine Learning", "Cyber Security"],
+  };
 
-  if (!isMounted) return null; // Prevents hydration mismatch during SSR
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form Submitted:', formData);
+    alert('Form Submitted Successfully!');
+  };
+
+  // Styles
+  const containerStyle = {
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(to right, #ebf8ff, #fff, #e9d8fd)',
+    padding: '2rem',
+  };
+
+  const cardStyle = {
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '1rem',
+    padding: '2rem',
+    maxWidth: '800px',
+    width: '100%',
+  };
+
+  const headingStyle = {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#2d3748',
+    marginBottom: '1rem',
+    textAlign: 'center',
+  };
+
+  const sectionHeadingStyle = {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#4a5568',
+    marginBottom: '0.5rem',
+    marginTop: '1.5rem',
+    borderBottom: '2px solid #e2e8f0',
+    paddingBottom: '0.5rem',
+  };
+
+  const formGroupStyle = {
+    marginBottom: '1rem',
+  };
+
+  const labelStyle = {
+    display: 'block',
+    marginBottom: '0.5rem',
+    fontWeight: 'bold',
+    color: '#4a5568',
+  };
+
+  const inputStyle = {
+    width: '100%',
+    padding: '0.5rem',
+    borderRadius: '0.25rem',
+    border: '1px solid #cbd5e0',
+  };
+
+  const buttonStyle = {
+    padding: '0.75rem 1.5rem',
+    backgroundColor: '#2b6cb0',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '0.25rem',
+    cursor: 'pointer',
+    fontSize: '1rem',
+    marginTop: '1.5rem',
+    width: '100%',
+  };
 
   return (
-    <div style={formContainerStyle}>
-      <form style={formStyle}>
-        <h2 style={sectionHeadingStyle}>Student Information</h2>
-        <div style={sectionStyle}>
-          <div style={inputGroupStyle}>
-            <label>Full Name of Student *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Date of Birth *</label>
-            <input type="date" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Place of Birth *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-        </div>
+    <div style={containerStyle}>
+      <div style={cardStyle}>
+        <h1 style={headingStyle}>Admission Form</h1>
+        <form onSubmit={handleSubmit}>
+          {/* Program Section */}
+          <div>
+            <h2 style={sectionHeadingStyle}>Program Details</h2>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="programme">
+                Programme *
+              </label>
+              <select
+                id="programme"
+                name="programme"
+                value={formData.programme}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              >
+                <option value="">Choose</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="B.Tech (LEET)">B.Tech (LEET)</option>
+                <option value="MBA">MBA</option>
+                <option value="BBA">BBA</option>
+                <option value="MCA">MCA</option>
+                <option value="BCA">BCA</option>
+                <option value="M.Tech">M.Tech</option>
+              </select>
+            </div>
 
-        <h2 style={sectionHeadingStyle}>Father/Guardian Information</h2>
-        <div style={sectionStyle}>
-          <div style={inputGroupStyle}>
-            <label>Full Name *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Nationality *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Occupation *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-        </div>
-
-        <h2 style={sectionHeadingStyle}>Contact Information</h2>
-        <div style={sectionStyle}>
-          <div style={inputGroupStyle}>
-            <label>State *</label>
-            <select required style={inputStyle}>
-              <option>----- Select -----</option>
-              <option>Andhra Pradesh</option>
-              <option>Arunachal Pradesh</option>
-              <option>Assam</option>
-              <option>Bihar</option>
-              <option>Chhattisgarh</option>
-              <option>Goa</option>
-              <option>Gujarat</option>
-              <option>Haryana</option>
-              <option>Himachal Pradesh</option>
-              <option>Jharkhand</option>
-              <option>Karnataka</option>
-              <option>Kerala</option>
-              <option>Madhya Pradesh</option>
-              <option>Maharashtra</option>
-              <option>Manipur</option>
-              <option>Meghalaya</option>
-              <option>Mizoram</option>
-              <option>Nagaland</option>
-              <option>Odisha</option>
-              <option>Punjab</option>
-              <option>Rajasthan</option>
-              <option>Sikkim</option>
-              <option>Tamil Nadu</option>
-              <option>Telangana</option>
-              <option>Tripura</option>
-              <option>Uttar Pradesh</option>
-              <option>Uttarakhand</option>
-              <option>West Bengal</option>
-            </select>
-          </div>
-          <div style={inputGroupStyle}>
-            <label>City *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Pin Code *</label>
-            <input type="text" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Email *</label>
-            <input type="email" required style={inputStyle} />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Mobile Number *</label>
-            <input type="text" required style={inputStyle} placeholder="+91" />
-          </div>
-          <div style={inputGroupStyle}>
-            <label>Other Contact Number</label>
-            <input type="text" style={inputStyle} />
-          </div>
-        </div>
-
-        <h2 style={sectionHeadingStyle}>Other</h2>
-        <div style={sectionStyle}>
-          <div style={inputGroupStyle}>
-            <label>Course in which admission is desired *</label>
-            <select required style={inputStyle}>
-              <option>Select Course</option>
-              <option>B.Tech</option>
-              <option>BBA</option>
-              <option>BCA</option>
-              <option>MBA</option>
-              <option>MCA</option>
-              <option>M.Tech</option>
-            </select>
+            {/* Subject Section */}
+            {formData.programme && (
+              <div style={formGroupStyle}>
+                <label style={labelStyle} htmlFor="subject">
+                  Subject *
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  style={inputStyle}
+                  required
+                >
+                  <option value="">Choose</option>
+                  {subjectsList[formData.programme]?.map((subject, index) => (
+                    <option key={index} value={subject}>
+                      {subject}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
-          <div style={checkboxGroupStyle}>
-            <input type="checkbox" required />
-            <label>I agree to terms & conditions.</label>
+          {/* Personal Details Section */}
+          <div>
+            <h2 style={sectionHeadingStyle}>Candidate's Personal Details</h2>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="candidateName">
+                Candidate's Name *
+              </label>
+              <input
+                type="text"
+                id="candidateName"
+                name="candidateName"
+                value={formData.candidateName}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="fatherName">
+                Father's Name *
+              </label>
+              <input
+                type="text"
+                id="fatherName"
+                name="fatherName"
+                value={formData.fatherName}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="motherName">
+                Mother's Name *
+              </label>
+              <input
+                type="text"
+                id="motherName"
+                name="motherName"
+                value={formData.motherName}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle}>Gender *</label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              >
+                <option value="">Choose</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+              </select>
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle}>Category *</label>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              >
+                <option value="">Choose</option>
+                <option value="SC">SC</option>
+                <option value="Gen">Gen</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="district">
+                District *
+              </label>
+              <input
+                type="text"
+                id="district"
+                name="district"
+                value={formData.district}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div style={formGroupStyle}>
+              <label style={labelStyle} htmlFor="mobile">
+                Mobile No. *
+              </label>
+              <input
+                type="tel"
+                id="mobile"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+            </div>
           </div>
 
-          <p style={noteStyle}>
-            <strong>Note:</strong> Please register my son/daughter on your waiting list as per particulars given above which I certify are true and correct. If my son/daughter is selected, I agree to fully abide by the Rules and Regulations of the College, pay the fees etc. in advance and settle any other accounts promptly.
-          </p>
-        </div>
-
-        <div style={buttonGroupStyle}>
-          <button type="submit" style={buttonStyle}>Submit</button>
-          <button type="reset" style={buttonStyle}>Reset</button>
-        </div>
-      </form>
+          {/* Submit Button */}
+          <button type="submit" style={buttonStyle}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
 
-// Styles
-const formContainerStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '1rem',
-  background: '#f8f9fa',
-};
-
-const formStyle = {
-  width: '100%',
-  maxWidth: '700px',
-  backgroundColor: 'white',
-  padding: '1.5rem',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-  borderRadius: '0.5rem',
-  
-};
-
-const sectionHeadingStyle = {
-  fontSize: '1.25rem',
-  color: '#2b6cb0',
-  borderBottom: '2px solid #2b6cb0',
-  marginBottom: '1rem',
-  paddingBottom: '0.5rem',
-};
-
-const sectionStyle = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '1rem',
-  marginBottom: '1.5rem',
-  flexDirection:'column',
-};
-
-const inputGroupStyle = {
-  flex: '1 1 45%',
-  display: 'flex',
-  flexDirection: 'column',
-  
-  width:'100%'
-};
-
-const inputStyle = {
-  padding: '0.5rem',
-  fontSize: '1rem',
-  borderRadius: '0.25rem',
-  border: '1px solid #cbd5e0',
-  width:'100%',
-};
-
-const checkboxGroupStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.5rem',
-  marginBottom: '1rem',
-};
-
-const noteStyle = {
-  fontSize: '0.875rem',
-  color: '#4a5568',
-  marginBottom: '1rem',
-};
-
-const buttonGroupStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-};
-
-const buttonStyle = {
-  padding: '0.75rem 1.5rem',
-  backgroundColor: '#2b6cb0',
-  color: 'white',
-  border: 'none',
-  borderRadius: '0.25rem',
-  cursor: 'pointer',
-  fontSize: '1rem',
-};
-
-export default Admission;
+export default AdmissionForm;
