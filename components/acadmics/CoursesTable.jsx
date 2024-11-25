@@ -175,6 +175,7 @@ const styles = {
     borderRadius: "8px",
     minWidth: "800px",
     fontSize: "12px",
+    textAlign:'center',
   },
   headerCell: {
     backgroundColor: "#f4f4f4",
@@ -183,11 +184,13 @@ const styles = {
     textAlign: "left",
     padding: "10px",
     borderBottom: "2px solid #ddd",
+    textAlign:'center',
   },
   cell: {
     padding: "10px",
     textAlign: "left",
     borderBottom: "1px solid #ddd",
+    textAlign:'center',
   },
   evenRow: {
     backgroundColor: "#fff",
