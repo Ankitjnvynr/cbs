@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import admissionService from "../../services/admission";
 
 const AdmissionForm = () => {
   const [formData, setFormData] = useState({
@@ -20,77 +21,14 @@ const AdmissionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Form Submitted Successfully!");
+    const res = admissionService.addRecord(formData)
+    console.log(res);
+    
+    // console.log("Form Submitted:", formData);
+    // alert("Form Submitted Successfully!");
   };
 
-  // Styles
-  const containerStyle = {
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "linear-gradient(to right, #ebf8ff, #fff, #e9d8fd)",
-    padding: "2rem",
-  };
-
-  const cardStyle = {
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    borderRadius: "1rem",
-    padding: "2rem",
-    maxWidth: "800px",
-    width: "100%",
-  };
-
-  const headingStyle = {
-    fontSize: "2rem",
-    fontWeight: "bold",
-    color: "#2d3748",
-    marginBottom: "1rem",
-    textAlign: "center",
-  };
-
-  const sectionHeadingStyle = {
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-    color: "#4a5568",
-    marginBottom: "0.5rem",
-    marginTop: "1.5rem",
-    borderBottom: "2px solid #e2e8f0",
-    paddingBottom: "0.5rem",
-  };
-
-  const formGroupStyle = {
-    marginBottom: "1rem",
-  };
-
-  const labelStyle = {
-    display: "block",
-    marginBottom: "0.5rem",
-    fontWeight: "bold",
-    color: "#4a5568",
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "0.5rem",
-    borderRadius: "0.25rem",
-    border: "1px solid #cbd5e0",
-  };
-
-  const buttonStyle = {
-    padding: "0.75rem 1.5rem",
-    backgroundColor: "#2b6cb0",
-    color: "#fff",
-    border: "none",
-    borderRadius: "0.25rem",
-    cursor: "pointer",
-    fontSize: "1rem",
-    marginTop: "1.5rem",
-    width: "100%",
-  };
-
+  
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
@@ -267,3 +205,75 @@ const AdmissionForm = () => {
 };
 
 export default AdmissionForm;
+
+
+
+
+
+// Styles
+const containerStyle = {
+  minHeight: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "linear-gradient(to right, #ebf8ff, #fff, #e9d8fd)",
+  padding: "2rem",
+};
+
+const cardStyle = {
+  backgroundColor: "rgba(255, 255, 255, 0.9)",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  borderRadius: "1rem",
+  padding: "2rem",
+  maxWidth: "800px",
+  width: "100%",
+};
+
+const headingStyle = {
+  fontSize: "2rem",
+  fontWeight: "bold",
+  color: "#2d3748",
+  marginBottom: "1rem",
+  textAlign: "center",
+};
+
+const sectionHeadingStyle = {
+  fontSize: "1.5rem",
+  fontWeight: "bold",
+  color: "#4a5568",
+  marginBottom: "0.5rem",
+  marginTop: "1.5rem",
+  borderBottom: "2px solid #e2e8f0",
+  paddingBottom: "0.5rem",
+};
+
+const formGroupStyle = {
+  marginBottom: "1rem",
+};
+
+const labelStyle = {
+  display: "block",
+  marginBottom: "0.5rem",
+  fontWeight: "bold",
+  color: "#4a5568",
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "0.5rem",
+  borderRadius: "0.25rem",
+  border: "1px solid #cbd5e0",
+};
+
+const buttonStyle = {
+  padding: "0.75rem 1.5rem",
+  backgroundColor: "#2b6cb0",
+  color: "#fff",
+  border: "none",
+  borderRadius: "0.25rem",
+  cursor: "pointer",
+  fontSize: "1rem",
+  marginTop: "1.5rem",
+  width: "100%",
+};
+
