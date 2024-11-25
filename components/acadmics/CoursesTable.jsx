@@ -135,7 +135,7 @@ const CoursesTable = () => {
               <th style={styles.headerCell}>Program</th>
               <th style={styles.headerCell}>Course</th>
               <th style={styles.headerCell}>Affiliating Body (University / Body)</th>
-              <th style={styles.headerCell}>Intake Approved for 2023-24</th>
+              <th style={styles.headerCell}>Intake Approved </th>
             </tr>
           </thead>
           <tbody>
