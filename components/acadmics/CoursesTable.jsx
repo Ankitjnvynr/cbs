@@ -163,7 +163,9 @@ export default CoursesTable;
 const styles = {
   tableWrapper: {
     overflowX: "auto",
-    maxWidth: "100%",
+    // maxWidth: "100%",
+    // border:'1px solid red',
+    // width:'90%'
   },
   table: {
     width: "100%",
