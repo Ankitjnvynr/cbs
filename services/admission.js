@@ -19,6 +19,18 @@ export class AdmissionService {
         
     }
   }
+  async getRecords(){
+    try {
+      const response = await fetch(this.admissionUri, {
+        method: 'GET',
+        })
+        const data = await response.json();
+        return data;
+        } catch (error) {
+          console.log("error in fetching data",error);
+          }
+    
+  }
 }
 
 const admissionService = new AdmissionService();
