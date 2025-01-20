@@ -3,13 +3,17 @@ import styles from "./NoticeBoard.module.css"; // Import the CSS module
 import { FaLocationArrow } from "react-icons/fa";
 import { Rotate } from "react-awesome-reveal";
 import Link from "next/link";
+import conf from "../../lib/conf";
+
 
 const NoticeBoard = () => {
   const [notices, setNotices] = useState([]);
 
   const allNotices = async () => {
     try {
-      const response = await fetch("/api/notices");
+      const response = await fetch(`${conf.apiBaseUri}/api/v1/notices`);
+      console.log(response);
+      
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
