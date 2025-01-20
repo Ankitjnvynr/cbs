@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import conf from "../../lib/conf";
 
 const CreateNoticeForm = ({ onClose, editNotice,setIsModalOpen }) => {
   const router = useRouter();
@@ -48,7 +49,7 @@ const CreateNoticeForm = ({ onClose, editNotice,setIsModalOpen }) => {
 
     try {
       setIsLoading(true);
-      const response = await fetch("/api/notices", {
+      const response = await fetch(`${conf.apiBaseUri}/api/v1/notices`, {
         method: editing ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(noticeData),

@@ -10,6 +10,7 @@ import Link from "next/link";
 import Sidebar from "../../../components/dashboardComps/Sidebar";
 import CreateNotice from "../../../components/dashboardComps/CreateNotice";
 import { IoMdCloseCircle } from "react-icons/io";
+import conf from "../../../lib/conf";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -22,7 +23,7 @@ const DashboardPage = () => {
   // Fetch notices from the API
   const fetchNotices = async () => {
     try {
-      const response = await fetch("/api/notices");
+      const response = await fetch(`${conf.apiBaseUri}/api/v1/notices`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -73,7 +74,7 @@ const DashboardPage = () => {
     const confirmed = confirm("Are you sure you want to delete this notice?");
     if (confirmed) {
       try {
-        const response = await fetch(`/api/notices`, {
+        const response = await fetch(`${conf.apiBaseUri}/api/v1/notices`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -127,7 +128,11 @@ const DashboardPage = () => {
             >
               <IoMdCloseCircle color="black" size={30} />
             </span>
-            <CreateNotice editNotice={editNotice} setIsModalOpen={setIsModalOpen} onClose={() => setIsModalOpen(false)} />
+            <CreateNotice
+              editNotice={editNotice}
+              setIsModalOpen={setIsModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
           </div>
         </div>
       )}
@@ -197,60 +202,68 @@ const DashboardPage = () => {
                 }}
                 className="p-2 table-auto flex-1"
               >
-                
-              
                 <table className="table-auto w-[100%] overflow-x-auto  text-white">
-                    <caption className="caption-top text-white">
-                      Notices List
-                    </caption>
-                    <thead>
+                  <caption className="caption-top text-white">
+                    Notices List
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th className="border p-2">ID</th>
+                      <th className="border p-2">Title</th>
+                      <th className="border p-2">Target Link</th>
+                      <th className="border p-2">Status</th>
+                      <th className="border p-2">Date Posted</th>
+                      <th className="border p-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {notices.length === 0 ? (
                       <tr>
-                        <th className="border p-2">ID</th>
-                        <th className="border p-2">Title</th>
-                        <th className="border p-2">Target Link</th>
-                        <th className="border p-2">Status</th>
-                        <th className="border p-2">Date Posted</th>
-                        <th className="border p-2">Actions</th>
+                        <td colSpan="6" className="text-center p-4">
+                          No notices available.
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {notices.length === 0 ? (
-                        <tr>
-                          <td colSpan="6" className="text-center p-4">
-                            No notices available.
+                    ) : (
+                      notices.map((notice, index) => (
+                        <tr key={notice.notice_id}>
+                          <td className="border p-2">{index + 1}</td>
+                          <td className="border p-2">
+                            {notice.title || "N/A"}
+                          </td>
+                          <td
+                            className="border p-2"
+                            dangerouslySetInnerHTML={{
+                              __html: notice.content || "N/A",
+                            }}
+                          />
+                          <td className="border p-2">
+                            {notice.status || "N/A"}
+                          </td>
+                          <td className="border p-2">
+                            {new Date(
+                              notice.date_posted
+                            ).toLocaleDateString() || "N/A"}
+                          </td>
+                          <td className="border p-2 flex space-x-2 ">
+                            <span
+                              onClick={() => handleEdit(notice)}
+                              className=" p-1 cursor-pointer"
+                            >
+                              <FaEdit className="cursor-pointer" size={15} />
+                            </span>
+
+                            <span
+                              onClick={() => handleDelete(notice.notice_id)}
+                              className="text-red-500 p-1 cursor-pointer"
+                            >
+                              <FaTrash className="cursor-pointer" size={15} />
+                            </span>
                           </td>
                         </tr>
-                      ) : (
-                        notices.map((notice, index) => (
-                          <tr key={notice.notice_id}>
-                            <td className="border p-2">{index + 1}</td>
-                            <td className="border p-2">
-                              {notice.title || "N/A"}
-                            </td>
-                            <td className="border p-2" dangerouslySetInnerHTML={{ __html: notice.content || "N/A" }} />
-                            <td className="border p-2">{notice.status || "N/A"}</td>
-                            <td className="border p-2">
-                              {new Date(notice.date_posted).toLocaleDateString() || "N/A"}
-                            </td>
-                            <td className="border p-2 flex space-x-2 ">
-                              <span onClick={() => handleEdit(notice)} className=" p-1 cursor-pointer">
-                                <FaEdit className="cursor-pointer" size={15}/>
-                              </span>
-                             
-                              <span onClick={() => handleDelete(notice.notice_id)} className="text-red-500 p-1 cursor-pointer" >
-
-                                <FaTrash className="cursor-pointer" size={15}  />
-                              </span>
-                            </td>
-                           
-                          </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                  
-               
-                
+                      ))
+                    )}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import conf from "../lib/conf";
 export class AuthService {
   constructor() {
     // Fixing the authUri assignment
-    this.authUri = `${conf.apiBaseUri}/api/auth`;
+    this.authUri = `${conf.apiBaseUri}/api/v1/auth`;
   }
 
   async login(email, password) {
