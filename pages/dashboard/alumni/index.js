@@ -239,7 +239,7 @@ const DashboardPage = ({ alumniData }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const [rows] = await pool.query(`
             SELECT 

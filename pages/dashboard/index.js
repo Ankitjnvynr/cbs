@@ -203,7 +203,7 @@ const DashboardPage = ({ alumniData, noticeData }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const [alumniRows] = await pool.query(`
       SELECT 

@@ -91,7 +91,7 @@ const AdmissionForm = () => {
                 required
               />
             </div>
-            <div style={formGroupStyle}>
+            {/* <div style={formGroupStyle}>
               <label style={labelStyle} htmlFor="fatherName">
                 Father's Name *
               </label>
@@ -118,7 +118,7 @@ const AdmissionForm = () => {
                 style={inputStyle}
                 required
               />
-            </div>
+            </div> */}
             <div style={formGroupStyle}>
               <label style={labelStyle}>Gender *</label>
               <select

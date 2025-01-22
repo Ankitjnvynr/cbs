@@ -288,7 +288,7 @@ const DashboardPage = () => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const [rows] = await pool.query(`
       SELECT notice_id, title, content, author, date_posted 
