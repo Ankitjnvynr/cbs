@@ -12,12 +12,14 @@ const NoticeBoard = () => {
   const allNotices = async () => {
     try {
       const response = await fetch(`${conf.apiBaseUri}/api/v1/notices`);
-      console.log(response);
+      
       
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      console.log("data of notice",data);
+      
       
       setNotices((data.data).filter(item=>item.status=='Active'));
       // console.log((data.data).filter(item=>item.status=='Active'))

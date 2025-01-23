@@ -31,6 +31,8 @@ const AdmissionForm = () => {
       const res = await admissionService.addRecord(formData)
       if(res.code===201){
         toast.success(res.message);
+    }else{
+      toast.error(res.message);
     }
     console.log(checkExist);
     }
