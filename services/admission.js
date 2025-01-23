@@ -5,15 +5,15 @@ export class AdmissionService {
 
     constructor() {
         // Setting up the base URI for admission
-        this.admissionUri = `${conf.apiBaseUri}/api/admission-form`;
+        this.admissionUri = `${conf.apiBaseUri}/api/v1/admission`;
     }
 
     // Create a new admission record
     async addRecord({
         programme,
-        candidate_name,
-        father_name,
-        mother_name,
+        candidateName,
+        fatherName,
+        motherName,
         gender,
         category,
         district,
@@ -28,9 +28,9 @@ export class AdmissionService {
                 },
                 body: JSON.stringify({
                     programme,
-                    candidate_name,
-                    father_name,
-                    mother_name,
+                    candidateName,
+                    fatherName,
+                    motherName,
                     gender,
                     category,
                     district,
@@ -55,10 +55,11 @@ export class AdmissionService {
     }
 
     // Get all admission records with pagination
-    async getRecords(page = 1, limit = 10) {
+    async getRecords(queryParams = {}) {
         try {
+            const queryString = new URLSearchParams(queryParams).toString();
             const response = await fetch(
-                `${this.admissionUri}?page=${page}&limit=${limit}`,
+                `${this.admissionUri}?${queryString}`,
                 {
                     method: "GET",
                     headers: {

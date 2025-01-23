@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import admissionService from "../../services/admission";
+import { toast } from "react-toastify";
 
 const AdmissionForm = () => {
   const [formData, setFormData] = useState({
@@ -13,19 +14,27 @@ const AdmissionForm = () => {
     mobile: "",
     email: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = admissionService.addRecord(formData)
-    console.log(res);
-    
-    // console.log("Form Submitted:", formData);
-    // alert("Form Submitted Successfully!");
+    setLoading(true);
+    const checkExist = await admissionService.getRecords({email:formData.email});
+    if(checkExist.data.totalRecords>0){
+      toast.error("Email already exist");
+    }else{
+      const res = await admissionService.addRecord(formData)
+      if(res.code===201){
+        toast.success(res.message);
+    }
+    console.log(checkExist);
+    }
+    setLoading(false);
   };
 
   
@@ -195,7 +204,7 @@ const AdmissionForm = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" style={buttonStyle}>
+          <button type="submit" disabled = {loading} style={buttonStyle}>
             Submit
           </button>
         </form>
