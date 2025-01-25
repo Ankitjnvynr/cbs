@@ -90,7 +90,7 @@ const AdmissionForm = () => {
             <h2 style={sectionHeadingStyle}>Candidate's Personal Details</h2>
             <div style={formGroupStyle}>
               <label style={labelStyle} htmlFor="candidateName">
-                Candidate's Name *
+                Student's Name *
               </label>
               <input
                 type="text"
@@ -144,7 +144,7 @@ const AdmissionForm = () => {
                 <option value="Male">Male</option>
               </select>
             </div>
-            <div style={formGroupStyle}>
+            {/* <div style={formGroupStyle}>
               <label style={labelStyle}>Category *</label>
               <select
                 name="category"
@@ -160,10 +160,10 @@ const AdmissionForm = () => {
                 <option value="OBC">OBC</option>
                 <option value="Other">Other</option>
               </select>
-            </div>
+            </div> */}
             <div style={formGroupStyle}>
               <label style={labelStyle} htmlFor="district">
-                District *
+                Place *
               </label>
               <input
                 type="text"

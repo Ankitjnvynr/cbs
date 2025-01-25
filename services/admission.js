@@ -58,6 +58,8 @@ export class AdmissionService {
     async getRecords(queryParams = {}) {
         try {
             const queryString = new URLSearchParams(queryParams).toString();
+            console.log(`${this.admissionUri}?${queryString}`);
+            
             const response = await fetch(
                 `${this.admissionUri}?${queryString}`,
                 {
