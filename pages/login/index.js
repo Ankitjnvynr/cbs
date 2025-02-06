@@ -84,7 +84,7 @@ const LoginPage = () => {
         <Grid className="loginWrapper">
             <Grid className="loginForm">
                 <h2>CBS GROUP OF INSTITUTION</h2>
-                <p>ADMIN LOGIN</p>
+                <p>Admin Login</p>
                 <form onSubmit={submitForm}>
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
