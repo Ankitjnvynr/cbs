@@ -1,11 +1,12 @@
 import React from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../../../components/Navbar/Navbar";
 import Logo from "/public/images/cbslogo.png";
 import Phone from "/public/images/telephone.svg";
-import Scrollbar from "../../components/scrollbar/scrollbar";
+import Scrollbar from "../../../../components/scrollbar/scrollbar";
 
-import Footer from "../../components/footer/Footer";
-import { LoginForm } from "../../components/studentDashboard/LoginForm";
+import Footer from "../../../../components/footer/Footer";
+import { LoginForm } from "../../../../components/studentDashboard/LoginForm";
+import SignupForm from "../../../../components/studentDashboard/SignupForm";
 
 export default function Index() {
   return (
@@ -19,7 +20,7 @@ export default function Index() {
         }}
       >
         
-      <LoginForm/>
+      <SignupForm/>
       </div>
 
       <Footer />
