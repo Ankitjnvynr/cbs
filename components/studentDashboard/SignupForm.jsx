@@ -3,15 +3,10 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
-const SignupForm = ({ onSubmit,setActiveForm }) => {
-  const [value, setValue] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    remember: false,
-  });
+const SignupForm = ({ onSubmit,setActiveForm,setValue,value,signUp }) => {
+
+
+  const [otp,setOtp] = useState("")
   
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -34,8 +29,8 @@ const SignupForm = ({ onSubmit,setActiveForm }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (onSubmit) onSubmit(value);
-    console.log('Form Submitted:', value);
+    
+   signUp()
   };
 
   const styles = {
@@ -53,7 +48,7 @@ const SignupForm = ({ onSubmit,setActiveForm }) => {
   return (
     <div style={styles.container}>
       <div style={styles.formWrapper}>
-        <h4 style={styles.heading}>SIGN UP</h4>
+        <h4 style={styles.heading}>STUDENT SIGN UP</h4>
         
         <form onSubmit={submitHandler}>
           <input
@@ -85,7 +80,7 @@ const SignupForm = ({ onSubmit,setActiveForm }) => {
               style={styles.input}
               type={showPassword ? 'text' : 'password'}
               name="password"
-              placeholder="Password"
+              placeholder="Create Password"
               value={value.password}
               onChange={changeHandler}
             />

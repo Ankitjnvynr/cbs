@@ -9,10 +9,23 @@ import { LoginForm } from "../../../components/studentDashboard/LoginForm";
 import SignupForm from "../../../components/studentDashboard/SignupForm";
 import { VerifyForm } from "../../../components/studentDashboard/Verify";
 
-
 export default function Index() {
+  const [activeForm, setActiveForm] = useState("login");
+  const [value, setValue] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    remember: false,
+  });
 
-  const [activeForm,setActiveForm]= useState('login')
+  const signUp = async () => {
+    Object.entries(value).map((entry) => {
+      console.log(entry)
+      
+    });
+  };
 
   return (
     <>
@@ -20,15 +33,22 @@ export default function Index() {
       <div
         style={{
           minHeight: "70vh",
-          padding:'20px',
-          paddingTop:'150px',
+          padding: "20px",
+          paddingTop: "150px",
         }}
       >
-        
-        {activeForm === 'login' && <LoginForm setActiveForm={setActiveForm} />}
-        {activeForm === 'signup' && <SignupForm setActiveForm={setActiveForm}  />}
-        {activeForm === 'verify' && <VerifyForm setActiveForm={setActiveForm}  />}
-      
+        {activeForm === "login" && <LoginForm setActiveForm={setActiveForm} />}
+        {activeForm === "signup" && (
+          <SignupForm
+            setActiveForm={setActiveForm}
+            setValue={setValue}
+            value={value}
+            signUp={signUp}
+          />
+        )}
+        {activeForm === "verify" && (
+          <VerifyForm setActiveForm={setActiveForm} />
+        )}
       </div>
 
       <Footer />
