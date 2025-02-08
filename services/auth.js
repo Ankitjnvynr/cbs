@@ -2,7 +2,8 @@ import conf from "../lib/conf";
 
 export class AuthService {
   constructor() {
-    this.authUri = `${conf.apiBaseUri}/api/v1/auth`;
+    this.authUri = `${conf.apiBaseUri}/api/v1/auth/user`;
+    this.authUriBase = `${conf.apiBaseUri}/api/v1/auth`;
   }
 
   // User Registration
@@ -37,6 +38,25 @@ export class AuthService {
       return await response.json();
     } catch (error) {
       console.error("Error logging in:", error);
+      throw error;
+    }
+  }
+
+  async checkUserExist (email){
+    try {
+      let fullurl= `${this.authUri}?email=${email}`
+      console.log("full url",fullurl)
+      const response = await fetch(fullurl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          
+        },
+      });
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching user data:", error);
       throw error;
     }
   }
@@ -78,6 +98,39 @@ export class AuthService {
       throw error;
     }
   }
+
+
+  async sendOtp(email) {
+    try {
+        const formData = new FormData();
+        formData.append("email", email);
+
+        const response = await fetch(`${this.authUriBase}/sendotp`, {
+            method: 'POST',
+            
+            body: formData, 
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log("OTP sent successfully:", data);
+            return data;
+        } else {
+            console.error("Error sending OTP:", data);
+            throw new Error(data.message || "Failed to send OTP");
+        }
+    } catch (error) {
+        console.error("Network error:", error);
+        throw error;
+    }
+}
+
+
+// otp veridfy
+async verifyOtp (){
+  
+}
 
   // Delete User
   async deleteUser(token, userId) {

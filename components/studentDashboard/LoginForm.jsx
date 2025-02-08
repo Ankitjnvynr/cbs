@@ -2,12 +2,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-export const LoginForm = ({setActiveForm}) => {
-  const [value, setValue] = useState({
-    email: '',
-    password: '',
-    remember: false,
-  });
+export const LoginForm = ({setActiveForm,login,value,setValue,isDisabled}) => {
+
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -25,7 +21,7 @@ export const LoginForm = ({setActiveForm}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', value);
+    login()
   };
 
   const styles = {
@@ -74,7 +70,9 @@ export const LoginForm = ({setActiveForm}) => {
             </label>
             <a href="/forgot-password">Forgot Password?</a>
           </div>
-          <button style={styles.button} type="submit">Login</button>
+          {
+            isDisabled?<button disabled  style={styles.button} type="disabled">Please wait ...</button>:<button  style={styles.button} type="submit">Login</button>
+          }
         </form>
         <p>No have an account ? <span style={{textDecoration:'underline',cursor:'pointer',color:'blue'}}   onClick={()=>setActiveForm('signup')} >SignUp</span></p>
       </div>
