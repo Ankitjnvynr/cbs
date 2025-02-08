@@ -128,8 +128,31 @@ export class AuthService {
 
 
 // otp veridfy
-async verifyOtp (){
-  
+async verifyOtp (email,otp){
+  try {
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("otp", otp);
+
+    const response = await fetch(`${this.authUriBase}/verifyotp`, {
+        method: 'POST',
+        
+        body: formData, 
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        console.log("OTP verify successfully:", data);
+        return data;
+    } else {
+        console.error("Error verify OTP:", data);
+        throw new Error(data.message || "Failed to send OTP");
+    }
+} catch (error) {
+    console.error("Network error:", error);
+    throw error;
+}
 }
 
   // Delete User
