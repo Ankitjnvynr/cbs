@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-export const VerifyForm = ({ setActiveForm }) => {
-  const [value, setValue] = useState({ otp: '' });
+export const VerifyForm = ({ setActiveForm,setValue, value, }) => {
+
   const [timer, setTimer] = useState(30);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
 

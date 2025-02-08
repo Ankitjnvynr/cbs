@@ -20,6 +20,7 @@ export default function Index() {
     password: "",
     confirmPassword: "",
     remember: false,
+    otp:""
   });
 
   const [isDisabled,setIsDisabled]=useState(false)
@@ -64,6 +65,10 @@ export default function Index() {
      const res = await authService.sendOtp(value.email)
      console.log("function send otp",res)
      return res
+  }
+
+  const verifyOtp = async ()=>{
+    const res = await authService.verifyOtp(value.email,value.otp)
   }
 
 
