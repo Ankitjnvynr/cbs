@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
-const SignupForm = ({ onSubmit }) => {
+const SignupForm = ({ onSubmit,setActiveForm }) => {
   const [value, setValue] = useState({
     name: '',
     email: '',
@@ -114,7 +114,10 @@ const SignupForm = ({ onSubmit }) => {
           </div>
           <button style={styles.button} type="submit">Signup</button>
         </form>
-        <p>Already an account ? <Link href="/student/auth/login">Login</Link></p>
+        <p>Already an account ? 
+          <span style={{textDecoration:'underline',cursor:'pointer',color:'blue'}} onClick={()=>setActiveForm('login')} >Login</span>
+          <span style={{textDecoration:'underline',cursor:'pointer',color:'blue'}} onClick={()=>setActiveForm('verify')} >VERIFY</span>
+          </p>
       </div>
     </div>
   );

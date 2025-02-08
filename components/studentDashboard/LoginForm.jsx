@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-export const LoginForm = () => {
+export const LoginForm = ({setActiveForm}) => {
   const [value, setValue] = useState({
     email: '',
     password: '',
@@ -76,7 +76,7 @@ export const LoginForm = () => {
           </div>
           <button style={styles.button} type="submit">Login</button>
         </form>
-        <p>No have account ? <Link href={'/student/auth/register'} >Signup</Link></p>
+        <p>No have an account ? <span style={{textDecoration:'underline',cursor:'pointer',color:'blue'}}   onClick={()=>setActiveForm('signup')} >SignUp</span></p>
       </div>
     </div>
   );
