@@ -5,7 +5,7 @@ import authService from "../../services/auth";
 import { toast } from "react-toastify";
 
 const SignupForm = ({ onSubmit, setActiveForm, setValue, value, signUp }) => {
-  const [otp, setOtp] = useState("");
+  
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -46,7 +46,7 @@ const SignupForm = ({ onSubmit, setActiveForm, setValue, value, signUp }) => {
         e.target.style.color = "black"
       }
     }
-    console.log(res);
+   
   };
 
   const styles = {

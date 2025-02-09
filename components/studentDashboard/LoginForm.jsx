@@ -68,7 +68,8 @@ export const LoginForm = ({setActiveForm,login,value,setValue,isDisabled}) => {
               <input type="checkbox" checked={value.remember} onChange={rememberHandler} />
               <span style={styles.checkboxLabel}>Remember Me</span>
             </label>
-            <a href="/forgot-password">Forgot Password?</a>
+            <Link href={''} >Forgot Password?</Link>
+            
           </div>
           {
             isDisabled?<button disabled  style={styles.button} type="disabled">Please wait ...</button>:<button  style={styles.button} type="submit">Login</button>

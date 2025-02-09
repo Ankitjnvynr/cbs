@@ -92,15 +92,6 @@ export default function Index() {
     }
   };
 
-  const signUp = async () => {
-    if (validate()) {
-      console.log("Form submitted", value);
-    } else {
-      toast.error("All fields are required");
-      console.log("Validation failed", errors);
-    }
-  };
-
   const login = async () => {
     setIsDisabled(true);
     const res = await authService.login(value.email, value.password);
@@ -134,6 +125,29 @@ export default function Index() {
       return;
     }
   };
+
+  const signUp = async () => {
+    if (validate()) {
+      console.log("Form submitted", value);
+      const res = await authService.register(
+        value.name,
+        value.email,
+        value.password,
+        value.phone
+      );
+
+      console.log("sign up res", res);
+      if (res.code == 200) {
+        toast.success(res.message);
+        login();
+      }
+    } else {
+      toast.error("All fields are required");
+      console.log("Validation failed", errors);
+    }
+  };
+
+ 
 
   if (isUserLoggedIn) {
     return null;

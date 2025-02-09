@@ -45,7 +45,7 @@ export class AuthService {
   async checkUserExist (email){
     try {
       let fullurl= `${this.authUri}?email=${email}`
-      console.log("full url",fullurl)
+      
       const response = await fetch(fullurl, {
         method: "GET",
         headers: {
