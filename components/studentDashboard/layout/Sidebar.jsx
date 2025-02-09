@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import styles from "../StudentDashboard.module.css";
-import Link from "next/link";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router'; // Import useRouter
+import styles from '../StudentDashboard.module.css';
+import Link from 'next/link';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -16,6 +10,7 @@ import { IoMdLogOut } from "react-icons/io";
 import { toast } from "react-toastify";
 
 export default function Sidebar() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -37,30 +32,25 @@ export default function Sidebar() {
     <>
       <ul className={styles.mainMenus}>
         <li>
-          <Link className={styles.link} href={"/student"}>
+          <Link className={`${styles.link} ${router.pathname === "/student" ? styles.active : ""}`} href="/student">
             <IoHomeOutline />
             <span className={styles.text}>Home</span>
           </Link>
         </li>
         <li>
-          <Link className={styles.link} href={"/student/admission"}>
+          <Link className={`${styles.link} ${router.pathname === "/student/admission" ? styles.active : ""}`} href="/student/admission">
             <MdOutlineLibraryBooks />
             <span className={styles.text}>Admissions</span>
           </Link>
         </li>
         <li>
-          <Link className={styles.link} href={"/student/settings"}>
+          <Link className={`${styles.link} ${router.pathname === "/student/settings" ? styles.active : ""}`} href="/student/settings">
             <IoSettingsOutline />
             <span className={styles.text}>Settings</span>
           </Link>
         </li>
       </ul>
-      <Button
-        color="error"
-        onClick={handleOpen}
-        className={styles.link}
-        variant="outlined"
-      >
+      <Button color='error' onClick={handleOpen} className={styles.link} variant="outlined">
         <span className={styles.text}>Logout</span>
         <IoMdLogOut />
       </Button>
@@ -74,16 +64,8 @@ export default function Sidebar() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button
-            onClick={handleConfirmLogout}
-            color="error"
-            variant="contained"
-          >
-            Logout
-          </Button>
+          <Button onClick={handleClose} color="primary">Cancel</Button>
+          <Button onClick={handleConfirmLogout} color="error" variant="contained">Logout</Button>
         </DialogActions>
       </Dialog>
     </>
