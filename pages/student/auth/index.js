@@ -10,6 +10,7 @@ import SignupForm from "../../../components/studentDashboard/SignupForm";
 import { VerifyForm } from "../../../components/studentDashboard/Verify";
 import { toast } from "react-toastify";
 import authService from "../../../services/auth";
+import { Router, useRouter } from "next/router";
 
 export default function Index() {
   const [activeForm, setActiveForm] = useState("login");
@@ -20,12 +21,18 @@ export default function Index() {
     password: "",
     confirmPassword: "",
     remember: false,
-    otp:""
+    otp: "",
   });
 
-  const [isDisabled,setIsDisabled]=useState(false)
+  const router = useRouter();
+
+  const [otp, setOtp] = useState("");
+
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const [errors, setErrors] = useState({});
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
 
   const validate = () => {
     let newErrors = {};
@@ -55,23 +62,35 @@ export default function Index() {
   };
 
   useEffect(() => {
+    const userData = sessionStorage.getItem("user");
+
+    if (userData) {
+      router.push("/student");
+    } else {
+      setIsUserLoggedIn(false);
+    }
+  }, []);
+
+  useEffect(() => {
     console.log("Updated Errors State:", errors);
   }, [errors]);
 
+  const sendOtp = async () => {
+    const res = await authService.sendOtp(value.email);
+    console.log("function send otp", res);
+    return res;
+  };
 
-
-
-  const sendOtp = async ()=>{
-     const res = await authService.sendOtp(value.email)
-     console.log("function send otp",res)
-     return res
-  }
-
-  const verifyOtp = async ()=>{
-    const res = await authService.verifyOtp(value.email,value.otp)
-  }
-
-
+  const verifyOtp = async () => {
+    const res = await authService.verifyOtp(value.email, otp);
+    console.log("otp verify fyn", res);
+    if (res.status == "success") {
+      toast.success(res.message);
+      login();
+    } else {
+      toast.error(res.message);
+    }
+  };
 
   const signUp = async () => {
     if (validate()) {
@@ -83,37 +102,47 @@ export default function Index() {
   };
 
   const login = async () => {
-    setIsDisabled(true)
+    setIsDisabled(true);
     const res = await authService.login(value.email, value.password);
     console.log(res);
-    
-    if(res.code==401){
-      toast.error(res.error)
-      return
+
+    if (res.code == 401) {
+      toast.error(res.error);
+      setIsDisabled(false);
+      return;
     }
-    if(res.code==403){
-      const res = await sendOtp()
-      console.log("function in login", res)
-      if(res.status){
-        setActiveForm('verify')
-        toast.success("OTP send successfuly")
-        setIsDisabled(false)
-       }
+    if (res.code == 403) {
+      const res = await sendOtp();
+      console.log("function in login", res);
+      if (res.status) {
+        setActiveForm("verify");
+        toast.success("OTP send successfuly");
+        setIsDisabled(false);
+      }
     }
 
-    if(res.code==200){
+    if (res.code == 200) {
       console.log(res);
-      return
-    }
+      setIsDisabled(false);
+      toast.success(res.message);
+      const user = await JSON.stringify(res.user);
+      const token = await JSON.stringify(res.token);
+      sessionStorage.setItem("user", user);
+      sessionStorage.setItem("token", token);
+      router.push("/student");
 
-    
-    
+      return;
+    }
   };
+
+  if (isUserLoggedIn) {
+    return null;
+  }
 
   return (
     <>
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-      
+
       <div
         style={{
           minHeight: "70vh",
@@ -139,7 +168,15 @@ export default function Index() {
           />
         )}
         {activeForm === "verify" && (
-          <VerifyForm setActiveForm={setActiveForm} />
+          <VerifyForm
+            setActiveForm={setActiveForm}
+            sendOtp={sendOtp}
+            value={value}
+            otp={otp}
+            verifyOtp={verifyOtp}
+            setOtp={setOtp}
+            setValue={setValue}
+          />
         )}
       </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const VerifyForm = ({ setActiveForm,setValue, value, }) => {
+export const VerifyForm = ({ setActiveForm,setValue, value,otp,setOtp,verifyOtp,sendOtp }) => {
 
   const [timer, setTimer] = useState(30);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
@@ -17,12 +17,20 @@ export const VerifyForm = ({ setActiveForm,setValue, value, }) => {
   }, [timer]);
 
   const changeHandler = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+  
+    // Allow only numbers and limit to 6 digits
+    if (/^\d{0,6}$/.test(value)) {
+      setOtp(value)
+    }
   };
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', value);
+    console.log('Form Submitted:', value,otp);
+    verifyOtp()
+
   };
 
   const resendOTP = () => {
@@ -30,6 +38,7 @@ export const VerifyForm = ({ setActiveForm,setValue, value, }) => {
     setIsResendDisabled(true);
     console.log('Resending OTP...');
     // Implement OTP resend logic here
+    sendOtp()
   };
 
   const styles = {
@@ -47,14 +56,20 @@ export const VerifyForm = ({ setActiveForm,setValue, value, }) => {
         <h5 style={styles.heading}>ACCOUNT VERIFICATION</h5>
         <p style={styles.heading}>An OTP has been sent to your email</p>
         <form onSubmit={submitHandler}>
-          <input
-            style={styles.input}
-            type="number"
-            name="otp"
-            placeholder="Enter OTP"
-            value={value.otp}
-            onChange={changeHandler}
-          />
+        <input
+  style={styles.input}
+  type="text"
+  name="otp"
+  inputMode="numeric"
+  pattern="^\d{4,6}$"
+  placeholder="Enter OTP"
+  title="Enter a 4 to 6-digit OTP"
+  required
+  maxLength="6"
+  value={otp}
+  onChange={changeHandler}
+/>
+
           <button style={styles.button} type="submit">Verify</button>
         </form>
         <p>
