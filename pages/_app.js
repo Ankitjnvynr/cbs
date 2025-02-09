@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick-theme.css";
 import '../node_modules/react-modal-video/scss/modal-video.scss';
 import Head from "next/head";
 
+import  '../styles/logo.css'
+
 function MyApp({ Component, pageProps }) {
   return (
     <div className="relative"> 

@@ -335,14 +335,14 @@ const Header = (props) => {
         <nav
          
          style={{
-          flexDirection: "column",
+          
           background: "linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7), transparent)",
           position:'relative',
         }}
-          className="navigation navbar navbar-expand-lg navbar-light w-screen"
+          className="navigation navbar navbar-main navbar-expand-lg navbar-light w-screen"
         >
-          <Link className="navbar-brand py-3" href="/home">
-            <Image width="300" src={props.Logo} alt="logo" />
+          <Link className="navbar-brand py-3 px-3 " href="/">
+            <Image id="mainLogo"  src={props.Logo} alt="logo" />
           </Link>
           <div className="">
             <MobileMenu menus={menuItems}/>
