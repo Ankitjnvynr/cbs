@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./StudentDashboard.module.css";
 import Sidebar from "./layout/Sidebar";
+import Home from "./Home";
 
 export default function DashboardHome() {
   return (
@@ -9,7 +10,9 @@ export default function DashboardHome() {
         <Sidebar />
       </div>
 
-      <div className={styles.mainWrapper}>home</div>
+      <div className={styles.mainWrapper}>
+        <Home/>
+      </div>
     </div>
   );
 }
