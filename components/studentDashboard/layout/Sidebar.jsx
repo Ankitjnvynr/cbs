@@ -26,6 +26,7 @@ export default function Sidebar() {
     sessionStorage.removeItem("user");
     toast.success("Logged out Successfully");
     setOpen(false);
+    router.push('/student/auth')
   };
 
   return (
