@@ -50,10 +50,10 @@ export default function Sidebar() {
           </Link>
         </li>
       </ul>
-      <Button color='error' onClick={handleOpen} className={styles.link} variant="outlined">
+      <button style={{color:'red', border:'red'}}  onClick={handleOpen} className={`${styles.link}`} >
         <span className={styles.text}>Logout</span>
         <IoMdLogOut />
-      </Button>
+      </button>
 
       {/* Logout Confirmation Dialog */}
       <Dialog open={open} onClose={handleClose}>

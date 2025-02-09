@@ -21,8 +21,8 @@
   list-style: none;
   display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 7px;
+    /* margin-bottom: 20px; */
   }
 
 .link {
@@ -50,10 +50,15 @@
     flex-direction: column-reverse;
     padding-top: 100px;
   }
+  .sidebar{
+    flex-direction: row;
+    gap: 7px;
+  }
 
   .mainMenus {
     flex-direction: row;
     flex-wrap: wrap;
+    flex-grow: 3;
   }
 
   .mainMenus li {
@@ -63,8 +68,10 @@
   .link {
     text-align: center;
     font-size: large;
+    flex: 1 0 20px;
   }
   .link > .text{
     display: none;
   }
+ 
 }
