@@ -20,7 +20,7 @@ const Scrollbar = () => {
                 </ul>
                 <div className="waChatbtn">
 
-                    <WhatsAppChat/>
+                   
                 </div>
             </div>
         </div>

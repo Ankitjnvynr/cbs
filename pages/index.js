@@ -36,7 +36,7 @@ const HomePage = () => {
             
             <Scrollbar />
           
-            <CursorMaus />
+            {/* <CursorMaus /> */}
         </Fragment>
     )
 };
