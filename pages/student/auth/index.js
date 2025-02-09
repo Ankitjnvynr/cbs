@@ -113,6 +113,7 @@ export default function Index() {
   return (
     <>
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
+      
       <div
         style={{
           minHeight: "70vh",
