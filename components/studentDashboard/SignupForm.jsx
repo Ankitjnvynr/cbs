@@ -182,16 +182,7 @@ const SignupForm = ({ onSubmit, setActiveForm, setValue, value, signUp }) => {
           >
             Login
           </span>
-          <span
-            style={{
-              textDecoration: "underline",
-              cursor: "pointer",
-              color: "blue",
-            }}
-            onClick={() => setActiveForm("verify")}
-          >
-            VERIFY
-          </span>
+          
         </p>
       </div>
     </div>

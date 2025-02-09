@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const withAuth = (WrappedComponent) => {
   return (props) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
