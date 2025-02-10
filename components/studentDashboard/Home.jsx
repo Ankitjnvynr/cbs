@@ -59,7 +59,10 @@ const Styles = {
   links: {
     display: "flex",
     alignItems: "center",
-    gap: "2px", // Ensures even spacing between elements
+    gap: "2px", 
+    flexWrap:'wrap',
+    alignItems:'center',
+    justifyContent:'center'
   },
   link: {
     textDecoration: "none",
