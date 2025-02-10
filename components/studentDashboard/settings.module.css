@@ -1,0 +1,38 @@
+.picture{
+    padding: 10px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex: 1 0 230px;
+    max-width: 350px;
+    flex-direction: column;
+    gap: 10px;
+}
+.picture> .picc {
+    border-radius: 50%;
+    width: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border:  1px solid #054a84;
+}
+
+.details{
+    display: flex;
+    /* border:1px solid red; */
+    flex: 1 0 250px;
+    gap: 1px;
+    padding: 10px;
+    flex-direction: column;
+    gap: 3px;
+    
+}
+.details .item{
+    /* border: 1px solid red; */
+    display: flex;
+}
+.details .item input:disabled, .details .item textarea:disabled {
+    border: none;
+}
+.label{
+    width: 100px;
+}

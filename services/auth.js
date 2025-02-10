@@ -4,6 +4,7 @@ export class AuthService {
   constructor() {
     this.authUri = `${conf.apiBaseUri}/api/v1/auth/user`;
     this.authUriBase = `${conf.apiBaseUri}/api/v1/auth`;
+    this.profileUri = `${conf.apiBaseUri}/api/v1/profile`;
   }
 
   // User Registration
@@ -42,15 +43,14 @@ export class AuthService {
     }
   }
 
-  async checkUserExist (email){
+  async checkUserExist(email) {
     try {
-      let fullurl= `${this.authUri}?email=${email}`
-      
+      let fullurl = `${this.authUri}?email=${email}`;
+
       const response = await fetch(fullurl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          
         },
       });
 
@@ -58,6 +58,61 @@ export class AuthService {
     } catch (error) {
       console.error("Error fetching user data:", error);
       throw error;
+    }
+  }
+
+  async getMyProfile(userId, token = null) {
+    try {
+      const url = `${this.profileUri}?id=${userId}`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return await response.json();
+    } catch (error) {
+      console.log("error in gettingmy profile", error);
+    }
+  }
+
+  // updating my profile
+  async updateMyProfile(
+    userId,
+    name,
+    lastName,
+    phone,
+    dob,
+    country,
+    state,
+    district,
+    address,
+    picture
+  ) {
+    try {
+      const response = await fetch(`${this.profileUri}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          name: name,
+          last_name: lastName,
+          phone: phone,
+          dob: dob,
+          country: country,
+          state: state,
+          district: district,
+          address: address,
+          picture: picture,
+        }),
+      });
+      return await response.json();
+    } catch (error) {
+      console.log("error in  updating my profile", error);
     }
   }
 
@@ -99,61 +154,59 @@ export class AuthService {
     }
   }
 
-
   async sendOtp(email) {
     try {
-        const formData = new FormData();
-        formData.append("email", email);
+      const formData = new FormData();
+      formData.append("email", email);
 
-        const response = await fetch(`${this.authUriBase}/sendotp`, {
-            method: 'POST',
-            
-            body: formData, 
-        });
+      const response = await fetch(`${this.authUriBase}/sendotp`, {
+        method: "POST",
 
-        const data = await response.json();
+        body: formData,
+      });
 
-        if (response.ok) {
-            console.log("OTP sent successfully:", data);
-            return data;
-        } else {
-            console.error("Error sending OTP:", data);
-            throw new Error(data.message || "Failed to send OTP");
-        }
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("OTP sent successfully:", data);
+        return data;
+      } else {
+        console.error("Error sending OTP:", data);
+        throw new Error(data.message || "Failed to send OTP");
+      }
     } catch (error) {
-        console.error("Network error:", error);
-        throw error;
+      console.error("Network error:", error);
+      throw error;
     }
-}
+  }
 
+  // otp veridfy
+  async verifyOtp(email, otp) {
+    try {
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("otp", otp);
 
-// otp veridfy
-async verifyOtp (email,otp){
-  try {
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("otp", otp);
+      const response = await fetch(`${this.authUriBase}/verifyotp`, {
+        method: "POST",
 
-    const response = await fetch(`${this.authUriBase}/verifyotp`, {
-        method: 'POST',
-        
-        body: formData, 
-    });
+        body: formData,
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
+      if (response.ok) {
         console.log("OTP verify successfully:", data);
         return data;
-    } else {
+      } else {
         console.error("Error verify OTP:", data);
         throw new Error(data.message || "Failed to send OTP");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      throw error;
     }
-} catch (error) {
-    console.error("Network error:", error);
-    throw error;
-}
-}
+  }
 
   // Delete User
   async deleteUser(token, userId) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './StudentDashboard.module.css';
 import Sidebar from './layout/Sidebar';
+import Settings from './Settings';
 
 export default function SettingsLayout() {
   return (
@@ -12,7 +13,7 @@ export default function SettingsLayout() {
         </div>
 
         <div className={styles.mainWrapper} >
-settimgs
+          <Settings/>
         </div>
 
  
