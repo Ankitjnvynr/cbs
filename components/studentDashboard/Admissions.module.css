@@ -1,0 +1,38 @@
+.admissionForm{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.admissionForm > .field{
+    
+    /* outline: 1px solid gray; */
+    
+    padding: 2px 5px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 230px;
+
+}
+.admissionForm > .field>input, .admissionForm > .field>select{
+    border: none;
+    border-radius: 5px;
+    background:transparent;
+    outline: none;
+    border: 1px solid gray;
+    padding: 4px 7px;
+}
+.submitButton{
+    background: #054a84;
+    height: 40px;
+    margin-top: 25px;
+    color: white;
+    border: none;
+    padding: 7px 20px;
+    flex: 1 0 300px;
+    border-radius: 10px;
+    
+}
+.error{
+    color: red;
+    font-size: 12px;
+}
