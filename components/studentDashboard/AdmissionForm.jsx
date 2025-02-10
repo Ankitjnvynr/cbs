@@ -52,13 +52,13 @@ export default function AdmissionForm() {
     <form className={Styles.admissionForm} id='admissionForm' onSubmit={handleSubmit}>
       {['name', 'fatherName', 'rollNo', 'email'].map((field) => (
         <div className={Styles.field} key={field}>
-          <label htmlFor={field}>{field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())} :</label>
+          <label htmlFor={field}>{field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())} *:</label>
           <input type='text' id={field} value={formData[field]} onChange={handleChange} />
           {errors[field] && <span className={Styles.error}>{errors[field]}</span>}
         </div>
       ))}
       <div className={Styles.field}>
-        <label htmlFor='branch'>Branch :</label>
+        <label htmlFor='branch'>Branch *:</label>
         <select id='branch' value={formData.branch} onChange={handleChange}>
           <option value=''>Choose</option>
           <option value='BTECH'>BTECH</option>
@@ -71,7 +71,7 @@ export default function AdmissionForm() {
         {errors.branch && <span className={Styles.error}>{errors.branch}</span>}
       </div>
       <div className={Styles.field}>
-        <label htmlFor='year'>Year :</label>
+        <label htmlFor='year'>Year *:</label>
         <select id='year' value={formData.year} onChange={handleChange}>
           <option value=''>Choose</option>
           <option value='1st'>1st</option>
@@ -83,13 +83,13 @@ export default function AdmissionForm() {
       </div>
       {['mobileNo', 'whatsappNo', 'totalFees', 'feesPaidTillDate'].map((field) => (
         <div className={Styles.field} key={field}>
-          <label htmlFor={field}>{field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())} :</label>
+          <label htmlFor={field}>{field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())} *:</label>
           <input type='text' id={field} value={formData[field]} onChange={handleChange} pattern='^[0-9]+$' />
           {errors[field] && <span className={Styles.error}>{errors[field]}</span>}
         </div>
       ))}
       <div className={Styles.field}>
-        <label htmlFor='receipt'>Upload receipt of fees paid :</label>
+        <label htmlFor='receipt'>Upload receipt of fees paid *:</label>
         <input type='file' id='receipt' onChange={handleFileChange} />
         {errors.receipt && <span className={Styles.error}>{errors.receipt}</span>}
       </div>
