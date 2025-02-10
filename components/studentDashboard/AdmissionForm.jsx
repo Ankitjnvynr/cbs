@@ -24,7 +24,7 @@ export default function AdmissionForm() {
     const getUseBasicDetail = async () => {
       const user = JSON.parse(sessionStorage.getItem("user"))
       const response = await authService.getMyProfile(
-        user.id
+        user?.id
       );
       console.log(response.data);
       const data = response.data
@@ -33,14 +33,18 @@ export default function AdmissionForm() {
       setFormData(
         {
           ...formData,
-          email:user.email,
-          name:data.first_name+' '+data.last_name,
-          mobileNo:data.phone
+          email:user?.email,
+          name:data?.first_name+' '+data?.last_name,
+          mobileNo:data?.phone
         }
       )
 
     };
-    getUseBasicDetail();
+    try {
+      getUseBasicDetail();
+    } catch (error) {
+      console.log(error)
+    }
   }, []);
 
   const handleChange = (e) => {
