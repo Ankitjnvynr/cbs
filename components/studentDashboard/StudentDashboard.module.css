@@ -41,8 +41,9 @@
   flex-grow: 1;
   background-color: white;
   border-radius: 10px;
-max-height:90vh;
+  max-height:68vh;
   padding: 20px 10px;
+  overflow-y: auto;
   }
 
 @media only screen and (max-width:600px) {

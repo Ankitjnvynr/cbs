@@ -23,7 +23,7 @@ function Home() {
   }
 
   return (
-    <div style={Styles.main}>
+    <div  style={Styles.main}>
       <h5 style={Styles.welcomeText}>Welcome: {user?.name}</h5>
       <p style={Styles.links}>
         <Link href={"/student/admission"} style={Styles.link}>Admission form</Link> |  
@@ -47,6 +47,9 @@ const Styles = {
     alignItems: "center",
     height: "100%",
     flexDirection: "column",
+   
+    minHeight:'400px',
+    flexWrap:'wrap'
   },
   welcomeText: {
     fontSize: "18px",
@@ -56,7 +59,7 @@ const Styles = {
   links: {
     display: "flex",
     alignItems: "center",
-    gap: "10px", // Ensures even spacing between elements
+    gap: "2px", // Ensures even spacing between elements
   },
   link: {
     textDecoration: "none",

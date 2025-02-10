@@ -13,7 +13,7 @@
     flex: 1 0 230px;
 
 }
-.admissionForm > .field>input, .admissionForm > .field>select{
+.admissionForm > .field>input, .admissionForm > .field>select  {
     border: none;
     border-radius: 5px;
     background:transparent;
@@ -35,4 +35,7 @@
 .error{
     color: red;
     font-size: 12px;
+}
+#receipt{
+    width: 100% !important;
 }
