@@ -41,7 +41,7 @@
   flex-grow: 1;
   background-color: white;
   border-radius: 10px;
-
+max-height:90vh;
   padding: 20px 10px;
   }
 
