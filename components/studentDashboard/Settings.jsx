@@ -33,7 +33,7 @@ export default function Settings() {
       setUserData({
         name: response.data.first_name,
         phone: response.data.phone,
-        email: response.data.email,
+        email: userData.email,
         role: response.data.role,
         last_name: response.data.last_name,
         dob: response.data.dob,
