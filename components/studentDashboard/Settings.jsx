@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from "react";
-import Styles from "./settings.module.css";
-import Image from "next/image";
-import { Button } from "@mui/material";
-import authService from "../../services/auth";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import Styles from './settings.module.css';
+import Image from 'next/image';
+import { Button } from '@mui/material';
+import authService from '../../services/auth';
+import uploadService from '../../services/uploaService';
+import { toast } from 'react-toastify';
 
 export default function Settings() {
   const [userData, setUserData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    role: "",
-    last_name: "",
-    dob: "",
-    country: "",
-    state: "",
-    district: "",
-    address: "",
-    picture: "",
+    name: '',
+    phone: '',
+    email: '',
+    role: '',
+    last_name: '',
+    dob: '',
+    country: '',
+    state: '',
+    district: '',
+    address: '',
+    picture: '',
   });
 
   const [userId, setUserId] = useState(null);
-
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = await sessionStorage.getItem("user");
+      const user = await sessionStorage.getItem('user');
       const userData = JSON.parse(user);
       setUserId(userData.id);
       const response = await authService.getMyProfile(userData.id);
@@ -43,7 +43,6 @@ export default function Settings() {
         address: response.data.address,
         picture: response.data.picture,
       });
-      console.log(response);
     };
 
     fetchUserData();
@@ -53,8 +52,7 @@ export default function Settings() {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const updateData = async () => {
     const response = await authService.updateMyProfile(
       userId,
       userData.name,
@@ -68,12 +66,58 @@ export default function Settings() {
       userData.picture
     );
 
-    console.log(response);
     if (response.code === 200 || response.code === 201) {
-      toast.success("Profile Updated Successfuly");
+      toast.success('Profile Updated Successfully');
       setIsEditing(false);
-    }else{
-        toast.error("Failed to Update Profile");
+    } else {
+      toast.error('Failed to Update Profile');
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    updateData();
+  };
+
+  const uploadProfilePic = async (e) => {
+    try {
+      const file = e.target.files[0]; 
+      if (!file) return;
+
+      const response = await uploadService.upload(file, userData.picture);
+      console.log(response)
+      if (response.code === 200) {
+        const newPicture = response.newFileName;
+
+        // Update state with new picture
+        setUserData((prevState) => ({
+          ...prevState,
+          picture: newPicture,
+        }));
+
+        // Update profile with the new picture immediately
+        await authService.updateMyProfile(
+          userId,
+          userData.name,
+          userData.last_name,
+          userData.phone,
+          userData.dob,
+          userData.country,
+          userData.state,
+          userData.district,
+          userData.address,
+          newPicture // Send new picture filename
+        );
+
+        toast.success("Profile picture updated successfully");
+      } else if(response.code==415) {
+        toast.error("please upload jpg, png");
+        e.target.value = ''
+      }
+      
+    } catch (error) {
+      console.error("Error uploading profile picture:", error);
+      toast.error("Error uploading profile picture");
     }
   };
 
@@ -82,23 +126,31 @@ export default function Settings() {
   };
 
   return (
-    <div
-      style={{ height: "100%", display: "flex", flexWrap: "wrap" }}
-      className="border overflow-y-auto"
-    >
+    <div style={{ height: '100%', display: 'flex', flexWrap: 'wrap' }} className="border overflow-y-auto">
       <div className={Styles.picture}>
         <Image
           className={Styles.picc}
           src={
-            userData.picture != null
-              ? `${userData?.picture}`
-              : "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
+            userData.picture
+              ? `https://cbsdelhi.in/uploads/${userData?.picture}`
+              : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
           }
           width={70}
           height={70}
           alt="Profile Picture"
         />
-        <Button variant="outlined">Change Picture</Button>
+        <input
+          type="file"
+          accept="image/jpeg, image/png"
+          style={{ display: 'none' }}
+          id="upload-profile-pic"
+          onChange={uploadProfilePic}
+        />
+        <label htmlFor="upload-profile-pic">
+          <Button variant="outlined" component="span">
+            Change Picture
+          </Button>
+        </label>
       </div>
       <div className={Styles.details}>
         <form onSubmit={handleSubmit} className={Styles.form}>
@@ -112,7 +164,6 @@ export default function Settings() {
               name="name"
               value={userData.name}
               onChange={handleChange}
-               
               disabled={!isEditing}
               className={Styles.input}
             />
@@ -127,7 +178,6 @@ export default function Settings() {
               name="last_name"
               value={userData.last_name}
               onChange={handleChange}
-               
               disabled={!isEditing}
               className={Styles.input}
             />
@@ -142,7 +192,6 @@ export default function Settings() {
               name="phone"
               value={userData.phone}
               onChange={handleChange}
-               
               disabled={!isEditing}
               className={Styles.input}
             />
@@ -170,7 +219,6 @@ export default function Settings() {
               name="dob"
               value={userData.dob}
               onChange={handleChange}
-               
               disabled={!isEditing}
               className={Styles.input}
             />
@@ -185,7 +233,6 @@ export default function Settings() {
               name="country"
               value={userData.country}
               onChange={handleChange}
-               
               disabled={!isEditing}
               className={Styles.input}
             />
@@ -200,59 +247,23 @@ export default function Settings() {
               name="state"
               value={userData.state}
               onChange={handleChange}
-               
-              disabled={!isEditing}
-              className={Styles.input}
-            />
-          </div>
-          <div className={Styles.item}>
-            <label htmlFor="district" className={Styles.label}>
-              District:
-            </label>
-            <input
-              type="text"
-              id="district"
-              name="district"
-              value={userData.district}
-              onChange={handleChange}
-               
-              disabled={!isEditing}
-              className={Styles.input}
-            />
-          </div>
-          <div className={Styles.item}>
-            <label htmlFor="address" className={Styles.label}>
-              Address:
-            </label>
-            <textarea
-              id="address"
-              name="address"
-              value={userData.address}
-              onChange={handleChange}
-               
-              rows={3}
               disabled={!isEditing}
               className={Styles.input}
             />
           </div>
 
           {isEditing ? (
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={Styles.saveButton}
-            >
+            <Button  type="submit" variant="contained" color="primary" className={`${Styles.saveButton} mt-2`}>
               Save Profile
             </Button>
           ) : (
             <button
-            style={{
-              backgroundColor: 'none',
-             border:'none',
-              borderRadius:'5px',
-              padding:'5px 15px',
-            }}
+              style={{
+                backgroundColor: 'none',
+                border: 'none',
+                borderRadius: '5px',
+                padding: '5px 15px',
+              }}
               type="button"
               variant="contained"
               color="primary"

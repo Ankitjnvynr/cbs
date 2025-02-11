@@ -10,7 +10,7 @@ export class UploadService {
       const formData = new FormData();
       formData.append("file", file);
 
-      if (oldFile) {
+      if (oldFileName) {
         formData.append("oldFileName", oldFileName);
       }
 
@@ -22,7 +22,7 @@ export class UploadService {
       const data = await response.json();
 
       if (response.ok) {
-        console.log("File uploaded successfully:", data);
+        // console.log("File uploaded successfully:", data);
         return data;
       } else {
         console.error("Error uploading file:", data);
