@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './StudentDashboard.module.css';
 import Sidebar from './layout/Sidebar';
+import Meetings from './Meetings';
 
-export default function DashboardHome() {
+
+export default function MeetingsLayout() {
   return (
     <div
     className={styles.container}
@@ -12,8 +14,9 @@ export default function DashboardHome() {
         </div>
 
         <div className={styles.mainWrapper} >
-
+       <Meetings/>
         </div>
+      
 
  
 

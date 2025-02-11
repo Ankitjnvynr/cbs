@@ -45,6 +45,12 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link className={`${styles.link} ${router.pathname === "/student/meetings" ? styles.active : ""}`} href="/student/meetings">
+            <MdOutlineLibraryBooks />
+            <span className={styles.text}>Meetings</span>
+          </Link>
+        </li>
+        <li>
           <Link className={`${styles.link} ${router.pathname === "/student/settings" ? styles.active : ""}`} href="/student/settings">
             <IoSettingsOutline />
             <span className={styles.text}>Settings</span>
