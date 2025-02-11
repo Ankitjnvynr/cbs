@@ -34,8 +34,9 @@ export default function AdmissionForm() {
         {
           ...formData,
           email:user?.email,
-          name:data?.first_name+' '+data?.last_name,
-          mobileNo:data?.phone
+          name:data?.first_name,
+          mobileNo:data?.phone,
+          fatherName:data?.last_name
         }
       )
 
@@ -76,7 +77,7 @@ export default function AdmissionForm() {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted successfully", formData);
-      
+
     } else {
       toast.error("Enter Required Fields");
     }

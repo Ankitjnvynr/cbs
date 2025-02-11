@@ -170,7 +170,7 @@ export default function Settings() {
           </div>
           <div className={Styles.item}>
             <label htmlFor="last_name" className={Styles.label}>
-              Last Name:
+              Father:
             </label>
             <input
               type="text"
@@ -211,7 +211,7 @@ export default function Settings() {
           </div>
           <div className={Styles.item}>
             <label htmlFor="dob" className={Styles.label}>
-              Date of Birth:
+              DOB:
             </label>
             <input
               type="date"

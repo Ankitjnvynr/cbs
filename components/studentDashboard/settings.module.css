@@ -24,6 +24,7 @@
     padding: 10px;
     flex-direction: column;
     gap: 3px;
+    overflow-x: auto;
     
 }
 .details .item{
@@ -34,5 +35,9 @@
     border: none;
 }
 .label{
-    width: 100px;
+    width: 70px;
+}
+
+.details .item input{
+background: transparent;
 }
