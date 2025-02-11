@@ -27,7 +27,7 @@ const Meetings = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box display="flex" flexDirection="column" alignItems="center" p={3}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h6" gutterBottom>
           Schedule a Meeting
         </Typography>
         <DateCalendar value={selectedDate} onChange={handleDateChange} />
