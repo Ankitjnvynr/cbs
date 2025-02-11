@@ -85,7 +85,7 @@ export default function Settings() {
       if (!file) return;
 
       const response = await uploadService.upload(file, userData.picture);
-      console.log(response)
+      
       if (response.code === 200) {
         const newPicture = response.newFileName;
 

@@ -26,7 +26,7 @@ export default function AdmissionForm() {
       const response = await authService.getMyProfile(
         user?.id
       );
-      console.log(response.data);
+      // console.log(response.data);
       const data = response.data
 
 
@@ -76,6 +76,7 @@ export default function AdmissionForm() {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted successfully", formData);
+      
     } else {
       toast.error("Enter Required Fields");
     }
