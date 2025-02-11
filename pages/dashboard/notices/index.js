@@ -52,7 +52,7 @@ const DashboardPage = () => {
   }, [isModalOpen]);
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
+    const token = sessionStorage.getItem("authToken");
     if (token) {
       setIsAuthenticated(true); // Set authenticated if token exists
     } else {
