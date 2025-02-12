@@ -5,7 +5,7 @@ export class AdmissionService {
 
     constructor() {
         // Setting up the base URI for admissions
-        this.admissionUri = `${conf.apiBaseUri}/api/v1/admissions`;
+        this.admissionUri = `${conf.apiBaseUri}/api/v1/admission`;
     }
 
     // Create a new admission record
@@ -68,32 +68,32 @@ export class AdmissionService {
     }
 
     // Get all admission records with optional filters and pagination
-    async getRecords(queryParams = {}) {
-        try {
-            const queryString = new URLSearchParams(queryParams).toString();
-            const response = await fetch(
-                `${this.admissionUri}?${queryString}`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    `Failed to fetch records. Status: ${response.status}. Message: ${errorData.message || "Unknown error"}`
+        async getRecords(queryParams = {}) {
+            try {
+                const queryString = new URLSearchParams(queryParams).toString();
+                const response = await fetch(
+                    `${this.admissionUri}?${queryString}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
-            }
 
-            return await response.json();
-        } catch (error) {
-            console.error("Error in fetching data:", error.message);
-            throw error;
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(
+                        `Failed to fetch records. Status: ${response.status}. Message: ${errorData.message || "Unknown error"}`
+                    );
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error("Error in fetching data:", error.message);
+                throw error;
+            }
         }
-    }
 
     // Update an existing admission record
     async updateRecord(id, updatedData) {
