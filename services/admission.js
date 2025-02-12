@@ -4,13 +4,16 @@ export class AdmissionService {
     admissionUri;
 
     constructor() {
-        // Setting up the base URI for admission
-        this.admissionUri = `${conf.apiBaseUri}/api/v1/admission`;
+        // Setting up the base URI for admissions
+        this.admissionUri = `${conf.apiBaseUri}/api/v1/admissions`;
     }
 
     // Create a new admission record
     async addRecord({
         programme,
+        rollNo,
+        branch,
+        year,
         candidateName,
         fatherName,
         motherName,
@@ -18,7 +21,11 @@ export class AdmissionService {
         category,
         district,
         mobile,
+        whatsapp,
         email,
+        totalFees,
+        feesPaidTillDate,
+        receipt
     }) {
         try {
             const response = await fetch(this.admissionUri, {
@@ -28,6 +35,9 @@ export class AdmissionService {
                 },
                 body: JSON.stringify({
                     programme,
+                    rollNo,
+                    branch,
+                    year,
                     candidateName,
                     fatherName,
                     motherName,
@@ -35,7 +45,11 @@ export class AdmissionService {
                     category,
                     district,
                     mobile,
+                    whatsapp,
                     email,
+                    totalFees,
+                    feesPaidTillDate,
+                    receipt
                 }),
             });
 
@@ -46,20 +60,17 @@ export class AdmissionService {
                 );
             }
 
-            const responseData = await response.json();
-            return responseData;
+            return await response.json();
         } catch (error) {
             console.error("Error in saving data:", error.message);
             throw error;
         }
     }
 
-    // Get all admission records with pagination
+    // Get all admission records with optional filters and pagination
     async getRecords(queryParams = {}) {
         try {
             const queryString = new URLSearchParams(queryParams).toString();
-            console.log(`${this.admissionUri}?${queryString}`);
-            
             const response = await fetch(
                 `${this.admissionUri}?${queryString}`,
                 {
@@ -77,8 +88,7 @@ export class AdmissionService {
                 );
             }
 
-            const responseData = await response.json();
-            return responseData; // Return records and pagination metadata
+            return await response.json();
         } catch (error) {
             console.error("Error in fetching data:", error.message);
             throw error;
@@ -103,8 +113,7 @@ export class AdmissionService {
                 );
             }
 
-            const responseData = await response.json();
-            return responseData;
+            return await response.json();
         } catch (error) {
             console.error("Error in updating data:", error.message);
             throw error;
