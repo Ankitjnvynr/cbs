@@ -42,7 +42,7 @@ export default function Sidebar() {
         <li>
           <Link className={`${styles.link} ${router.pathname === "/student/admission" ? styles.active : ""}`} href="/student/admission">
             <MdOutlineLibraryBooks />
-            <span className={styles.text}>Admissions</span>
+            <span className={styles.text}>Upload receipt</span>
           </Link>
         </li>
         <li>
