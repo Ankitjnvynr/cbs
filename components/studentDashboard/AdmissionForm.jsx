@@ -96,6 +96,11 @@ export default function AdmissionForm() {
           receipt: response.newFileName,
         });
         console.log(res)
+        if(code==200 || code ==201){
+          toast.success("Reciept send seccessfuly")
+
+          
+        }
       }
     } else {
       toast.error("Enter Required Fields");
