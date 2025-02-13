@@ -4,10 +4,11 @@ import styles from '../StudentDashboard.module.css';
 import Link from 'next/link';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { IoHomeOutline } from "react-icons/io5";
-import { MdOutlineLibraryBooks } from "react-icons/md";
+import { MdOutlineGroups, MdOutlineLibraryBooks, MdOutlineReceiptLong } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdLogOut } from "react-icons/io";
 import { toast } from "react-toastify";
+import { FaRegUser } from "react-icons/fa";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -45,15 +46,22 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/student/meetings" ? styles.active : ""}`} href="/student/meetings">
-            <MdOutlineLibraryBooks />
-            <span className={styles.text}>Meetings</span>
+          <Link className={`${styles.link} ${router.pathname === "/student/payment" ? styles.active : ""}`} href="/student/payment">
+          <MdOutlineReceiptLong />
+            <span className={styles.text}>Payment history</span>
           </Link>
         </li>
         <li>
+          <Link className={`${styles.link} ${router.pathname === "/student/meetings" ? styles.active : ""}`} href="/student/meetings">
+          <MdOutlineGroups />
+            <span className={styles.text}>Meetings</span>
+          </Link>
+        </li>
+
+        <li>
           <Link className={`${styles.link} ${router.pathname === "/student/settings" ? styles.active : ""}`} href="/student/settings">
-            <IoSettingsOutline />
-            <span className={styles.text}>Settings</span>
+          <FaRegUser />
+            <span className={styles.text}>Profile</span>
           </Link>
         </li>
       </ul>

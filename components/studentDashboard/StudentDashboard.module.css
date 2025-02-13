@@ -10,7 +10,7 @@
 .sidebar {
   background: white;
   /* border: 2px solid blue; */
-  min-width: 150px;
+  min-width: 180px;
   border-radius: 20px;
   padding: 20px 10px;
   display: flex;
