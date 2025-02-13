@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from './layout/Sidebar'
 import Payment from './Payment'
 import styles from './StudentDashboard.module.css';
+import ReciptList from './ReciptList'
 
 const PaymentLayout = () => {
   return (
@@ -13,7 +14,8 @@ const PaymentLayout = () => {
         </div>
 
         <div className={styles.mainWrapper} >
-       <Payment/>
+        <h6 className="mt-4 text-center"> Payment History</h6>
+       <ReciptList  />
         </div>
       
 

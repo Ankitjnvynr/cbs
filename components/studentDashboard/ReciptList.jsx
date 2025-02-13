@@ -6,13 +6,29 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useState } from "react";
+import { useEffect } from "react";
+import admissionService from "../../services/admission";
 
+export default function ReciptList() {
+  const [rows, setRows] = useState([]);
+  const getReciptList = async () => {
+    const userData = JSON.parse(sessionStorage.getItem("user"));
+    if (userData) {
+      
+      const response = await admissionService.getRecords({email:userData.email});
+      setRows(response.data.data);
+      console.log(response.data);
+    }
+  };
 
+  useEffect(() => {
+    getReciptList();
+  }, []);
 
-export default function ReciptList({rows}) {
   return (
     <TableContainer component={Paper}>
-      <h6 className="mt-4"> Payment History</h6>
+     
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -20,6 +36,7 @@ export default function ReciptList({rows}) {
             <TableCell align="right">Total fee</TableCell>
             <TableCell align="right">Recipt</TableCell>
             <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Remark</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,6 +51,7 @@ export default function ReciptList({rows}) {
               <TableCell align="right">{row.totalFees}</TableCell>
               <TableCell align="right">{row.receipt}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
+              <TableCell style={{maxWidth:100}} align="right ">{row?.rejection_reason} </TableCell>
             </TableRow>
           ))}
         </TableBody>
