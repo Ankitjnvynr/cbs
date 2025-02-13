@@ -27,57 +27,45 @@ const LoginPage = () => {
     const [validator] = useState(new SimpleReactValidator({ className: 'errorMessage' }));
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
-        if (token) {
-            router.push('/dashboard'); // Redirect if authenticated
-        }
+      const token = sessionStorage.getItem("authToken");
+      if (token) {
+        router.push("/dashboard"); // Redirect if authenticated
+      }
     }, [router]);
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword); // Toggle visibility state
+      setShowPassword(!showPassword); // Toggle visibility state
     };
 
     const changeHandler = (e) => {
-        setValue({ ...value, [e.target.name]: e.target.value });
-        validator.showMessages();
+      setValue({ ...value, [e.target.name]: e.target.value });
+      validator.showMessages();
     };
 
     const rememberHandler = () => {
-        setValue({ ...value, remember: !value.remember });
+      setValue({ ...value, remember: !value.remember });
     };
 
     const submitForm = async (e) => {
-        e.preventDefault();
-        if (validator.allValid()) {
-            const { email, password } = value;
-            
-            const res = await authService.login(email,password)
-            // user = await JSON.parse(res)
-            if(res.data){
-                toast.success('Successfully logged in to CBS College!');
-                localStorage.setItem('authToken', res.data.token)
-                localStorage.setItem('user',JSON.stringify(res.data))
-                router.push('/dashboard')
-            }else{
-                toast.error('Invalid email or password!');
-            }
-            
-            
-            
-            
-            
-            
-            // if (email === 'cbs@gmail.com' && password === '1234' || email === 'ankitbkana@outlook.com' && password === 'ankit') {
-            //     toast.success('Successfully logged in to CBS College!');
-            //     localStorage.setItem('authToken', 'mockToken123');
-            //     router.push('/dashboard'); // Redirect to dashboard
-            // } else {
-            //     toast.error('Invalid email or password!');
-            // }
+      e.preventDefault();
+      if (validator.allValid()) {
+        const { email, password } = value;
+
+        const res = await authService.login(email, password);
+        // user = await JSON.parse(res)
+        console.log(res);
+        if (res.code == 200) {
+          toast.success("Successfully logged in to CBS College!");
+          sessionStorage.setItem("authToken", res.token);
+          sessionStorage.setItem("user", JSON.stringify(res.user));
+          router.push("/dashboard");
         } else {
-            validator.showMessages();
-            toast.error('Please fill all required fields!');
+          toast.error("Invalid email or password!");
         }
+      } else {
+        validator.showMessages();
+        toast.error("Please fill all required fields!");
+      }
     };
 
     return (

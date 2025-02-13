@@ -225,6 +225,26 @@ export class AuthService {
       throw error;
     }
   }
+
+  async forgotPassword(email, newPassword, otp) {
+    try {
+      const data = new FormData();
+      data.append("email", email);
+      data.append("password", newPassword);
+      data.append("otp", otp);
+
+      const response = await fetch(`${this.authUriBase}/changepassword`, {
+        method: "POST",
+        headers: {},
+        body: data,
+      });
+
+      const res = JSON.parse(response);
+      return res;
+    } catch (error) {
+      console.log("error in forgot password", error);
+    }
+  }
 }
 
 const authService = new AuthService();

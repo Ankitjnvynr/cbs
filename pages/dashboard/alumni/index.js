@@ -14,7 +14,7 @@ const DashboardPage = ({ alumniData }) => {
   const [loading, setLoading] = useState(true);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Remove the token
+    sessionStorage.removeItem("authToken"); // Remove the token
     router.push("/login"); // Redirect to login page
     console.log("User has logged out"); // Confirm logout
   };
