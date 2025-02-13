@@ -19,7 +19,7 @@ const PaymentLayout = () => {
       setRows(response.data.data);
       console.log(response.data);
       setCurrentPage(response.data.currentPage)
-      setTotalPage(Number(response.totalPages))
+      setTotalPage(response.totalPages)
     }
   };
 
