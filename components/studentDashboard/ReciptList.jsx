@@ -33,7 +33,7 @@ export default function ReciptList({rows}) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.created_at}
+                {row.created_at.substr(0,10)}
               </TableCell>
               <TableCell align="right">{row.totalFees}</TableCell>
               <TableCell align="right">{row.receipt}</TableCell>
