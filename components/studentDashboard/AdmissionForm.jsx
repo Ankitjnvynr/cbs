@@ -103,6 +103,7 @@ export default function AdmissionForm() {
         console.log(res)
         if (res.code == 200 || res.code == 201) {
           toast.success("Reciept send seccessfuly");
+setOldFileName('')
           e.target.reset()
         } else {
           toast.error(res.message);
