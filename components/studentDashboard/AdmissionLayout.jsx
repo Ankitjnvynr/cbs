@@ -15,7 +15,7 @@ export default function AdmissionLayout() {
     if (userData) {
       setUser(userData);
     }
-    getReciptList();
+    
   }, []);
 
   return (

@@ -10,21 +10,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import admissionService from "../../services/admission";
 
-export default function ReciptList() {
-  const [rows, setRows] = useState([]);
-  const getReciptList = async () => {
-    const userData = JSON.parse(sessionStorage.getItem("user"));
-    if (userData) {
-      
-      const response = await admissionService.getRecords({email:userData.email});
-      setRows(response.data.data);
-      console.log(response.data);
-    }
-  };
-
-  useEffect(() => {
-    getReciptList();
-  }, []);
+export default function ReciptList({rows}) {
+  
 
   return (
     <TableContainer component={Paper}>

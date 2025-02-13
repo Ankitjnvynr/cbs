@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Styles from "./Admissions.module.css";
 import { toast } from "react-toastify";
 import authService from "../../services/auth";
+import uploadService from "../../services/uploaService";
+import admissionService from "../../services/admission";
 
 export default function AdmissionForm() {
   const [formData, setFormData] = useState({
@@ -22,29 +24,23 @@ export default function AdmissionForm() {
 
   useEffect(() => {
     const getUseBasicDetail = async () => {
-      const user = JSON.parse(sessionStorage.getItem("user"))
-      const response = await authService.getMyProfile(
-        user?.id
-      );
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      const response = await authService.getMyProfile(user?.id);
       // console.log(response.data);
-      const data = response.data
+      const data = response.data;
 
-
-      setFormData(
-        {
-          ...formData,
-          email:user?.email,
-          name:data?.first_name,
-          mobileNo:data?.phone,
-          fatherName:data?.last_name
-        }
-      )
-
+      setFormData({
+        ...formData,
+        email: user?.email,
+        name: data?.first_name,
+        mobileNo: data?.phone,
+        fatherName: data?.last_name,
+      });
     };
     try {
       getUseBasicDetail();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }, []);
 
@@ -73,11 +69,34 @@ export default function AdmissionForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted successfully", formData);
 
+      const response = await uploadService.upload(formData.receipt);
+      console.log(response);
+      if (response.code == 200) {
+        const res = await admissionService.addRecord({
+          programme: formData.branch,
+          rollNo: formData.rollNo,
+          branch: formData.branch,
+          year: formData.year,
+          candidateName: formData.name,
+          fatherName: formData.fatherName,
+          motherName: "nil",
+          gender: "nil",
+          category: "nil",
+          district: "nil",
+          mobile: formData.mobileNo,
+          whatsapp: formData.whatsappNo,
+          email: formData.email,
+          totalFees: formData.totalFees,
+          feesPaidTillDate: formData.feesPaidTillDate,
+          receipt: response.newFileName,
+        });
+        console.log(res)
+      }
     } else {
       toast.error("Enter Required Fields");
     }
