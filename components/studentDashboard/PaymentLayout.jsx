@@ -37,7 +37,7 @@ const PaymentLayout = () => {
 
       <div className={styles.mainWrapper}>
         
-        <h6 className="mt-4 text-center"> Payment History</h6>
+        <h6 className="mt-1 text-center"> Payment History</h6>
         <ReciptList rows={rows} />
         <PaginationButton
           count={totalPage}

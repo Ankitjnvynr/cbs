@@ -27,7 +27,7 @@ export default function ReciptList({ rows }) {
         setIsViewrecipt={setIsViewrecipt}
       />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell>Date</TableCell>
