@@ -67,7 +67,14 @@ export default function Payments() {
 
   const handleClose = () => setOpen(false);
 
-  const handleUpdate = () => {};
+  const handleUpdate = async (data) => {
+    const response = await admissionService.updateRecord(data)
+    if(response.code == 200){
+      getReciptList(filters)
+      setOpen(false)
+      toast.success(response.message)
+    }
+  };
 
   // update modal js end
 
@@ -79,6 +86,8 @@ export default function Payments() {
         handleClose={handleClose}
         handleOpen={handleOpen}
         updatingData={updatingData}
+        setUpdatingData={setUpdatingData}
+        handleUpdate={handleUpdate}
       />
 
       {/* Filters Section */}

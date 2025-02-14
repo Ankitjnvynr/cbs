@@ -19,12 +19,23 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  overflowY: 'auto', // Add scroll for smaller screens
-  maxHeight: '90vh' // Limit height to prevent overflow
+  overflowY: 'auto',
+  maxHeight: '90vh'
 };
 
-export default function EditModal({ open, handleClose, handleOpen, updatingData }) {
+export default function EditModal({ open, handleClose, updatingData, setUpdatingData,handleUpdate }) {
   const isSmallScreen = useMediaQuery('(max-width:600px)');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission here, e.g., send data to API
+    handleUpdate(updatingData)
+    
+  };
+
+  const handleChange = (event) => {
+      setUpdatingData({ ...updatingData, [event.target.name]: event.target.value });
+  };
 
   return (
     <Modal
@@ -44,27 +55,28 @@ export default function EditModal({ open, handleClose, handleOpen, updatingData 
           <Typography id="transition-modal-title" variant="h6" component="h2">
             Edit Payment Details
           </Typography>
-          <Box component="form" sx={{ display: "grid", gap: 2, mt: 2, gridTemplateColumns: isSmallScreen ? '1fr' : 'repeat(2, 1fr)' }}>
-            <TextField label="Name" fullWidth defaultValue={updatingData?.candidateName || ""} />
-            <TextField label="Father Name" fullWidth defaultValue={updatingData?.fatherName || ""} />
-            <TextField label="Roll No" fullWidth defaultValue={updatingData?.rollNo || ""} />
-            <TextField label="Email" fullWidth defaultValue={updatingData?.email || ""} />
-            <TextField label="Mobile No" fullWidth defaultValue={updatingData?.mobile || ""} />
-            <TextField label="WhatsApp No" fullWidth defaultValue={updatingData?.whatsapp || ""} />
-            <TextField label="Total Fees" fullWidth defaultValue={updatingData?.totalFees || ""} />
-            <TextField label="Fees Paid Till Date" fullWidth defaultValue={updatingData?.feesPaidTillDate || ""} />
-            <TextField label="Branch" fullWidth defaultValue={updatingData?.branch || ""} />
-            <TextField label="Year" fullWidth defaultValue={updatingData?.year || ""} />
+          <Box component="form" onSubmit={handleSubmit} sx={{ display: "grid", gap: 2, mt: 2, gridTemplateColumns: isSmallScreen ? '1fr' : 'repeat(2, 1fr)' }}>
 
-            <TextField select label="Payment Status" fullWidth defaultValue={updatingData?.status || "pending"} sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }}>
+            <TextField label="Name" fullWidth name="candidateName" value={updatingData?.candidateName || ""} onChange={handleChange} />
+            <TextField label="Father Name" fullWidth name="fatherName" value={updatingData?.fatherName || ""} onChange={handleChange} />
+            <TextField label="Roll No" fullWidth name="rollNo" value={updatingData?.rollNo || ""} onChange={handleChange} />
+            <TextField label="Email" fullWidth name="email" value={updatingData?.email || ""} onChange={handleChange} />
+            <TextField label="Mobile No" fullWidth name="mobile" value={updatingData?.mobile || ""} onChange={handleChange} />
+            <TextField label="WhatsApp No" fullWidth name="whatsapp" value={updatingData?.whatsapp || ""} onChange={handleChange} />
+            <TextField label="Total Fees" fullWidth name="totalFees" value={updatingData?.totalFees || ""} onChange={handleChange} />
+            <TextField label="Fees Paid Till Date" fullWidth name="feesPaidTillDate" value={updatingData?.feesPaidTillDate || ""} onChange={handleChange} />
+            <TextField label="Branch" fullWidth name="branch" value={updatingData?.branch || ""} onChange={handleChange} />
+            <TextField label="Year" fullWidth name="year" value={updatingData?.year || ""} onChange={handleChange} />
+
+            <TextField select label="Payment Status" fullWidth name="status" value={updatingData?.status || "pending"} onChange={handleChange} sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }}>
               <MenuItem value="pending">Pending</MenuItem>
               <MenuItem value="approved">Approved</MenuItem>
               <MenuItem value="rejected">Rejected</MenuItem>
             </TextField>
 
-            <TextField label="Remarks" fullWidth multiline rows={3} defaultValue={updatingData?.rejection_reason || ""} sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }} />
+            <TextField label="Remarks" fullWidth name="rejection_reason" multiline rows={3} value={updatingData?.rejection_reason || ""} onChange={handleChange} sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }} />
 
-            <Button variant="contained" color="primary" fullWidth sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }}>
+            <Button type="submit" variant="contained" color="primary" fullWidth sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }}>
               Update
             </Button>
             <Button onClick={handleClose} variant="outlined" fullWidth sx={{ gridColumn: isSmallScreen ? 'span 1' : 'span 2' }}>
