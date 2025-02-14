@@ -68,11 +68,14 @@ export default function Payments() {
   const handleClose = () => setOpen(false);
 
   const handleUpdate = async (data) => {
-    const response = await admissionService.updateRecord(data)
+    const response = await admissionService.updateRecord(data.id,data)
+    console.log(response)
     if(response.code == 200){
       getReciptList(filters)
       setOpen(false)
       toast.success(response.message)
+    }else{
+      toast.error(response.message)
     }
   };
 
@@ -132,6 +135,7 @@ export default function Payments() {
           size="small"
           variant="outlined"
           select
+          style={{minWidth:150}}
         >
           <MenuItem value="">All</MenuItem>
           <MenuItem value="approved">Approved</MenuItem>

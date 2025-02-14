@@ -1,28 +1,27 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import conf from '../../../lib/conf';
-import { Button } from '@mui/material';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import conf from "../../../lib/conf";
+import { Badge, Button } from "@mui/material";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData("Cupcake", 305, 3.7, 67, 4.3),
+  createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
-export default function PaymentsList({rows,handleOpen}) {
-  
+export default function PaymentsList({ rows, handleOpen }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -59,16 +58,32 @@ export default function PaymentsList({rows,handleOpen}) {
               <TableCell align="center">{row.feesPaidTillDate}</TableCell>
               <TableCell align="center">{row.created_at}</TableCell>
               <TableCell align="center">
-                <a href={`${conf.apiBaseUri}/uploads/${row.receipt}`} target="_blank">
+                <a
+                  href={`${conf.apiBaseUri}/uploads/${row.receipt}`}
+                  target="_blank"
+                >
                   View
                 </a>
               </TableCell>
-              <TableCell align="center">{row.status}</TableCell>
+              <TableCell align="center">
+                {" "}
+                <Badge
+                  color={
+                    row.status === "approved"
+                      ? "success"
+                      : row.status === "pending"
+                      ? "warning"
+                      : "error"
+                  }
+                  badgeContent={row.status}
+                  max={999}
+                />
+              </TableCell>
               <TableCell align="center">
                 {row.rejection_reason || "N/A"}
               </TableCell>
-              <TableCell  align="center">
-                <Button onClick={()=>handleOpen(row)} >...</Button>
+              <TableCell align="center">
+                <Button onClick={() => handleOpen(row)}>...</Button>
               </TableCell>
             </TableRow>
           ))}
