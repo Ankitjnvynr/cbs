@@ -1,33 +1,49 @@
 import React, { useEffect, useState } from "react";
 import LoginLayout from "./parts/LoginLayout";
 import PaymentsList from "./parts/PaymentsList";
-import { Pagination } from "@mui/material";
+import { CircularProgress, Pagination } from "@mui/material";
 import admissionService from "../../services/admission";
+import { toast } from "react-toastify";
 
 export default function Payments() {
-    const [rows,setRows]=useState([])
-    const [totalpages, setTotalPages] = useState(10);
-    const [currentPage,setCurrentPage] = useState(3)
+  const [rows, setRows] = useState([]);
+  const [totalpages, setTotalPages] = useState(10);
+  const [loading, setLoading] = useState(true);
+  const [totalRecords, setTotalRecords] = useState();
 
-    const handleChange = (event, value) => {
-        // getReciptList(value)
-        setCurrentPage(value);
-      };
+  const [filters, setFilters] = useState({
+    page: 1,
+  });
 
-    const getReciptList = async ()=>{
-        const response = admissionService.getRecords()
+  const getReciptList = async (filters) => {
+    setLoading(true);
+    const response = await admissionService.getRecords(filters);
+    if (response.code === 200) {
+      console.log(response);
+      setRows(response.data.data);
+      setTotalRecords(response.data.totalRecords);
     }
+    setLoading(false);
+  };
 
-    useEffect (()=>{
+  useEffect(() => {
+    getReciptList();
+  }, []);
 
-    },[])
-
+  const handleChange = (event, value) => {
+    setFilters({ ...filters, page: value });
+    getReciptList(filters);
+  };
 
   return (
     <LoginLayout>
+      <h6>Payments[{totalRecords}]</h6>
 
-      <PaymentsList  />
-
+      {loading ? (
+        <CircularProgress size="30px" />
+      ) : (
+        <PaymentsList rows={rows} />
+      )}
 
       <Pagination
         style={{
@@ -38,7 +54,7 @@ export default function Payments() {
         className="my-3 t"
         count={totalpages}
         color="primary"
-        page={currentPage}
+        page={filters.page}
         onChange={handleChange}
       />
     </LoginLayout>

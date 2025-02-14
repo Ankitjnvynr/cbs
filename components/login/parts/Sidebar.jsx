@@ -34,7 +34,7 @@ export default function Sidebar() {
     <>
       <ul className={styles.mainMenus}>
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/login/dashboard" ? styles.active : ""}`} href="/login">
+          <Link className={`${styles.link} ${router.pathname === "/login/dashboard" ? styles.active : ""}`} href="/login/dashboard">
             <IoHomeOutline />
             <span className={styles.text}>Home</span>
           </Link>
