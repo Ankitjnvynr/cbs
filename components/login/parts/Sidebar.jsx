@@ -6,9 +6,10 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineGroups, MdOutlineLibraryBooks, MdOutlineReceiptLong } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
-import { IoMdLogOut } from "react-icons/io";
+import { IoIosNotificationsOutline, IoMdLogOut } from "react-icons/io";
 import { toast } from "react-toastify";
 import { FaRegUser } from "react-icons/fa";
+import { TbBrandBlogger } from "react-icons/tb";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -57,6 +58,18 @@ export default function Sidebar() {
           <Link className={`${styles.link} ${router.pathname === "/login/students" ? styles.active : ""}`} href="/login/students">
           <FaRegUser />
             <span className={styles.text}>Students</span>
+          </Link>
+        </li>
+        <li>
+          <Link className={`${styles.link} ${router.pathname === "/login/notices" ? styles.active : ""}`} href="/login/notices">
+          <IoIosNotificationsOutline />
+            <span className={styles.text}>Notices</span>
+          </Link>
+        </li>
+        <li>
+          <Link className={`${styles.link} ${router.pathname === "/login/students" ? styles.active : ""}`} href="/login/students">
+          <TbBrandBlogger />
+            <span className={styles.text}>Blogs</span>
           </Link>
         </li>
       </ul>
