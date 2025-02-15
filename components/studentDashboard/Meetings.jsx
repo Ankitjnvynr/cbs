@@ -12,8 +12,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs from "dayjs";
-import axios from "axios";
-import conf from "../../lib/conf"
+import conf from "../../lib/conf";
 
 const Meetings = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -30,26 +29,34 @@ const Meetings = () => {
 
   const handleBookSlot = async (time) => {
     const dateKey = selectedDate.format("YYYY-MM-DD");
-    
+    const formattedTime = dayjs(`${dateKey} ${time}`, "YYYY-MM-DD hh:mm A").format("YYYY-MM-DD HH:mm:ss");
+
     const eventData = {
-      summary: "Student Meeting",
-      description: "Meeting scheduled via the booking system",
-      start: `${dateKey}T${time}:00`,
-      end: `${dateKey}T${parseInt(time) + 1}:00`,
+      topic: "My Zoom Meeting",
+      start_time: formattedTime,
+      duration: 30,
     };
 
     try {
-      const response = await axios.post(`${conf.apiBaseUri}/api/v1/meetings`, { event: eventData });
-      console.log(response);
+      const response = await fetch(`${conf.apiBaseUri}/api/v1/meeting`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventData),
+      });
+      
+      const result = await response.json();
+      console.log(result);
 
-      if (response.data.success) {
-        alert(`Meeting booked! Google Meet Link: ${response.data.meetLink}`);
+      if (result.success) {
+        alert(`Meeting booked! Zoom Link: ${result.meetLink}`);
         setBookedSlots((prev) => ({ ...prev, [dateKey]: [...(prev[dateKey] || []), time] }));
       } else {
         alert("Error booking meeting");
       }
     } catch (error) {
-      console.error("Error creating Google Calendar event:", error);
+      console.error("Error creating Zoom meeting:", error);
     }
 
     setOpenDialog(false);
