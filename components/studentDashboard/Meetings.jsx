@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -13,12 +13,34 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs from "dayjs";
 import conf from "../../lib/conf";
+import meetingService from "../../services/meetings";
+import MeetingList from "./MeetingList";
 
 const Meetings = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
   const [selectedTime, setSelectedTime] = useState(null);
   const [bookedSlots, setBookedSlots] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+  const [user,setUser]=useState({name:'Guest'})
+  const [rollNo,setRollNo]= useState(0)
+  const [rows,setRows]=useState([])
+
+  const getMeetings = async (email)=>{
+    const response = await meetingService.getMeeting({
+      email:email
+    })
+    console.log('response form api',response)
+  }
+
+  useEffect(()=>{
+    const userData = JSON.parse(sessionStorage.getItem('user'))
+    console.log(userData)
+    setUser(userData)
+    if(userData){
+      getMeetings(userData.email)
+    }
+    console.log(user)
+  },[])
 
   const timeSlots = ["10:00 AM", "11:00 AM", "12:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
 
@@ -75,17 +97,19 @@ const Meetings = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box display="flex" flexDirection="column" alignItems="center" p={3}>
         <Typography variant="h6" gutterBottom>
           Schedule a Meeting
         </Typography>
+        <MeetingList rows={rows}/>
+      <Box display="flex" flexDirection="row" flexWrap='wrap' alignItems="center" p={3}>
         <DateCalendar 
           value={selectedDate} 
           onChange={handleDateChange} 
           minDate={dayjs()} // Disable past dates in calendar
         />
+        <div>
         <Typography variant="h6" mt={2}>Available Time Slots</Typography>
-        <Box display="flex" gap={2} flexWrap="wrap" mt={1}>
+        <Box display="flex" gap={2} alignItems='center' flexWrap="wrap" mt={1}>
           {timeSlots.map((time) => {
             const dateKey = selectedDate.format("YYYY-MM-DD");
             const isBooked = bookedSlots[dateKey]?.includes(time);
@@ -109,6 +133,7 @@ const Meetings = () => {
             );
           })}
         </Box>
+        </div>
       </Box>
 
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
