@@ -56,9 +56,9 @@ const LoginPage = () => {
         console.log(res);
         if (res.code == 200) {
           toast.success("Successfully logged in to CBS College!");
-          sessionStorage.setItem("authToken", res.token);
-          sessionStorage.setItem("user", JSON.stringify(res.user));
-          router.push("/dashboard");
+          localStorage.setItem("authToken", res.token);
+          localStorage.setItem("user", JSON.stringify(res.user));
+          router.push("/login/dashboard");
         } else {
           toast.error("Invalid email or password!");
         }

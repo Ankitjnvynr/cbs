@@ -98,7 +98,7 @@ export class AdmissionService {
     // Update an existing admission record
     async updateRecord(id, updatedData) {
         try {
-            const response = await fetch(`${this.admissionUri}/${id}`, {
+            const response = await fetch(`${this.admissionUri}?id=${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

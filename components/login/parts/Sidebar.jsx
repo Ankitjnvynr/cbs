@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter
-import styles from '../StudentDashboard.module.css';
+import styles from "./Layout.module.css";
 import Link from 'next/link';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineGroups, MdOutlineLibraryBooks, MdOutlineReceiptLong } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
-import { IoMdLogOut } from "react-icons/io";
+import { IoIosNotificationsOutline, IoMdLogOut } from "react-icons/io";
 import { toast } from "react-toastify";
 import { FaRegUser } from "react-icons/fa";
+import { TbBrandBlogger } from "react-icons/tb";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -34,34 +35,41 @@ export default function Sidebar() {
     <>
       <ul className={styles.mainMenus}>
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/student" ? styles.active : ""}`} href="/student">
+          <Link className={`${styles.link} ${router.pathname === "/login/dashboard" ? styles.active : ""}`} href="/login/dashboard">
             <IoHomeOutline />
             <span className={styles.text}>Home</span>
           </Link>
         </li>
+       
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/student/admission" ? styles.active : ""}`} href="/student/admission">
-            <MdOutlineLibraryBooks />
-            <span className={styles.text}>Upload receipt</span>
-          </Link>
-        </li>
-        <li>
-          <Link className={`${styles.link} ${router.pathname === "/student/payment" ? styles.active : ""}`} href="/student/payment">
+          <Link className={`${styles.link} ${router.pathname === "/login/payments" ? styles.active : ""}`} href="/login/payments">
           <MdOutlineReceiptLong />
-            <span className={styles.text}>Payment history</span>
+            <span className={styles.text}>Payments</span>
           </Link>
         </li>
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/student/meetings" ? styles.active : ""}`} href="/student/meetings">
+          <Link className={`${styles.link} ${router.pathname === "/login/meetings" ? styles.active : ""}`} href="/login/meetings">
           <MdOutlineGroups />
             <span className={styles.text}>Meetings</span>
           </Link>
         </li>
 
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/student/settings" ? styles.active : ""}`} href="/student/settings">
+          <Link className={`${styles.link} ${router.pathname === "/login/students" ? styles.active : ""}`} href="/login/students">
           <FaRegUser />
-            <span className={styles.text}>Profile</span>
+            <span className={styles.text}>Students</span>
+          </Link>
+        </li>
+        <li>
+          <Link className={`${styles.link} ${router.pathname === "/login/notices" ? styles.active : ""}`} href="/login/notices">
+          <IoIosNotificationsOutline />
+            <span className={styles.text}>Notices</span>
+          </Link>
+        </li>
+        <li>
+          <Link className={`${styles.link} ${router.pathname === "/login/students" ? styles.active : ""}`} href="/login/students">
+          <TbBrandBlogger />
+            <span className={styles.text}>Blogs</span>
           </Link>
         </li>
       </ul>
