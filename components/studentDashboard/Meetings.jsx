@@ -53,7 +53,7 @@ const Meetings = () => {
         alert(`Meeting booked! Zoom Link: ${result.meetLink}`);
         setBookedSlots((prev) => ({ ...prev, [dateKey]: [...(prev[dateKey] || []), time] }));
       } else {
-        alert("Error booking meeting");
+        alert(" booked meeting");
       }
     } catch (error) {
       console.error("Error creating Zoom meeting:", error);
