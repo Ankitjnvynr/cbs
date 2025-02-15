@@ -11,6 +11,7 @@ import {
 import admissionService from "../../services/admission";
 import { toast } from "react-toastify";
 import EditModal from "./parts/EditModal";
+import { FaSearch } from "react-icons/fa";
 
 export default function Payments() {
   const [rows, setRows] = useState([]);
@@ -147,7 +148,7 @@ export default function Payments() {
           color="primary"
           onClick={() => getReciptList(filters)}
         >
-          Apply Filters
+          <FaSearch />
         </Button>
       </div>
 

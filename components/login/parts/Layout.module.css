@@ -1,8 +1,8 @@
 .container {
   background-color: #e1e1e1;
-  min-height: 95vh;
+  min-height: 90vh;
   padding: 8px;
-  padding-top: 170px;
+  
   display: flex;
   /* border: 3px solid red; */
   gap: 5px;
@@ -10,7 +10,7 @@
 .sidebar {
   background: white;
   /* border: 2px solid blue; */
-  min-width: 180px;
+  min-width: 140px;
   border-radius: 20px;
   padding: 20px 10px;
   display: flex;
@@ -41,9 +41,10 @@
   flex-grow: 1;
   background-color: white;
   border-radius: 10px;
-  max-height:75vh;
+  
   padding: 20px 10px;
   overflow-y: auto;
+  max-height: 90vh;
 
   }
 
