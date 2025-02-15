@@ -23,6 +23,10 @@ const Meetings = () => {
   const timeSlots = ["10:00 AM", "11:00 AM", "12:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
 
   const handleDateChange = (date) => {
+    const today = dayjs();
+    if (date.isBefore(today, 'day')) {
+        return; // Prevent selecting past dates
+    }
     setSelectedDate(date);
     setSelectedTime(null);
   };
@@ -45,7 +49,7 @@ const Meetings = () => {
         },
         body: JSON.stringify(eventData),
       });
-      
+
       const result = await response.json();
       console.log(result);
 
@@ -53,13 +57,20 @@ const Meetings = () => {
         alert(`Meeting booked! Zoom Link: ${result.meetLink}`);
         setBookedSlots((prev) => ({ ...prev, [dateKey]: [...(prev[dateKey] || []), time] }));
       } else {
-        alert(" booked meeting");
+        alert("Meeting booking failed."); // More specific message
       }
     } catch (error) {
       console.error("Error creating Zoom meeting:", error);
+      alert("An error occurred. Please try again later."); // User-friendly error message
     }
 
     setOpenDialog(false);
+  };
+
+  const isTimeSlotAvailable = (time) => {
+    const now = dayjs();
+    const selectedDateTime = dayjs(`${selectedDate.format("YYYY-MM-DD")} ${time}`, "YYYY-MM-DD hh:mm A");
+    return selectedDateTime.isAfter(now);
   };
 
   return (
@@ -68,21 +79,29 @@ const Meetings = () => {
         <Typography variant="h6" gutterBottom>
           Schedule a Meeting
         </Typography>
-        <DateCalendar value={selectedDate} onChange={handleDateChange} />
+        <DateCalendar 
+          value={selectedDate} 
+          onChange={handleDateChange} 
+          minDate={dayjs()} // Disable past dates in calendar
+        />
         <Typography variant="h6" mt={2}>Available Time Slots</Typography>
         <Box display="flex" gap={2} flexWrap="wrap" mt={1}>
           {timeSlots.map((time) => {
             const dateKey = selectedDate.format("YYYY-MM-DD");
             const isBooked = bookedSlots[dateKey]?.includes(time);
+            const isAvailable = isTimeSlotAvailable(time); // Check if time slot is in the future
+
             return (
               <Button
                 key={time}
                 variant="contained"
                 color={isBooked ? "error" : "primary"}
-                disabled={isBooked}
+                disabled={isBooked || !isAvailable} // Disable if booked or in the past
                 onClick={() => {
-                  setSelectedTime(time);
-                  setOpenDialog(true);
+                  if (isAvailable) { // Only open dialog if time is available
+                    setSelectedTime(time);
+                    setOpenDialog(true);
+                  }
                 }}
               >
                 {time}
@@ -96,7 +115,7 @@ const Meetings = () => {
         <DialogTitle>Confirm Booking</DialogTitle>
         <DialogContent>
           <Typography>
-            Do you want to book the slot {selectedTime} on {selectedDate.format("MMMM D, YYYY")}? 
+            Do you want to book the slot {selectedTime} on {selectedDate.format("MMMM D, YYYY")}?
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -105,7 +124,7 @@ const Meetings = () => {
             Confirm
           </Button>
         </DialogActions>
-      </Dialog>     
+      </Dialog>
     </LocalizationProvider>
   );
 };
