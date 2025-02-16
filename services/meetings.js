@@ -66,6 +66,7 @@ export class MeetingService {
         const errorData = await response.json(); // Try to get error details from the server
         throw new Error(`Error creating meeting: ${response.status} - ${response.statusText} - ${JSON.stringify(errorData)}`); // Include more details in the error
       }
+      console.log("service response create meeting",response)
 
       const createdMeeting = await response.json(); // Parse the response to get the created meeting data
       return createdMeeting; // Return the created meeting object

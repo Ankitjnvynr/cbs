@@ -6,11 +6,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { LinearProgress } from '@mui/material';
 
 
-export default function MeetingList({rows}) {
+export default function MeetingList({rows,loading}) {
   
-  return (
+  return loading ?(
+    <LinearProgress />
+  ):
+   (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>

@@ -23,54 +23,96 @@ import { toast } from "react-toastify";
 const Meetings = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
   const [selectedTime, setSelectedTime] = useState(null);
-  const [bookedSlots, setBookedSlots] = useState({});
+  const [bookedSlots, setBookedSlots] = useState({ "2025-02-17": ["10:00 AM", "12:00 PM"],});
   const [openDialog, setOpenDialog] = useState(false);
   const [user,setUser]=useState({name:'Guest'})
   const [rollNo,setRollNo]= useState(null)
   const [rows,setRows]=useState([])
+  const [loading, setLoading] = useState(true);
 
-  const getMeetings = async (email)=>{
+  const getMeetings = async (email) => {
     const response = await meetingService.getMeeting({
-      email:email
-    })
-    console.log('response form api',response)
-    if(response.success){
-      setRows(response.meetings)
+      email: email,
+    });
+    console.log("response form api", response);
+    if (response.success) {
+      setRows(response.meetings);
+      setLoading(false);
     }
+  };
+
+  function convert24to12(time24) {
+    const [hours, minutes] = time24.split(':'); // Destructure hours and minutes
+    let hoursInt = parseInt(hours);
+  
+    const ampm = hoursInt < 12 || hoursInt === 24 ? 'AM' : 'PM';
+    hoursInt = hoursInt % 12 || 12; // Handle midnight and noon
+    return `${hoursInt}:${minutes} ${ampm}`;
   }
 
-  useEffect(()=>{
-    const userData = JSON.parse(sessionStorage.getItem('user'))
-    console.log(userData)
-    setUser(userData)
-    if(userData){
-      getMeetings(userData.email)
+  
+
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("user"));
+    console.log(userData);
+    setUser(userData);
+    if (userData) {
+      getMeetings(userData.email);
     }
-    console.log(user)
-  },[])
+    console.log(user);
+  }, []);
 
-  const timeSlots = ["10:00 AM", "11:00 AM", "12:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
+  const timeSlots = [
+    
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "2:00 PM",
+    "3:00 PM",
+    "4:00 PM",
+  ];
 
-  const handleDateChange = (date) => {
+  const handleDateChange = async (date) => {
     const today = dayjs();
-    if (date.isBefore(today, 'day')) {
-        return; // Prevent selecting past dates
+    if (date.isBefore(today, "day")) {
+      return; // Prevent selecting past dates
     }
     setSelectedDate(date);
     setSelectedTime(null);
-    console.log("selected date",selectedDate.format("YYYY-MM-DD"))
+    console.log("selected date", date.format("YYYY-MM-DD"));
+    const day = date.format("YYYY-MM-DD")
+    const response = await meetingService.getMeeting({sloats:day});
+    console.log("response form the sloats",response);
+    if(response.success){
+      const timeSlots12Hour = response.meetings.map(meeting => {
+        const time24 = meeting.meetingTime.split(' ')[1]; // Extract 24-hour time
+        return convert24to12(time24); // Convert to 12-hour format
+      });
     
+      console.log("all slots",timeSlots12Hour);
+      setBookedSlots({[day]:timeSlots12Hour})
+    }
+    console.log(bookedSlots)
   };
 
   const handleBookSlot = async (time) => {
     const dateKey = selectedDate.format("YYYY-MM-DD");
-    const formattedTime = dayjs(`${dateKey} ${time}`, "YYYY-MM-DD hh:mm A").format("YYYY-MM-DD HH:mm:ss");
+    const formattedTime = dayjs(
+      `${dateKey} ${time}`,
+      "YYYY-MM-DD hh:mm A"
+    ).format("YYYY-MM-DD HH:mm:ss");
 
-    const response = await meetingService.createMeeting(user.name,user.email,rollNo,formattedTime,30)
-    console.log(response)
-    if(response.success){
-      toast.success("Slot Booked Successfuly")
-      getMeetings(user.email)
+    const response = await meetingService.createMeeting(
+      user.name,
+      user.email,
+      rollNo,
+      formattedTime,
+      30
+    );
+    console.log(response);
+    if (response.success) {
+      toast.success("Slot Booked Successfuly");
+      getMeetings(user.email);
     }
 
     setOpenDialog(false);
@@ -78,7 +120,10 @@ const Meetings = () => {
 
   const isTimeSlotAvailable = (time) => {
     const now = dayjs();
-    const selectedDateTime = dayjs(`${selectedDate.format("YYYY-MM-DD")} ${time}`, "YYYY-MM-DD hh:mm A");
+    const selectedDateTime = dayjs(
+      `${selectedDate.format("YYYY-MM-DD")} ${time}`,
+      "YYYY-MM-DD hh:mm A"
+    );
     return selectedDateTime.isAfter(now);
   };
 
@@ -87,7 +132,7 @@ const Meetings = () => {
       <Typography variant="h6" gutterBottom>
         My Meetings
       </Typography>
-      <MeetingList rows={rows} />
+      <MeetingList loading={loading} rows={rows} />
       <Typography variant="h6" gutterBottom>
         Schedule New Meeting
       </Typography>
@@ -148,8 +193,12 @@ const Meetings = () => {
             Do you want to book the slot {selectedTime} on{" "}
             {selectedDate.format("MMMM D, YYYY")}?
           </Typography>
-         <input type="text" placeholder="Enter Roll  Number" value={rollNo} onChange={(e)=>setRollNo(e.target.value)} />
-
+          <input
+            type="text"
+            placeholder="Enter Roll  Number"
+            value={rollNo}
+            onChange={(e) => setRollNo(e.target.value)}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
@@ -157,7 +206,7 @@ const Meetings = () => {
             onClick={() => handleBookSlot(selectedTime)}
             color="primary"
             variant="contained"
-            disabled = {!rollNo>0}
+            disabled={!rollNo > 0}
           >
             Confirm
           </Button>
