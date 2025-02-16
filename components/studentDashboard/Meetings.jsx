@@ -6,6 +6,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
+  InputLabel,
   Typography,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -15,6 +17,7 @@ import dayjs from "dayjs";
 import conf from "../../lib/conf";
 import meetingService from "../../services/meetings";
 import MeetingList from "./MeetingList";
+import { Input } from "postcss";
 
 const Meetings = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -22,7 +25,7 @@ const Meetings = () => {
   const [bookedSlots, setBookedSlots] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const [user,setUser]=useState({name:'Guest'})
-  const [rollNo,setRollNo]= useState(0)
+  const [rollNo,setRollNo]= useState(null)
   const [rows,setRows]=useState([])
 
   const getMeetings = async (email)=>{
@@ -60,34 +63,8 @@ const Meetings = () => {
     const dateKey = selectedDate.format("YYYY-MM-DD");
     const formattedTime = dayjs(`${dateKey} ${time}`, "YYYY-MM-DD hh:mm A").format("YYYY-MM-DD HH:mm:ss");
 
-    const eventData = {
-      topic: "My Zoom Meeting",
-      start_time: formattedTime,
-      duration: 30,
-    };
-
-    try {
-      const response = await fetch(`${conf.apiBaseUri}/api/v1/meeting`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(eventData),
-      });
-
-      const result = await response.json();
-      console.log(result);
-
-      if (result.success) {
-        alert(`Meeting booked! Zoom Link: ${result.meetLink}`);
-        setBookedSlots((prev) => ({ ...prev, [dateKey]: [...(prev[dateKey] || []), time] }));
-      } else {
-        alert("Meeting booking failed."); // More specific message
-      }
-    } catch (error) {
-      console.error("Error creating Zoom meeting:", error);
-      alert("An error occurred. Please try again later."); // User-friendly error message
-    }
+    const response = await meetingService.createMeeting(user.name,user.email,rollNo,formattedTime,30)
+    console.log(response)
 
     setOpenDialog(false);
   };
@@ -101,44 +78,59 @@ const Meetings = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Typography variant="h6" gutterBottom>
-          My Meetings
-        </Typography>
-        <MeetingList rows={rows}/>
-        <Typography variant="h6" gutterBottom>
-          Schedule New Meeting
-        </Typography>
-      <Box display="flex" flexDirection="row" flexWrap='wrap' alignItems="center" p={3}>
-        <DateCalendar 
-          value={selectedDate} 
-          onChange={handleDateChange} 
+        My Meetings
+      </Typography>
+      <MeetingList rows={rows} />
+      <Typography variant="h6" gutterBottom>
+        Schedule New Meeting
+      </Typography>
+      <Box
+        display="flex"
+        flexDirection="row"
+        flexWrap="wrap"
+        alignItems="center"
+        p={3}
+      >
+        <DateCalendar
+          value={selectedDate}
+          onChange={handleDateChange}
           minDate={dayjs()} // Disable past dates in calendar
         />
         <div>
-        <Typography variant="h6" mt={2}>Available Time Slots</Typography>
-        <Box display="flex" gap={2} alignItems='center' flexWrap="wrap" mt={1}>
-          {timeSlots.map((time) => {
-            const dateKey = selectedDate.format("YYYY-MM-DD");
-            const isBooked = bookedSlots[dateKey]?.includes(time);
-            const isAvailable = isTimeSlotAvailable(time); // Check if time slot is in the future
+          <Typography variant="h6" mt={2}>
+            Available Time Slots
+          </Typography>
+          <Box
+            display="flex"
+            gap={2}
+            alignItems="center"
+            flexWrap="wrap"
+            mt={1}
+          >
+            {timeSlots.map((time) => {
+              const dateKey = selectedDate.format("YYYY-MM-DD");
+              const isBooked = bookedSlots[dateKey]?.includes(time);
+              const isAvailable = isTimeSlotAvailable(time); // Check if time slot is in the future
 
-            return (
-              <Button
-                key={time}
-                variant="contained"
-                color={isBooked ? "error" : "primary"}
-                disabled={isBooked || !isAvailable} // Disable if booked or in the past
-                onClick={() => {
-                  if (isAvailable) { // Only open dialog if time is available
-                    setSelectedTime(time);
-                    setOpenDialog(true);
-                  }
-                }}
-              >
-                {time}
-              </Button>
-            );
-          })}
-        </Box>
+              return (
+                <Button
+                  key={time}
+                  variant="contained"
+                  color={isBooked ? "error" : "primary"}
+                  disabled={isBooked || !isAvailable} // Disable if booked or in the past
+                  onClick={() => {
+                    if (isAvailable) {
+                      // Only open dialog if time is available
+                      setSelectedTime(time);
+                      setOpenDialog(true);
+                    }
+                  }}
+                >
+                  {time}
+                </Button>
+              );
+            })}
+          </Box>
         </div>
       </Box>
 
@@ -146,12 +138,20 @@ const Meetings = () => {
         <DialogTitle>Confirm Booking</DialogTitle>
         <DialogContent>
           <Typography>
-            Do you want to book the slot {selectedTime} on {selectedDate.format("MMMM D, YYYY")}?
+            Do you want to book the slot {selectedTime} on{" "}
+            {selectedDate.format("MMMM D, YYYY")}?
           </Typography>
+         <input type="text" placeholder="Enter Roll  Number" value={rollNo} onChange={(e)=>setRollNo(e.target.value)} />
+
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-          <Button onClick={() => handleBookSlot(selectedTime)} color="primary" variant="contained">
+          <Button
+            onClick={() => handleBookSlot(selectedTime)}
+            color="primary"
+            variant="contained"
+            disabled = {!rollNo>0}
+          >
             Confirm
           </Button>
         </DialogActions>
