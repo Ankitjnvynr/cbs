@@ -18,6 +18,7 @@ import conf from "../../lib/conf";
 import meetingService from "../../services/meetings";
 import MeetingList from "./MeetingList";
 import { Input } from "postcss";
+import { toast } from "react-toastify";
 
 const Meetings = () => {
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -57,6 +58,8 @@ const Meetings = () => {
     }
     setSelectedDate(date);
     setSelectedTime(null);
+    console.log("selected date",selectedDate.format("YYYY-MM-DD"))
+    
   };
 
   const handleBookSlot = async (time) => {
@@ -65,6 +68,10 @@ const Meetings = () => {
 
     const response = await meetingService.createMeeting(user.name,user.email,rollNo,formattedTime,30)
     console.log(response)
+    if(response.success){
+      toast.success("Slot Booked Successfuly")
+      getMeetings(user.email)
+    }
 
     setOpenDialog(false);
   };
