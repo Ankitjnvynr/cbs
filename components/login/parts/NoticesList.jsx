@@ -6,12 +6,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Badge, Button } from "@mui/material";
-import { CiEdit } from "react-icons/ci";
-import { MdDeleteOutline } from "react-icons/md";
+import { Badge, Button, Fade, Menu, MenuItem } from "@mui/material";
 
+import { TfiMoreAlt } from "react-icons/tfi";
 
 export default function NoticesList({ rows }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -22,9 +30,9 @@ export default function NoticesList({ rows }) {
             <TableCell>Link</TableCell>
             <TableCell>Date Posted</TableCell>
             <TableCell>Expiration Date</TableCell>
-            <TableCell>Priority</TableCell>
-            <TableCell align="center" >Status</TableCell>
-            <TableCell>Action</TableCell>
+          
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,19 +48,39 @@ export default function NoticesList({ rows }) {
               <TableCell>{row.content}</TableCell>
               <TableCell>{row.date_posted}</TableCell>
               <TableCell>{row.expiration_date}</TableCell>
-              <TableCell>{row.priority}</TableCell>
-              <TableCell align="center" >
+              
+              <TableCell align="center">
                 <Badge
                   color={row.status == "Active" ? "success" : "warning"}
                   badgeContent={row.status}
                   max={999}
                 ></Badge>
               </TableCell>
-              <TableCell>
-                <Button style={{marginRight:10}} className="mr-2" variant="contained" color="success" >
-                <CiEdit />
+              <TableCell align="center">
+              
+                <Button
+                  id="fade-button"
+                  aria-controls={open ? "fade-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                >
+                   <TfiMoreAlt />
                 </Button>
-                <Button variant="outlined" color="warning"><MdDeleteOutline /></Button>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    "aria-labelledby": "fade-button",
+                  }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  TransitionComponent={Fade}
+                >
+                  <MenuItem onClick={handleClose}>Edit</MenuItem>
+                  <MenuItem onClick={handleClose}>Delete</MenuItem>
+                </Menu>
+                
               </TableCell>
             </TableRow>
           ))}

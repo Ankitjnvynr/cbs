@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import LoginLayout from './parts/LoginLayout'
 import NoticesList from './parts/NoticesList'
 import noticeService from '../../services/noticeServices'
-import { Button, Typography } from '@mui/material'
+import { Button, LinearProgress, Typography } from '@mui/material'
 import NoticeModal from './parts/NoticeModal'
 
 export default function Notices() {
   const [notices,setNotices] = useState([])
   const [noticeData,setNoticeData] =useState({})
+  const [isLoading,setIsLoading]=useState(true)
 
   const getNotice = async ()=>{
     const response = await noticeService.getNotices()
@@ -15,6 +16,7 @@ export default function Notices() {
     if(response.code==200){
       setNotices(response.data)
     }
+    setIsLoading(false)
   }
 
   useEffect(()=>{ 
@@ -33,7 +35,9 @@ export default function Notices() {
       <Typography  align='center' variant='h5' >Notices</Typography>
       <Button variant='contained' onClick={handleOpen}>Add Notice</Button>
       <hr />
-        <NoticesList rows={notices}  />
+        {
+          isLoading?<LinearProgress/>:<NoticesList rows={notices}  />
+        }
     </LoginLayout>
   )
 }
