@@ -51,7 +51,7 @@
 @media only screen and (max-width:600px) {
   .container {
     flex-direction: column-reverse;
-    padding-top: 100px;
+    
   }
   .sidebar{
     flex-direction: row;
