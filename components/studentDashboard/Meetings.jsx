@@ -109,11 +109,11 @@ const Meetings = () => {
       formattedTime,
       30
     );
-    console.log(response);
-    if (response.success) {
+    console.log("response from handle nook sloat",response);
+    
       toast.success("Slot Booked Successfuly");
       getMeetings(user.email);
-    }
+    
 
     setOpenDialog(false);
   };
