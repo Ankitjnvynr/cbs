@@ -96,6 +96,7 @@ const Meetings = () => {
   };
 
   const handleBookSlot = async (time) => {
+    setLoading(true)
     const dateKey = selectedDate.format("YYYY-MM-DD");
     const formattedTime = dayjs(
       `${dateKey} ${time}`,
@@ -109,13 +110,15 @@ const Meetings = () => {
       formattedTime,
       30
     );
-    console.log("response from handle nook sloat",response);
-    
+    console.log(response);
+    if (response.success) {
       toast.success("Slot Booked Successfuly");
       getMeetings(user.email);
-    
+      setLoading(false)
+    }
 
     setOpenDialog(false);
+    setLoading(false)
   };
 
   const isTimeSlotAvailable = (time) => {
@@ -206,9 +209,9 @@ const Meetings = () => {
             onClick={() => handleBookSlot(selectedTime)}
             color="primary"
             variant="contained"
-            disabled={!rollNo > 0}
+            disabled={!rollNo > 0 || loading}
           >
-            Confirm
+            {loading?"please Wait...":"Confirm"}
           </Button>
         </DialogActions>
       </Dialog>
