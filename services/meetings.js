@@ -23,6 +23,8 @@ export class MeetingService {
         ? `${this.meetingUri}?${queryString}`
         : this.meetingUri;
 
+        console.log(url)
+
       // Fetch data from the API
       const response = await fetch(url, {
         method: "GET",
@@ -37,7 +39,7 @@ export class MeetingService {
       }
 
       const data = await response.json();
-      return data.meetings; // Returns an array of meetings
+      return data; // Returns an array of meetings
     } catch (error) {
       console.error("Error in getMeeting:", error);
       return [];

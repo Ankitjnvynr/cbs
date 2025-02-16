@@ -30,6 +30,9 @@ const Meetings = () => {
       email:email
     })
     console.log('response form api',response)
+    if(response.success){
+      setRows(response.meetings)
+    }
   }
 
   useEffect(()=>{
@@ -97,10 +100,13 @@ const Meetings = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Typography variant="h6" gutterBottom>
-          Schedule a Meeting
+      <Typography variant="h6" gutterBottom>
+          My Meetings
         </Typography>
         <MeetingList rows={rows}/>
+        <Typography variant="h6" gutterBottom>
+          Schedule New Meeting
+        </Typography>
       <Box display="flex" flexDirection="row" flexWrap='wrap' alignItems="center" p={3}>
         <DateCalendar 
           value={selectedDate} 
