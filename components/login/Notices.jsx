@@ -7,8 +7,15 @@ import NoticeModal from './parts/NoticeModal'
 
 export default function Notices() {
   const [notices,setNotices] = useState([])
-  const [noticeData,setNoticeData] =useState({})
+  const [noticeData,setNoticeData] =useState({
+    title: '',
+    link:'',
+    expiration_date:'',
+    status:true,
+    id:''
+  })
   const [isLoading,setIsLoading]=useState(true)
+  const [update,setUpdate] = useState(false)
 
   const getNotice = async ()=>{
     const response = await noticeService.getNotices()
@@ -25,18 +32,21 @@ export default function Notices() {
 
   // modl js
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true)
+    setUpdate(false)
+  };
   const handleClose = () => setOpen(false);
 
 
   return (
     <LoginLayout >
-      <NoticeModal  open={open} handleClose={handleClose} handleOpen={handleOpen} noticeData={noticeData} setNoticeData={setNoticeData} />
+      <NoticeModal  open={open} update={update} handleClose={handleClose} handleOpen={handleOpen} noticeData={noticeData} setNoticeData={setNoticeData} getNotice={getNotice} />
       <Typography  align='center' variant='h5' >Notices</Typography>
       <Button variant='contained' onClick={handleOpen}>Add Notice</Button>
       <hr />
         {
-          isLoading?<LinearProgress/>:<NoticesList rows={notices}  />
+          isLoading?<LinearProgress/>:<NoticesList getNotice={getNotice} setUpdate={setUpdate} setNoticeData={setNoticeData} setOpen={setOpen} rows={notices}  />
         }
     </LoginLayout>
   )

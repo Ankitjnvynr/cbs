@@ -9,8 +9,16 @@ import Paper from "@mui/material/Paper";
 import { Badge, Button, Fade, Menu, MenuItem } from "@mui/material";
 
 import { TfiMoreAlt } from "react-icons/tfi";
+import noticeService from "../../../services/noticeServices";
+import { toast } from "react-toastify";
 
-export default function NoticesList({ rows }) {
+export default function NoticesList({
+  rows,
+  setOpen,
+  setUpdate,
+  setNoticeData,
+  getNotice
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,6 +26,32 @@ export default function NoticesList({ rows }) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleEdit = (row) => {
+    handleClose();
+    setOpen(true);
+    setUpdate(true);
+    console.log("single row", row);
+    setNoticeData({
+      title: row.title,
+      link: row.content,
+      expiration_date: row.expiration_date,
+      status: row.status == "Active" ? true : false,
+      id: row.notice_id,
+    });
+  };
+  const handleDel = async (row) => {
+    const res = await noticeService.deleteNotice(row.notice_id);
+
+    if (res.code == 200) {
+      toast.success(res.message);
+      getNotice()
+    } else {
+      toast.error(res.message);
+    }
+    handleClose();
+
   };
 
   return (
@@ -30,7 +64,7 @@ export default function NoticesList({ rows }) {
             <TableCell>Link</TableCell>
             <TableCell>Date Posted</TableCell>
             <TableCell>Expiration Date</TableCell>
-          
+
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">Action</TableCell>
           </TableRow>
@@ -48,16 +82,15 @@ export default function NoticesList({ rows }) {
               <TableCell>{row.content}</TableCell>
               <TableCell>{row.date_posted}</TableCell>
               <TableCell>{row.expiration_date}</TableCell>
-              
+
               <TableCell align="center">
                 <Badge
                   color={row.status == "Active" ? "success" : "warning"}
-                  badgeContent={row.status}
+                  badgeContent={row.status || "Inactive"}
                   max={999}
                 ></Badge>
               </TableCell>
               <TableCell align="center">
-              
                 <Button
                   id="fade-button"
                   aria-controls={open ? "fade-menu" : undefined}
@@ -65,7 +98,7 @@ export default function NoticesList({ rows }) {
                   aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                 >
-                   <TfiMoreAlt />
+                  <TfiMoreAlt />
                 </Button>
                 <Menu
                   id="fade-menu"
@@ -77,10 +110,9 @@ export default function NoticesList({ rows }) {
                   onClose={handleClose}
                   TransitionComponent={Fade}
                 >
-                  <MenuItem onClick={handleClose}>Edit</MenuItem>
-                  <MenuItem onClick={handleClose}>Delete</MenuItem>
+                  <MenuItem onClick={() => handleEdit(row)}>Edit</MenuItem>
+                  <MenuItem onClick={() => handleDel(row)}>Delete</MenuItem>
                 </Menu>
-                
               </TableCell>
             </TableRow>
           ))}

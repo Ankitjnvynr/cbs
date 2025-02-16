@@ -8,6 +8,8 @@ import { useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import noticeService from "../../../services/noticeServices";
+import { toast } from "react-toastify";
 
 const style = {
   position: "fixed",
@@ -30,8 +32,9 @@ export default function NoticeModal({
   noticeData,
   setNoticeData,
   update = false,
-  handleSave,
+  getNotice,
 }) {
+  const [isLoading, setIsLoading] = useState(false);
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleChange = (event) => {
@@ -42,10 +45,34 @@ export default function NoticeModal({
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    setIsLoading(true);
     event.preventDefault();
-    handleSave(noticeData);
+    if (update) {
+      const response = await noticeService.updateNotice(
+        noticeData.id,
+        noticeData.title,
+        noticeData.link,
+        noticeData.expiration_date,
+        noticeData.status ? "Active" : "Inactive"
+      );
+      console.log(response);
+      if (response.code == 200) {
+        getNotice();
+        toast.success(response.message);
+      }
+    } else {
+      const response = await noticeService.createNotice(
+        noticeData.title,
+        noticeData.link,
+        noticeData.expiration_date,
+        noticeData.status ? "Active" : "Inactive"
+      );
+      console.log(response);
+      getNotice();
+    }
     handleClose();
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -83,36 +110,17 @@ export default function NoticeModal({
           required
         />
         <TextField
-          label="Content"
+          label="Link"
           fullWidth
           margin="normal"
           multiline
-          rows={3}
-          name="content"
-          value={noticeData?.content}
+          rows={2}
+          name="link"
+          value={noticeData?.link}
           onChange={handleChange}
           required
         />
-        <TextField
-          label="Author"
-          fullWidth
-          margin="normal"
-          name="author"
-          value={noticeData?.author}
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          label="Date Posted"
-          type="date"
-          fullWidth
-          margin="normal"
-          name="date_posted"
-          value={noticeData?.date_posted}
-          onChange={handleChange}
-          InputLabelProps={{ shrink: true }}
-          required
-        />
+
         <TextField
           label="Expiration Date"
           type="date"
@@ -124,7 +132,7 @@ export default function NoticeModal({
           InputLabelProps={{ shrink: true }}
           required
         />
-        <TextField
+        {/* <TextField
           label="Priority"
           fullWidth
           margin="normal"
@@ -132,24 +140,24 @@ export default function NoticeModal({
           value={noticeData?.priority}
           onChange={handleChange}
           required
-        />
+        /> */}
         <FormControlLabel
           control={
             <Switch
-              checked={noticeData?.status}
+              checked={noticeData.status}
               onChange={handleChange}
               name="status"
             />
           }
-          label="Active"
+          label={noticeData.status ? "Active" : "Inactive"}
         />
 
         <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
           <Button onClick={handleClose} variant="outlined" sx={{ mr: 1 }}>
             Close
           </Button>
-          <Button type="submit" variant="contained">
-            Save
+          <Button disabled={isLoading} type="submit" variant="contained">
+            {isLoading ? "please Wait..." : "Save"}
           </Button>
         </Box>
       </Box>
