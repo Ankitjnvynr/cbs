@@ -14,10 +14,11 @@ import {
   Button,
   Select,
   MenuItem,
+  LinearProgress,
 } from "@mui/material";
 import { CgMoreAlt } from "react-icons/cg";
 
-export default function MeetingsList({ rows, onUpdateStatus }) {
+export default function MeetingsList({ rows, onUpdateStatus,loading }) {
   const [open, setOpen] = React.useState(false);
   const [selectedMeeting, setSelectedMeeting] = React.useState(null);
   const [newStatus, setNewStatus] = React.useState("");
@@ -54,43 +55,48 @@ export default function MeetingsList({ rows, onUpdateStatus }) {
               <TableCell align="left">Action</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <Typography variant="body1">
-                    {row.studentName} ({row.rollNo})
-                  </Typography>
-                  <Typography variant="caption">{row.studentEmail}</Typography>
-                </TableCell>
-                <TableCell align="left">
-                  <Typography>id: {row.meetingId}</Typography>
-                  <Typography>pswd: {row.meetingPassword}</Typography>
-                </TableCell>
-                <TableCell align="left">
-                  {row.meetingTime.substr(0, 16)}
-                </TableCell>
-                <TableCell align="center">
-                  {row.status === "done" ? (
-                    <Badge color="success" badgeContent={row.status} />
-                  ) : (
-                    row.status === "expired"?
-                    <Badge color="error" badgeContent={row.status} />:
-                    row.status
-                  )}
-                </TableCell>
-                <TableCell align="left">
-                  <CgMoreAlt
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleOpen(row)}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+         {
+            loading ?(<LinearProgress />):
+            (
+                <TableBody>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <Typography variant="body1">
+                        {row.studentName} ({row.rollNo})
+                      </Typography>
+                      <Typography variant="caption">{row.studentEmail}</Typography>
+                    </TableCell>
+                    <TableCell align="left">
+                      <Typography>id: {row.meetingId}</Typography>
+                      <Typography>pswd: {row.meetingPassword}</Typography>
+                    </TableCell>
+                    <TableCell align="left">
+                      {row.meetingTime.substr(0, 16)}
+                    </TableCell>
+                    <TableCell align="center">
+                      {row.status === "done" ? (
+                        <Badge color="success" badgeContent={row.status} />
+                      ) : (
+                        row.status === "expired"?
+                        <Badge color="error" badgeContent={row.status} />:
+                        row.status
+                      )}
+                    </TableCell>
+                    <TableCell align="left">
+                      <CgMoreAlt
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleOpen(row)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            )
+         }
         </Table>
       </TableContainer>
 

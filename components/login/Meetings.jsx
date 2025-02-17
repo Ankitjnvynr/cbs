@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoginLayout from "./parts/LoginLayout";
-import { Pagination, Typography } from "@mui/material";
+import { Button, Pagination, Typography } from "@mui/material";
 import MeetingsList from "./parts/MeetingsList";
 import meetingService from "../../services/meetings";
 import { toast } from "react-toastify";
@@ -23,6 +23,7 @@ export default function Meetings() {
       setTotalPages(response.pagination.total_pages);
       setTotalMeetings(response.pagination.total_meetings);
     }
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -49,8 +50,8 @@ export default function Meetings() {
 
   return (
     <LoginLayout>
-      <Typography>Meetings({totalMeetings})</Typography>
-      <MeetingsList onUpdateStatus={onUpdateStatus} rows={meetings} />
+      <Typography>Meetings ({totalMeetings})  <Button onClick={()=>getMeetings()} >refresh</Button></Typography>
+      <MeetingsList loading={loading} onUpdateStatus={onUpdateStatus} rows={meetings} />
       <Pagination onChange={handlePage} page={currentPage}  style={{display:'flex',justifyContent:'center'}} className="my-3" count={totalPages} color="primary" />
     </LoginLayout>
   );
