@@ -77,17 +77,14 @@ export class MeetingService {
   }
 
 
-  async updateMeeting(id, studentName, studentEmail, rollNo, start_time, duration) {
+  async updateMeeting(id, status) {
     try {
         const meetingJson = JSON.stringify({
-            studentName,
-            studentEmail,
-            rollNo,
-            start_time,
-            duration,
+            id,
+            status
         });
 
-        const response = await fetch(`${this.meetingUri}/${id}`, { // Use the meeting ID in the URL
+        const response = await fetch(`${this.meetingUri}`, { // Use the meeting ID in the URL
             method: "PUT", // Or PATCH if you're updating partially
             headers: {
                 "Content-Type": "application/json",
