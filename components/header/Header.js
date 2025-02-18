@@ -199,18 +199,18 @@ const Header = (props) => {
       link: "/",
       subMenu: [
         { label: "Class Rooms & campus", link: "/" },
-        { label: "Library", link: "/" },
+        { label: "Library", link: "/library" },
         { label: "Computer Center", link: "/" },
-        { label: "Sports", link: "/" },
+        { label: "Sports", link: "/sports" },
         { label: "Infrastructure", link: "/" },
         {
           label: "All Facilities",
           link: "/",
           subMenu: [
             { label: "Laboratories & Workshop", link: "/" },
-            { label: "Canteen & Cafeteria", link: "/" },
+            { label: "Canteen & Cafeteria", link: "/canteen" },
             { label: "Dispensary/Health Zone", link: "/" },
-            { label: "Hostels", link: "/" },
+            { label: "Hostels", link: "/hostel" },
             { label: "Transport", link: "/" },
             { label: "Anti Rangging Comunity", link: "/" },
             { label: "College Internal Complaint Committee", link: "/" },
