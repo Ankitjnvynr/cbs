@@ -67,7 +67,7 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
-          <Link className={`${styles.link} ${router.pathname === "/login/students" ? styles.active : ""}`} href="/login/students">
+          <Link className={`${styles.link} ${router.pathname === "/login/blogs" ? styles.active : ""}`} href="/login/blogs">
           <TbBrandBlogger />
             <span className={styles.text}>Blogs</span>
           </Link>
