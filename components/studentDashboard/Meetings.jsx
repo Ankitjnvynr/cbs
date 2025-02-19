@@ -37,7 +37,6 @@ const Meetings = () => {
     const response = await meetingService.getMeeting({
       studentEmail: email,
     });
-    console.log("response form api", response);
     if (response.success) {
       setRows(response.meetings);
       setLoading(false);
@@ -55,12 +54,10 @@ const Meetings = () => {
 
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem("user"));
-    console.log(userData);
     setUser(userData);
     if (userData) {
       getMeetings(userData.email);
     }
-    console.log(user);
   }, []);
 
   const timeSlots = [
@@ -79,20 +76,18 @@ const Meetings = () => {
     }
     setSelectedDate(date);
     setSelectedTime(null);
-    console.log("selected date", date.format("YYYY-MM-DD"));
+
     const day = date.format("YYYY-MM-DD");
     const response = await meetingService.getMeeting({ sloats: day });
-    console.log("response form the sloats", response);
+
     if (response.success) {
       const timeSlots12Hour = response.meetings.map((meeting) => {
         const time24 = meeting.meetingTime.split(" ")[1]; // Extract 24-hour time
         return convert24to12(time24); // Convert to 12-hour format
       });
 
-      console.log("all slots", timeSlots12Hour);
       setBookedSlots({ [day]: timeSlots12Hour });
     }
-    console.log(bookedSlots);
   };
 
   const handleBookSlot = async (time) => {
@@ -110,24 +105,20 @@ const Meetings = () => {
       formattedTime,
       30
     );
-    console.log(response);
     if (response.success) {
       toast.success("Slot Booked Successfuly");
       getMeetings(user.email);
       setLoading(false);
       const day = selectedDate.format("YYYY-MM-DD");
       const response = await meetingService.getMeeting({ sloats: day });
-      console.log("response form the sloats", response);
       if (response.success) {
         const timeSlots12Hour = response.meetings.map((meeting) => {
           const time24 = meeting.meetingTime.split(" ")[1]; // Extract 24-hour time
           return convert24to12(time24); // Convert to 12-hour format
         });
 
-        console.log("all slots", timeSlots12Hour);
         setBookedSlots({ [day]: timeSlots12Hour });
       }
-      console.log(bookedSlots);
     }
 
     setOpenDialog(false);
@@ -140,8 +131,7 @@ const Meetings = () => {
       `${selectedDate.format("YYYY-MM-DD")} ${time}`,
       "YYYY-MM-DD hh:mm A"
     );
-    const tomarrow = now.add(1,'day')
-    console.log("now",now)
+    const tomarrow = now.add(1, "day");
     return selectedDateTime.isAfter(tomarrow);
   };
 
@@ -194,8 +184,6 @@ const Meetings = () => {
                         studentEmail: user.email,
                       });
 
-                      console.log(response);
-
                       // Check if any meeting has status "scheduled"
                       const isMeetingScheduled =
                         response.success &&
@@ -228,14 +216,13 @@ const Meetings = () => {
           <div>
             <DialogTitle> Message</DialogTitle>
             <Typography padding={3}>
-               You have a scheduled meeting. Please check your calendar.
-              <Typography>
-              and if not contact to admin
-              </Typography>
-              </Typography>
+              You have a scheduled meeting. Please check your calendar.
+              <Typography>and if not contact to admin</Typography>
+            </Typography>
             <DialogActions>
-              <Button variant="outlined" onClick={() => setOpenDialog(false)}>Ok</Button>
-            
+              <Button variant="outlined" onClick={() => setOpenDialog(false)}>
+                Ok
+              </Button>
             </DialogActions>
           </div>
         ) : (
