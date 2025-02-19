@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import SectionTitle from "../SectionTitle/SectionTitle";
 import ProjectCard from './ProjectCard';
-import Projects from "../../api/projects";
+import Projects from "./projects";
 
 
 const ProjectSection = (props) => {
