@@ -140,7 +140,9 @@ const Meetings = () => {
       `${selectedDate.format("YYYY-MM-DD")} ${time}`,
       "YYYY-MM-DD hh:mm A"
     );
-    return selectedDateTime.isAfter(now);
+    const tomarrow = now.add(1,'day')
+    console.log("now",now)
+    return selectedDateTime.isAfter(tomarrow);
   };
 
   return (
