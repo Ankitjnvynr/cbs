@@ -70,6 +70,7 @@ const Meetings = () => {
     "2:00 PM",
     "3:00 PM",
     "4:00 PM",
+    "5:30 PM",
   ];
 
   const handleDateChange = async (date) => {
@@ -136,10 +137,12 @@ const Meetings = () => {
 
   const isTimeSlotAvailable = (time) => {
     const now = dayjs();
+    console.log("now",now)
     const selectedDateTime = dayjs(
       `${selectedDate.format("YYYY-MM-DD")} ${time}`,
       "YYYY-MM-DD hh:mm A"
     );
+    
     return selectedDateTime.isAfter(now);
   };
 
