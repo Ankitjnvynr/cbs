@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import blogs from '../../api/blogs'
+import blogs from './blogs'
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Image from "next/image";
 

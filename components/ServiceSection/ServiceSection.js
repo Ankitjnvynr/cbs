@@ -1,5 +1,5 @@
 import React from "react";
-import Services from "../../api/Services";
+import Services from "./Services";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import ServiceCard from "./ServiceCard"
 import ShapeOn from '/public/images/services/bg.jpeg'
