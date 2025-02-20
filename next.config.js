@@ -2,7 +2,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export', // Enables static export
+    output: 'standalone', // Enables static export
     images: {
       unoptimized: true, // Prevents image optimization issues
     },
@@ -10,4 +10,6 @@ const nextConfig = {
   };
   
   module.exports = nextConfig;
+  
+
   
