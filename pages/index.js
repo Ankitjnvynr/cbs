@@ -15,29 +15,35 @@ import CursorMaus from '../components/CursorMaus/CursorMaus';
 import Phone from '/public/images/telephone.svg'
 import Logo from '/public/images/cbslogo.png'
 import NoticeBoard from '../components/hero/NoticeBoard';
-
-
+import Head from "next/head";
 
 const HomePage = () => {
-    return (
-        <Fragment>
-            <Navbar  Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
-            <Hero />
-            <NoticeBoard/>
-            <FunfactSecion hclass="funfact-section" />
-            <About />
-            <ServiceSection hclass={'services-section'} />
-            {/* <VideosSection /> */}
-            <ProjectSection hclass={"project-section"} />
-            <TestimonialSection />
-            <CtaSection />
-            <BlogSection />
-            <Footer />
-            
-            <Scrollbar />
-          
-            {/* <CursorMaus /> */}
-        </Fragment>
-    )
+  return (
+    <Fragment>
+      <Head>
+        <title>CBS Group Of Institution Jhajjar</title>
+        <meta name="description" content="Welcome to CBS college." />
+      </Head>
+
+
+
+      <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
+      <Hero />
+      <NoticeBoard />
+      <FunfactSecion hclass="funfact-section" />
+      <About />
+      <ServiceSection hclass={"services-section"} />
+      {/* <VideosSection /> */}
+      <ProjectSection hclass={"project-section"} />
+      <TestimonialSection />
+      <CtaSection />
+      <BlogSection />
+      <Footer />
+
+      <Scrollbar />
+
+      {/* <CursorMaus /> */}
+    </Fragment>
+  );
 };
 export default HomePage;
