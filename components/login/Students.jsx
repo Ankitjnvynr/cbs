@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  useMediaQuery,
 } from "@mui/material";
 import { FaFilter, FaPlus } from "react-icons/fa";
 import ExcelReader from "./parts/ExcelReader";
@@ -27,6 +28,7 @@ export default function Students() {
   const [totalPages, setTotalPages] = useState(1);
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openAddStudentModal, setOpenAddStudentModal] = useState(false);
+  
   const [filters, setFilters] = useState({
     name: "",
     email: "",
@@ -37,6 +39,10 @@ export default function Students() {
     page: 1,
     limit: 10,
   });
+
+
+  const isMobile = useMediaQuery("(max-width:600px)");
+
 
   const getStudents = async () => {
     setIsLoading(true);
@@ -99,7 +105,7 @@ export default function Students() {
           startIcon={<FaPlus />}
           className="hidden sm:flex"
         >
-          Add Student
+          {!isMobile && "Add Student"}
         </Button>
         <ExcelReader/>
 
@@ -111,7 +117,7 @@ export default function Students() {
           startIcon={<FaFilter />}
           className="hidden sm:flex"
         >
-          Filters
+          {!isMobile && "Filters"}
         </Button>
       </div>
 

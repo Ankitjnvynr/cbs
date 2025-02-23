@@ -14,12 +14,16 @@ import {
   TableHead,
   TableRow,
   Paper,
+  useMediaQuery,
 } from "@mui/material";
 import { FiUpload } from "react-icons/fi"; // React Icon for Upload
 
 export default function ExcelReader() {
   const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -51,7 +55,7 @@ export default function ExcelReader() {
         startIcon={<FiUpload />}
         onClick={() => setIsModalOpen(true)}
       >
-        Upload Excel File
+        {!isMobile && "Upload Excel File"}
       </Button>
 
       {/* Modal for file upload */}
