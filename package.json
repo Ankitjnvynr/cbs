@@ -24,6 +24,7 @@
     "dompurify": "^3.1.7",
     "dotenv": "^16.4.5",
     "eslint-config-next": "^13.0.7",
+    "file-saver": "^2.0.5",
     "memfs": "^4.6.0",
     "mysql2": "^3.11.3",
     "next": "^13.0.7",
@@ -58,6 +59,7 @@
     "swiper": "^8.4.5",
     "typeorm": "^0.3.20",
     "typewriter-effect": "^2.21.0",
+    "xlsx": "^0.18.5",
     "yet-another-react-lightbox": "^3.11.0"
   },
   "devDependencies": {
