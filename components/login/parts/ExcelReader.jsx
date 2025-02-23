@@ -45,7 +45,7 @@ export default function ExcelReader() {
   return (
     <Box className="border">
       {/* Button to open modal */}
-      <Button 
+      <Button
         variant="contained"
         color="primary"
         startIcon={<FiUpload />}
@@ -93,34 +93,35 @@ export default function ExcelReader() {
               Select File
             </Button>
           </label>
+          {console.log("data", data)}
+          {/* Display Data in Table */}
+
+          {data.length > 0 && (
+            <TableContainer component={Paper} sx={{ mt: 3 }}>
+              <Table size="small" aria-label="uploaded data">
+                <TableHead>
+                  <TableRow>
+                    {Object.keys(data[0]).map((key) => (
+                      <TableCell key={key} sx={{ fontWeight: "bold" }}>
+                        {key}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((row, index) => (
+                    <TableRow key={index}>
+                      {Object.values(row).map((value, idx) => (
+                        <TableCell key={idx}>{value}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
         </Box>
       </Modal>
-
-      {/* Display Data in Table */}
-      {data.length > 0 && (
-        <TableContainer component={Paper} sx={{ mt: 3 }}>
-          <Table size="small" aria-label="uploaded data">
-            <TableHead>
-              <TableRow>
-                {Object.keys(data[0]).map((key) => (
-                  <TableCell key={key} sx={{ fontWeight: "bold" }}>
-                    {key}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((row, index) => (
-                <TableRow key={index}>
-                  {Object.values(row).map((value, idx) => (
-                    <TableCell key={idx}>{value}</TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
     </Box>
   );
 }
