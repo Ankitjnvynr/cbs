@@ -21,6 +21,8 @@ import ExcelReader from "./parts/ExcelReader";
 
 export default function Students() {
   const [isLoading, setIsLoading] = useState(true);
+  const [totalStudents, setTotalStudents] = useState(0);
+
   const [students, setStudents] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [openFilterModal, setOpenFilterModal] = useState(false);
@@ -39,10 +41,12 @@ export default function Students() {
   const getStudents = async () => {
     setIsLoading(true);
     const response = await studentService.getStudents(filters);
+    console.log(response);
 
     if (response.code === 200) {
       setStudents(response.data);
       setTotalPages(Math.ceil(response.total_students / filters.limit));
+      setTotalStudents(response.total_students)
     }
     setIsLoading(false);
   };
@@ -82,7 +86,23 @@ export default function Students() {
   return (
     <LoginLayout>
       {/* Top Buttons Section */}
-      <div className="flex gap-2 p-0 justify-end mb-1">
+      <div
+        style={{ display: "flex", justifyContent: "space-between" }}
+        className="flex gap-2 p-0 justify-end mb-1"
+      >
+        {/* Add Student Button */}
+        <Button
+          sx={{ marginLeft: "5px" }}
+          variant="contained"
+          color="primary"
+          onClick={() => setOpenAddStudentModal(true)}
+          startIcon={<FaPlus />}
+          className="hidden sm:flex"
+        >
+          Add Student
+        </Button>
+        <ExcelReader/>
+
         {/* Filter Button */}
         <Button
           variant="contained"
@@ -93,21 +113,6 @@ export default function Students() {
         >
           Filters
         </Button>
-       
-        
-
-        {/* Add Student Button */}
-        <Button
-        sx={{marginLeft: '5px'}}
-          variant="contained"
-          color="primary"
-          onClick={() => setOpenAddStudentModal(true)}
-          startIcon={<FaPlus />}
-          className="hidden sm:flex"
-        >
-          Add Student
-        </Button>
-        
       </div>
 
       {/* Student List */}
@@ -201,11 +206,12 @@ export default function Students() {
           <TextField size="small" label="Phone" fullWidth margin="dense" />
           <TextField size="small" label="Class" fullWidth margin="dense" />
           <Select size="small" fullWidth margin="normal" displayEmpty>
-            <MenuItem selected value="">Select Status</MenuItem>
+            <MenuItem selected value="">
+              Select Status
+            </MenuItem>
             <MenuItem value="1">Verified</MenuItem>
             <MenuItem value="0">Not Verified</MenuItem>
           </Select>
-         
         </DialogContent>
         <DialogActions>
           <Button
@@ -215,8 +221,6 @@ export default function Students() {
             Cancel
           </Button>
           <Button color="primary">Add Student</Button>
-
-         
         </DialogActions>
       </Dialog>
     </LoginLayout>
