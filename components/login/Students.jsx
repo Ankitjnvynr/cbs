@@ -16,9 +16,13 @@ import {
   DialogContent,
   DialogActions,
   useMediaQuery,
+  Typography,
 } from "@mui/material";
 import { FaFilter, FaPlus } from "react-icons/fa";
 import ExcelReader from "./parts/ExcelReader";
+import { toast } from "react-toastify";
+
+import authService from "../../services/auth";
 
 export default function Students() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +32,13 @@ export default function Students() {
   const [totalPages, setTotalPages] = useState(1);
   const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openAddStudentModal, setOpenAddStudentModal] = useState(false);
-  
+  const [newStudentData, setNewStudentData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
   const [filters, setFilters] = useState({
     name: "",
     email: "",
@@ -40,9 +50,7 @@ export default function Students() {
     limit: 10,
   });
 
-
   const isMobile = useMediaQuery("(max-width:600px)");
-
 
   const getStudents = async () => {
     setIsLoading(true);
@@ -52,7 +60,7 @@ export default function Students() {
     if (response.code === 200) {
       setStudents(response.data);
       setTotalPages(Math.ceil(response.total_students / filters.limit));
-      setTotalStudents(response.total_students)
+      setTotalStudents(response.total_students);
     }
     setIsLoading(false);
   };
@@ -89,6 +97,59 @@ export default function Students() {
     });
   };
 
+  const handleCreateStudent = async () => {
+    setIsLoading(true);
+    // checking the email is matching pattern or not
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (
+      !newStudentData.name ||
+      !newStudentData.email ||
+      !newStudentData.phone
+    ) {
+      toast.error("All fields are required");
+      setIsLoading(false);
+      return;
+    }
+    if (!emailPattern.test(newStudentData.email)) {
+      toast.error("Invalid Email");
+      setIsLoading(false);
+      return;
+    }
+    const response = await authService.register(
+      newStudentData.name,
+      newStudentData.email,
+      newStudentData.email,
+      newStudentData.phone
+    );
+    if (response.code === 200) {
+      const res = await authService.notifyStudent(newStudentData.name,newStudentData.email);
+      if(res.code == 200){
+        toast.success("notified successfully");
+      }
+      toast.success("Student added successfully");
+      setNewStudentData({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+      });
+      setOpenAddStudentModal(false);
+      setIsLoading(false);
+
+    } else {
+      toast.error(response.error);
+      setNewStudentData({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+      });
+      setOpenAddStudentModal(false);
+      
+    }
+    setIsLoading(false);
+  };
+
   return (
     <LoginLayout>
       {/* Top Buttons Section */}
@@ -107,7 +168,7 @@ export default function Students() {
         >
           {!isMobile && "Add Student"}
         </Button>
-        <ExcelReader/>
+        <ExcelReader />
 
         {/* Filter Button */}
         <Button
@@ -206,18 +267,42 @@ export default function Students() {
         <DialogTitle>Add Student</DialogTitle>
         <DialogContent>
           {/* Add Student Form Fields */}
-          <TextField size="small" label="Name" fullWidth margin="dense" />
-          <TextField size="small" label="Email" fullWidth margin="dense" />
-          <TextField size="small" label="Roll No" fullWidth margin="dense" />
-          <TextField size="small" label="Phone" fullWidth margin="dense" />
-          <TextField size="small" label="Class" fullWidth margin="dense" />
-          <Select size="small" fullWidth margin="normal" displayEmpty>
-            <MenuItem selected value="">
-              Select Status
-            </MenuItem>
-            <MenuItem value="1">Verified</MenuItem>
-            <MenuItem value="0">Not Verified</MenuItem>
-          </Select>
+          <TextField
+            required
+            size="small"
+            value={newStudentData.name}
+            onChange={(e) => {
+              setNewStudentData({ ...newStudentData, name: e.target.value });
+            }}
+            label="Name"
+            fullWidth
+            margin="dense"
+          />
+          <TextField
+            required
+            size="small"
+            label="Email"
+            fullWidth
+            margin="dense"
+            value={newStudentData.email}
+            onChange={(e) => {
+              setNewStudentData({ ...newStudentData, email: e.target.value });
+            }}
+          />
+          <TextField
+            required
+            size="small"
+            label="Phone"
+            fullWidth
+            margin="dense"
+            value={newStudentData.phone}
+            onChange={(e) => {
+              setNewStudentData({ ...newStudentData, phone: e.target.value });
+            }}
+          />
+          <Typography variant="caption" color="textSecondary">
+            Password will be sent to the student's email.
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button
@@ -226,7 +311,9 @@ export default function Students() {
           >
             Cancel
           </Button>
-          <Button color="primary">Add Student</Button>
+          <Button variant="outlined" disabled={isLoading} onClick={handleCreateStudent} color="primary">
+            {isLoading?'Please Wait...':'Add Student'}
+          </Button>
         </DialogActions>
       </Dialog>
     </LoginLayout>

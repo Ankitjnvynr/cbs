@@ -5,6 +5,7 @@ export class AuthService {
     this.authUri = `${conf.apiBaseUri}/api/v1/auth/user`;
     this.authUriBase = `${conf.apiBaseUri}/api/v1/auth`;
     this.profileUri = `${conf.apiBaseUri}/api/v1/profile`;
+    this.notifyUri = `${conf.apiBaseUri}/api/v1/sendemails`;
   }
 
   // User Registration
@@ -245,6 +246,54 @@ export class AuthService {
       console.log("error in forgot password", error);
     }
   }
+
+  async notifyStudent(name, email) {
+    try {
+      const data = {
+        email: email,
+        topic: "Registration",
+        body: `
+          <div style="font-family: Arial, sans-serif; color: #003366; padding: 20px; border-radius: 8px; background-color: #f4f4f4;">
+            <h2 style="color: #003366; text-align: center;">Welcome to CBS Group of Institutions</h2>
+            <p>Dear <strong>${name}</strong>,</p>
+            <p>Welcome to <strong>CBS Group of Institutions</strong>! We are delighted to have you on board. Below are your login details:</p>
+            <div style="background-color: #ffffff; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <p><strong>-> Login Portal:</strong> <a href="https://www.cbsdelhi.in/student" style="color: #003366; text-decoration: none;"><strong>Student Panel</strong></a></p>
+              <p><strong>-> Username:</strong> ${email}</p>
+              <p><strong>-> Password:</strong> ${email}</p>
+            </div>
+            <p><strong>=> Steps to Log in:</strong></p>
+            <ol>
+              <li>Click on the <a href="https://www.cbsdelhi.in/student" style="color: #003366; text-decoration: underline;">Student Panel or click me</a>.</li>
+              <li>Enter your registered email as both username and password.</li>
+              <li>Click <strong>Login</strong> to access your dashboard.</li>
+              <li>Change your password after logging in for security.</li>
+            </ol>
+            <p>If you have any issues logging in, please contact our support team.</p>
+            <p>Best Regards,<br><strong>CBS Group of Institutions</strong></p>
+            <p><a href="https://www.cbsdelhi.in" style="color: #003366; text-decoration: none;">www.cbsdelhi.in</a></p>
+          </div>
+        `,
+      };
+  
+      const response = await fetch(`${this.notifyUri}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to notify student: ${response.statusText}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error notifying student:", error);
+    }
+  }
+  
 }
 
 const authService = new AuthService();

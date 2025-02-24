@@ -97,7 +97,7 @@ export default function ExcelReader() {
               Select File
             </Button>
           </label>
-          {console.log("data", data)}
+      
           {/* Display Data in Table */}
 
           {data.length > 0 && (

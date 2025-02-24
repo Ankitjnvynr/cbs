@@ -54,7 +54,7 @@ export const VerifyForm = ({ setActiveForm,setValue, value,otp,setOtp,verifyOtp,
     <div style={styles.container}>
       <div style={styles.formWrapper}>
         <h5 style={styles.heading}>ACCOUNT VERIFICATION</h5>
-        <p style={styles.heading}>An OTP has been sent to your email</p>
+        <p style={styles.heading}>An OTP has been sent to your email. check your email inbox or </p>
         <form onSubmit={submitHandler}>
         <input
   style={styles.input}
