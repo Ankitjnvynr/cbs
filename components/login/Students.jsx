@@ -122,7 +122,7 @@ export default function Students() {
       newStudentData.phone
     );
     if (response.code === 200) {
-      const res = await authService.notifyStudent(newStudentData.name,newStudentData.email);
+      const res =  authService.notifyStudent(newStudentData.name,newStudentData.email);
       if(res.code == 200){
         toast.success("notified successfully");
       }
