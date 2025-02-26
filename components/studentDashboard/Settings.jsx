@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import Styles from './settings.module.css';
-import Image from 'next/image';
-import { Button } from '@mui/material';
-import authService from '../../services/auth';
-import uploadService from '../../services/uploaService';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+import Styles from "./settings.module.css";
+import Image from "next/image";
+import { Button } from "@mui/material";
+import authService from "../../services/auth";
+import uploadService from "../../services/uploaService";
+import { toast } from "react-toastify";
 
 export default function Settings() {
   const [userData, setUserData] = useState({
-    name: '',
-    last_name: '',
-    email: '',
-    phone: '',
-    rollno: '',
-    father_name: '',
-    mother_name: '',
-    course_name: '',
-    dob: '',
-    country: '',
-    state: '',
-    district: '',
-    address: '',
-    picture: '',
-    is_verified: '',
+    name: "",
+    last_name: "",
+    phone: "",
+    email: "",
+    role: "",
+    father_name: "",
+    mother_name: "",
+    course_name: "",
+    dob: "",
+    country: "",
+    state: "",
+    district: "",
+    address: "",
+    picture: "",
   });
 
   const [userId, setUserId] = useState(null);
@@ -30,27 +29,26 @@ export default function Settings() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = await sessionStorage.getItem('user');
+      const user = await sessionStorage.getItem("user");
       const userData = JSON.parse(user);
       setUserId(userData.id);
       const response = await authService.getMyProfile(userData.id);
 
       setUserData({
-        name: response.data.first_name || '',
-        last_name: response.data.last_name || '',
-        email: response.data.email || '',
-        phone: response.data.phone || '',
-        rollno: response.data.rollno || '',
-        father_name: response.data.father_name || '',
-        mother_name: response.data.mother_name || '',
-        course_name: response.data.course_name || '',
-        dob: response.data.dob || '',
-        country: response.data.country || '',
-        state: response.data.state || '',
-        district: response.data.district || '',
-        address: response.data.address || '',
-        picture: response.data.picture || '',
-        is_verified: response.data.is_verified ? 'Verified' : 'Not Verified',
+        name: response.data.first_name || "",
+        last_name: response.data.last_name || "",
+        phone: response.data.phone || "",
+        email: response.data.email || "",
+        role: response.data.role || "",
+        father_name: response.data.father_name || "",
+        mother_name: response.data.mother_name || "",
+        course_name: response.data.course_name || "",
+        dob: response.data.dob || "",
+        country: response.data.country || "",
+        state: response.data.state || "",
+        district: response.data.district || "",
+        address: response.data.address || "",
+        picture: response.data.picture || "",
       });
     };
 
@@ -68,22 +66,21 @@ export default function Settings() {
       userData.last_name,
       userData.phone,
       userData.dob,
+      userData.father_name,
+      userData.mother_name,
+      userData.course_name,
       userData.country,
       userData.state,
       userData.district,
       userData.address,
-      userData.picture,
-      userData.rollno,
-      userData.father_name,
-      userData.mother_name,
-      userData.course_name
+      userData.picture
     );
 
     if (response.code === 200 || response.code === 201) {
-      toast.success('Profile Updated Successfully');
+      toast.success("Profile Updated Successfully");
       setIsEditing(false);
     } else {
-      toast.error('Failed to Update Profile');
+      toast.error("Failed to Update Profile");
     }
   };
 
@@ -113,6 +110,9 @@ export default function Settings() {
           userData.last_name,
           userData.phone,
           userData.dob,
+          userData.father_name,
+          userData.mother_name,
+          userData.course_name,
           userData.country,
           userData.state,
           userData.district,
@@ -120,14 +120,14 @@ export default function Settings() {
           newPicture
         );
 
-        toast.success('Profile picture updated successfully');
-      } else if (response.code === 415) {
-        toast.error('Please upload jpg, png');
-        e.target.value = '';
+        toast.success("Profile picture updated successfully");
+      } else if (response.code == 415) {
+        toast.error("Please upload jpg, png");
+        e.target.value = "";
       }
     } catch (error) {
-      console.error('Error uploading profile picture:', error);
-      toast.error('Error uploading profile picture');
+      console.error("Error uploading profile picture:", error);
+      toast.error("Error uploading profile picture");
     }
   };
 
@@ -136,14 +136,17 @@ export default function Settings() {
   };
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexWrap: 'wrap' }} className="border overflow-y-auto">
+    <div
+      style={{ height: "100%", display: "flex", flexWrap: "wrap" }}
+      className="border overflow-y-auto"
+    >
       <div className={Styles.picture}>
         <Image
           className={Styles.picc}
           src={
             userData.picture
               ? `https://cbsdelhi.in/uploads/${userData.picture}`
-              : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
+              : "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
           }
           width={70}
           height={70}
@@ -152,7 +155,7 @@ export default function Settings() {
         <input
           type="file"
           accept="image/jpeg, image/png"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           id="upload-profile-pic"
           onChange={uploadProfilePic}
         />
@@ -166,47 +169,69 @@ export default function Settings() {
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.item}>
             <label className={Styles.label}>Name:</label>
-            <input type="text" name="name" value={userData.name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+            <input
+              type="text"
+              name="name"
+              value={userData.name}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
           </div>
           <div className={Styles.item}>
             <label className={Styles.label}>Last Name:</label>
-            <input type="text" name="last_name" value={userData.last_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
-          </div>
-          <div className={Styles.item}>
-            <label className={Styles.label}>Email:</label>
-            <input type="email" name="email" value={userData.email} disabled className={Styles.input} />
-          </div>
-          <div className={Styles.item}>
-            <label className={Styles.label}>Phone:</label>
-            <input type="text" name="phone" value={userData.phone} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
-          </div>
-          <div className={Styles.item}>
-            <label className={Styles.label}>Roll No:</label>
-            <input type="text" name="rollno" value={userData.rollno} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+            <input
+              type="text"
+              name="last_name"
+              value={userData.last_name}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
           </div>
           <div className={Styles.item}>
             <label className={Styles.label}>Father's Name:</label>
-            <input type="text" name="father_name" value={userData.father_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+            <input
+              type="text"
+              name="father_name"
+              value={userData.father_name}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
           </div>
           <div className={Styles.item}>
             <label className={Styles.label}>Mother's Name:</label>
-            <input type="text" name="mother_name" value={userData.mother_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+            <input
+              type="text"
+              name="mother_name"
+              value={userData.mother_name}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
           </div>
           <div className={Styles.item}>
-            <label className={Styles.label}>Course Name:</label>
-            <input type="text" name="course_name" value={userData.course_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+            <label className={Styles.label}>Course:</label>
+            <input
+              type="text"
+              name="course_name"
+              value={userData.course_name}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
           </div>
           <div className={Styles.item}>
-            <label className={Styles.label}>Date of Birth:</label>
-            <input type="date" name="dob" value={userData.dob} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
-          </div>
-          <div className={Styles.item}>
-            <label className={Styles.label}>Address:</label>
-            <input type="text" name="address" value={userData.address} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
-          </div>
-          <div className={Styles.item}>
-            <label className={Styles.label}>Verification Status:</label>
-            <input type="text" value={userData.is_verified} disabled className={Styles.input} />
+            <label className={Styles.label}>DOB:</label>
+            <input
+              type="date"
+              name="dob"
+              value={userData.dob}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
           </div>
 
           {isEditing ? (
@@ -214,9 +239,13 @@ export default function Settings() {
               Save Profile
             </Button>
           ) : (
-            <Button onClick={handleEditClick} variant="contained" color="primary" className={Styles.editButton}>
+            <button
+              type="button"
+              onClick={handleEditClick}
+              className={Styles.editButton}
+            >
               Edit
-            </Button>
+            </button>
           )}
         </form>
       </div>
