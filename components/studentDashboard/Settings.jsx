@@ -9,16 +9,20 @@ import { toast } from 'react-toastify';
 export default function Settings() {
   const [userData, setUserData] = useState({
     name: '',
-    phone: '',
-    email: '',
-    role: '',
     last_name: '',
+    email: '',
+    phone: '',
+    rollno: '',
+    father_name: '',
+    mother_name: '',
+    course_name: '',
     dob: '',
     country: '',
     state: '',
     district: '',
     address: '',
     picture: '',
+    is_verified: '',
   });
 
   const [userId, setUserId] = useState(null);
@@ -30,18 +34,23 @@ export default function Settings() {
       const userData = JSON.parse(user);
       setUserId(userData.id);
       const response = await authService.getMyProfile(userData.id);
+
       setUserData({
-        name: response.data.first_name,
-        phone: response.data.phone,
-        email: userData.email,
-        role: response.data.role,
-        last_name: response.data.last_name,
-        dob: response.data.dob,
-        country: response.data.country,
-        state: response.data.state,
-        district: response.data.district,
-        address: response.data.address,
-        picture: response.data.picture,
+        name: response.data.first_name || '',
+        last_name: response.data.last_name || '',
+        email: response.data.email || '',
+        phone: response.data.phone || '',
+        rollno: response.data.rollno || '',
+        father_name: response.data.father_name || '',
+        mother_name: response.data.mother_name || '',
+        course_name: response.data.course_name || '',
+        dob: response.data.dob || '',
+        country: response.data.country || '',
+        state: response.data.state || '',
+        district: response.data.district || '',
+        address: response.data.address || '',
+        picture: response.data.picture || '',
+        is_verified: response.data.is_verified ? 'Verified' : 'Not Verified',
       });
     };
 
@@ -63,7 +72,11 @@ export default function Settings() {
       userData.state,
       userData.district,
       userData.address,
-      userData.picture
+      userData.picture,
+      userData.rollno,
+      userData.father_name,
+      userData.mother_name,
+      userData.course_name
     );
 
     if (response.code === 200 || response.code === 201) {
@@ -81,21 +94,19 @@ export default function Settings() {
 
   const uploadProfilePic = async (e) => {
     try {
-      const file = e.target.files[0]; 
+      const file = e.target.files[0];
       if (!file) return;
 
       const response = await uploadService.upload(file, userData.picture);
-      
+
       if (response.code === 200) {
         const newPicture = response.newFileName;
 
-        // Update state with new picture
         setUserData((prevState) => ({
           ...prevState,
           picture: newPicture,
         }));
 
-        // Update profile with the new picture immediately
         await authService.updateMyProfile(
           userId,
           userData.name,
@@ -106,18 +117,17 @@ export default function Settings() {
           userData.state,
           userData.district,
           userData.address,
-          newPicture // Send new picture filename
+          newPicture
         );
 
-        toast.success("Profile picture updated successfully");
-      } else if(response.code==415) {
-        toast.error("please upload jpg, png");
-        e.target.value = ''
+        toast.success('Profile picture updated successfully');
+      } else if (response.code === 415) {
+        toast.error('Please upload jpg, png');
+        e.target.value = '';
       }
-      
     } catch (error) {
-      console.error("Error uploading profile picture:", error);
-      toast.error("Error uploading profile picture");
+      console.error('Error uploading profile picture:', error);
+      toast.error('Error uploading profile picture');
     }
   };
 
@@ -132,7 +142,7 @@ export default function Settings() {
           className={Styles.picc}
           src={
             userData.picture
-              ? `https://cbsdelhi.in/uploads/${userData?.picture}`
+              ? `https://cbsdelhi.in/uploads/${userData.picture}`
               : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
           }
           width={70}
@@ -155,123 +165,58 @@ export default function Settings() {
       <div className={Styles.details}>
         <form onSubmit={handleSubmit} className={Styles.form}>
           <div className={Styles.item}>
-            <label htmlFor="name" className={Styles.label}>
-              Name:
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={userData.name}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Name:</label>
+            <input type="text" name="name" value={userData.name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
           </div>
           <div className={Styles.item}>
-            <label htmlFor="last_name" className={Styles.label}>
-              Father:
-            </label>
-            <input
-              type="text"
-              id="last_name"
-              name="last_name"
-              value={userData.last_name}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Last Name:</label>
+            <input type="text" name="last_name" value={userData.last_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
           </div>
           <div className={Styles.item}>
-            <label htmlFor="phone" className={Styles.label}>
-              Phone:
-            </label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={userData.phone}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Email:</label>
+            <input type="email" name="email" value={userData.email} disabled className={Styles.input} />
           </div>
           <div className={Styles.item}>
-            <label htmlFor="email" className={Styles.label}>
-              Email:
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={userData.email}
-              disabled
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Phone:</label>
+            <input type="text" name="phone" value={userData.phone} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
           </div>
           <div className={Styles.item}>
-            <label htmlFor="dob" className={Styles.label}>
-              DOB:
-            </label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              value={userData.dob}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Roll No:</label>
+            <input type="text" name="rollno" value={userData.rollno} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
           </div>
           <div className={Styles.item}>
-            <label htmlFor="country" className={Styles.label}>
-              Country:
-            </label>
-            <input
-              type="text"
-              id="country"
-              name="country"
-              value={userData.country}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Father's Name:</label>
+            <input type="text" name="father_name" value={userData.father_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
           </div>
           <div className={Styles.item}>
-            <label htmlFor="state" className={Styles.label}>
-              State:
-            </label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              value={userData.state}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className={Styles.input}
-            />
+            <label className={Styles.label}>Mother's Name:</label>
+            <input type="text" name="mother_name" value={userData.mother_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+          </div>
+          <div className={Styles.item}>
+            <label className={Styles.label}>Course Name:</label>
+            <input type="text" name="course_name" value={userData.course_name} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+          </div>
+          <div className={Styles.item}>
+            <label className={Styles.label}>Date of Birth:</label>
+            <input type="date" name="dob" value={userData.dob} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+          </div>
+          <div className={Styles.item}>
+            <label className={Styles.label}>Address:</label>
+            <input type="text" name="address" value={userData.address} onChange={handleChange} disabled={!isEditing} className={Styles.input} />
+          </div>
+          <div className={Styles.item}>
+            <label className={Styles.label}>Verification Status:</label>
+            <input type="text" value={userData.is_verified} disabled className={Styles.input} />
           </div>
 
           {isEditing ? (
-            <Button  type="submit" variant="contained" color="primary" className={`${Styles.saveButton} mt-2`}>
+            <Button type="submit" variant="contained" color="primary" className={`${Styles.saveButton} mt-2`}>
               Save Profile
             </Button>
           ) : (
-            <button
-              style={{
-                backgroundColor: 'none',
-                border: 'none',
-                borderRadius: '5px',
-                padding: '5px 15px',
-              }}
-              type="button"
-              variant="contained"
-              color="primary"
-              onClick={handleEditClick}
-              className={Styles.editButton}
-            >
+            <Button onClick={handleEditClick} variant="contained" color="primary" className={Styles.editButton}>
               Edit
-            </button>
+            </Button>
           )}
         </form>
       </div>
