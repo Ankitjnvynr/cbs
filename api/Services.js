@@ -18,7 +18,7 @@ const Services = [
       sSImg: sSimg1,
       title: 'MBA',
       slug: '',
-      description: 'We are providing the best UI/UX design. That help you be professional.',
+      description: 'The MBA programme offered at the college imparts a global outlook, equips the students with specialized skills.',
    },
    {
       Id: '02',
@@ -26,7 +26,7 @@ const Services = [
       sSImg: sSimg2,
       title: 'BBA',
       slug: '',
-      description: 'We are providing the best UI/UX design. That help you be professional.',
+      description: 'BBA or Bachelor of Business Administration refers to the bachelor’s degree course in business management studies.',
    },
    {
       Id: '03',
@@ -34,7 +34,7 @@ const Services = [
       sSImg: sSimg3,
       title: 'BTECH',
       slug: '',
-      description: 'We are providing the best UI/UX design. That help you be professional.',
+      description: 'The pace of technological innovation will continue to be rapid and accelerating in the new millennium.',
    },
    {
       Id: '04',
@@ -42,7 +42,7 @@ const Services = [
       sSImg: sSimg4,
       title: 'MCA',
       slug: '',
-      description: 'We are providing the best UI/UX design. That help you be professional.',
+      description: 'MCA is a course exclusively designed to meet the IT industry requirements.',
    },
  
 ]

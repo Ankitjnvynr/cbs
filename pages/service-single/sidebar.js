@@ -1,12 +1,12 @@
 import React from 'react'
 import Services from '../../api/Services';
 import Link from 'next/link'
-import ins1 from '/public/images/instragram/img-1.jpg'
-import ins2 from '/public/images/instragram/img-2.jpg'
-import ins3 from '/public/images/instragram/img-3.jpg'
-import ins4 from '/public/images/instragram/img-4.jpg'
-import ins5 from '/public/images/instragram/img-5.jpg'
-import ins6 from '/public/images/instragram/img-6.jpg'
+import ins1 from '/public/images/instragram/i1.jpg'
+import ins2 from '/public/images/instragram/i2.jpg'
+import ins3 from '/public/images/instragram/i3.jpg'
+import ins4 from '/public/images/instragram/i4.jpg'
+import ins5 from '/public/images/instragram/i5.png'
+import ins6 from '/public/images/instragram/i6.jpg'
 import Image from 'next/image';
 
 const ServiceSidebar = (props) => {
@@ -32,24 +32,25 @@ const ServiceSidebar = (props) => {
                     </ul>
                 </div>
                 <div className="newsletter-widget widget">
-                    <h3>Newsletter</h3>
-                    <p>Join 20,000 Sabscribers!</p>
+                    <h3>Stay Updated with Our Latest Insights!</h3>
+                    {/* <p>Subscribe Now!</p> */}
                     <form className="form" onSubmit={SubmitHandler}>
                         <input type="text" placeholder="Email Address" />
                         <button type="submit">Sign Up</button>
                     </form>
-                    <span>By signing up you agree to our <Link href="/contact">Privecy Policy</Link></span>
+                    <span>Join Our Community of 20,000+ Subscribers!<Link href="/contact">Privacy Policy</Link></span>
                 </div>
                 <div className="instagram-widget widget">
                     <h2>Instagram Shot</h2>
                     <ul>
-                        <li><Image src={ins1} alt="" /></li>
-                        <li><Image src={ins2} alt="" /></li>
-                        <li><Image src={ins3} alt="" /></li>
-                        <li><Image src={ins4} alt="" /></li>
-                        <li><Image src={ins5} alt="" /></li>
-                        <li><Image src={ins6} alt="" /></li>
-                    </ul>
+  <li><Image src={ins1} alt="" style={{ width: '150px', height: '100px', objectFit: 'cover' }} /></li>
+  <li><Image src={ins2} alt="" style={{ width: '150px', height: '100px', objectFit: 'cover' }} /></li>
+  <li><Image src={ins3} alt="" style={{ width: '150px', height: '100px', objectFit: 'cover' }} /></li>
+  <li><Image src={ins4} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover' }} /></li>
+  <li><Image src={ins5} alt="" style={{ width: '150px', height: '100px', objectFit: 'cover' }} /></li>
+  <li><Image src={ins6} alt="" style={{ width: '150px', height: '100px', objectFit: 'cover' }} /></li>
+</ul>
+
                 </div>
 
 

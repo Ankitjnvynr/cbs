@@ -8,6 +8,7 @@ import Typewriter from "typewriter-effect";
 import Arrow from "/public/images/slider/award.svg";
 import CountUp from "react-countup";
 import NoticeBoard from "./NoticeBoard";
+import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 
 const Hero3 = () => {
@@ -24,7 +25,8 @@ const Hero3 = () => {
         className="hero-slider-section"
       >
         <div className="hero-bg  ">
-          <Image src={hero1} alt="" />
+          <Image src={hero1} alt=""/>
+  
         </div>
         <div
        
@@ -66,7 +68,7 @@ const Hero3 = () => {
                     ],
                     autoStart: true,
                     loop: true,
-                    delay: 50,
+                    delay: 240,
                   }}
                   style={{ color: "red" }}
                 />
@@ -94,9 +96,9 @@ const Hero3 = () => {
               meet your needs but also exceed your expectations.
             </p> */}
             <div className="hero-btn">
-              <Link href="/about" className="theme-btn border ">
+              {/* <Link href="/about" className="theme-btn border ">
                 Go To Alumni<i className="ti-arrow-right"></i>
-              </Link>
+              </Link> */}
               <div
               style={{
                 zIndex: 100,
@@ -107,13 +109,15 @@ const Hero3 = () => {
                 border: "1px solid rgba(255, 255, 255, 0.7)", // Optional, a soft border to enhance the glass effect
                 // marginTop:'15px',
                 bottom:'5%',
+                display: "flex",
+                justifyContent: "flex-start"
               }}
                 className="award "
               >
                 <div className="icon">
                   <Image src={Arrow} alt="Award Icon" width={50} height={50} />
                 </div>
-                <div className="text">
+                <div className="text" style={{ }}>
                   <h3>
                     <span>
                       <CountUp enableScrollSpy end={25} />
