@@ -2,7 +2,9 @@ import React from 'react'
 
 const CanteenAndCafeteria = () => {
   return (
-    <div>CanteenAndCafeteria</div>
+  <>
+  <div className='float-right'> conateen and caferatria page </div>
+  </>
   )
 }
 

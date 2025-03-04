@@ -16,7 +16,6 @@ import Phone from '/public/images/telephone.svg'
 import Logo from '/public/images/cbslogo.png'
 import NoticeBoard from '../components/hero/NoticeBoard';
 import Head from "next/head";
-
 const HomePage = () => {
   return (
     <Fragment>
@@ -29,7 +28,7 @@ const HomePage = () => {
 
       <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
       <Hero />
-      <NoticeBoard />
+      <NoticeBoard/>
       <FunfactSecion hclass="funfact-section" />
       <About />
       <ServiceSection hclass={"services-section"} />

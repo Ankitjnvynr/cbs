@@ -57,24 +57,29 @@ function Canteen() {
         {/* Image Section */}
         <div style={styles.imageWrapper}>
           <img
-            src="/images/canteen.jpg" // Replace with the correct image path
-            alt="Canteen at CBS Group"
-            style={styles.image}
+            src="/images/facilities/cbssports.jpg"// Replace with the correct image path
+            alt="Sports at CBS Group"
+            style={{ width: '900px', height: '450px', objectFit: 'cover' }}
           />
         </div>
 
         {/* Content Section */}
         <div style={styles.content}>
-          <h1 style={styles.heading}>Canteen at CBS Group of Institutions</h1>
+          <h1 style={styles.heading}>Sports at CBS Group of Institutions</h1>
           <p style={styles.paragraph}>
-            CBS Group of Institutions has a spacious and clean canteen that caters to the taste of all students. 
-            It is equipped with modern furniture and automatic cooking and storing facilities, ensuring that students 
-            and staff have access to hot lunches, snacks, and beverages at reasonable rates.
+          At CBS Group of Institutions, we recognize that sports and physical activities 
+          are integral to a student's holistic development. Our campus offers a diverse array of sports\
+           facilities designed to promote physical well-being and teamwork among students.
+            From well-maintained fields for outdoor games like cricket and basketball to dedicated spaces
+             for indoor activities such as chess and table tennis, we ensure that students have ample 
+             opportunities to engage in their preferred sports. These facilities are complemented by a supportive
+              environment that encourages participation, fostering both physical fitness and social interaction. 
+              By integrating sports into our educational framework, CBS Group of Institutions aims to cultivate well-rounded 
+              individuals prepared for the challenges of the future. 
           </p>
           <p style={styles.paragraph}>
-            The canteen is designed to provide a comfortable dining experience, making it a popular spot for students 
-            to relax, enjoy meals, and socialize with friends. With a variety of food options available throughout the day, 
-            students can find nutritious meals and snacks that suit their preferences.
+          At CBS Group of Institutions, we prioritize the holistic development of our students by offering a range of sports facilities that promote physical fitness and teamwork. Our campus includes well-equipped areas for both indoor and outdoor sports, ensuring students have ample opportunities to engage in various physical activities. By integrating sports into our educational framework, 
+          we aim to nurture well-rounded individuals prepared for future challenges. 
           </p>
           <div style={styles.finalText}>
             Enjoy a delightful dining experience at our campus canteen!

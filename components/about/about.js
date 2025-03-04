@@ -1,5 +1,5 @@
 import React from 'react'
-import abImg1 from '/public/images/about/facilities02.jpg'
+import abImg1 from '/public/images/about/clgimg1.jpg'
 import abImg2 from '/public/images/about/award-icon-2.svg'
 import Signeture from '/public/images/about/signeture.png'
 import Image from 'next/image'
@@ -15,38 +15,36 @@ const About = (props) => {
                     <div className="col-xl-6 col-12">
                         <div className="about-left-content">
                             <div className="image">
-                                <Image src={abImg1} alt="" />
+                                <Image src={abImg1} alt="" style={{ width: "3300px", height: "600px" }}/>
                             </div>
                             <div className="award-content">
                                 <div className="icon">
                                     <Image src={abImg2} alt="" />
                                 </div>
-                                <h2>Award Winning</h2>
-                                <p>We have a history of successfully delivering IT solutions to a great diverse
-                                    clientele, from startups to established enterprises.</p>
+                                <h2>Success-oriented</h2>
+                                <p>"Success isn't just a goal; it's a mindset. 
+                                    Stay focused, stay hungry, and keep moving forward."</p>
                             </div>
                         </div>
                     </div>
                     <div className="col-xl-6 col-12">
                         <div className="about-right-content">
                             <h2 className="title">ABOUT COLLEGE</h2>
-                            <h3 className="sub-title">Our approach ensures flexibility, adaptability, & rapid response.</h3>
-                            <p className="text">Welcome to Manit, where innovation meets implementation, & technology
-                                transforms
-                                possibilities into realities. Established with a vision to redefine the landscape of IT
-                                solutions, we are a dynamic and forward-thinking company committed to delivering
-                                cutting-edge services.
-                                <span>our mission is clear – to provide comprehensive and customized IT solution that
-                                    align seamlessly with your business objectives. We believe in not just meeting but
-                                    exceeding expectations.</span>
+                            <h3 className="sub-title">College isn’t just about getting degree; it’s about building skills and a mindset for success.</h3>
+                            <p className="text">"Welcome to CBS College, where knowledge fuels innovation and ambition shapes the future. 
+                                Here, we don’t just teach; we empower minds to lead, create, and transform the world with technology and expertise. With a dynamic learning environment and industry-driven curriculum, we bridge the gap between education and excellence. 
+                                Join us to unlock your potential and step into a future of endless possibilities!"
+                                <span>"Our mission is simple yet powerful – to deliver innovative and 
+                                    tailored IT solutions that perfectly align with your business goals. 
+                                    We don’t just meet expectations; we redefine them, ensuring excellence at every step."</span>
                             </p>
-                            <div className="ceo-content">
+                            {/* <div className="ceo-content">
                                 <h2>Dr. Rajiv Yadav</h2>
                                 <span>Director</span>
                                 <div className="signeture">
-                                    {/* <Image src={Signeture} alt="" /> */}
+                                    <Image src={Signeture} alt="" />
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

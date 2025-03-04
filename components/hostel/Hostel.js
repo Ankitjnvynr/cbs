@@ -58,8 +58,6 @@ const Hostel = () => {
         <Image
           src="/images/CBSJHL-5142.jpg" // Replace with the correct image path
           alt="Hostel Facilities at CBS Group"
-          layout="fill"
-          objectFit="cover"
         />
       </div>
 

@@ -6,11 +6,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Services from '../../api/Services';
 import ServiceSidebar from './sidebar'
-import simg1 from '/public/images/service-single/img-1.jpg'
-import simg2 from '/public/images/service-single/img-2.jpg'
+import simg1 from '/public/images/service-single/l1.jpg'
+// import simg2 from '/public/images/service-single/l2.jpg'
 import Footer from '../../components/footer/Footer';
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
-import Logo from '/public/images/logo-2.svg'
+import Logo from '/public/images/peer_logo_white.png'
 import Phone from '/public/images/telephone.svg'
 import Accordion from './accordion';
 import Image from 'next/image';
@@ -30,6 +30,7 @@ const ServiceSinglePage = (props) => {
             <PageTitle pageTitle={serviceDetails?.title} pagesub={'Service'} />
             <section className="service-single-section section-padding">
                 <div className="container">
+                    <h1>Learn More about Courses  </h1>
                     <div className="row">
                         <div className="col-lg-8 col-md-12">
                             <div className="service-single-wrap">
@@ -37,20 +38,18 @@ const ServiceSinglePage = (props) => {
                                     <Image src={serviceDetails?.sSImg} alt="" />
                                     <div className="service-single-content-des">
                                         <h2>{serviceDetails?.title}</h2>
-                                        <p>I must explain to you how all this mistaken idea of denouncing pleasure and
-                                            praising pain was born and I will give you a complete account of the system, and
-                                            expound the actual teachings of the great explorer of the truth, the
-                                            master-builder of human happiness. No one rejects, dislikes, or avoids pleasure
-                                            itself, because it is pleasure, but because those who do not know how to pursue
-                                            pleasure rationally encounter consequences that are extremely painful. </p>
-                                        <p>Nor again is there anyone who loves or pursues or desires to obtain pain of
-                                            itself, because it is pain, but because occasionally circumstances occur in
-                                            which toil and pain can procure him some great pleasure. To take a trivial
-                                            example, which of us ever undertakes laborious physical exercise.</p>
+                                        <p>Pursuing higher education through programs like B.Tech, M.Tech, BBA, and MBA offers diverse pathways
+                                             tailored to individual career aspirations. A Bachelor of Technology (B.Tech) provides a solid foundation 
+                                             in engineering disciplines, preparing students for technical roles across various industries. For those seeking advanced expertise, a Master of Technology (M.Tech) delves deeper into specialized engineering fields, fostering research and development skills essential for innovation. Alternatively, a Bachelor of Business Administration (BBA) focuses on imparting fundamental business and management principles, equipping graduates for roles in corporate management and entrepreneurship. Building upon this, a Master of Business Administration (MBA) enhances strategic thinking and leadership abilities, opening doors to senior management positions and diverse business opportunities. Each of these programs offers unique advantages, 
+                                            enabling individuals to align their education with their professional goals.  </p>
+                                        <p>Embarking on the journey of higher education is a transformative endeavor that unlocks a world of opportunities. 
+                                            It equips individuals with the knowledge and skills necessary to navigate and excel in an ever-evolving landscape. 
+                                            As Nelson Mandela wisely stated, "Education is the most powerful weapon which you can use to change the world." 
+                                            This path not only fosters personal growth but also empowers one to make meaningful contributions to society. </p>
                                         <div className="service-single-sub-img">
                                             <ul>
                                                 <li><Image src={simg1} alt="" /></li>
-                                                <li><Image src={simg2} alt="" /></li>
+                                                {/* <li><Image src={simg2} alt="" /></li> */}
                                             </ul>
 
                                         </div>

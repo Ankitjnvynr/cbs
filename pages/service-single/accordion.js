@@ -13,23 +13,23 @@ const Accordion = () => {
     const AccordionData = [
         {
             id: "heading1",
-            title: "We Can Save More Lifes With Your Helping Hand.",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae.Delectus, maxime."
+            title: "Develops essential skills such as leadership,strategic thinking.",
+            content: "Pursuing a BBA program cultivates essential skills such as leadership and strategic thinking, preparing students to effectively manage teams and make informed decisions in dynamic business environment."
         },
         {
             id: "heading2",
-            title: "Planning can help alleviate workplace stress and increase productivity.",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae.Delectus, maxime."
+            title: "Enables engagement in research and development projects.",
+            content: "Pursuing an M.Tech degree enables students to engage in advanced research and development projects, contributing to technological advancements and innovation.",
         },
         {
             id: "heading3",
-            title: "Those who experiment the most, are able to innovate the best.",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae.Delectus, maxime."
+            title: "Equips individuals with managerial and leadership skills.",
+            content: "Pursuing an MBA equips individuals with managerial and leadership skills, preparing them for high-level roles across various industries"
         },
         {
             id: "heading4",
-            title: "Understand Your Problem, You must understand the issue.",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem pariatur iure nemo esse repellendus est quo recusandae.Delectus, maxime."
+            title: "Offers advanced specialization and career prospects in specific technical domains.",
+            content: "Pursuing an M.Tech degree offers advanced specialization in technical domains, enhancing career prospects by providing in-depth knowledge and expertise."
         },
     ]
 
