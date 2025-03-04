@@ -21,9 +21,13 @@ const HomePage = () => {
   return (
     <Fragment>
       <Head>
-        <title>CBS Group Of Institution Jhajjar</title>
-        <meta name="description" content="Welcome to CBS college." />
-      </Head>
+    <title> Best Engineering College in NCR, Haryana I CBS Group of Institutions </title>
+    <meta name="description" content="CBS Group of Institutions is all set to unleash a new era in the education sector of India by offering a much needed distinctive education platform to thousands of students to launch their successful careers." />
+    <meta name="keywords" content="CBS Group of Institutions, Best Engineering College in NCR, Top Private Engineering College in Haryana, AICTE Approved Engineering College in India, Best B.Tech College with Placements, Top-Ranked Private College in NCR, Engineering Admission 2024 CBS Group, Affordable Engineering College in Haryana, Best UG & PG Engineering Programs, CBS Group of Institutions Ranking & Accreditation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charSet="utf-8" />
+    <link rel="canonical" href="https://www.cbscolleges.com/" />
+  </Head>
 
 
 
