@@ -13,7 +13,7 @@ import Library from '../../components/library/Library';
 function library() {
   return (
     <Fragment>
-    <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+    <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
     <PageTitle pageTitle={"Library"} pagesub={"About"} />
     <Library/>
     <Footer />

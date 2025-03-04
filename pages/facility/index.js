@@ -10,7 +10,7 @@ import CursorMaus from '../../components/CursorMaus/CursorMaus';
 function facility() {
   return (
     <Fragment>
-            <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'facility'} pagesub={'About'} />
            
             <Footer />

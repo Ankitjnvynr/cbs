@@ -17,7 +17,7 @@ const BlogDetailsLeftSiide =() => {
 
     return(
         <Fragment>
-            <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={BlogDetails?.title} pagesub={'Blog'}/> 
             <BlogSingle blLeft={'order-lg-1'} blRight={'order-lg-2'}/>
             <Footer />

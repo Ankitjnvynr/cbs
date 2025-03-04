@@ -18,7 +18,7 @@ const BlogDetails = () => {
 
     return (
         <Fragment>
-            <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s3"} />
+            <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
             <PageTitle pageTitle={BlogDetails?.title} pagesub={'Blog'} />
             <BlogSingle />
             <Footer ftClass={'s2'} />

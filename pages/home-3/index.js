@@ -18,7 +18,7 @@ const HomePage3 = () => {
     
     return (
         <Fragment>
-            <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s3"} />
+            <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
             <Hero3 />
             <About />
             <ServiceSection hclass={'services-section'} />

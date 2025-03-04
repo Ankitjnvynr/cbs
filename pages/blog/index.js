@@ -11,7 +11,7 @@ import CursorMaus from '../../components/CursorMaus/CursorMaus';
 const BlogPage =() => {
     return(
         <Fragment>
-            <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'Latest News'} pagesub={'Blog'}/> 
             <BlogList/>
             <Footer />

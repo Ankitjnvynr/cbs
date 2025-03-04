@@ -9,7 +9,7 @@ import Phone from '/public/images/telephone.svg'
 const index = () => {
   return (
     <>
-    <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+    <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
     <PageTitle pageTitle={"post-graduate"} pagesub={"About"} />
    
     <Footer />
