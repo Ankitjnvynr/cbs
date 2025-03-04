@@ -1,4 +1,3 @@
-
 import React, { Fragment } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import PageTitle from '../../components/pagetitle/PageTitle'
@@ -8,32 +7,32 @@ import Footer from '../../components/footer/Footer';
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
-import Code from '../../components/code/Code';
+import Admission from '../../components/admision/Admission';
 import Head from 'next/head';
-function codeofconduct() {
+
+function index() {
   return (
     <Fragment>
       <Head>
-  <title>
-    Code of Conduct | Academic Integrity & Discipline at CBS Group of
-    Institutions
-  </title>
+  <title>Online Registration form - CBS Group of institutions</title>
   <meta
     name="description"
-    content="Discover the Code of Conduct at CBS Group of Institutions. Learn about our commitment to academic integrity, student discipline, ethical behavior, and fostering a respectful and inclusive campus environment."
+    content="Register online for admission to CBS Group of Institutions. Fill out the registration form, submit your details, and take the first step toward a future of academic excellence and career growth."
   />
   <meta
     name="keywords"
-    content="CBS Group of Institutions code of conduct, academic integrity, student discipline, campus rules, ethical standards, behavior guidelines, college policies, student responsibilities, discipline policy, academic ethics."
+    content="CBS Group of Institutions online registration, college admission form, apply online, student enrollment, course registration, admission process, digital application, college entry form, quick registration, easy admission."
   />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
-  <link rel="canonical" href="codeofconduct" />
+  <link
+    rel="canonical"
+    href="https://www.cbscolleges.com/online-registration-form"
+  />
 </Head>
-
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={'Code of Conduct '} pagesub={'vision'} />
-    <Code/>
+    <PageTitle pageTitle={'Online Registration Form  '} pagesub={'vision'} />
+    <Admission/>
     <Footer />
     <Scrollbar />
     <CursorMaus />
@@ -41,4 +40,4 @@ function codeofconduct() {
   )
 }
 
-export default codeofconduct
+export default index
