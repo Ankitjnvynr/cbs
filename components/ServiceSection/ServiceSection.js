@@ -23,7 +23,7 @@ const ServiceSection = (props) => {
            sSImg: sSimg1,
            title: 'MBA',
            slug: '',
-           description: 'We are providing the best UI/UX design. That help you be professional.',
+           description: 'The MBA programme offered at the college imparts a global outlook and leads to excellence.',
         },
         {
            Id: '02',
@@ -31,7 +31,7 @@ const ServiceSection = (props) => {
            sSImg: sSimg2,
            title: 'BBA',
            slug: '',
-           description: 'We are providing the best UI/UX design. That help you be professional.',
+           description: 'BBA or Bachelor of Business Administration refers to the bachelor’s degree course in business..',
         },
         {
            Id: '03',
@@ -39,7 +39,7 @@ const ServiceSection = (props) => {
            sSImg: sSimg3,
            title: 'BTECH',
            slug: '',
-           description: 'We are providing the best UI/UX design. That help you be professional.',
+           description: 'The pace of technological innovation will continue to be rapid and accelerating in the new millennium.',
         },
         {
            Id: '04',
@@ -47,7 +47,7 @@ const ServiceSection = (props) => {
            sSImg: sSimg4,
            title: 'MCA',
            slug: '',
-           description: 'We are providing the best UI/UX design. That help you be professional.',
+           description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
         },
       
      ]

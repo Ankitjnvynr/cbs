@@ -5,7 +5,8 @@ import FunfactSecion from '../components/FunfactSection/FunfactSection';
 import About from '../components/about/about';
 import ServiceSection from '../components/ServiceSection/ServiceSection';
 import VideosSection from '../components/VideosSection/VideosSection';
-import ProjectSection from '../components/ProjectSection/ProjectSection';
+// import ProjectSection from '../components/ProjectSection/ProjectSection';
+import ProjectSection1 from '../components/ProjectSection/ProjectSection1';
 import TestimonialSection from '../components/TestimonialSection/TestimonialSection';
 import CtaSection from '../components/CtaSection/CtaSection';
 import BlogSection from '../components/BlogSection/BlogSection';
@@ -33,7 +34,7 @@ const HomePage = () => {
       <About />
       <ServiceSection hclass={"services-section"} />
       {/* <VideosSection /> */}
-      <ProjectSection hclass={"project-section"} />
+      <ProjectSection1 hclass={"project-section"} />
       <TestimonialSection />
       <CtaSection />
       <BlogSection />

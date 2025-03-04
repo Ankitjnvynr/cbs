@@ -6,6 +6,7 @@ import Link from "next/link";
 import conf from "../../lib/conf";
 
 
+
 const NoticeBoard = () => {
   const [notices, setNotices] = useState([]);
 
@@ -35,6 +36,7 @@ const NoticeBoard = () => {
   }, []);
 
   return (
+    <>
     <div className={styles.noticeBoard}>
       <div
         style={{
@@ -86,7 +88,10 @@ const NoticeBoard = () => {
           </div>
         </div>
       </div>
+ 
     </div>
+    
+    </>
   );
 };
 

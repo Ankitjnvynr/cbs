@@ -742,47 +742,94 @@
 }
 
 .project-card {
-    max-width: 200px;
+    max-width: 700px;
     position: relative;
     z-index: 1;
     transition: all .3s ease-in-out;
-    margin: 0 15px;
+    margin: 35px 15px;   
     padding: 90px 0;
 
     @media (max-width:1399px) {
-        max-width: 700px;
-    }
-
-    @media (max-width:1199px) {
         max-width: 600px;
     }
 
+    @media (max-width:1199px) {
+        max-width: 800px;
+    }
+
     @media (max-width:767px) {
-        max-width: 400px;
+        max-width: 600px;
     }
 
     @media (max-width:575px) {
-        max-width: 100%;
+        max-width: 500px;
     }
 
+    @media (max-width:456px) {
+        max-width: 380px;
+    }
+    @media (max-width:400px) {
+        max-width: 350px;
+    }
+    @media (max-width:376px) {
+        max-width: 320px;
+    }
+
+    // @media (max-width:375px) {
+    //     .image{
+    //         max-width: 10rem;
+    //     }
+    // }
+
+
     img {
-        width:400px;
+        width: 100%; /* Fill the parent container */
+        max-width: 1000px; /* Limit the max size */
         object-fit: cover;
         border-radius: 20px;
         transition: all .3s ease-in-out;
+       
     }
 
+    // @media (max-width: 768px) {
+    //     img {
+    //         width: 100%;    /* Fill container */
+    //         max-width: 50px;
+    //     }
+    // }
+
+    // @media (max-width: 575px) {
+    //     img {
+    //         width: 100%;    /* Fill container */
+    //         max-width: 50px;
+    //     }
+    // }
+
+    // @media (max-width: 375px) {
+    //     img {
+    //         width: 10%;    /* Fill container */
+         
+    //     }
+    // }
+    
+
     .content {
+        text-align: left;
         position: absolute;
-        left: 20px;
-        bottom: 40px;
-        max-width: 450px;
+        left: 56px;
+        bottom: 0px;
+        max-width: 1000px;
         width: 100%;
         border-radius: 20px;
         background: $white;
         box-shadow: 0px 2px 8px 0px rgba(34, 31, 60, 0.10);
-        padding: 25px 30px;
+        padding: 25px 30px;  
         transition: all .3s ease-in-out;
+
+        @media (max-width:767px) {
+            max-width: 350px;
+            padding: 15px 20px
+        }
 
         @media (max-width:767px) {
             max-width: 350px;
@@ -827,13 +874,14 @@
         }
 
         .project-link {
-            max-width: 70px;
+            max-width: 60px;
             height: 70px;
             width: 100%;
             position: absolute;
             right: 0px;
             top: 10px;
             z-index: 1;
+            margin-right: 5px;
 
             @media (max-width:575px) {
                 max-width: 50px;
@@ -860,7 +908,7 @@
 
 
         .content {
-            bottom: 50px;
+            bottom: 14px;
         }
     }
 }

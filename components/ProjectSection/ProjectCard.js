@@ -9,10 +9,10 @@ const ProjectCard = ({ Pimg, Psubtitle, Ptitle, Pslug }) => {
     }
     return(
         <div className="project-card">
-            <div className="image">
+            <div className="image " style={{width:"35rem",height:"19rem"}}>
                 <Image src={Pimg} alt="" />
             </div>
-            <div className="content">
+            <div className="content opacity-100 rounded-sm" style={{width:"25rem",height:"7.5rem"}}>
                 <span>{Psubtitle}</span>
                 <h2>{Ptitle}</h2>
                 <Link onClick={ClickHandlar} href={'/project-single/[slug]'} as={`/${Pslug}`} className="project-link">

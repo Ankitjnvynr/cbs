@@ -4,7 +4,7 @@ const CtaSection = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        company: 'Your City*'
+        company: ''
     });
 
     const handleChange = (e) => {
@@ -34,7 +34,7 @@ const CtaSection = () => {
                             <input type="text" placeholder="Your Email*" name="email" value={formData.email} onChange={handleChange} />
                         </div>
                         <div className="input-filled">
-                        <input type="text" placeholder="Your City*" name="email" value={formData.company} onChange={handleChange} />
+                        <input type="text" placeholder="Your City*" name="company" value={formData.company} onChange={handleChange} />
                             
                         </div>
                         <div className="input-filled">

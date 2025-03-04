@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }) {
     <div className="relative"> 
       <Head>
         <title>cbscolleges</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Component {...pageProps} />
       <ToastContainer />
