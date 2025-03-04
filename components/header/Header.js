@@ -225,7 +225,7 @@ const Header = (props) => {
       label: "Placement",
       link: "/",
       subMenu: [
-        { label: "Career Development Cell", link: "/placementcell" },
+        { label: "Career Development Cell", link: "/introduction-about-placement" },
         { label: "Placement Cell", link: "#",
           subMenu:[
             {label:'Objective of Placement Cell', link:'/objective-of-placement-cell'},
@@ -243,11 +243,11 @@ const Header = (props) => {
         { label: "Our Recruiters", link: "/" },
         { label: "Personality Development", link: "/",
           subMenu:[
-            {label:'Communication Skills',link:'/communication'},
-            {label:'Group Discussions, Debates',link:'/groupdiscuss'},
-            {label:'Resume Writing Tips',link:'/resumewriting'},
-            {label:'Interviews Tips/Questions',link:'/interview'},
-            {label:'Do & Dont While Handling Interview',link:'/doanddonot'},
+            {label:'Communication Skills',link:'/communication-skills'},
+            {label:'Group Discussions, Debates',link:'/group-discussions-debates'},
+            {label:'Resume Writing Tips',link:'/resume-writing-tips'},
+            {label:'Interviews Tips/Questions',link:'/interviews-tips-questions'},
+            {label:'Do & Dont While Handling Interview',link:'/do-and-dont-while-handling-interview'},
           ]
          },
       ],
@@ -285,9 +285,9 @@ const Header = (props) => {
       label: "Career",
       link: "/",
       subMenu: [
-        { label: "Current opening", link: "/current" },
+        { label: "Current opening", link: "/current-opening" },
         
-        { label: "upload resume", link: "/upload" },
+        { label: "upload resume", link: "/upload-resume-for-job" },
        
        
       ],
@@ -298,8 +298,13 @@ const Header = (props) => {
      
     },
     {
+      label: "Gallery",
+      link: "/gallery",
+     
+    },
+    {
       label: "Contact",
-      link: "/contact",
+      link: "/contact-us",
     },
   ];
   
