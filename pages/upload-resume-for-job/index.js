@@ -7,32 +7,33 @@ import Footer from "../../components/footer/Footer";
 import Logo from "/public/images/cbslogo.png";
 import Phone from "/public/images/telephone.svg";
 import CursorMaus from "../../components/CursorMaus/CursorMaus";
-
-import PlacementPolicy from "../../components/placementPolicy/PlacementPolicy";
+import Upload from "../../components/uploadresume/Upload";
 import Head from "next/head";
-function director() {
+function upload() {
   return (
     <Fragment>
       <Head>
         <title>
-          Placement Policy | Career Opportunities & Recruitment Process at CBS
-          Group of Institutions
+          Upload Your Resume for Top Job Placements | CBS Group of Institutions
         </title>
         <meta
           name="description"
-          content="Discover the placement policy at CBS Group of Institutions. Learn about career opportunities, the recruitment process, eligibility criteria, and the support provided to help students secure top job placements"
+          content="Apply for career opportunities at CBS Group of Institutions. Upload your resume online and take the first step toward joining a leading institutionsdedicated to academic excellence and innovation."
         />
         <meta
           name="keywords"
-          content="CBS Group of Institutions placement policy, student recruitment process, campus placements, job opportunities, placement guidelines, career support, employer partnerships, hiring process, career growth, industry tie-ups."
+          content="CBS Group of Institutions job application, upload resume, faculty recruitment, college job openings, career opportunities, academic positions, submit CV online, college hiring, staff vacancies, apply for job."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <link rel="canonical" href="nan" />
+        <link
+          rel="canonical"
+          href="https://www.cbscolleges.com/upload-resume-for-job"
+        />
       </Head>
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-      <PageTitle pageTitle={"Placement Policy"} pagesub={"vision"} />
-      <PlacementPolicy />
+      <PageTitle pageTitle={"Upload resume "} pagesub={"vision"} />
+      <Upload />
       <Footer />
       <Scrollbar />
       <CursorMaus />
@@ -40,4 +41,4 @@ function director() {
   );
 }
 
-export default director;
+export default upload;

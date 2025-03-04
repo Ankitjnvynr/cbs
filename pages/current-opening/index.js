@@ -7,32 +7,34 @@ import Footer from "../../components/footer/Footer";
 import Logo from "/public/images/cbslogo.png";
 import Phone from "/public/images/telephone.svg";
 import CursorMaus from "../../components/CursorMaus/CursorMaus";
-
-import PlacementPolicy from "../../components/placementPolicy/PlacementPolicy";
+import Carrer from "../../components/carrer/Carrer";
 import Head from "next/head";
-function director() {
+function carrer() {
   return (
     <Fragment>
       <Head>
         <title>
-          Placement Policy | Career Opportunities & Recruitment Process at CBS
-          Group of Institutions
+          Explore Latest Job Openings & Career Opportunities | CBS Group of
+          Institutions
         </title>
         <meta
           name="description"
-          content="Discover the placement policy at CBS Group of Institutions. Learn about career opportunities, the recruitment process, eligibility criteria, and the support provided to help students secure top job placements"
+          content="Explore current job openings at CBS Group of Institutions. Join a dynamic academic environment with opportunities for faculty, administrative, and support roles. Build your career with us today!"
         />
         <meta
           name="keywords"
-          content="CBS Group of Institutions placement policy, student recruitment process, campus placements, job opportunities, placement guidelines, career support, employer partnerships, hiring process, career growth, industry tie-ups."
+          content="CBS Group of Institutions current openings, job vacancies, faculty positions, college recruitment, academic jobs, non-teaching staff openings, career opportunities, latest job listings, work at CBS, college hiring."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <link rel="canonical" href="nan" />
+        <link
+          rel="canonical"
+          href="https://www.cbscolleges.com/current-opening"
+        />
       </Head>
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-      <PageTitle pageTitle={"Placement Policy"} pagesub={"vision"} />
-      <PlacementPolicy />
+      <PageTitle pageTitle={"Current opening "} pagesub={"vision"} />
+      <Carrer />
       <Footer />
       <Scrollbar />
       <CursorMaus />
@@ -40,4 +42,4 @@ function director() {
   );
 }
 
-export default director;
+export default carrer;
