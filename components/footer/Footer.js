@@ -90,9 +90,11 @@ const Footer = (props) => {
                                     <h3>Contact Us</h3>
                                 </div>
                                 <ul>
-                                    <li><Image src={Shape1} alt="" /><span>ceo@cbscolleges.com</span>
+                                    <li><Image src={Shape1} alt="" /><span>director@cbscolleges.com</span>
                                     </li>
-                                    <li><Image src={News1} alt="" /> <span>+91-8053111333-444
+                                    <li><Image src={News1} alt="" /> <span> +91-8053111444
+                                    </span></li>
+                                    <li><Image src={News1} alt="" /> <span>  +91-8053111333
                                     </span></li>
                                     <li><Image src={News2} alt="" /><span>8 KM. Mile Stone, Jhajjar-Kosli Road, <br />
                                         Fatehpuri , Jhajjar Delhi-NCR (Haryana)</span></li>

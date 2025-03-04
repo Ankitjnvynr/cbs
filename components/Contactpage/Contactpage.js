@@ -66,7 +66,7 @@ const Contactpage = () => {
                                         <div className="office-info-text">
                                             <h2 style={styles.colorWhite} >Email Us</h2>
                                             <p></p>
-                                            <p style={styles.colorWhite} > ceo@cbscolleges.com</p>
+                                            <p style={styles.colorWhite} > director@cbscolleges.com</p>
                                         </div>
                                     </div>
                                 </div>
@@ -79,6 +79,7 @@ const Contactpage = () => {
                                         </div>
                                         <div className="office-info-text">
                                             <h2 style={styles.colorWhite} >Call Now</h2>
+                                            <p style={styles.colorWhite} >+91-8053111444</p>
                                             <p style={styles.colorWhite} >+91-8053111333</p>
 
                                         </div>
@@ -101,8 +102,7 @@ const Contactpage = () => {
                         className="wpo-contact-form-area">
                             <div className="wpo-contact-title">
                             <h2 style={styles.title}>Have Any Question?</h2>
-                            <p>It is a long established fact that a reader will be distracted
-                                content of a page when looking.</p>
+                            <p>If you have any questions, don’t hesitate to reach out—We are here to help!</p>
                         </div>
                             <ContactForm />
                         </div>
