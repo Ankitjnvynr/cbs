@@ -39,18 +39,18 @@ const Header = (props) => {
       label: "About",
       link: "/",
       subMenu: [
-        { label: "About Us", link: "/" },
+        { label: "About Us", link: "/about-us" },
         { label: "Vision & Mission", link: "/vision-mission" },
         { label: "Chairman's Message", link: "/chairman" },
-        { label: "Director's Message", link: "/Director-message" },
-        { label: "Director's General Message", link: "/directorgeneral-message" },
+        { label: "Director's Message", link: "/directors-message" },
+        { label: "Director's General Message", link: "/director-general-message" },
         { label: "Organisation Chart", link: "/organisation-chart" },
         // { label: "Approvals & Affiliations", link: "/approvals" },
         { label: "Code of Conduct", link: "/codeofconduct" },
         // { label: "Mandatory Disclosures", link: "/" },
         // { label: "Financial Audit", link: "/" },
         { label: "Governing Body of Institution", link: "/governing" },
-        { label: "Grievance Committee", link: "/" },
+        { label: "Grievance Committee", link: "/about-us/grievance" },
       ],
     },
     {
@@ -105,7 +105,9 @@ const Header = (props) => {
         { label: "Teaching Pedagogy", link: "/" },
         // { label: "Courses", link: "/courses" },
         { label: "Academic Calendar", link: "/" },
-        { label: "Examinations", link: "/" },
+        { label: "Examinations", link: "/academic/examination" },
+        { label: "Faculty", link: "/academic/faculty" },
+        { label: "Syllabus", link: "/academic/syllabus" },
         { label: "Curriculum", link: "/" },
         { label: "Departments", link: "/" },
         // { label: "Research & Development", link: "/" },
@@ -119,7 +121,7 @@ const Header = (props) => {
         { label: "Fee Structure", link: "/" },
         { label: "Scholarships Scheme", link: "/" },
         { label: "Eligibility", link: "/" },
-        { label: "Admission Procedure", link: "/" },
+        { label: "Admission Procedure", link: "/admission-procedure" },
         { label: "Documents Required", link: "/" },
         { label: "Online Registration Form", link: "/admission" },
         { label: "Admission Prospectos", link: "/" },
@@ -258,7 +260,7 @@ const Header = (props) => {
       label: "Placement",
       link: "/",
       subMenu: [
-        { label: "Career Development Cell", link: "/placementcell" },
+        { label: "Career Development Cell", link: "/introduction-about-placement" },
         { label: "Placement Cell", link: "#",
           subMenu:[
             {label:'Objective of Placement Cell', link:'/objective-of-placement-cell'},
@@ -276,11 +278,11 @@ const Header = (props) => {
         { label: "Our Recruiters", link: "/" },
         { label: "Personality Development", link: "/",
           subMenu:[
-            {label:'Communication Skills',link:'/communication'},
-            {label:'Group Discussions, Debates',link:'/groupdiscuss'},
-            {label:'Resume Writing Tips',link:'/resumewriting'},
-            {label:'Interviews Tips/Questions',link:'/interview'},
-            {label:'Do & Dont While Handling Interview',link:'/doanddonot'},
+            {label:'Communication Skills',link:'/communication-skills'},
+            {label:'Group Discussions, Debates',link:'/group-discussions-debates'},
+            {label:'Resume Writing Tips',link:'/resume-writing-tips'},
+            {label:'Interviews Tips/Questions',link:'/interviews-tips-questions'},
+            {label:'Do & Dont While Handling Interview',link:'/do-and-dont-while-handling-interview'},
           ]
          },
       ],
@@ -320,9 +322,9 @@ const Header = (props) => {
       label: "Career",
       link: "/",
       subMenu: [
-        { label: "Current opening", link: "/current" },
+        { label: "Current opening", link: "/current-opening" },
         
-        { label: "upload resume", link: "/upload" },
+        { label: "upload resume", link: "/upload-resume-for-job" },
        
        
       ],
@@ -332,6 +334,11 @@ const Header = (props) => {
     //   link: "/",
      
     // },
+    {
+      label: "Gallery",
+      link: "/gallery",
+     
+    },
     {
       label: "Contact",
       link: "/contact",
