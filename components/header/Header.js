@@ -327,11 +327,11 @@ const Header = (props) => {
        
       ],
     },
-    {
-      label: "Blogs",
-      link: "/",
+    // {
+    //   label: "Blogs",
+    //   link: "/",
      
-    },
+    // },
     {
       label: "Contact",
       link: "/contact",

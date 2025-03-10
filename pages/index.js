@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Hero from '../components/hero/hero';
 import FunfactSecion from '../components/FunfactSection/FunfactSection';
 import About from '../components/about/about';
+import Welcome from '../components/about/welcome';
 import ServiceSection from '../components/ServiceSection/ServiceSection';
 import VideosSection from '../components/VideosSection/VideosSection';
 // import ProjectSection from '../components/ProjectSection/ProjectSection';
@@ -36,6 +37,7 @@ const HomePage = () => {
       <NoticeBoard/>
       <FunfactSecion hclass="funfact-section" />
       <About />
+      <Welcome />
       <ServiceSection hclass={"services-section"} />
       {/* <VideosSection /> */}
       <ProjectSection1 hclass={"project-section"} />
