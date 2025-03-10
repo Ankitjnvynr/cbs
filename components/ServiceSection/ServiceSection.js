@@ -49,6 +49,22 @@ const ServiceSection = (props) => {
            slug: '',
            description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
         },
+        {
+           Id: '05',
+           sImg: simg4,
+           sSImg: sSimg4,
+           title: 'MCA',
+           slug: '',
+           description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
+        },
+        {
+           Id: '06',
+           sImg: simg4,
+           sSImg: sSimg4,
+           title: 'MCA',
+           slug: '',
+           description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
+        },
       
      ]
 
@@ -67,7 +83,7 @@ const ServiceSection = (props) => {
                 <div className="services-wrap">
                     <div className="row">
                         {Services.map((item, sindx) => (
-                            <div className="col col-xl-3 col-lg-6 col-md-6 col-12" key={sindx}>
+                            <div className="col col-xl-4 col-lg-6 col-md-6 col-12" key={sindx}>
                                 <ServiceCard key={sindx} title={item.title} img={item.sImg} slug={item.slug} sdescription={item.description} />
                             </div>
                         ))}

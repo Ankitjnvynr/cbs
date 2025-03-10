@@ -291,7 +291,7 @@ const Header = (props) => {
       label: "Affilation",
       link: "/",
       subMenu: [
-        { label: "Auditing Statement", link: "/" },
+        { label: "Auditing Statement", link: "/affilation/auditing-statement/" },
         { label: "Affilation & Accrediation status", link: "/" },
         { label: "Memberships & MOU", link: "/" },
          { label: "Mandatory Disclosures", link: "/" },
@@ -329,11 +329,11 @@ const Header = (props) => {
        
       ],
     },
-    {
-      label: "Blogs",
-      link: "/",
+    // {
+    //   label: "Blogs",
+    //   link: "/",
      
-    },
+    // },
     {
       label: "Gallery",
       link: "/gallery",
