@@ -96,9 +96,9 @@ const Hero3 = () => {
               meet your needs but also exceed your expectations.
             </p> */}
             <div className="hero-btn">
-              {/* <Link href="/about" className="theme-btn border ">
+              <Link href="/about" className="theme-btn border ">
                 Go To Alumni<i className="ti-arrow-right"></i>
-              </Link> */}
+              </Link>
               <div
               style={{
                 zIndex: 100,

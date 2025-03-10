@@ -57,7 +57,7 @@ function Canteen() {
         {/* Image Section */}
         <div style={styles.imageWrapper}>
           <img
-            src="/images/facilities/cbss.jpg"// Replace with the correct image path
+            src="/images/facilities/transports.jpg"// Replace with the correct image path
             alt="Transportation  at CBS Group"
             style={{ width: '900px', height: '450px', objectFit: 'cover' }}
           />

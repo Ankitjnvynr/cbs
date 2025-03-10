@@ -58,7 +58,7 @@ function Canteen() {
         <div style={styles.imageWrapper}>
           <img
             src="/images/facilities/hostel_(1).jpg"// Replace with the correct image path
-            alt="Hostel-CBS Group of Institution"
+            alt="Hostel-CBS Group of Institutiong"
             style={{ width: '900px' }}
           />
         </div>
