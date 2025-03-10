@@ -39,7 +39,7 @@ const Header = (props) => {
       label: "About",
       link: "/",
       subMenu: [
-        { label: "About Us", link: "/" },
+        { label: "About Us", link: "/about-us" },
         { label: "Vision & Mission", link: "/vision-mission" },
         { label: "Chairman's Message", link: "/chairman" },
         { label: "Director's Message", link: "/directors-message" },
@@ -50,7 +50,7 @@ const Header = (props) => {
         // { label: "Mandatory Disclosures", link: "/" },
         // { label: "Financial Audit", link: "/" },
         { label: "Governing Body of Institution", link: "/governing" },
-        { label: "Grievance Committee", link: "/" },
+        { label: "Grievance Committee", link: "/about-us/grievance" },
       ],
     },
     {
@@ -121,7 +121,7 @@ const Header = (props) => {
         { label: "Fee Structure", link: "/" },
         { label: "Scholarships Scheme", link: "/" },
         { label: "Eligibility", link: "/" },
-        { label: "Admission Procedure", link: "/" },
+        { label: "Admission Procedure", link: "/admission-procedure" },
         { label: "Documents Required", link: "/" },
         { label: "Online Registration Form", link: "/admission" },
         { label: "Admission Prospectos", link: "/" },
