@@ -39,16 +39,18 @@ const Header = (props) => {
       label: "About",
       link: "/",
       subMenu: [
+        { label: "About Us", link: "/" },
         { label: "Vision & Mission", link: "/vision-mission" },
         { label: "Chairman's Message", link: "/chairman" },
         { label: "Director's Message", link: "/Director-message" },
         { label: "Director's General Message", link: "/directorgeneral-message" },
         { label: "Organisation Chart", link: "/organisation-chart" },
-        { label: "Approvals & Affiliations", link: "/approvals" },
+        // { label: "Approvals & Affiliations", link: "/approvals" },
         { label: "Code of Conduct", link: "/codeofconduct" },
-        { label: "Mandatory Disclosures", link: "/" },
-        { label: "Financial Audit", link: "/" },
+        // { label: "Mandatory Disclosures", link: "/" },
+        // { label: "Financial Audit", link: "/" },
         { label: "Governing Body of Institution", link: "/governing" },
+        { label: "Grievance Committee", link: "/" },
       ],
     },
     {
@@ -67,25 +69,61 @@ const Header = (props) => {
       label: "Academics",
       link: "/",
       subMenu: [
-        { label: "Courses", link: "/courses" },
+        { label: "Programs", link: "/courses" },
+        { label: "Undergraduate Programmes", link: "/courses",
+          subMenu: [
+            { label: "B.Tech/B.Tech.(LEET)", link: "/" ,
+              subMenu: [
+                { label: "Mechanical Engineering", link: "/" },
+                { label: "Civil Engineering", link: "/" },
+                { label: "Computer Science Engineering", link: "/" },
+                { label: "Electronics & Communication Engineering", link: "/" },
+                { label: "Electrical Engineering", link: "/" },
+                // { label: "Program Educational Objectives", link: "/" },
+              ],
+            },
+            { label: "Bachelor of Computer Application", link: "/" },
+            { label: "Bachelor of Business Administration", link: "/" },
+            // { label: "Program Outcomes", link: "/" },
+            // { label: "Program Specific Outcomes", link: "/" },
+            // { label: "Program Educational Objectives", link: "/" },
+          ],
+
+         },
+        { label: "Postgraduate Programmes", link: "/courses",
+          subMenu: [
+            { label: "Master of Technology", link: "/" },
+            { label: "Master of Business Administration", link: "/" },
+            { label: "Master of Computer Application", link: "/" },
+            // { label: "Eligibility", link: "/" },
+            // { label: "Documents Required", link: "/" },
+            // { label: "Admission Form", link: "/admission" },
+            // { label: "Admission Prospectos", link: "/" },
+            
+          ],
+         },
+        { label: "Teaching Pedagogy", link: "/" },
+        // { label: "Courses", link: "/courses" },
         { label: "Academic Calendar", link: "/" },
         { label: "Examinations", link: "/" },
         { label: "Curriculum", link: "/" },
         { label: "Departments", link: "/" },
-        { label: "Research & Development", link: "/" },
+        // { label: "Research & Development", link: "/" },
       ],
     },
     {
       label: "Admission",
       link: "/",
       subMenu: [
-        { label: "Course Programme Offered", link: "/" },
+        // { label: "Course Programme Offered", link: "/" },
         { label: "Fee Structure", link: "/" },
         { label: "Scholarships Scheme", link: "/" },
         { label: "Eligibility", link: "/" },
+        { label: "Admission Procedure", link: "/" },
         { label: "Documents Required", link: "/" },
-        { label: "Admission Form", link: "/admission" },
+        { label: "Online Registration Form", link: "/admission" },
         { label: "Admission Prospectos", link: "/" },
+        
         
       ],
     },
@@ -203,10 +241,7 @@ const Header = (props) => {
         { label: "Computer Center", link: "/facility/computer-center" },
         { label: "Sports", link: "/facility/sports" },
         { label: "Infrastructure", link: "/" },
-        {
-          label: "All Facilities",
-          link: "/",
-          subMenu: [
+        
             { label: "Laboratories & Workshop", link: "/facility/laboratories-workshops" },
             { label: "Canteen & Cafeteria", link: "/facility/canteen-cafeteria" },
             { label: "Dispensary/Health Zone", link: "/facility/healthzone" },
@@ -214,8 +249,8 @@ const Header = (props) => {
             { label: "Transport", link: "/facility/transportation" },
             { label: "Anti Rangging Comunity", link: "/" },
             { label: "College Internal Complaint Committee", link: "/" },
-          ],
-        },
+          
+        
       ],
     },
    
@@ -233,7 +268,7 @@ const Header = (props) => {
             {label:'FAQs', link:'/placement-faqs'},
           ]
          },
-        { label: "Training Programmes", link: "/internship" },
+        { label: "Internship and Training Programmes", link: "/internship" },
         { label: "Industrial Visits", link: "/industrial-visits" },
         { label: "Seminars & Guest Lectures", link: "/seminar-guest-lectures" },
         { label: "Placement Gallery", link: "/" },
@@ -257,6 +292,8 @@ const Header = (props) => {
         { label: "Auditing Statement", link: "/" },
         { label: "Affilation & Accrediation status", link: "/" },
         { label: "Memberships & MOU", link: "/" },
+         { label: "Mandatory Disclosures", link: "/" },
+        { label: "Financial Audit", link: "/" },
         // { label: "Memberships & MOU", link: "/" },
         
       ],
@@ -298,6 +335,16 @@ const Header = (props) => {
     {
       label: "Contact",
       link: "/contact",
+    },
+    {
+      label: "Downloads",
+      link: "/",
+     
+    },
+    {
+      label: "Student Login ",
+      link: "/",
+     
     },
   ];
   
