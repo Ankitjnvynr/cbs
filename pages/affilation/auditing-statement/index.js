@@ -10,6 +10,7 @@ import CursorMaus from '../../../components/CursorMaus/CursorMaus';
 import Group from '../../../components/group/Group';
 import Head from 'next/head';
 import Grievance from '../../../components/about/Grievance';
+import AuditingStatement from '../../../components/affilation/AuditingStatement'
 
 function group() {
   return (
@@ -25,8 +26,8 @@ function group() {
     <link rel="canonical" href="https://www.cbscolleges.com/downloads/files/n63245f98f241f.pdf" />
 </Head>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={'Grievance Committee'} pagesub={'vision'} />
-     <Grievance />
+    <PageTitle pageTitle={'Auditing Statement'} pagesub={'vision'} />
+     <AuditingStatement />
     <Footer />
     <Scrollbar />
     <CursorMaus />
