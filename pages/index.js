@@ -5,7 +5,8 @@ import FunfactSecion from '../components/FunfactSection/FunfactSection';
 import About from '../components/about/about';
 import ServiceSection from '../components/ServiceSection/ServiceSection';
 import VideosSection from '../components/VideosSection/VideosSection';
-import ProjectSection from '../components/ProjectSection/ProjectSection';
+// import ProjectSection from '../components/ProjectSection/ProjectSection';
+import ProjectSection1 from '../components/ProjectSection/ProjectSection1';
 import TestimonialSection from '../components/TestimonialSection/TestimonialSection';
 import CtaSection from '../components/CtaSection/CtaSection';
 import BlogSection from '../components/BlogSection/BlogSection';
@@ -20,9 +21,13 @@ const HomePage = () => {
   return (
     <Fragment>
       <Head>
-        <title>CBS Group Of Institution Jhajjar</title>
-        <meta name="description" content="Welcome to CBS college." />
-      </Head>
+    <title> Best Engineering College in NCR, Haryana I CBS Group of Institutions </title>
+    <meta name="description" content="CBS Group of Institutions is all set to unleash a new era in the education sector of India by offering a much needed distinctive education platform to thousands of students to launch their successful careers." />
+    <meta name="keywords" content="CBS Group of Institutions, Best Engineering College in NCR, Top Private Engineering College in Haryana, AICTE Approved Engineering College in India, Best B.Tech College with Placements, Top-Ranked Private College in NCR, Engineering Admission 2024 CBS Group, Affordable Engineering College in Haryana, Best UG & PG Engineering Programs, CBS Group of Institutions Ranking & Accreditation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charSet="utf-8" />
+    <link rel="canonical" href="https://www.cbscolleges.com/" />
+  </Head>
 
 
 
@@ -33,7 +38,7 @@ const HomePage = () => {
       <About />
       <ServiceSection hclass={"services-section"} />
       {/* <VideosSection /> */}
-      <ProjectSection hclass={"project-section"} />
+      <ProjectSection1 hclass={"project-section"} />
       <TestimonialSection />
       <CtaSection />
       <BlogSection />

@@ -38,8 +38,8 @@ const Projects = [
     },
     {
         id: '3',
-        title: 'Computer Lab',
-        subtitle: 'Computer Lab in Cbs Colleges',
+        title: 'C-Labs ',
+        subtitle: 'Computer Labs - CBS Colleges ',
         slug: '',
         pimg1: pimg3,
         date: 'Feb 2024',

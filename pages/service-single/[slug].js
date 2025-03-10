@@ -26,7 +26,7 @@ const ServiceSinglePage = (props) => {
 
     return (
         <Fragment>
-            <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone}/>
+            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone}/>
             <PageTitle pageTitle={serviceDetails?.title} pagesub={'Service'} />
             <section className="service-single-section section-padding">
                 <div className="container">

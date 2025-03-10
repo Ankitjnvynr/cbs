@@ -8,7 +8,8 @@ import Typewriter from "typewriter-effect";
 import Arrow from "/public/images/slider/award.svg";
 import CountUp from "react-countup";
 import NoticeBoard from "./NoticeBoard";
-import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
+import Marquee from "react-fast-marquee";
+
 
 
 const Hero3 = () => {
@@ -131,17 +132,21 @@ const Hero3 = () => {
             
           </div>
         
-
+          
         </div>
         {/* <div className="video" >
                     <VideoModal />
                 </div> */}
+               
 
       </div>
-      
+      <div style={{height:"2.5rem",backgroundColor:"#dbe1e1",borderRadius:"12px"}}>
+      <Marquee style={{position:"relative",zIndex:"10",color:"#3383ca",fontSize:"1.3rem",fontWeight:"bold"}}>
+           CBS Group of Institutions Under the Trust of Choudhary Bhim Singh Institute of Science and Technology
+          </Marquee>
+          </div>
     </section>
   );
 };
 
 export default Hero3;
-

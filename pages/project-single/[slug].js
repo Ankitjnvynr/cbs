@@ -51,7 +51,7 @@ const ProjectSinglePage = (props) => {
     };
     return (
         <Fragment>
-            <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={ProjectSingle?.title} pagesub={'Project'} />
             <section className="project-single-area section-padding">
                 <div className="container">

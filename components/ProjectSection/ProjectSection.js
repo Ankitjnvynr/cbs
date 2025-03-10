@@ -5,9 +5,6 @@ import Projects from "./projects";
 
 
 const ProjectSection = (props) => {
-
-
-
     const settings = {
         centerMode: true,
         infinite: true,
@@ -20,8 +17,8 @@ const ProjectSection = (props) => {
             breakpoint: 575,
             settings: {
                 slidesToShow: 1,
-                variableWidth: false,
-                centerMode: false,
+                variableWidth: true,
+                centerMode: true,
             }
         },
 
@@ -41,7 +38,7 @@ const ProjectSection = (props) => {
             <div className="project-slider" >
                 <Slider {...settings}>
                     {Projects.map((item, Pindx) => (
-                        <div key={Pindx}>
+                        <div key={Pindx} style={{ width: "29rem", height: "30rem" }}>
                             <ProjectCard Pimg={item.pimg1} Psubtitle={item.subtitle} Ptitle={item.title} Pslug={item.slug} />
                         </div>
                     ))}

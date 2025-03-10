@@ -11,7 +11,7 @@ import Hostel from '../../components/hostel/Hostel';
 function hostels() {
   return (
     <Fragment>
-    <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+    <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
     <PageTitle pageTitle={"Hostels"} pagesub={"About"} />
     <Hostel/>
     <Footer />

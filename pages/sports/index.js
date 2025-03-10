@@ -10,7 +10,7 @@ import Sports from '../../components/sport/Sports';
 function sports() {
   return (
     <Fragment>
-      <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
+      <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
       <PageTitle pageTitle={"Sports"} pagesub={"About"} />
       <Sports/>
       <Footer />
