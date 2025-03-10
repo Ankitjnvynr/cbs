@@ -342,8 +342,15 @@ const Header = (props) => {
      
     },
     {
-      label: "Student Login ",
+      label: "Login ",
       link: "/",
+      subMenu: [
+        { label: "Student Login", link: "/" },
+        
+        { label: "Admin Panel", link: "/" },
+       
+       
+      ],
      
     },
   ];
