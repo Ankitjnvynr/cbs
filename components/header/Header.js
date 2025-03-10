@@ -329,11 +329,11 @@ const Header = (props) => {
        
       ],
     },
-    {
-      label: "Blogs",
-      link: "/",
+    // {
+    //   label: "Blogs",
+    //   link: "/",
      
-    },
+    // },
     {
       label: "Gallery",
       link: "/gallery",
