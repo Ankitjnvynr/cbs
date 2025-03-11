@@ -24,11 +24,11 @@ export default function Sidebar() {
   };
 
   const handleConfirmLogout = async () => {
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
     toast.success("Logged out Successfully");
     setOpen(false);
-    router.push('/student/auth')
+    router.push('/login')
   };
 
   return (
