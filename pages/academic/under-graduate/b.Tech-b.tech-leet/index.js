@@ -10,7 +10,7 @@ const index = () => {
   return (
     <>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={"post-graduate"} pagesub={"About"} />
+    <PageTitle pageTitle={"under-graduate"} pagesub={"About"} />
    
     <Footer />
     <Scrollbar />

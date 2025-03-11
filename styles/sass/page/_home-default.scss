@@ -560,6 +560,30 @@
                 }
             }
         }
+
+        &:nth-child(5) {
+            .services-card {
+                .number-shape {
+                    .shape {
+                        svg {
+                            path {
+                                fill: $theme-primary-color-s3;
+                            }
+                        }
+                    }
+                }
+
+                h3 {
+                    a {
+                        color: $theme-primary-color-s3;
+
+                        span {
+                            color: $theme-primary-color-s3;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
