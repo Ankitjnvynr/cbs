@@ -11,6 +11,7 @@ import Footer from "../../components/footer/Footer";
 import Logo from "/public/images/cbslogo.png";
 import Phone from "/public/images/telephone.svg";
 import CursorMaus from "../../components/CursorMaus/CursorMaus";
+import About1 from "../../components/about/about1";
 
 const AboutPage = () => {
   return (
@@ -31,11 +32,11 @@ const AboutPage = () => {
       </head>
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
       <PageTitle pageTitle={"About Us"} pagesub={"About"} />
-      <About />
-      <VideosSection />
-      <TestimonialSection />
-      <CtaSection />
-      <BlogSection />
+      <About1 />
+      {/* <VideosSection /> */}
+      {/* <TestimonialSection /> */}
+      {/* <CtaSection /> */}
+      {/* <BlogSection /> */}
       <Footer />
       <Scrollbar />
       <CursorMaus />
