@@ -14,7 +14,7 @@ function director() {
   return (
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-            <PageTitle pageTitle={'Courses '} pagesub={'vision'} />
+            <PageTitle pageTitle={'Programs '} pagesub={'vision'} />
              <CoursesTable/>
             <Footer />
             <Scrollbar />

@@ -6,12 +6,13 @@ import Footer from '../../../../components/footer/Footer'
 import Scrollbar from '../../../../components/scrollbar/scrollbar'
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
+import Bca from '../../../../components/acadmics/bca'
 const index = () => {
   return (
     <>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={"post-graduate"} pagesub={"About"} />
-   
+    <PageTitle pageTitle={"bachelor-of-computer-applications"} pagesub={"About"} />
+   <Bca/>
     <Footer />
     <Scrollbar />
     {/* <CursorMaus /> */}
