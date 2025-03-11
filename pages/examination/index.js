@@ -7,6 +7,7 @@ import Scrollbar from '../../components/scrollbar/scrollbar'
 import Footer from '../../components/footer/Footer';
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
+// import Examination from './Examination'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 import Director from '../../components/director/Director';
 function director() {
@@ -14,7 +15,7 @@ function director() {
     <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'Examination '} pagesub={'vision'} />
-             
+             {/* <Examination/> */}
             <Footer />
             <Scrollbar />
             <CursorMaus />
@@ -22,4 +23,4 @@ function director() {
   )
 }
 
-export default director
+export default director;
