@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Navbar from '../../../../components/Navbar/Navbar'
+import Navbar from '../../../../components/Navbar/Navbar' 
 import PageTitle from '../../../../components/pagetitle/PageTitle'
 import Footer from '../../../../components/footer/Footer'
 import Scrollbar from '../../../../components/scrollbar/scrollbar'
