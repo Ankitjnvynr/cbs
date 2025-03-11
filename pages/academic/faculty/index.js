@@ -6,6 +6,7 @@ import Scrollbar from '../../../components/scrollbar/scrollbar'
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import Head from 'next/head'
+import Faculty from '../../../components/acadmics/Faculty'
 
 const index = () => {
   return (
@@ -25,8 +26,8 @@ const index = () => {
   <link rel="canonical" href="https://www.cbscolleges.com/faculty" />
 </Head>
     <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
-    <PageTitle pageTitle={"facaulty"} pagesub={"About"} />
-    
+    <PageTitle pageTitle={"faculty"} pagesub={"About"} />
+    <Faculty />
     <Footer />
     <Scrollbar />
     {/* <CursorMaus /> */}

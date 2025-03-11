@@ -16,6 +16,7 @@ const index = () => {
     <Footer />
     <Scrollbar />
     {/* <CursorMaus /> */}
+
   </>
   )
 }
