@@ -21,17 +21,17 @@ const ServiceSection = (props) => {
            Id: '01',
            sImg: simg1,
            sSImg: sSimg1,
-           title: 'MBA',
+           title: 'BBA',
            slug: '',
-           description: 'The MBA programme offered at the college imparts a global outlook and leads to excellence.',
+           description: 'BBA or Bachelor of Business Administration refers to the bachelor’s degree course in business..',
         },
         {
            Id: '02',
            sImg: simg2,
            sSImg: sSimg2,
-           title: 'BBA',
+           title: 'MBA',
            slug: '',
-           description: 'BBA or Bachelor of Business Administration refers to the bachelor’s degree course in business..',
+           description: 'The MBA programme offered at the college imparts a global outlook, equips the students with specialized..',
         },
         {
            Id: '03',
@@ -45,17 +45,17 @@ const ServiceSection = (props) => {
            Id: '04',
            sImg: simg4,
            sSImg: sSimg4,
-           title: 'MCA',
+           title: 'Mtech',
            slug: '',
-           description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
+           description: 'Master of Engineering or Master of Technology degree is a postgraduate program in engineering or technology.',
         },
         {
            Id: '05',
            sImg: simg4,
            sSImg: sSimg4,
-           title: 'MCA',
+           title: 'BCA',
            slug: '',
-           description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
+           description: 'Fast growing information technology and communication system have become critical components..',
         },
         {
            Id: '06',
@@ -83,7 +83,7 @@ const ServiceSection = (props) => {
                 <div className="services-wrap">
                     <div className="row">
                         {Services.map((item, sindx) => (
-                            <div className="col col-xl-4 col-lg-6 col-md-6 col-12" key={sindx}>
+                            <div className="col col-xl-4 col-lg-6 col-md-6 col-12" key={sindx} style={{paddingTop:"30px"}}>
                                 <ServiceCard key={sindx} title={item.title} img={item.sImg} slug={item.slug} sdescription={item.description} />
                             </div>
                         ))}

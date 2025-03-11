@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Navbar from '../../../components/Navbar/Navbar'
+import Examination from '../../../components/acadmics/Examination'
 import PageTitle from '../../../components/pagetitle/PageTitle'
 import Footer from '../../../components/footer/Footer'
 import Scrollbar from '../../../components/scrollbar/scrollbar'
@@ -29,7 +30,7 @@ const index = () => {
 </Head>
      <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
     <PageTitle pageTitle={"examination"} pagesub={"About"} />
-    
+    <Examination/>
     <Footer />
     <Scrollbar />
     {/* <CursorMaus /> */}
