@@ -6,7 +6,7 @@ import Footer from '../../../../components/footer/Footer'
 import Scrollbar from '../../../../components/scrollbar/scrollbar'
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
-import Bca from '../../../../components/acadmics/bca'
+import Bca from '../../../../components/acadmics/Bca'
 const index = () => {
   return (
     <>

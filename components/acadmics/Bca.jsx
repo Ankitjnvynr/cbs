@@ -9,4 +9,4 @@ function Bca() {
   )
 }
 
-export default Bca
+export default Bca;
