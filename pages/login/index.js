@@ -54,7 +54,7 @@ const LoginPage = () => {
         const res = await authService.login(email, password);
         // user = await JSON.parse(res)
         console.log(res);
-        if (res.code == 200) {
+        if (res.code == 200 && res.user.role == 'admin') {
           toast.success("Successfully logged in to CBS College!");
           localStorage.setItem("authToken", res.token);
           localStorage.setItem("user", JSON.stringify(res.user));
