@@ -78,8 +78,11 @@ const Group = () => {
 
         <h2 style={subheadingStyle}>Debate</h2>
         <p style={paragraphStyle}>
-          A debate is an organized clash of good ideas where each side presents evidence to promote its viewpoint.
-          It is a formal intellectual contest, and a good debater uses evidence and logic to argue effectively.
+        A debate is an organized clash of good ideas. Each side employs worthwhile evidence to promote their viewpoint and to rebut the “flawed” 
+        evidence advanced by the other side. Debating is a formal intellectual contest and there are endless ways it can be played. However, a good 
+        debate is like a tennis match where each side, following the rules set down, bats ideas back and forth to defeat the other team. As in any 
+        other subjective sport,debaters have to persuade the judges that they have won. Yet, debating can be an exciting even dangerous activity
+         because emotions often run high.
         </p>
 
         <p style={finalTextStyle}>
