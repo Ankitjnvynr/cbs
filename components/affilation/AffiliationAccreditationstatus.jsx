@@ -1,86 +1,82 @@
 import React from 'react';
 
-function AffiliationAccreditationstatus() {
+function AffiliationAccreditationStatus() {
   const data = [
-    { id: 1, name: "Affiliation", link: "/documents/affiliation.pdf" },
-    { id: 2, name: "AICTE Approval", link: "/documents/AICTE Approval.pdf" },
+    { id: 1, name: "Affiliation", link: "/documents/affiliation.pdf", logo: "/documents/mdu.png" },
+    { id: 2, name: "AICTE Approval", link: "/documents/AICTE Approval.pdf", logo: "/documents/HD-AICTE.png" },
   ];
 
   return (
-    <div style={containerStyle}>
-      <table style={tableStyle}>
-        <thead>
-          <tr style={headerRowStyle}>
-            <th style={tableHeaderStyle}>Sr. No.</th>
-            <th style={tableHeaderStyle}>Name</th>
-            <th style={tableHeaderStyle}>Download</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={item.id} style={index % 2 === 0 ? rowEven : rowOdd}>
-              <td style={tableCellStyle}>{item.id}</td>
-              <td style={tableCellStyle}>{item.name}</td>
-              <td style={tableCellStyle}>
-                <a href={item.link} style={linkStyle} download>
-                  Download
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div style={outerContainerStyle}>
+      <div style={containerStyle}>
+        {data.map((item) => (
+          <div key={item.id} style={cardStyle}>
+            <div style={contentStyle}>
+              <img src={item.logo} alt={item.name} style={logoStyle} />
+              <h3 style={titleStyle}>{item.name}</h3>
+              <a href={item.link} style={linkStyle} download>
+                Download
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 // Styles
-const containerStyle = {
+const outerContainerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  height: "30vh",
+  height: "350px",
   backgroundColor: "#f0f0f0",
 };
 
-const tableStyle = {
-  borderCollapse: "collapse",
-  width: "70%",
+const containerStyle = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "20px",
+};
+
+const cardStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "220px",
   backgroundColor: "white",
   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
   borderRadius: "10px",
-  overflow: "hidden",
+  padding: "15px",
+
 };
 
-const headerRowStyle = {
-  backgroundColor: "#007BFF",
-  color: "white",
+const logoStyle = {
+  width: "120px",
+  height: "120px",
+  marginBottom: "10px",
 };
 
-const tableHeaderStyle = {
-  padding: "12px",
-  border: "1px solid #ddd",
+const contentStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
+
+const titleStyle = {
+  margin: "0 0 5px 0",
+  fontSize: "18px",
   textAlign: "center",
-};
-
-const tableCellStyle = {
-  padding: "12px",
-  border: "1px solid #ddd",
-  textAlign: "center",
-};
-
-const rowEven = {
-  backgroundColor: "#ffffff",
-};
-
-const rowOdd = {
-  backgroundColor: "#f7f7f7",
 };
 
 const linkStyle = {
   color: "#007BFF",
   textDecoration: "none",
   fontWeight: "bold",
+  textAlign: "center",
 };
 
-export default AffiliationAccreditationstatus;
+export default AffiliationAccreditationStatus;

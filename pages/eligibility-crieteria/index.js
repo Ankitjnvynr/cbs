@@ -34,7 +34,7 @@ function director() {
 
 
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-      <PageTitle pageTitle={"eligibility-crieteria "} pagesub={"vision"} />
+      <PageTitle pageTitle={"Eligibility Criteria "} pagesub={"vision"} />
       <EligbilityCrieteria/>
       <Footer />
       <Scrollbar />

@@ -33,7 +33,7 @@ function index() {
   />
 </Head>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={'admission procedure  '} pagesub={'vision'} />
+    <PageTitle pageTitle={'Admission Procedure  '} pagesub={'vision'} />
     <AdmissionProcedure/>
     <Footer />
     <Scrollbar />

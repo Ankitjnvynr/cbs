@@ -37,7 +37,6 @@ const Header = (props) => {
     },
     {
       label: "About",
-      link: "/",
       subMenu: [
         { label: "About Us", link: "/about-us" },
         { label: "Vision & Mission", link: "/visionmission" },
@@ -345,7 +344,7 @@ const Header = (props) => {
     },
     {
       label: "Downloads",
-      link: "/",
+      link: "/Download",
      
     },
     {

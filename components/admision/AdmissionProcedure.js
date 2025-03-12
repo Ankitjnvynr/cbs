@@ -114,7 +114,7 @@ const AdmissionProcedure = () => {
       </ul>
       </div>
 
-      <div style={sectionStyle}>
+      {/* <div style={sectionStyle}>
         <h3 style={boldStyle}>Diploma</h3>
         <p>
         Admission in Diploma course at CBSPolytechnic will be made on the basis of DET-2014 Rank based in inter-se merit of DET 2014.
@@ -123,7 +123,7 @@ const AdmissionProcedure = () => {
         <li> 75% seat will be filled by HSTES.</li>
         <li>25% seat will be filled by institute on the basis of merit of DET 2014.</li>
       </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

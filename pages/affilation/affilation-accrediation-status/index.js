@@ -15,7 +15,7 @@ function group() {
   return (
     <Fragment>
      <Head>
-    <title>Grievance Committee-CBS Group of Institutions</title>
+    <title>t Affiliation Accreditation status</title>
     <meta name="description"
         content="Learn about the Grievance Committee at CBS Group of Institutions, dedicated to addressing student and staff concerns with fairness, transparency, and prompt resolutions to ensure a positive campus experience." />
     <meta name="keywords"
