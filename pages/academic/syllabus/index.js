@@ -7,6 +7,7 @@ import Scrollbar from '../../../components/scrollbar/scrollbar'
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import Head from 'next/head'
+import Syllabus from '../../../components/acadmics/Syllabus'
 const index = () => {
   return (
     <>
@@ -26,7 +27,7 @@ const index = () => {
 </Head>
     <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
     <PageTitle pageTitle={"Syllabus"} pagesub={"About"} />
-   
+   <Syllabus />
     <Footer />
     <Scrollbar />
     {/* <CursorMaus /> */}
