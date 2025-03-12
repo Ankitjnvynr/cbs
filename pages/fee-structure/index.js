@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../components/pagetitle/PageTitle";
+import FeeStructure from "../../components/admision/FeeStructure";
 
 import Scrollbar from "../../components/scrollbar/scrollbar";
 import Footer from "../../components/footer/Footer";
@@ -32,7 +33,7 @@ function director() {
 
       <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
       <PageTitle pageTitle={"fee structure "} pagesub={"vision"} />
-      
+      <FeeStructure/>
       <Footer />
       <Scrollbar />
       <CursorMaus />
