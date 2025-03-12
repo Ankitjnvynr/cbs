@@ -55,7 +55,7 @@ const Teaching = () => {
     container2:{
       display: 'flex',
       flexDirection: 'column',
-      paddingLeft:"30rem",
+      paddingLeft:"26vw",
       backgroundColor: '#f8f9fa',
       minHeight: '100vh',  
     }

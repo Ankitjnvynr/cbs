@@ -65,13 +65,13 @@ function Director() {
     <div style={containerStyle}>
       <div style={cardStyle}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <img
+          {/* <img
             src="/images/director.jpg"
             alt="Dr. Rajiv Yadav"
             style={imageStyle}
           />
           <h1 style={headingStyle}>Message from the Director</h1>
-          <p style={subheadingStyle}>Dr. Rajiv Yadav</p>
+          <p style={subheadingStyle}>Dr. Rajiv Yadav</p> */}
           <p style={smallTextStyle}>Director, CBS Group of Institutions</p>
         </div>
 

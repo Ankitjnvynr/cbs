@@ -42,8 +42,8 @@ const Header = (props) => {
         { label: "About Us", link: "/about-us" },
         { label: "Vision & Mission", link: "/visionmission" },
         { label: "Chairman's Message", link: "/chairman" },
-        { label: "Director's Message", link: "/directors-message" },
         { label: "Director's General Message", link: "/director-general-message" },
+        { label: "Director's Message", link: "/directors-message" },
         { label: "Organisation Chart", link: "/organisation-chart" },
         // { label: "Approvals & Affiliations", link: "/approvals" },
         { label: "Code of Conduct", link: "/codeofconduct" },
@@ -69,7 +69,7 @@ const Header = (props) => {
       label: "Academics",
       link: "/",
       subMenu: [
-        { label: "Programs", link: "/courses" },
+        { label: "Programmes", link: "/courses" },
         { label: "Undergraduate Programmes", link: "/courses",
           subMenu: [
             { label: "B.Tech/B.Tech.(LEET)", link: "/" ,
@@ -109,7 +109,7 @@ const Header = (props) => {
         { label: "Faculty", link: "/academic/faculty" },
         { label: "Syllabus", link: "/academic/syllabus" },
         { label: "Curriculum", link: "/curriculam" },
-        { label: "Departments", link: "/departments" },
+        // { label: "Departments", link: "/departments" },
         // { label: "Research & Development", link: "/" },
       ],
     },
@@ -122,7 +122,7 @@ const Header = (props) => {
         { label: "Scholarships Scheme", link: "/" },
         { label: "Eligibility", link: "/eligibility-crieteria" },
         { label: "Admission Procedure", link: "/admission-procedure" },
-        { label: "Documents Required", link: "/" },
+        // { label: "Documents Required", link: "/" },
         { label: "Online Registration Form", link: "/online-registration-form" },
         { label: "Admission Prospectos", link: "/" },
         
