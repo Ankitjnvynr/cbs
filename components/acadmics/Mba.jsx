@@ -92,6 +92,7 @@ import Image from 'next/image';
         <li style={styles.listItem}>Human Resource</li>
         <li style={styles.listItem}>International Business</li>
         <li style={styles.listItem}>Information Technology</li>
+        
       </ul>
       </div>
    </>
