@@ -55,7 +55,7 @@ import Image from 'next/image';
             container2:{
               display: 'flex',
               flexDirection: 'column',
-              paddingLeft:"30rem",
+              paddingLeft:"22vw",
               backgroundColor: '#f8f9fa',
               minHeight: '100vh',  
             }
@@ -63,21 +63,15 @@ import Image from 'next/image';
   return (
    <>
     <div style={styles.container}>
-      {/* <h1 style={styles.heading}>Teaching Pedagogy</h1> */}
-      
-      {/* Image Section */}
-      {/* Image Section */}
       <div style={styles.imageWrapper}>
         <Image
-          src="/images/mba.jpg" // Replace with the correct image path
+          src="/images/facilities/cbsclassrooms.jpg" // Replace with the correct image path
           alt="Mba"
           width={900}  // Replace with actual width
-  height={500} 
+          height={500} 
         />
       </div>
       
-
-      {/* Content Section */}
       <p style={styles.paragraph}>
       The MBA programme offered at the college imparts a global outlook, equips the students with specialized skills and develops attitude that leads to excellence. At CBS we believe in nurturing leaders who are adept at handling the challenges offered by ever changing business environment. In this endeavour, we seek to provide our students with a unique inspirational transformation which will enable them to become reputed professionals in their chosen area of expertise. Our close links with industry give them ample opportunities to apply their acquired skills. The course curriculum is a tempting blend of in-depth subject knowledge and practical experience gained through a continuous process of industry academic interface. We aim to evolve through continuous learning which would be a mix of classroom and practical training coupled with a host of other initiatives. MBA programme keeps a sharp focus on total commitment to quality education and academic studies. These programme believes in promoting effective learning through the use of modern management tools and techniques. A unique blend of project work, seminars, case studies, class participation and visit to industries are undertaken for the overall development of the students. 
       </p>
@@ -96,18 +90,8 @@ import Image from 'next/image';
         <li style={styles.listItem}>Marketing</li>
         <li style={styles.listItem}>Finance</li>
         <li style={styles.listItem}>Human Resource</li>
-        <li style={styles.listItem}>
-        International Business
-        </li>
+        <li style={styles.listItem}>International Business</li>
         <li style={styles.listItem}>Information Technology</li>
-        {/* <li style={styles.listItem}>Off Campus Workshops</li>
-        <li style={styles.listItem}>Team Work and Peer Learning through Study Groups</li>
-        <li style={styles.listItem}>Business Simulation Games</li>
-        <li style={styles.listItem}>Enrichment Workshop</li>
-        <li style={styles.listItem}>Mentorship Program</li>
-        <li style={styles.listItem}>Experimental Activities</li>
-        <li style={styles.listItem}>Technology Quiz</li>
-        <li style={styles.listItem}>Audio Visual Aids</li> */}
       </ul>
       </div>
    </>
