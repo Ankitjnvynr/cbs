@@ -452,8 +452,8 @@ const menus = [
     title: "Login",
     link: "/",
     submenu: [
-      { id: 171, title: "Student Login", link: "/" },
-      { id: 172, title: "Admin Panel", link: "/" },
+      { id: 171, title: "Student Login", link: "/student/" },
+      { id: 172, title: "Admin Panel", link: "/login/" },
     ],
   },
 ];
