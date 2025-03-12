@@ -1,5 +1,5 @@
 import React from 'react'
-import abImg1 from '/public/images/about/clgimg1.jpg'
+import abImg1 from '/public/images/about/student.jpg'
 import abImg2 from '/public/images/bgdash.jpg'
 import abImg3 from '/public/images/photo.jpg'
 import Image from 'next/image'
@@ -15,7 +15,7 @@ const About1 = (props) => {
                     <div className="col-xl-6 col-12">
                         <div className="about-left-content">
                             <div className="image">
-                                <Image src={abImg1} alt="" style={{ width: "3300px", height: "600px" }}/>
+                                <Image src={abImg1} alt="" style={{ width: "3300px", height: "500px" }}/>
                             </div>
                         </div>
                     </div>

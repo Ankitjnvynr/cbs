@@ -26,7 +26,7 @@ const index = () => {
   <link rel="canonical" href="https://www.cbscolleges.com/faculty" />
 </Head>
     <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
-    <PageTitle pageTitle={"faculty"} pagesub={"About"} />
+    <PageTitle pageTitle={"Faculty"} pagesub={"About"} />
     <Faculty />
     <Footer />
     <Scrollbar />
