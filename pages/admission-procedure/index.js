@@ -9,6 +9,8 @@ import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 import Admission from '../../components/admision/Admission';
 import Head from 'next/head';
+import AdmissionProcedure from '../../components/admision/AdmissionProcedure';
+
 
 function index() {
   return (
@@ -32,7 +34,7 @@ function index() {
 </Head>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
     <PageTitle pageTitle={'admission procedure  '} pagesub={'vision'} />
-
+    <AdmissionProcedure/>
     <Footer />
     <Scrollbar />
     <CursorMaus />
