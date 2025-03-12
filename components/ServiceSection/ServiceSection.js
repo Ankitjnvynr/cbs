@@ -74,16 +74,16 @@ const ServiceSection = (props) => {
             <div className="top-img">
                 <Image src={ShapeOn} alt="" />
             </div>
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-12">
+            <div className="container" >
+                <div className="row justify-content-center" >
+                    <div className="col-12" >
                         <SectionTitle title="Recent Courses" subtitle="Courses" />
                     </div>
                 </div>
                 <div className="services-wrap">
                     <div className="row">
                         {Services.map((item, sindx) => (
-                            <div className="col col-xl-4 col-lg-6 col-md-6 col-12" key={sindx} style={{paddingTop:"30px"}}>
+                            <div className="col col-xl-4 col-lg-6 col-md-6 col-12" key={sindx} style={{paddingTop:"20px"}}>
                                 <ServiceCard key={sindx} title={item.title} img={item.sImg} slug={item.slug} sdescription={item.description} />
                             </div>
                         ))}
