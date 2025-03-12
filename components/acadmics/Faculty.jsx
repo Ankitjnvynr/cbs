@@ -14,7 +14,13 @@ import React from "react";
 
 const FacultyTable = () => {
   return (
-    <div className="p-4">
+    <div className="p-4" style={{maxWidth: "900px",
+    margin: "20px auto",
+    padding: "20px",
+    fontFamily: "Arial, sans-serif",
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    backgroundColor: "#f9f9f9"}}>
       <h2 className="text-xl font-bold mb-2">Following is the list of Faculties at CBS GROUP OF INSTITUTIONS:</h2>
       <p className="mb-4">Qualification & Experience of Faculty members</p>
       <div className="overflow-x-auto">
@@ -220,8 +226,207 @@ const FacultyTable = () => {
               <td className="border px-4 py-2">B.Tech, M.Tech</td>
               <td className="border px-4 py-2">2.1 years</td>
             </tr>
-        
-        
+            <tr className="font-bold">
+              <td className="border px-4 py-2" colSpan="5">Electronics & Communication Engineering:</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">27</td>
+              <td className="border px-4 py-2">Mr. Mandeep Goyat	</td>
+              <td className="border px-4 py-2">A.P (HOD)</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech, Gate Qualified</td>
+              <td className="border px-4 py-2">3.6 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">28</td>
+              <td className="border px-4 py-2">Ms. Sukomal	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">3 months</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">29</td>
+              <td className="border px-4 py-2">Mr. Ankit Pawariya	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">3 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">30</td>
+              <td className="border px-4 py-2">Mr. Hitesh	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">4.2 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">31</td>
+              <td className="border px-4 py-2">Ms. Savita Kadian	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">1.3 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">32</td>
+              <td className="border px-4 py-2">Mr. Arun Kumar Dixit	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">1 months</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">33</td>
+              <td className="border px-4 py-2">Mr. Harikesh	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech</td>
+              <td className="border px-4 py-2">3 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">34</td>
+              <td className="border px-4 py-2">Mr. Abhishek Kr.Upadhyay           </td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">M.Sc. (Electronics) M.Tech</td>
+              <td className="border px-4 py-2">1 year</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">35</td>
+              <td className="border px-4 py-2">Ms. Shilpi   </td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2"></td>
+            </tr>
+            <tr className="font-bold">
+              <td className="border px-4 py-2" colSpan="5">Mechanical Engg.:</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">36</td>
+              <td className="border px-4 py-2">Mr. Manoj Kaushik   </td>
+              <td className="border px-4 py-2">A.P (HOD)</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">5 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">37</td>
+              <td className="border px-4 py-2">Mr. Lalit   </td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">8 months</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">38</td>
+              <td className="border px-4 py-2">Mr. Parveen Rathee  </td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech(P)</td>
+              <td className="border px-4 py-2">1.2 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">39</td>
+              <td className="border px-4 py-2">Mr. Vinay  </td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech(P)</td>
+              <td className="border px-4 py-2">2.1 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">40</td>
+              <td className="border px-4 py-2">	Mr. Yogesh Kumar Sharma</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech(P)</td>
+              <td className="border px-4 py-2">1.3 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">41</td>
+              <td className="border px-4 py-2">	Mr. Ajay Kumar</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech(P)</td>
+              <td className="border px-4 py-2">1 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">42</td>
+              <td className="border px-4 py-2">	Ayush Kumar</td>
+              <td className="border px-4 py-2">Teaching Associate</td>
+              <td className="border px-4 py-2">B.Tech</td>
+              <td className="border px-4 py-2">0.3 years</td>
+            </tr>
+            <tr className="font-bold">
+              <td className="border px-4 py-2" colSpan="5">Civil Engg.:</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">43</td>
+              <td className="border px-4 py-2">	Mr. Abhishek Sharma</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech, M.Tech</td>
+              <td className="border px-4 py-2">3 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">44</td>
+              <td className="border px-4 py-2">	Mr. Nitish Kumar</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech</td>
+              <td className="border px-4 py-2">03 months</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">45</td>
+              <td className="border px-4 py-2">	Mr. Anuj Deswal</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech</td>
+              <td className="border px-4 py-2">03 months</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">46</td>
+              <td className="border px-4 py-2">	Mr. Pawan Kadian</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Tech</td>
+              <td className="border px-4 py-2">03 months</td>
+            </tr>
+            <tr className="font-bold">
+              <td className="border px-4 py-2" colSpan="5">MBA:</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">47</td>
+              <td className="border px-4 py-2">	Mr. Sachin Gupta</td>
+              <td className="border px-4 py-2">A.P (HOD)</td>
+              <td className="border px-4 py-2">MBA</td>
+              <td className="border px-4 py-2">8 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">48</td>
+              <td className="border px-4 py-2">	Ms. Vanita</td>
+              <td className="border px-4 py-2">A.P </td>
+              <td className="border px-4 py-2">MBA, M.Phill (P)</td>
+              <td className="border px-4 py-2">1.7 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">49</td>
+              <td className="border px-4 py-2">	Ms. Shilpa Arora</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Sc, MBA</td>
+              <td className="border px-4 py-2">2 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">50</td>
+              <td className="border px-4 py-2">	Ms. Rakhi Gupta</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">MBA</td>
+              <td className="border px-4 py-2">3 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">51</td>
+              <td className="border px-4 py-2">Ms. Nisha Malik	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">BBA,MBA</td>
+              <td className="border px-4 py-2">1 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">52</td>
+              <td className="border px-4 py-2">	Mr. Chand Saini	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">B.Sc., MBA, NET Qualified</td>
+              <td className="border px-4 py-2">2 years</td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-2">53</td>
+              <td className="border px-4 py-2">	Shifali Hooda	</td>
+              <td className="border px-4 py-2">A.P</td>
+              <td className="border px-4 py-2">MBA</td>
+              <td className="border px-4 py-2">1 month</td>
+            </tr>
           </tbody>
         </table>
       </div>

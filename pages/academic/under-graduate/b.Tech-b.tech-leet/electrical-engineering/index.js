@@ -11,7 +11,7 @@ const index = () => {
   return (
     <>
     <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
-    <PageTitle pageTitle={"electrical-engineering"} pagesub={"About"} />
+    <PageTitle pageTitle={"Electrical Engineering"} pagesub={"About"} />
     <ElectricalEngineering/>
     <Footer />
     <Scrollbar />
