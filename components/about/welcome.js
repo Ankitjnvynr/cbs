@@ -14,8 +14,8 @@ const Welcome = (props) => {
                 <div className="row align-items-center">
                     <div className="col-xl-6 col-12">
                         <div className="about-right-content">
-                            <h2 className="title">Welcome</h2>
-                            <h3 className="sub-title">Welcome</h3>
+                            <h2 className="title">WELCOME</h2>
+                            <h3 className="sub-title">WELCOME</h3>
                             <p className="text">CBS Group of Institutions has been established with an aim to give new direction to Engineering & professional education and has been approved by AICTE, Ministry of Human Resource Development, Govt. of India and affiliated to Maharshi Dayanand University, approved by UGC for conducting the 4 year full time B.Tech program in ME, CE, ECE, CSE, & EE, 3 year Full time programme in BBA, BCA, MCA and 2 year full time programme in M.Tech in ME, ECE, CSE, MBA and PGDM. It has been 3 glorious years since the inception of CBS Group of Institutions.
                             </p>
                             {/* <div className="ceo-content">
