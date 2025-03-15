@@ -18,55 +18,57 @@ import sSimg4 from '/public/images/service-single/4.jpg'
 const ServiceSection = (props) => {
     const Services = [
         {
-           Id: '01',
+           Id: '3',
            sImg: simg1,
            sSImg: sSimg1,
            title: 'BBA',
-           slug: '',
+           slug: '/academic/under-graduate/bba',
            description: 'BBA or Bachelor of Business Administration refers to the bachelor’s degree course in business..',
         },
         {
-           Id: '02',
+           Id: '6',
            sImg: simg2,
            sSImg: sSimg2,
            title: 'MBA',
-           slug: '',
+           slug: 'academic/post-graduate/master-of-business-administration',
            description: 'The MBA programme offered at the college imparts a global outlook, equips the students with specialized..',
         },
         {
-           Id: '03',
+           Id: '1',
            sImg: simg3,
            sSImg: sSimg3,
            title: 'BTECH',
-           slug: '',
+           slug: '/academic/under-graduate/b.Tech-b.tech-leet/',
            description: 'The pace of technological innovation will continue to be rapid and accelerating in the new millennium.',
         },
         {
-           Id: '04',
+           Id: '4',
            sImg: simg4,
            sSImg: sSimg4,
-           title: 'Mtech',
-           slug: '',
+           title: 'MTECH',
+           slug: '/academic/post-graduate/master-of-computer-application',
            description: 'Master of Engineering or Master of Technology degree is a postgraduate program in engineering or technology.',
         },
         {
-           Id: '05',
+           Id: '2',
            sImg: simg4,
            sSImg: sSimg4,
            title: 'BCA',
-           slug: '',
+           slug: '/academic/under-graduate/bca',
            description: 'Fast growing information technology and communication system have become critical components..',
         },
         {
-           Id: '06',
+           Id: '5',
            sImg: simg4,
            sSImg: sSimg4,
            title: 'MCA',
-           slug: '',
+           slug: '/academic/post-graduate/master-of-computer-application',
            description: 'MCA is a course exclusively designed to meet the IT industry requirements. The well balanced course..',
         },
       
      ]
+     Services.sort((a, b) => (a.Id > b.Id) ? 1 : -1)
+     
 
 
     return (
@@ -77,7 +79,7 @@ const ServiceSection = (props) => {
             <div className="container" >
                 <div className="row justify-content-center" >
                     <div className="col-12" >
-                        <SectionTitle title="Recent Courses" subtitle="Courses" />
+                        <SectionTitle title="Our Courses" subtitle="-----" />
                     </div>
                 </div>
                 <div className="services-wrap">

@@ -8,7 +8,7 @@ const ServiceCard = ({ img, title, sdescription, slug }) => {
     return (
             <div className="services-card">
                 <div className="number-shape">
-                    <span>01</span>
+                    <span></span>
                     <div className="shape">
                         <svg viewBox="0 0 112 107" fill="none">
                             <path id="Bg5"
