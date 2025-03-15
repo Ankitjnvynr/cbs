@@ -1,6 +1,6 @@
 // images
 import blogImg1 from "/public/images/blog/result-degree.jpg";
-import blogImg2 from "/public/images/blog/result-degree.jpg";
+import blogImg2 from "/public/images/blog/result-degree2.jpg";
 import blogImg3 from "/public/images/blog/result-degree.jpg";
 import recent1 from "/public/images/recent-posts/img-1.jpg";
 import recent2 from "/public/images/recent-posts/img-2.jpg";
