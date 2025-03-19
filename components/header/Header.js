@@ -72,7 +72,7 @@ const Header = (props) => {
         { label: "Programmes", link: "/courses" },
         { label: "Undergraduate Programmes", link: "/courses",
           subMenu: [
-            { label: "B.Tech/B.Tech.(LEET)", link: "/" ,
+            { label: "B.Tech/B.Tech.(LEET)", link: "/academic/under-graduate/b.Tech-b.tech-leet" ,
               subMenu: [
                 { label: "Mechanical Engineering", link: "/academic/under-graduate/b.Tech-b.tech-leet/mechanical-engineering" },
                 { label: "Civil Engineering", link: "/academic/under-graduate/b.Tech-b.tech-leet/civil-engineering" },

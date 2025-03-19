@@ -97,8 +97,8 @@ const Hero3 = () => {
               meet your needs but also exceed your expectations.
             </p> */}
             <div className="hero-btn">
-              <Link href="/about" className="theme-btn border ">
-                Go To Alumni<i className="ti-arrow-right"></i>
+              <Link href="/student/" className="theme-btn border ">
+                Student Panel<i className="ti-arrow-right"></i>
               </Link>
               <div
               style={{

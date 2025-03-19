@@ -29,7 +29,7 @@ const index = () => {
   <link rel="canonical" href="https://www.cbscolleges.com/examination" />
 </Head>
      <Navbar Logo={Logo} hclass={"wpo-site-header s3"} telephone={Phone} />
-    <PageTitle pageTitle={"examination"} pagesub={"About"} />
+    <PageTitle pageTitle={"Examination"} pagesub={"About"} />
     <Examination/>
     <Footer />
     <Scrollbar />

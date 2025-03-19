@@ -38,7 +38,7 @@ const ServiceSection = (props) => {
            sImg: simg3,
            sSImg: sSimg3,
            title: 'BTECH',
-           slug: '/academic/under-graduate/b.Tech-b.tech-leet/',
+           slug: '/academic/under-graduate/b.Tech-b.tech-leet',
            description: 'The pace of technological innovation will continue to be rapid and accelerating in the new millennium.',
         },
         {

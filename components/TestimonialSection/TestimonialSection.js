@@ -75,9 +75,9 @@ const TestimonialSection = () => {
                             <h2>Our Latest Case Studies</h2>
                             <p>Our latest studies highlight real-world impact, innovation, and excellence. 
                                 Hear from our students and alumni as they share their transformative learning journeys! </p>
-                            <div className="testimonial-btn">
+                            {/* <div className="testimonial-btn">
                                 <Link href="/" className="theme-btn" onClick={ClickHandlar}> Get in Touch <i className="ti-arrow-right"></i></Link>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="col-xl-8 col-12">
