@@ -8,7 +8,7 @@ const ServiceCard = ({ img, title, sdescription, slug }) => {
     return (
             <div className="services-card">
                 <div className="number-shape">
-                    <span>01</span>
+                    <span></span>
                     <div className="shape">
                         <svg viewBox="0 0 112 107" fill="none">
                             <path id="Bg5"
@@ -22,7 +22,7 @@ const ServiceCard = ({ img, title, sdescription, slug }) => {
                 <h2>{title}</h2>
                 <span>{sdescription}</span>
                 <h3>
-                    <Link onClick={ClickHandler} href={''} as={`${slug}`} >
+                    <Link onClick={ClickHandler} href={`${slug}`}>
                         <span>Learn More</span>
                         <i className="ti-arrow-right"></i>
                     </Link>

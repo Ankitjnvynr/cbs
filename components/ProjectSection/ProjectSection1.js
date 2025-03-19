@@ -11,6 +11,9 @@ const ProjectSection1 = (props) => {
         centerPadding: '0px',
         speed: 500,
         dots: true,
+        autoplay:true,
+        autoplaySpeed: 2000,  // Adjust the speed of autoplay
+        slidesToScroll: 1,  // Ensures smooth scrolling
         arrows:false,
         variableWidth: true,
         responsive: [

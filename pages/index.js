@@ -40,7 +40,7 @@ const HomePage = () => {
       <Welcome />
       <ServiceSection hclass={"services-section"} />
       {/* <VideosSection /> */}
-      <ProjectSection1 hclass={"project-section"} />
+      {/* <ProjectSection1 hclass={"project-section"} /> */}
       <TestimonialSection />
       <CtaSection />
       <BlogSection />

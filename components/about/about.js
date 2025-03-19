@@ -1,5 +1,5 @@
 import React from 'react'
-import abImg1 from '/public/images/about/clgimg.jpg'
+import abImg1 from '/public/images/about/student.jpg'
 import abImg2 from '/public/images/about/award-icon-2.svg'
 import Signeture from '/public/images/about/signeture.png'
 import Image from 'next/image'
