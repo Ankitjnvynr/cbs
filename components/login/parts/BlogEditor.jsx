@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import React, { useState } from "react";
@@ -5,7 +6,6 @@ import { TextField, Button, Box, Paper, Typography, CircularProgress } from "@mu
 import { styled } from "@mui/material/styles";
 import axios from "axios";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 
 // Styles
@@ -71,44 +71,13 @@ const BlogEditor = () => {
       console.error("Error saving blog:", error);
     }
   };
+=======
+import React from 'react'
+>>>>>>> ee847533c4be021b7b77922d267f09496a1a521d
 
+export default function BlogEditor() {
   return (
-    <Box sx={styles.container}>
-      {/* Blog Title & Editor */}
-      <Paper sx={styles.editorContainer}>
-        <Typography variant="h5" sx={{ marginBottom: 2, fontWeight: "bold", color: "#333" }}>
-          Create New Blog
-        </Typography>
-        <TextField fullWidth label="Blog Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)} sx={{ marginBottom: 2 }} />
-        <ReactQuill value={content} onChange={setContent} theme="snow" style={styles.quillEditor} />
-      </Paper>
+    <div>BlogEditor</div>
+  )
+}
 
-      {/* Sidebar Section */}
-      <Paper sx={styles.sidebar}>
-        <Typography variant="h6" sx={{ marginBottom: 2, fontWeight: "bold" }}>Feature Image</Typography>
-        <UploadBox onClick={() => document.getElementById("fileInput").click()}>
-          {isUploading ? (
-            <CircularProgress />
-          ) : featureImage ? (
-            <img src={featureImage} alt="Feature" width="100%" style={{ borderRadius: "10px" }} />
-          ) : (
-            "Click to upload an image"
-          )}
-        </UploadBox>
-        <input type="file" id="fileInput" onChange={handleImageUpload} style={{ display: "none" }} />
-
-        <TextField fullWidth label="Tags" value={tags} onChange={(e) => setTags(e.target.value)} sx={{ marginTop: 2 }} />
-        <TextField fullWidth label="SEO Description" multiline rows={2} value={seoDescription} onChange={(e) => setSeoDescription(e.target.value)} sx={{ marginTop: 2 }} />
-        <TextField fullWidth label="Meta Description" multiline rows={2} value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} sx={{ marginTop: 2 }} />
-        <TextField fullWidth label="Slug (URL)" value={slug} onChange={(e) => setSlug(e.target.value)} sx={{ marginTop: 2 }} />
-        <TextField fullWidth label="Meta Keywords" value={metaKeywords} onChange={(e) => setMetaKeywords(e.target.value)} sx={{ marginTop: 2 }} />
-
-        <Button variant="contained" color="primary" fullWidth sx={{ marginTop: 3, borderRadius: "8px" }} onClick={handleSaveBlog}>
-          Save Blog
-        </Button>
-      </Paper>
-    </Box>
-  );
-};
-
-export default BlogEditor;
