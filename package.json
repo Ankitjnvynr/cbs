@@ -22,11 +22,7 @@
     "@react-pdf-viewer/core": "^3.12.0",
     "@types/quill": "^2.0.14",
     "animate.css": "^4.1.1",
-<<<<<<< HEAD
-    "axios": "^1.8.4",
-=======
     "axios": "^1.8.3",
->>>>>>> ee847533c4be021b7b77922d267f09496a1a521d
     "bootstrap": "^5.1.3",
     "dompurify": "^3.1.7",
     "dotenv": "^16.4.5",
