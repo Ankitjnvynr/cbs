@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 
 import React, { useState } from "react";
@@ -71,9 +70,6 @@ const BlogEditor = () => {
       console.error("Error saving blog:", error);
     }
   };
-=======
-import React from 'react'
->>>>>>> ee847533c4be021b7b77922d267f09496a1a521d
 
 export default function BlogEditor() {
   return (
