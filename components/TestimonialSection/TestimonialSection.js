@@ -3,9 +3,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import image1 from '/public/images/testimonial/t1.jpg';
-import image2 from '/public/images/testimonial/t2.jpg';
-import image3 from '/public/images/testimonial/t3.png';
+import image1 from '/public/images/testimonial/t4.jpg';
+import image2 from '/public/images/testimonial/t5.jpg';
+import image3 from '/public/images/testimonial/t7.jpg';
 
 import Shape1 from "/public/images/testimonial/star.svg";
 import Shape2 from "/public/images/testimonial/star-1.svg";
@@ -24,14 +24,14 @@ const TestimonialData = [
         id: "02",
         text: "Choosing CBS Colleges was the best decision of my life. The support from professors and the diverse extracurricular opportunities helped me grow academically and personally. I am now confidently pursuing my career thanks to the excellent education I received here.",
         subtitle: "Student",
-        title: "Mahak",
+        title: "Rajat",
         image: image2
     },
     {
         id: "03",
         text: "At CBS Colleges, I found a community that inspired me to strive for excellence. The combination of rigorous coursework, hands-on learning, and vibrant student life prepared me for challenges of the real world. I couldn’t be prouder to call myself an alumnus of CBS.",
         subtitle: "Student",
-        title: "Gurmeet ",
+        title: "Gurmeet Singh ",
         image: image3
     }
 ]

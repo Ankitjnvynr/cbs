@@ -5,7 +5,6 @@ import { TextField, Button, Box, Paper, Typography, CircularProgress } from "@mu
 import { styled } from "@mui/material/styles";
 import axios from "axios";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 
 // Styles

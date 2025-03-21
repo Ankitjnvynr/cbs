@@ -31,7 +31,7 @@ const Footer = (props) => {
 
                                 <div className="social-widget">
                                     <ul>
-                                        <li><Link onClick={ClickHandler} href="/"><i className="ti-facebook"></i></Link></li>
+                                        <li><Link onClick={ClickHandler} href="https://www.facebook.com/cbsgroupofinstitution"><i className="ti-facebook"></i></Link></li>
                                         <li><Link onClick={ClickHandler} href="/"><i className="ti-twitter-alt"></i></Link></li>
                                         <li><Link onClick={ClickHandler} href="/"><i className="ti-linkedin"></i></Link></li>
                                         <li><Link onClick={ClickHandler} href="/"><i className="ti-instagram"></i></Link></li>
@@ -108,14 +108,14 @@ const Footer = (props) => {
                 <div className="container">
                     <div className="row g-0">
                         <div className="col col-lg-6 col-12">
-                            <p className="copyright"> Copyright &copy; 2024  <Link onClick={ClickHandler} href="/">Big Byte Innovations Pvt. Ltd</Link>. All
+                            <p className="copyright"> Copyright &copy; 2024  <Link onClick={ClickHandler} href="https://bigbyteworld.com/">Big Byte Innovations Pvt. Ltd</Link>. All
                                 Rights Reserved.</p>
                         </div>
                         <div className="col col-lg-6 col-12">
                             <ul>
-                                <li><Link onClick={ClickHandler} href="/">privacy & Policy</Link></li>
+                                <li><Link onClick={ClickHandler} href="/privacy/">privacy & Policy</Link></li>
                                 <li><Link onClick={ClickHandler} href="/">Terms</Link></li>
-                                <li><Link onClick={ClickHandler} href="/">About us</Link></li>
+                                <li><Link onClick={ClickHandler} href="/about-us/">About us</Link></li>
                             </ul>
 
                         </div>
