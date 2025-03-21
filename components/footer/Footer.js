@@ -114,7 +114,7 @@ const Footer = (props) => {
                         <div className="col col-lg-6 col-12">
                             <ul>
                                 <li><Link onClick={ClickHandler} href="/">privacy & Policy</Link></li>
-                                <li><Link onClick={ClickHandler} href="/">Terms</Link></li>
+                                <li><Link onClick={ClickHandler} href="/terms/">Terms</Link></li>
                                 <li><Link onClick={ClickHandler} href="/">About us</Link></li>
                             </ul>
 
