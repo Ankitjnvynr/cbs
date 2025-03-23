@@ -22,7 +22,7 @@ const styles = {
   container: { display: "flex", flexDirection: "row-reverse", gap: "10px",  justifyContent: "center" },
   editorContainer: { flex: 1, padding: "20px", borderRadius: "10px", backgroundColor: "#fff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" },
   sidebar: { width: "300px", padding: "20px", borderRadius: "10px", backgroundColor: "#f9f9f9", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" },
-  quillEditor: { height: "90%", borderRadius: "10px" },
+  quillEditor: { height: "70%", borderRadius: "10px" },
   uploadBox: { border: "2px dashed #ccc", padding: "20px", textAlign: "center", cursor: "pointer", borderRadius: "10px", backgroundColor: "#fff", transition: "0.3s" },
 };
 
@@ -92,16 +92,10 @@ const BlogEditor = () => {
     <Box sx={styles.container}>
       <Box sx={styles.sidebar}>
         <Typography variant="h6">Blog Settings</Typography>
-        <TextField label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField label="Author" name="author" value={formData.author} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField label="Author Bio" name="author_bio" value={formData.author_bio} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} multiline rows={2} />
-        <TextField label="Keywords" name="keywords" value={formData.keywords} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField label="Categories" name="categories" value={formData.categories} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField label="Meta Title" name="meta_title" value={formData.meta_title} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField label="Meta Description" name="meta_description" value={formData.meta_description} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} multiline rows={2} />
-        <TextField label="Reading Time (mins)" name="reading_time" type="number" value={formData.reading_time} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField label="Canonical URL" name="canonical_url" value={formData.canonical_url} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-        <TextField select label="Status" name="status" value={formData.status} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }}>
+        <TextField size="small" label="Keywords" name="keywords" value={formData.keywords} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
+        <TextField size="small" label="Categories" name="categories" value={formData.categories} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
+        <TextField size="small" label="Meta Description" name="meta_description" value={formData.meta_description} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} multiline rows={2} />
+         <TextField size="small" select label="Status" name="status" value={formData.status} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }}>
           <MenuItem value="draft">Draft</MenuItem>
           <MenuItem value="published">Published</MenuItem>
           <MenuItem value="archived">Archived</MenuItem>
@@ -115,7 +109,10 @@ const BlogEditor = () => {
         <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
       </Box>
       <Box sx={styles.editorContainer}>
+      <TextField size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
+
         <Typography variant="h6">Blog Content</Typography>
+
         <ReactQuill value={formData.content} onChange={(value) => setFormData({ ...formData, content: value })} style={styles.quillEditor} />
       </Box>
     </Box>
