@@ -18,11 +18,17 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill").then((mod) => mod.default), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
+import   uploadService  from "../../../services/uploaService"
+import blogService from "../../../services/BlogService";
+import conf from "../../../lib/conf";
+
+
+
 const styles = {
   container: { display: "flex", flexDirection: "row-reverse", gap: "10px",  justifyContent: "center" },
   editorContainer: { flex: 1, padding: "20px", borderRadius: "10px", backgroundColor: "#fff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" },
   sidebar: { width: "300px", padding: "20px", borderRadius: "10px", backgroundColor: "#f9f9f9", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" },
-  quillEditor: { height: "70%", borderRadius: "10px" },
+  quillEditor: { height: "70%",  borderRadius: "10px" , maxHeight:"60vh" },
   uploadBox: { border: "2px dashed #ccc", padding: "20px", textAlign: "center", cursor: "pointer", borderRadius: "10px", backgroundColor: "#fff", transition: "0.3s" },
 };
 
@@ -34,8 +40,9 @@ const UploadBox = styled(Box)(({ theme }) => ({
 const BlogEditor = () => {
   const [formData, setFormData] = useState({
     title: "",
+    slug:"",
     content: "",
-    author: "",
+    author: "CBS Group",
     author_bio: "",
     status: "draft",
     keywords: "",
@@ -52,6 +59,10 @@ const BlogEditor = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if(name=='title'){
+      setFormData({...formData,slug:value})
+      console.table(formData)
+    }
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
@@ -59,18 +70,16 @@ const BlogEditor = () => {
     const file = event.target.files[0];
     if (!file) return;
     
-    const formData = new FormData();
-    formData.append("file", file);
+   
 
     try {
       setIsUploading(true);
-      const response = await axios.post("YOUR_API_UPLOAD_ENDPOINT", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await uploadService.upload(file)
+      console.log(response)      
 
-      if (response.data.newfilename) {
-        setUploadedFileName(response.data.newfilename);
-        setFormData({ ...formData, featureImage: response.data.fileUrl });
+      if (response.newFileName) {
+        setUploadedFileName(`${conf.apiBaseUri}/uploads/${response.newFileName}`);
+        setFormData({ ...formData, featureImage: response.newFileName });
       }
     } catch (error) {
       console.error("Upload failed:", error);
@@ -81,7 +90,10 @@ const BlogEditor = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("YOUR_API_BLOG_CREATE_ENDPOINT", formData);
+
+      console.table(formData)
+      
+       const response = await blogService.createBlog(formData)
       console.log("Blog saved:", response.data);
     } catch (error) {
       console.error("Failed to save blog:", error);
@@ -109,8 +121,8 @@ const BlogEditor = () => {
         <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
       </Box>
       <Box sx={styles.editorContainer}>
-      <TextField size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
-
+      <TextField size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "1px" }} />
+        <Typography >Slug: {formData.slug}</Typography>
         <Typography variant="h6">Blog Content</Typography>
 
         <ReactQuill value={formData.content} onChange={(value) => setFormData({ ...formData, content: value })} style={styles.quillEditor} />
