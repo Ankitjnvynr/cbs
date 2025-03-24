@@ -26,7 +26,7 @@ const getBlogs = async ()=>{
     console.log("blogs:", response);
     setBlogs(response.data)
   } catch (error) {
-    console.error("Error fetching blogs:", error);
+    console.log("Error fetching blogs:", error);
   }
 }
 

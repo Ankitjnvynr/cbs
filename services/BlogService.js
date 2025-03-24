@@ -21,12 +21,11 @@ export class BlogService {
       const response = await fetch(`${this.blogUri}?${queryParams}`);
       
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+        return response.json()
       }
       return response.json();
     } catch (error) {
-      console.error("Error fetching blogs:", error);
+      console.log("Error fetching blogs:", error);
       throw error;
     }
   }

@@ -16,7 +16,7 @@ const NoticeBoard = () => {
       
       
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        console.log("fail to fetch")
       }
       const data = await response.json();
       console.log("data of notice",data);
@@ -27,7 +27,7 @@ const NoticeBoard = () => {
 
       //setNotices(data.data);
     } catch (error) {
-      console.error("Error fetching notices:", error);
+      console.log("Error fetching notices:", error);
     }
   };
 
