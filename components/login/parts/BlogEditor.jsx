@@ -21,6 +21,7 @@ import "react-quill/dist/quill.snow.css";
 import   uploadService  from "../../../services/uploaService"
 import blogService from "../../../services/BlogService";
 import conf from "../../../lib/conf";
+import { toast } from "react-toastify";
 
 
 
@@ -52,19 +53,31 @@ const BlogEditor = () => {
     reading_time: "",
     is_featured: false,
     canonical_url: "",
-    featureImage: null,
+    featured_image: null,
   });
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedFileName, setUploadedFileName] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if(name=='title'){
-      setFormData({...formData,slug:value})
-      console.table(formData)
-    }
-    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+  
+    setFormData((prevFormData) => {
+      const updatedData = { 
+        ...prevFormData, 
+        [name]: type === "checkbox" ? checked : value 
+      };
+  
+      // If the title is being updated, update the slug as well
+      if (name === "title") {
+        updatedData.slug = value.toLowerCase().replace(/\s+/g, "-"); // Convert to a URL-friendly slug
+      }
+  
+      return updatedData;
+    });
+  
+    console.table(formData); // Note: React state updates are asynchronous; this may log outdated data
   };
+  
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -79,7 +92,7 @@ const BlogEditor = () => {
 
       if (response.newFileName) {
         setUploadedFileName(`${conf.apiBaseUri}/uploads/${response.newFileName}`);
-        setFormData({ ...formData, featureImage: response.newFileName });
+        setFormData({ ...formData, featured_image: response.newFileName });
       }
     } catch (error) {
       console.error("Upload failed:", error);
@@ -94,9 +107,13 @@ const BlogEditor = () => {
       console.table(formData)
       
        const response = await blogService.createBlog(formData)
-      console.log("Blog saved:", response.data);
+      console.log("Blog saved:", response);
+      if(response.code == 201){
+        toast.success("blog created successfully!")
+      }
     } catch (error) {
-      console.error("Failed to save blog:", error);
+      console.log("Failed to save blog:", error);
+      toast.error("failed to save blog")
     }
   };
 
@@ -116,7 +133,7 @@ const BlogEditor = () => {
         <UploadBox>
           <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: "none" }} id="file-upload" />
           <label htmlFor="file-upload">{isUploading ? <CircularProgress size={24} /> : "Upload Feature Image"}</label>
-          {formData.featureImage && <img src={formData.featureImage} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
+          {formData.featured_image && <img src={formData.featured_image} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
         </UploadBox>
         <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
       </Box>

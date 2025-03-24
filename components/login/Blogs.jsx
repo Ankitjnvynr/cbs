@@ -22,11 +22,14 @@ export default function Blogs() {
 
 const getBlogs = async ()=>{
   try {
+    setIsLoading(true)
     const response = await blogService.getBlogs(filters);
     console.log("blogs:", response);
     setBlogs(response.data)
+    setIsLoading(false)
   } catch (error) {
     console.log("Error fetching blogs:", error);
+    setIsLoading(false)
   }
 }
 
@@ -40,7 +43,7 @@ const getBlogs = async ()=>{
       <div>
         <Button onClick={() => setIsblogList(false)}>Add new</Button>
       </div>
-      {isBlogsList ? <BlogsList rows={blogs} /> : <BlogEditor />}
+      {isBlogsList ? isLoading?"loading...":<BlogsList rows={blogs} /> : <BlogEditor />}
     </LoginLayout>
   );
 }
