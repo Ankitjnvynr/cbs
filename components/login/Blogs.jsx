@@ -46,7 +46,11 @@ const getBlogs = async ()=>{
   return (
     <LoginLayout>
       <div>
-        <Button onClick={() => blogEditor}>Add new</Button>
+        {
+          isBlogsList?<Button onClick={() => blogEditor}>Add new</Button>:<Button onClick={() => setIsblogList(true)}>All blogs</Button>
+        }
+        
+        
       </div>
       {isBlogsList ? isLoading?"loading...":<BlogsList blogEditor={blogEditor} setUpdateBlog={setUpdateBlog} rows={blogs} /> : <BlogEditor updateBlog = {updateBlog} />}
     </LoginLayout>
