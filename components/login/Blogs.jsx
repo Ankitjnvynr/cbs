@@ -18,6 +18,7 @@ export default function Blogs() {
         limit:10,
   });
   const [isBlogsList, setIsblogList] = useState(true);
+  const [updateBlog,setUpdateBlog] = useState(null);
 
 
 const getBlogs = async ()=>{
@@ -38,12 +39,16 @@ const getBlogs = async ()=>{
     getBlogs()    
   },[])
 
+  const blogEditor = (blog=null) =>{
+    setIsblogList(false)
+  }
+
   return (
     <LoginLayout>
       <div>
-        <Button onClick={() => setIsblogList(false)}>Add new</Button>
+        <Button onClick={() => blogEditor}>Add new</Button>
       </div>
-      {isBlogsList ? isLoading?"loading...":<BlogsList rows={blogs} /> : <BlogEditor />}
+      {isBlogsList ? isLoading?"loading...":<BlogsList blogEditor={blogEditor} setUpdateBlog={setUpdateBlog} rows={blogs} /> : <BlogEditor updateBlog = {updateBlog} />}
     </LoginLayout>
   );
 }

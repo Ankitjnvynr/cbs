@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -38,7 +38,7 @@ const UploadBox = styled(Box)(({ theme }) => ({
   "&:hover": { borderColor: "#007bff", backgroundColor: "#f0f8ff" },
 }));
 
-const BlogEditor = () => {
+const BlogEditor = ({updateBlog}) => {
   const [formData, setFormData] = useState({
     title: "",
     slug:"",
@@ -57,6 +57,14 @@ const BlogEditor = () => {
   });
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedFileName, setUploadedFileName] = useState("");
+  const [isUpdating,setIsUpdating] = useState(false)
+
+  useEffect (()=>{
+    if(updateBlog){
+      setFormData(updateBlog)
+    }
+    setIsUpdating(true)
+  },[])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

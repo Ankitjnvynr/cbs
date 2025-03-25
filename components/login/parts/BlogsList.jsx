@@ -12,7 +12,12 @@ import conf from '../../../lib/conf';
 
 
 
-export default function BlogsList({rows}) {
+export default function BlogsList({rows,blogEditor,setUpdateBlog}) {
+  const EditBlog = (blog) =>{
+    blogEditor(blog)
+    setUpdateBlog(blog)
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -37,7 +42,7 @@ export default function BlogsList({rows}) {
               <TableCell align="left">{row.title}</TableCell>
               {/* <TableCell align="left">{row.content}</TableCell> */}
               <TableCell align="left">{row.created_at}</TableCell>
-              <TableCell align="right"><span><FaEdit /></span> <span><FaTrash /></span></TableCell>
+              <TableCell align="right"><span onClick={()=> EditBlog(row)} ><FaEdit  />edit</span> <span><FaTrash /></span></TableCell>
             </TableRow>
           ))}
         </TableBody>
