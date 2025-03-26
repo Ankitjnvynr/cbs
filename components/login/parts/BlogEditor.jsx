@@ -62,8 +62,9 @@ const BlogEditor = ({updateBlog}) => {
   useEffect (()=>{
     if(updateBlog){
       setFormData(updateBlog)
+      setIsUpdating(true)
+      console.log(formData)
     }
-    setIsUpdating(true)
   },[])
 
   const handleChange = (e) => {
@@ -79,6 +80,7 @@ const BlogEditor = ({updateBlog}) => {
       if (name === "title") {
         updatedData.slug = value.toLowerCase().replace(/\s+/g, "-"); // Convert to a URL-friendly slug
       }
+      console.table(formData)
   
       return updatedData;
     });
@@ -95,7 +97,7 @@ const BlogEditor = ({updateBlog}) => {
 
     try {
       setIsUploading(true);
-      const response = await uploadService.upload(file)
+      const response = await uploadService.upload(file,formData.featured_image)
       console.log(response)      
 
       if (response.newFileName) {
@@ -113,15 +115,21 @@ const BlogEditor = ({updateBlog}) => {
     try {
 
       console.table(formData)
-      
-       const response = await blogService.createBlog(formData)
+      if(isUpdating){
+        const response = await blogService.updateBlog(formData)
+
+      }else{
+
+        const response = await blogService.createBlog(formData)
+      }
       console.log("Blog saved:", response);
       if(response.code == 201){
-        toast.success("blog created successfully!")
+        toast.success("blog updated successfully!")
       }
     } catch (error) {
+      
       console.log("Failed to save blog:", error);
-      toast.error("failed to save blog")
+      toast.error(error.message)
     }
   };
 
@@ -141,7 +149,7 @@ const BlogEditor = ({updateBlog}) => {
         <UploadBox>
           <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: "none" }} id="file-upload" />
           <label htmlFor="file-upload">{isUploading ? <CircularProgress size={24} /> : "Upload Feature Image"}</label>
-          {formData.featured_image && <img src={formData.featured_image} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
+          {formData.featured_image && <img src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
         </UploadBox>
         <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
       </Box>

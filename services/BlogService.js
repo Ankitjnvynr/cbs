@@ -63,6 +63,27 @@ export class BlogService {
       throw error;
     }
   }
+  async updateBlog(blogData) {
+    try {
+      const response = await fetch(this.blogUri, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(blogData),
+      });
+      console.log("error in updating blog",response)
+      if (!response.ok) {
+        // const errorText = await response.text();
+        // throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+        return response.json()
+      }
+      return response.json();
+    } catch (error) {
+      console.error("Error creating blog:", error);
+      throw error;
+    }
+  }
 }
 
 const blogService = new BlogService();
