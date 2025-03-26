@@ -31,20 +31,25 @@ export default function BlogsList({rows,blogEditor,setUpdateBlog}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <Image height={20} width={30} src={`${conf.apiBaseUri}/uploads/${row.featured_image}`} />
-              </TableCell>
-              <TableCell align="left">{row.title}</TableCell>
-              {/* <TableCell align="left">{row.content}</TableCell> */}
-              <TableCell align="left">{row.created_at}</TableCell>
-              <TableCell align="right"><span onClick={()=> EditBlog(row)} ><FaEdit  />edit</span> <span><FaTrash /></span></TableCell>
-            </TableRow>
-          ))}
+          {
+            rows.length>0 ?
+            (
+              rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    <Image height={20} width={30} src={`${conf.apiBaseUri}/uploads/${row.featured_image}`} />
+                  </TableCell>
+                  <TableCell align="left">{row.title}</TableCell>
+                  {/* <TableCell align="left">{row.content}</TableCell> */}
+                  <TableCell align="left">{row.created_at}</TableCell>
+                  <TableCell align="right"><span onClick={()=> EditBlog(row)} ><FaEdit  />edit</span> <span><FaTrash /></span></TableCell>
+                </TableRow>
+              ))
+            ):<TableCell align='right'>No data found</TableCell>
+          }
         </TableBody>
       </Table>
     </TableContainer>

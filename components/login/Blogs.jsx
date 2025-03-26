@@ -41,13 +41,14 @@ const getBlogs = async ()=>{
 
   const blogEditor = (blog=null) =>{
     setIsblogList(false)
+    console.log("hii")
   }
 
   return (
     <LoginLayout>
       <div>
         {
-          isBlogsList?<Button onClick={() => blogEditor}>Add new</Button>:<Button onClick={() => setIsblogList(true)}>All blogs</Button>
+          isBlogsList?<Button onClick={() => setIsblogList(false)}>Add new</Button>:<Button onClick={() => setIsblogList(true)}>All blogs</Button>
         }
         
         
