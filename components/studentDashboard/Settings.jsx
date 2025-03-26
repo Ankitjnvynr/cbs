@@ -21,6 +21,7 @@ export default function Settings() {
     state: "",
     district: "",
     address: "",
+    rollno: "", 
     picture: "",
   });
 
@@ -48,6 +49,7 @@ export default function Settings() {
         state: response.data.state || "",
         district: response.data.district || "",
         address: response.data.address || "",
+        rollno: response.data.rollno || "",
         picture: response.data.picture || "",
       });
     };
@@ -60,21 +62,23 @@ export default function Settings() {
   };
 
   const updateData = async () => {
-    const response = await authService.updateMyProfile(
-      userId,
-      userData.name,
-      userData.last_name,
-      userData.phone,
-      userData.dob,
-      userData.father_name,
-      userData.mother_name,
-      userData.course_name,
-      userData.country,
-      userData.state,
-      userData.district,
-      userData.address,
-      userData.picture
-    );
+    const response = await authService.updateMyProfile(userId, {
+      name: userData.name,
+      last_name: userData.last_name,
+      phone: userData.phone,
+      dob: userData.dob,
+      father_name: userData.father_name,
+      mother_name: userData.mother_name,
+      course_name: userData.course_name,
+      country: userData.country,
+      state: userData.state,
+      district: userData.district,
+      address: userData.address,
+      picture: userData.picture,
+      rollno: userData.rollno,  // Include roll number if applicable
+     
+    });
+    
 
     if (response.code === 200 || response.code === 201) {
       toast.success("Profile Updated Successfully");
@@ -93,33 +97,36 @@ export default function Settings() {
     try {
       const file = e.target.files[0];
       if (!file) return;
-
+  
       const response = await uploadService.upload(file, userData.picture);
-
+  
       if (response.code === 200) {
         const newPicture = response.newFileName;
-
+  
+        // Update state with new picture
         setUserData((prevState) => ({
           ...prevState,
           picture: newPicture,
         }));
-
-        await authService.updateMyProfile(
-          userId,
-          userData.name,
-          userData.last_name,
-          userData.phone,
-          userData.dob,
-          userData.father_name,
-          userData.mother_name,
-          userData.course_name,
-          userData.country,
-          userData.state,
-          userData.district,
-          userData.address,
-          newPicture
-        );
-
+  
+        // Update user profile with the new picture
+        await authService.updateMyProfile(userId, {
+          name: userData.name,
+          last_name: userData.last_name,
+          phone: userData.phone,
+          dob: userData.dob,
+          father_name: userData.father_name,
+          mother_name: userData.mother_name,
+          course_name: userData.course_name,
+          country: userData.country,
+          state: userData.state,
+          district: userData.district,
+          address: userData.address,
+          picture: newPicture,
+          rollno: userData.rollno, // Include roll number if applicable
+          
+        });
+  
         toast.success("Profile picture updated successfully");
       } else if (response.code == 415) {
         toast.error("Please upload jpg, png");
@@ -130,7 +137,7 @@ export default function Settings() {
       toast.error("Error uploading profile picture");
     }
   };
-
+  
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -173,6 +180,17 @@ export default function Settings() {
               type="text"
               name="name"
               value={userData.name}
+              onChange={handleChange}
+              disabled={!isEditing}
+              className={Styles.input}
+            />
+          </div>
+          <div className={Styles.item}>
+            <label className={Styles.label}>Roll No:</label>
+            <input
+              type="text"
+              name="rollno"
+              value={userData.rollno}
               onChange={handleChange}
               disabled={!isEditing}
               className={Styles.input}

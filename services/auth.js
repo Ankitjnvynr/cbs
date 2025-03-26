@@ -80,42 +80,63 @@ export class AuthService {
   }
 
   // updating my profile
-  async updateMyProfile(
-    userId,
-    name,
-    lastName,
-    phone,
-    dob,
-    country,
-    state,
-    district,
-    address,
-    picture
-  ) {
+  async updateMyProfile(userId, data) {
     try {
+      // Ensure user ID is included
+      if (!userId) {
+        throw new Error("User ID is required.");
+      }
+  
+      // Construct payload dynamically, including only provided values
+      let payload = { id: userId };
+  
+      const allowedFields = [
+        // Users table fields
+        "name",
+        "phone",
+        "email",
+        "password",        
+        // User details table fields
+        "rollno",
+        "father_name",
+        "mother_name",
+        "course_name",
+        "last_name",
+        "dob",
+        "country",
+        "state",
+        "district",
+        "address",
+        "picture",
+      ];
+  
+      // Add only provided values to the payload
+      allowedFields.forEach((field) => {
+        if (data[field] !== undefined && data[field] !== null) {
+          payload[field] = data[field];
+        }
+      });
+  
       const response = await fetch(`${this.profileUri}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          user_id: userId,
-          name: name,
-          last_name: lastName,
-          phone: phone,
-          dob: dob,
-          country: country,
-          state: state,
-          district: district,
-          address: address,
-          picture: picture,
-        }),
+        body: JSON.stringify(payload),
       });
+      console.log("res in update profile", response);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
       return await response.json();
     } catch (error) {
-      console.log("error in  updating my profile", error);
+      console.error("Error updating profile:", error);
+      return { code: 500, error: "Failed to update profile. Please try again." };
     }
   }
+  
 
   // Fetch User Details
   async getUser(token, userId = null) {
@@ -147,7 +168,7 @@ export class AuthService {
         },
         body: JSON.stringify(userData),
       });
-
+      console.log("response", response);
       return await response.json();
     } catch (error) {
       console.error("Error updating user:", error);
