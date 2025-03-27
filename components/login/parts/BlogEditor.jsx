@@ -115,16 +115,19 @@ const BlogEditor = ({updateBlog}) => {
     try {
 
       console.table(formData)
-      if(isUpdating){
-        const response = await blogService.updateBlog(formData)
+       
 
-      }else{
-
-        const response = await blogService.createBlog(formData)
-      }
+      const response = isUpdating ? await blogService.updateBlog(formData) :await blogService.createBlog(formData)
       console.log("Blog saved:", response);
-      if(response.code == 201){
-        toast.success("blog updated successfully!")
+      if(response.code == 201 || response.code == 200){
+        toast.success("blog saved successfully!")
+        
+      }else{
+        if(response.code == 404){
+          toast.error(response.message)
+        }else{
+
+        }
       }
     } catch (error) {
       
