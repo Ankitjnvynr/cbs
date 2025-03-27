@@ -37,7 +37,7 @@ export default function AdmissionForm() {
         email: user?.email,
         name: data?.first_name,
         mobileNo: data?.phone,
-        fatherName: data?.last_name,
+        fatherName: data?.father_name,
         rollNo:data?.rollno,
         whatsappNo:data?.phone,
       });
