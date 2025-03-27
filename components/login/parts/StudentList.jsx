@@ -29,7 +29,7 @@ export default function StudentList({ rows }) {
             <TableCell align="left">Roll No</TableCell>
 
             <TableCell align="left">Phone</TableCell>
-            <TableCell align="left">class</TableCell>
+            <TableCell align="left">Course</TableCell>
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">More</TableCell>
           </TableRow>
@@ -65,7 +65,7 @@ export default function StudentList({ rows }) {
               </TableCell>
               <TableCell align="left">{row.rollno || "N/A"}</TableCell>
               <TableCell align="left">{row.phone}</TableCell>
-              <TableCell align="left">{row.course}</TableCell>
+              <TableCell align="left">{row.course_name}</TableCell>
               <TableCell align="center">
                 {row.is_verified == 1 ? (
                   <Badge badgeContent="Verified" color="success" />

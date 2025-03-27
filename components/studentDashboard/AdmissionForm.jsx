@@ -38,6 +38,8 @@ export default function AdmissionForm() {
         name: data?.first_name,
         mobileNo: data?.phone,
         fatherName: data?.last_name,
+        rollNo:data?.rollno,
+        whatsappNo:data?.phone,
       });
     };
     try {
@@ -73,49 +75,62 @@ export default function AdmissionForm() {
   };
 
   const handleSubmit = async (e) => {
-    setIsDisabled(true)
+    setIsDisabled(true);
     e.preventDefault();
-    if (validateForm()) {
-      
 
-      const response = await uploadService.upload(formData.receipt,oldFileName);
-      // console.log(response);
-      if (response.code == 200) {
-        setOldFileName(response.newFileName)
-        const res = await admissionService.addRecord({
-          programme: formData.branch,
-          rollNo: formData.rollNo,
-          branch: formData.branch,
-          year: formData.year,
-          candidateName: formData.name,
-          fatherName: formData.fatherName,
-          motherName: "nil",
-          gender: "nil",
-          category: "nil",
-          district: "nil",
-          mobile: formData.mobileNo,
-          whatsapp: formData.whatsappNo,
-          email: formData.email,
-          totalFees: formData.totalFees,
-          feesPaidTillDate: formData.feesPaidTillDate,
-          receipt: response.newFileName,
-        });
-        console.log(res)
-        if (res.code == 200 || res.code == 201) {
-          toast.success("Reciept send seccessfuly");
-setOldFileName('')
-          e.target.reset()
+    if (validateForm()) {
+        const response = await uploadService.upload(formData.receipt, oldFileName);
+
+        if (response.code == 200) {
+            setOldFileName(response.newFileName);
+            
+            const res = await admissionService.addRecord({
+                programme: formData.branch,
+                rollNo: formData.rollNo,
+                branch: formData.branch,
+                year: formData.year,
+                candidateName: formData.name,
+                fatherName: formData.fatherName,
+                motherName: "nil",
+                gender: "nil",
+                category: "nil",
+                district: "nil",
+                mobile: formData.mobileNo,
+                whatsapp: formData.whatsappNo,
+                email: formData.email,
+                totalFees: formData.totalFees,
+                feesPaidTillDate: formData.feesPaidTillDate,
+                receipt: response.newFileName,
+            });
+
+            console.log(res);
+
+            if (res.code == 200 || res.code == 201) {
+                toast.success("Receipt sent successfully");
+
+                // **Reset the form data**
+                setFormData({
+                    ...formData,
+                    totalFees: "",
+                    feesPaidTillDate: "",
+                    receipt: null,
+                });
+
+                setOldFileName('');
+                e.target.reset(); // This should work now
+            } else {
+                toast.error(res.message);
+            }
         } else {
-          toast.error(res.message);
+            toast.error(response.message);
         }
-      }else{
-        toast.error(response.message)
-      }
     } else {
-      toast.error("Enter Required Fields");
+        toast.error("Enter Required Fields");
     }
-    setIsDisabled(false)
-  };
+    
+    setIsDisabled(false);
+};
+
 
   return (
     <form
@@ -197,9 +212,17 @@ setOldFileName('')
           <span className={Styles.error}>{errors.receipt}</span>
         )}
       </div>
-      <button disabled={isDisabled} type="submit" className={Styles.submitButton}>
-        {isDisabled?"Sending...":"Submit"}
-      </button>
+      {
+        !isDisabled ? (<button disabled={isDisabled} type="submit" className={Styles.submitButton}>
+          {isDisabled?"Sending...":"Submit"}
+        </button>):
+        ( 
+          <button disabled type="submit" className={Styles.submitButton}>
+          {!isDisabled?"Sending...":"Submit"}
+        </button>
+        )
+        
+      }
     </form>
   );
 }
