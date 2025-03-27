@@ -58,6 +58,7 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [isUpdating,setIsUpdating] = useState(false)
+  const [isSaveBtn,setIsSaveBtn]=useState(false)
 
   useEffect (()=>{
     if(updateBlog){
@@ -69,7 +70,7 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-  
+    setIsSaveBtn(true)
     setFormData((prevFormData) => {
       const updatedData = { 
         ...prevFormData, 
@@ -78,9 +79,12 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
   
       // If the title is being updated, update the slug as well
       if (name === "title") {
-        updatedData.slug = value.toLowerCase().replace(/\s+/g, "-"); // Convert to a URL-friendly slug
+        const newslug = value.toLowerCase().replace(/\s+/g, "-"); // Convert to a URL-friendly slug
+        updatedData.slug = newslug
+        const res = blogService.getBlogBySlug(newslug)
+        console.log("res",res)
       }
-      console.table(formData)
+      // console.table(formData)
   
       return updatedData;
     });
@@ -157,8 +161,14 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
           <label htmlFor="file-upload">{isUploading ? <CircularProgress size={24} /> : "Upload Feature Image"}</label>
           {formData.featured_image && <img src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
         </UploadBox>
-        <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
-        <Button variant="contained" disabled color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
+        {
+          isSaveBtn?
+          (<Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>):(
+
+            <Button variant="contained" disabled color="primary" fullWidth sx={{ marginTop: "20px" }} >Save Blog</Button>
+          )
+        }
+        
       </Box>
       <Box sx={styles.editorContainer}>
       <TextField size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "1px" }} />

@@ -33,14 +33,11 @@ export class BlogService {
   async getBlogBySlug(slug) {
     try {
       const response = await fetch(`${this.blogUri}?slug=${slug}`);
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-      }
+      
       return response.json();
     } catch (error) {
       console.error("Error fetching blog by slug:", error);
-      throw error;
+      return error.json();
     }
   }
 
