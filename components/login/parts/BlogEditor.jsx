@@ -38,7 +38,7 @@ const UploadBox = styled(Box)(({ theme }) => ({
   "&:hover": { borderColor: "#007bff", backgroundColor: "#f0f8ff" },
 }));
 
-const BlogEditor = ({updateBlog}) => {
+const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
   const [formData, setFormData] = useState({
     title: "",
     slug:"",
@@ -121,7 +121,10 @@ const BlogEditor = ({updateBlog}) => {
       console.log("Blog saved:", response);
       if(response.code == 201 || response.code == 200){
         toast.success("blog saved successfully!")
-        
+        getBlogs()
+        setUpdateBlog(null)
+        setIsblogList(true)
+
       }else{
         if(response.code == 404){
           toast.error(response.message)
@@ -155,6 +158,7 @@ const BlogEditor = ({updateBlog}) => {
           {formData.featured_image && <img src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
         </UploadBox>
         <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
+        <Button variant="contained" disabled color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>
       </Box>
       <Box sx={styles.editorContainer}>
       <TextField size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "1px" }} />

@@ -53,7 +53,7 @@ const getBlogs = async ()=>{
         
         
       </div>
-      {isBlogsList ? isLoading?"loading...":<BlogsList blogEditor={blogEditor} setUpdateBlog={setUpdateBlog} rows={blogs} /> : <BlogEditor updateBlog = {updateBlog} />}
+      {isBlogsList ? isLoading?"loading...":<BlogsList blogEditor={blogEditor} setUpdateBlog={setUpdateBlog} rows={blogs} /> : <BlogEditor setUpdateBlog={setUpdateBlog} setIsblogList={setIsblogList} getBlogs={getBlogs} updateBlog = {updateBlog} />}
     </LoginLayout>
   );
 }
