@@ -68,7 +68,22 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
     }
   },[])
 
-  const handleChange = (e) => {
+  const  IsSlugAvail = async (slug)=>{
+    try {
+      const res = await blogService.getBlogBySlug(slug)
+    console.log("res",res)
+    if(res.code!=404){
+      return true
+    }else{
+      return false
+    }
+    } catch (error) {
+      console.log("error in getting slug",error)
+      return false
+    }
+  }
+
+  const handleChange = async (e) => {
     const { name, value, type, checked } = e.target;
     setIsSaveBtn(true)
     setFormData((prevFormData) => {
@@ -81,8 +96,12 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
       if (name === "title") {
         const newslug = value.toLowerCase().replace(/\s+/g, "-"); // Convert to a URL-friendly slug
         updatedData.slug = newslug
-        const res = blogService.getBlogBySlug(newslug)
-        console.log("res",res)
+        if(IsSlugAvail(newslug)){
+          setIsSaveBtn(false)
+          console.log("hellow of the slug")
+        }else{
+          setIsSaveBtn(true)
+        }
       }
       // console.table(formData)
   
