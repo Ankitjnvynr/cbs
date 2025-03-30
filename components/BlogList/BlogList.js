@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import BlogSidebar from '../BlogSidebar/BlogSidebar.js'
 import VideoModal from '../ModalVideo/VideoModal'
 import blogs from '../../api/blogs'
 import Image from 'next/image.js';
+import blogService from '../../services/BlogService.js';
+import conf from '../../lib/conf.js';
 
 
 const ClickHandler = () =>{
@@ -11,12 +13,22 @@ const ClickHandler = () =>{
  }
 
 const BlogList = (props) => {
+
+    const [blogs,setBlogs] = useState([])
+    
+    const decodeHtmlEntities = (text) => {
+        const txt = document.createElement("textarea");
+        txt.innerHTML = text;
+        return txt.value;
+      };
+    
     return(
         <section className="wpo-blog-pg-section section-padding">
             <div className="container">
                 <div className="row">
                     <div className={`col col-lg-8 col-12 ${props.blRight}`}>
                         <div className="wpo-blog-content">
+                           
                             {blogs.slice(0, 3).map((blog, bitem) => (
                                 <div className={`post  ${blog.blClass}`}key={bitem}>
                                     <div className="entry-media video-holder">
@@ -38,7 +50,15 @@ const BlogList = (props) => {
                                 </div>
                             ))}
 
-                            <div className="pagination-wrapper pagination-wrapper-left">
+                            <h2 >{props.blog.title}</h2>
+
+                            <div>
+                            <Image height={200} width={300}  src={`${conf.apiBaseUri}/uploads/${props.blog.featured_image}`} />
+                            <div dangerouslySetInnerHTML={{ __html: decodeURI(decodeHtmlEntities(props.blog.content)) }} />
+
+                            </div>
+                            
+                            {/* <div className="pagination-wrapper pagination-wrapper-left">
                                 <ul className="pg-pagination">
                                     <li>
                                         <Link href="/blog-left-sidebar" aria-label="Previous">
@@ -54,7 +74,7 @@ const BlogList = (props) => {
                                         </Link>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <BlogSidebar blLeft={props.blLeft}/>

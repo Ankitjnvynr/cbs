@@ -5,6 +5,7 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import Image from "next/image";
 import blogService from "../../services/BlogService";
 import conf from "../../lib/conf";
+import { Pagination } from "@mui/material";
 
 const ClickHandler = () => {
     window.scrollTo(10, 0);
@@ -13,6 +14,7 @@ const ClickHandler = () => {
 const BlogSection = (props) => {
 
     const [blogs,setBlogs]=useState([])
+      const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState({
         slug:"",
         category:"",
@@ -21,6 +23,13 @@ const BlogSection = (props) => {
         page:1,
         limit:10,
   });
+
+  const handlePageChange = (event, value) => {
+    setFilters({
+      ...filters,
+      page: value,
+    });
+  };
 
     const getBlogs = async ()=>{
         const res = await blogService.getBlogs(filters)
@@ -65,6 +74,16 @@ const BlogSection = (props) => {
                         </div>
                     ))}
                 </div>
+
+                 {/* Pagination */}
+                      <div className="flex justify-center mt-4">
+                        <Pagination
+                          count={totalPages}
+                          page={filters.page}
+                          onChange={handlePageChange}
+                          color="primary"
+                        />
+                      </div>
             </div>
         </section>
 

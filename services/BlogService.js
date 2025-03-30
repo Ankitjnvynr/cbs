@@ -33,6 +33,7 @@ export class BlogService {
   async getBlogBySlug(slug) {
     try {
       const response = await fetch(`${this.blogUri}?slug=${slug}`);
+      console.log(`${this.blogUri}?slug=${slug}`)
       
       return response.json();
     } catch (error) {

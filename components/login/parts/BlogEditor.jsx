@@ -12,24 +12,22 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import axios from "axios";
 import dynamic from "next/dynamic";
+import { toast } from "react-toastify";
 
 const ReactQuill = dynamic(() => import("react-quill").then((mod) => mod.default), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
-import   uploadService  from "../../../services/uploaService"
+import uploadService from "../../../services/uploaService";
 import blogService from "../../../services/BlogService";
 import conf from "../../../lib/conf";
-import { toast } from "react-toastify";
-
-
+import Image from "next/image";
 
 const styles = {
-  container: { display: "flex", flexDirection: "row-reverse", gap: "10px",  justifyContent: "center" },
+  container: { display: "flex", flexDirection: "row-reverse", gap: "10px", justifyContent: "center" },
   editorContainer: { flex: 1, padding: "20px", borderRadius: "10px", backgroundColor: "#fff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" },
   sidebar: { width: "300px", padding: "20px", borderRadius: "10px", backgroundColor: "#f9f9f9", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" },
-  quillEditor: { height: "70%",  borderRadius: "10px" , maxHeight:"60vh" },
+  quillEditor: { height: "70%", borderRadius: "10px", maxHeight: "60vh" },
   uploadBox: { border: "2px dashed #ccc", padding: "20px", textAlign: "center", cursor: "pointer", borderRadius: "10px", backgroundColor: "#fff", transition: "0.3s" },
 };
 
@@ -38,10 +36,10 @@ const UploadBox = styled(Box)(({ theme }) => ({
   "&:hover": { borderColor: "#007bff", backgroundColor: "#f0f8ff" },
 }));
 
-const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
+const BlogEditor = ({ updateBlog, setUpdateBlog, getBlogs, setIsblogList }) => {
   const [formData, setFormData] = useState({
     title: "",
-    slug:"",
+    slug: "",
     content: "",
     author: "CBS Group",
     author_bio: "",
@@ -55,77 +53,82 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
     canonical_url: "",
     featured_image: null,
   });
+
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadedFileName, setUploadedFileName] = useState("");
-  const [isUpdating,setIsUpdating] = useState(false)
-  const [isSaveBtn,setIsSaveBtn]=useState(false)
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isSaveBtn, setIsSaveBtn] = useState(false);
+  const [slugExists, setSlugExists] = useState(false);
+  const [initialSlug, setInitialSlug] = useState("");
 
-  useEffect (()=>{
-    if(updateBlog){
-      setFormData(updateBlog)
-      setIsUpdating(true)
-      console.log(formData)
+  useEffect(() => {
+    if (updateBlog) {
+      setFormData({
+        ...updateBlog,
+        content: decodeHtmlEntities(updateBlog.content),
+      });
+      setInitialSlug(updateBlog.slug);
+      setIsUpdating(true);
     }
-  },[])
+  }, [updateBlog]);
 
-  const  IsSlugAvail = async (slug)=>{
+    const decodeHtmlEntities = (text) => {
+      const txt = document.createElement("textarea");
+      txt.innerHTML = text;
+      return txt.value;
+    };
+
+  const checkSlugAvailability = async (slug) => {
+    if (slug === initialSlug) {
+      setSlugExists(false);
+      setIsSaveBtn(true);
+      return;
+    }
     try {
-      const res = await blogService.getBlogBySlug(slug)
-    console.log("res",res)
-    if(res.code!=404){
-      return true
-    }else{
-      return false
-    }
+      const res = await blogService.getBlogBySlug(slug);
+      if (res.code !== 404) {
+        setSlugExists(true);
+        setIsSaveBtn(false);
+      } else {
+        setSlugExists(false);
+        setIsSaveBtn(true);
+      }
     } catch (error) {
-      console.log("error in getting slug",error)
-      return false
+      console.log("Error checking slug:", error);
+      setSlugExists(false);
+      setIsSaveBtn(true);
     }
-  }
+  };
 
   const handleChange = async (e) => {
     const { name, value, type, checked } = e.target;
-    setIsSaveBtn(true)
+    setIsSaveBtn(true);
     setFormData((prevFormData) => {
       const updatedData = { 
         ...prevFormData, 
         [name]: type === "checkbox" ? checked : value 
       };
-  
-      // If the title is being updated, update the slug as well
+
       if (name === "title") {
-        const newslug = value.toLowerCase().replace(/\s+/g, "-"); // Convert to a URL-friendly slug
-        updatedData.slug = newslug
-        if(IsSlugAvail(newslug)){
-          setIsSaveBtn(false)
-          console.log("hellow of the slug")
-        }else{
-          setIsSaveBtn(true)
-        }
+        const newSlug = value.toLowerCase().replace(/\s+/g, "-");
+        updatedData.slug = newSlug;
+        checkSlugAvailability(newSlug);
       }
-      // console.table(formData)
-  
+
       return updatedData;
     });
-  
-    console.table(formData); // Note: React state updates are asynchronous; this may log outdated data
   };
-  
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
-    
-   
 
     try {
       setIsUploading(true);
-      const response = await uploadService.upload(file,formData.featured_image)
-      console.log(response)      
+      const response = await uploadService.upload(file, formData.featured_image);
 
       if (response.newFileName) {
-        setUploadedFileName(`${conf.apiBaseUri}/uploads/${response.newFileName}`);
         setFormData({ ...formData, featured_image: response.newFileName });
+        setIsSaveBtn(true);
       }
     } catch (error) {
       console.error("Upload failed:", error);
@@ -135,30 +138,27 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
   };
 
   const handleSubmit = async () => {
+    if (!formData.title || !formData.content || !formData.featured_image) {
+      toast.error("Title, Content, and Feature Image are required.");
+      return;
+    }
+
     try {
+      const response = isUpdating ? await blogService.updateBlog(formData) : await blogService.createBlog(formData);
 
-      console.table(formData)
-       
-
-      const response = isUpdating ? await blogService.updateBlog(formData) :await blogService.createBlog(formData)
-      console.log("Blog saved:", response);
-      if(response.code == 201 || response.code == 200){
-        toast.success("blog saved successfully!")
-        getBlogs()
-        setUpdateBlog(null)
-        setIsblogList(true)
-
-      }else{
-        if(response.code == 404){
-          toast.error(response.message)
-        }else{
-
+      if (response.code === 201 || response.code === 200) {
+        toast.success("Blog saved successfully!");
+        getBlogs();
+        setUpdateBlog(null);
+        setIsblogList(true);
+      } else {
+        if (response.code === 404) {
+          toast.error(response.message);
         }
       }
     } catch (error) {
-      
       console.log("Failed to save blog:", error);
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
@@ -169,32 +169,32 @@ const BlogEditor = ({updateBlog,setUpdateBlog,getBlogs,setIsblogList}) => {
         <TextField size="small" label="Keywords" name="keywords" value={formData.keywords} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
         <TextField size="small" label="Categories" name="categories" value={formData.categories} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} />
         <TextField size="small" label="Meta Description" name="meta_description" value={formData.meta_description} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }} multiline rows={2} />
-         <TextField size="small" select label="Status" name="status" value={formData.status} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }}>
+        <TextField size="small" select label="Status" name="status" value={formData.status} onChange={handleChange} fullWidth sx={{ marginBottom: "10px" }}>
           <MenuItem value="draft">Draft</MenuItem>
           <MenuItem value="published">Published</MenuItem>
           <MenuItem value="archived">Archived</MenuItem>
         </TextField>
-        <FormControlLabel control={<Checkbox name="is_featured" checked={formData.is_featured} onChange={handleChange} />} label="Featured" />
+        <label style={{width:'100%'}} htmlFor="file-upload">
         <UploadBox>
           <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: "none" }} id="file-upload" />
-          <label htmlFor="file-upload">{isUploading ? <CircularProgress size={24} /> : "Upload Feature Image"}</label>
-          {formData.featured_image && <img src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} alt="Feature" style={{ marginTop: "10px", width: "100%" }} />}
+          {isUploading ? <CircularProgress size={24} /> : "Upload Feature Image"}
+        <Image style={{width:"100%"}} width={200} height={100} src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} />
         </UploadBox>
-        {
-          isSaveBtn?
-          (<Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit}>Save Blog</Button>):(
-
-            <Button variant="contained" disabled color="primary" fullWidth sx={{ marginTop: "20px" }} >Save Blog</Button>
-          )
-        }
-        
+        </label>
+        <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit} disabled={!isSaveBtn || slugExists}>
+          Save Blog
+        </Button>
       </Box>
       <Box sx={styles.editorContainer}>
-      <TextField size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "1px" }} />
-        <Typography >Slug: {formData.slug}</Typography>
+        <TextField required size="small" label="Title" name="title" value={formData.title} onChange={handleChange} fullWidth sx={{ marginBottom: "1px" }} />
+        <Typography sx={{ color: slugExists ? "red" : "black" }}>Slug: {formData.slug}</Typography>
+        {slugExists && <Typography color="red">This slug is already taken.</Typography>}
         <Typography variant="h6">Blog Content</Typography>
-
-        <ReactQuill value={formData.content} onChange={(value) => setFormData({ ...formData, content: value })} style={styles.quillEditor} />
+        <ReactQuill value={formData.content} onChange={(value) => {
+          setFormData({ ...formData, content: value })
+          setIsSaveBtn(true)
+        }
+          } style={styles.quillEditor} />
       </Box>
     </Box>
   );
