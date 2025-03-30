@@ -178,7 +178,9 @@ const BlogEditor = ({ updateBlog, setUpdateBlog, getBlogs, setIsblogList }) => {
         <UploadBox>
           <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: "none" }} id="file-upload" />
           {isUploading ? <CircularProgress size={24} /> : "Upload Feature Image"}
-        <Image style={{width:"100%"}} width={200} height={100} src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} />
+        {
+          formData.featured_image && <Image style={{width:"100%"}} width={200} height={100} src={`${conf.apiBaseUri}/uploads/${formData.featured_image}`} />
+        }
         </UploadBox>
         </label>
         <Button variant="contained" color="primary" fullWidth sx={{ marginTop: "20px" }} onClick={handleSubmit} disabled={!isSaveBtn || slugExists}>

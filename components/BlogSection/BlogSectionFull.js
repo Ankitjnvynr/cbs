@@ -19,7 +19,7 @@ const BlogSection = (props) => {
         slug:"",
         category:"",
         keyword:"",
-        status:"",
+        status:"published",
         page:1,
         limit:10,
   });

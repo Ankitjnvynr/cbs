@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Image from 'next/image';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import conf from '../../../lib/conf';
+import { Button } from '@mui/material';
 
 
 
@@ -45,7 +46,10 @@ export default function BlogsList({rows,blogEditor,setUpdateBlog}) {
                   <TableCell align="left">{row.title}</TableCell>
                   {/* <TableCell align="left">{row.content}</TableCell> */}
                   <TableCell align="left">{row.created_at}</TableCell>
-                  <TableCell align="right"><span onClick={()=> EditBlog(row)} ><FaEdit  />edit</span> <span><FaTrash /></span></TableCell>
+                  <TableCell align="right">
+                    <Button  variant='outlined' color='success'  onClick={()=> EditBlog(row)} ><FaEdit  /> </Button>  
+                    <Button color='error'  variant='outlined'><FaTrash /></Button>
+                  </TableCell>
                 </TableRow>
               ))
             ):<TableCell align='right'>No data found</TableCell>

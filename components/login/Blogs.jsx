@@ -48,7 +48,10 @@ const getBlogs = async ()=>{
     <LoginLayout>
       <div>
         {
-          isBlogsList?<Button onClick={() => setIsblogList(false)}>Add new</Button>:<Button onClick={() => setIsblogList(true)}>All blogs</Button>
+          isBlogsList?<Button onClick={() => {
+            setIsblogList(false)
+            setUpdateBlog(null)
+          }}>Add new</Button>:<Button onClick={() => setIsblogList(true)}>All blogs</Button>
         }
         
         
