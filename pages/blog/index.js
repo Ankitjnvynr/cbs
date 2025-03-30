@@ -9,6 +9,7 @@ import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
 import blogService from '../../services/BlogService.js';
 import Error from '../../components/404/404.js';
+import Head from 'next/head.js';
 
 const BlogPage =() => {
     const [slug,setSlug]=useState("")
@@ -43,6 +44,18 @@ const BlogPage =() => {
 
     return(
         <Fragment>
+
+
+        <Head>
+        <title> {`${blog?.title} - CBS Group of Institutions` }</title>
+    <meta name="description" content={blog?.meta_description} />
+    <meta name="keywords" content={blog?.keywords} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charSet="utf-8" />
+        </Head>
+
+
+
            <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={isBlog?blog.title:"404"} pagesub={'Blog'}/> 
             {/* <p>{}</p> */}
