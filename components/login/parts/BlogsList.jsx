@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Image from 'next/image';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import conf from '../../../lib/conf';
-import { Button } from '@mui/material';
+import { Badge, Button } from '@mui/material';
 
 
 
@@ -28,6 +28,7 @@ export default function BlogsList({rows,blogEditor,setUpdateBlog}) {
             <TableCell align="left">Title</TableCell>
             {/* <TableCell align="right">Description</TableCell> */}
             <TableCell align="left">Date</TableCell>
+            <TableCell align="center">Status</TableCell>
             <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -46,6 +47,11 @@ export default function BlogsList({rows,blogEditor,setUpdateBlog}) {
                   <TableCell align="left">{row.title}</TableCell>
                   {/* <TableCell align="left">{row.content}</TableCell> */}
                   <TableCell align="left">{row.created_at}</TableCell>
+                  <TableCell align="center">{
+                  row.status=='published' && <Badge badgeContent="Published" color="success" />}{
+                  row.status=='draft' && <Badge badgeContent="draft" color="error" />}{
+                  row.status=='archived' && <Badge badgeContent="archived" color="warning" />
+                  }</TableCell>
                   <TableCell align="right">
                     <Button  variant='outlined' color='success'  onClick={()=> EditBlog(row)} ><FaEdit  /> </Button>  
                     <Button color='error'  variant='outlined'><FaTrash /></Button>
