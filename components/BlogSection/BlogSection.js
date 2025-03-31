@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import blogs from './blogs'
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Image from "next/image";
+import blogService from "../../services/BlogService";
+import conf from "../../lib/conf";
 
 const ClickHandler = () => {
     window.scrollTo(10, 0);
 }
 
 const BlogSection = (props) => {
+    const [loading, setLoading] = React.useState(true);
+    const [blogs, setBlogs] = React.useState([]);
+    const [filters, setFilters] = useState({
+        slug:"",
+        category:"",
+        keyword:"",
+        status:"published",
+        page:1,
+        limit:3,
+  });
+    
+
+    const getblogs = async ()=>{
+        const response = await blogService.getBlogs(filters)
+        console.log("res from blogs",response)
+        if(response.code === 200){
+            setBlogs(response.data)
+        }
+    }
+
+    useEffect(()=>{
+        getblogs()
+    },[])
 
 
 
@@ -27,17 +52,17 @@ const BlogSection = (props) => {
                         <div className="col col-lg-4 col-md-6 col-12" key={bkye}>
                             <div className="blog-card">
                                 <div className="image">
-                                    <Image src={blog.screens} alt="" />
-                                    <span>{blog.catagory}</span>
+                                    <Image width={300} height={200} src={`${conf.apiBaseUri}/uploads/${blog.featured_image}`} alt="" />
+                                    <span>{blog.categories}</span>
                                 </div>
                                 <div className="content">
                                     <ul className="date">
-                                        <li>{blog.create_at}</li>
-                                        <li>{blog.name}</li>
+                                        <li>{blog.created_at}</li>
+                                        <li>{blog.categories}</li>
                                     </ul>
-                                    <h2><Link onClick={ClickHandler} href={'/blog-single/[slug]'} as={`/${blog.slug}`}>{blog.title}</Link></h2>
+                                    <h2><Link onClick={ClickHandler} href={`/blog?s=${blog.slug}`} as={`/blog?s=${blog.slug}`}>{blog.title}</Link></h2>
                                     <div className="link">
-                                        <Link onClick={ClickHandler} href={'/blog-single/[slug]'} as={`/${blog.slug}`}><span>Read more</span>
+                                        <Link onClick={ClickHandler} href={`/blog?s=${blog.slug}`} as={`/blog?s=${blog.slug}`}><span>Read more</span>
                                             <i className="ti-arrow-right"></i></Link>
                                     </div>
                                 </div>

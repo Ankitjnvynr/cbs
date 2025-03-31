@@ -53,8 +53,8 @@ const BlogList = (props) => {
                             <h2 >{props.blog.title}</h2>
 
                             <div>
-                            <Image height={200} width={300}  src={`${conf.apiBaseUri}/uploads/${props.blog.featured_image}`} />
-                            <div dangerouslySetInnerHTML={{ __html: decodeURI(decodeHtmlEntities(props.blog.content)) }} />
+                            <Image height={200} width={300} style={{float:'left', marginRight:'10px'}}  src={`${conf.apiBaseUri}/uploads/${props.blog.featured_image}`} />
+                            <div style={{textAlign:'justify'}} dangerouslySetInnerHTML={{ __html: decodeURI(decodeHtmlEntities(props.blog.content)) }} />
 
                             </div>
                             
