@@ -69,6 +69,10 @@ const BlogSection = (props) => {
                             </div>
                         </div>
                     ))}
+                <div style={{textAlign:'center'}}>
+                <Link onClick={ClickHandler} href={`/blogs`} as={`/blogs`}> <h4><span>View All</span>
+                <i className="ti-arrow-right"></i></h4></Link>
+                </div>
                 </div>
             </div>
         </section>
