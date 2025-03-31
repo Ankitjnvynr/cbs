@@ -35,6 +35,12 @@ const BlogSection = (props) => {
         getblogs()
     },[])
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+      };
+
 
 
 
@@ -57,7 +63,7 @@ const BlogSection = (props) => {
                                 </div>
                                 <div className="content">
                                     <ul className="date">
-                                        <li>{blog.created_at}</li>
+                                        <li>{formatDate(blog.created_at)}</li>
                                         <li>{blog.categories}</li>
                                     </ul>
                                     <h2><Link onClick={ClickHandler} href={`/blog?s=${blog.slug}`} as={`/blog?s=${blog.slug}`}>{blog.title}</Link></h2>
