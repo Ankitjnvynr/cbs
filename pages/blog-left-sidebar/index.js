@@ -13,7 +13,7 @@ const BlogPageLeft =() => {
         <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'Latest News'} pagesub={'Blog'}/> 
-            <BlogList blLeft={'order-lg-1'} blRight={'order-lg-2'}/>
+            {/* <BlogList blLeft={'order-lg-1'} blRight={'order-lg-2'}/> */}
             <Footer/>
             <Scrollbar/>
             <CursorMaus />
