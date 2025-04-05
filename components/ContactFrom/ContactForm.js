@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import SimpleReactValidator from 'simple-react-validator';
+import contactService from '../../services/contactServices';
+import { toast } from 'react-toastify';
 
 const ContactForm = () => {
     const [forms, setForms] = useState({
         name: '',
         email: '',
-        subject: '',
         phone: '',
+        subject: '',
         message: '',
     });
 
@@ -23,17 +25,32 @@ const ContactForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         if (validator.allValid()) {
             validator.hideMessages();
-            setForms({
+
+
+            try {
+                const response = await contactService.addRecord(forms)
+                // console.log("response" , response)
+                if(response.code ===201){
+                    toast.success("Form sent Successfully !")
+                    setForms({
                 name: '',
                 email: '',
-                subject: '',
                 phone: '',
+                subject: '',
                 message: '',
             });
+                }else{
+                    toast.error("Something went wrong, try again ")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+           
         } else {
             validator.showMessages();
         }

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import contactService from '../../services/contactServices';
+import { toast } from 'react-toastify';
 
 const CtaSection = () => {
     const [formData, setFormData] = useState({
@@ -14,8 +16,35 @@ const CtaSection = () => {
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        if(
+            formData.name == '' || formData.email == '' || formData.phone ==''
+        ){
+            toast.error("All fields are required")
+            return
+        }
+        try {
+            const response = await contactService.addRecord(formData)
+            if(response.code === 201) {
+                toast.success("Form sent Successfully")
+                setFormData(
+                    {
+                        name: '',
+                        email: '',
+                        phone: ''
+                    }
+                )
+            }else{
+                toast.error("Something went wrong !! try again")
+            }
+            // console.log(response)
+        } catch (error) {
+            toast.error("Something went wrong !! try again")
+            // throw new Error(error)
+            
+        }
+        console.log(formData)
     }
 
     return (
@@ -28,13 +57,13 @@ const CtaSection = () => {
                     </div>
                     <form className="cta-form" onSubmit={handleSubmit}>
                         <div className="input-filled">
-                            <input type="text" placeholder="Your Name*" name="name" value={formData.name} onChange={handleChange} />
+                            <input required type="text" placeholder="Your Name*" name="name" value={formData.name} onChange={handleChange} />
                         </div>
                         <div className="input-filled">
-                            <input type="text" placeholder="Your Email*" name="email" value={formData.email} onChange={handleChange} />
+                            <input required type="text" placeholder="Your Email*" name="email" value={formData.email} onChange={handleChange} />
                         </div>
                         <div className="input-filled">
-                        <input type="text" placeholder="Your Phone*" name="phone" value={formData.company} onChange={handleChange} />
+                        <input required type="text" placeholder="Your Phone*" name="phone" value={formData.phone} onChange={handleChange} />
                             
                         </div>
                         <div className="input-filled">

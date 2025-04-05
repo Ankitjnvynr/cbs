@@ -14,7 +14,7 @@ const BlogPageFullwidth =() => {
         <Fragment>
             <Navbar Logo={Logo} hclass={"wpo-site-header s1"} telephone={Phone} />
             <PageTitle pageTitle={'Latest News'} pagesub={'Blog'}/> 
-            <BlogList blLeft={'d-none'} blRight={'col-lg-10 offset-lg-1'}/>
+            {/* <BlogList blLeft={'d-none'} blRight={'col-lg-10 offset-lg-1'}/> */}
             <Footer />
             <Scrollbar/>
             <CursorMaus />
