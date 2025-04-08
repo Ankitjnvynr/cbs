@@ -20,7 +20,7 @@ const BlogDetails = () => {
         <Fragment>
             <Navbar Logo={Logo} telephone={Phone} hclass={"wpo-site-header s1"} />
             <PageTitle pageTitle={BlogDetails?.title} pagesub={'Blog'} />
-            <BlogSingle />
+            {/* <BlogSingle /> */}
             <Footer ftClass={'s2'} />
             <Scrollbar />
             <CursorMaus/>
