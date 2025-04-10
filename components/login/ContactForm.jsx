@@ -10,6 +10,7 @@ import {
   Button,
   Box,
   Pagination,
+  Stack,
 } from "@mui/material";
 
 export default function ContactForm() {
@@ -25,7 +26,7 @@ export default function ContactForm() {
     message: "",
     status: "",
     remark: "",
-    page: 1,
+    page: currentPage,
   });
 
   const getContactResponse = async () => {
@@ -41,14 +42,17 @@ export default function ContactForm() {
 
   useEffect(() => {
     getContactResponse();
-  }, [filters.page]);
+  }, [filters]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({
       ...prev,
       [name]: value,
-    }));
+    })
+    
+  );
+  setCurrentPage(1)
   };
 
   const handleFilterApply = () => {
@@ -79,19 +83,34 @@ export default function ContactForm() {
 
   return (
     <LoginLayout>
+      <h5>Contact form & Enquiry form data</h5>
+      
       <Box sx={{ mb: 3 }}>
-        <Grid container spacing={2}>
+        <Stack  spacing={{ xs: 1, sm: 2 }}
+        alignItems="center"
+        justifyContent={'space-between'}
+  direction="row">
+  <h6>Filters</h6>
+  <Button onClick={handleFilterReset} >Reset</Button>
+        </Stack>
+        <span className="flex">
+    
+
+        </span>
+        <Grid container spacing={0.5}>
           <Grid item xs={12} sm={3}>
             <TextField
               label="Name"
               name="name"
               value={filters.name}
               onChange={handleFilterChange}
+              size="small"
               fullWidth
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
+              size="small"
               label="Email"
               name="email"
               value={filters.email}
@@ -101,6 +120,7 @@ export default function ContactForm() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
+              size="small"
               label="Phone"
               name="phone"
               value={filters.phone}
@@ -108,62 +128,27 @@ export default function ContactForm() {
               fullWidth
             />
           </Grid>
+        
+          
           <Grid item xs={12} sm={3}>
             <TextField
-              label="Subject"
-              name="subject"
-              value={filters.subject}
-              onChange={handleFilterChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              label="Message"
-              name="message"
-              value={filters.message}
-              onChange={handleFilterChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              label="Remark"
-              name="remark"
-              value={filters.remark}
-              onChange={handleFilterChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
+              size="small"
               label="Status"
               name="status"
               value={filters.status}
               onChange={handleFilterChange}
               select
               fullWidth
+              
             >
-              <MenuItem value="">All</MenuItem>
+              <MenuItem selected value="">All</MenuItem>
               <MenuItem value="pending">Pending</MenuItem>
-              <MenuItem value="in_progress">In Progress</MenuItem>
               <MenuItem value="called">Called</MenuItem>
-              <MenuItem value="resolved">Resolved</MenuItem>
-              <MenuItem value="closed">Closed</MenuItem>
+              
             </TextField>
           </Grid>
-          <Grid item xs={12} sm={3} display="flex" alignItems="center">
-            <Button
-              variant="contained"
-              onClick={handleFilterApply}
-              sx={{ mr: 1 }}
-            >
-              Apply
-            </Button>
-            <Button variant="outlined" onClick={handleFilterReset}>
-              Reset
-            </Button>
-          </Grid>
+          
+          
         </Grid>
       </Box>
 

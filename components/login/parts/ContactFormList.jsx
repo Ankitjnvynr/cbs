@@ -121,7 +121,7 @@ export default function ContactFormList({ rows, currentPage,getContactResponse }
           <TableBody>
             {rows.map((row, index) => (
               <TableRow  key={row.id}>
-                <TableCell>{currentPage + index }</TableCell>
+                <TableCell>{currentPage + index +1 }</TableCell>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.email}</TableCell>
                 <TableCell>{row.phone}</TableCell>
@@ -150,6 +150,11 @@ export default function ContactFormList({ rows, currentPage,getContactResponse }
                 </TableCell>
               </TableRow>
             ))}
+            {
+              rows.length<0 && <TableRow>
+                 <TableCell>No data found</TableCell>
+              </TableRow>
+            }
           </TableBody>
         </Table>
       </TableContainer>
