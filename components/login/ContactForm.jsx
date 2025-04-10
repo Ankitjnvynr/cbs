@@ -15,7 +15,7 @@ export default function ContactForm() {
 
   const getContactResponse = async () => {
     setLoading(true)
-    const response = await contactService.getRecords()
+    const response = await contactService.getRecords(filters)
     console.log(response)
     if(response.code===200){
       setContactResponse(response.data)
@@ -30,7 +30,7 @@ export default function ContactForm() {
 
   return (
     <LoginLayout>
-        <div>hello its contact form page resonse</div>
+        
         {
           loading?<CircularProgress />:<ContactFormList getContactResponse={getContactResponse} rows={contactResponse} currentPage ={currentPage} />
         }
