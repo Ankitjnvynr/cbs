@@ -67,6 +67,18 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link className={`${styles.link} ${router.pathname === "/login/contact-form" ? styles.active : ""}`} href="/login/contact-form">
+          <IoIosNotificationsOutline />
+            <span className={styles.text}>Contact Form</span>
+          </Link>
+        </li>
+        <li>
+          <Link className={`${styles.link} ${router.pathname === "/login/alumni" ? styles.active : ""}`} href="/login/alumni">
+          <IoIosNotificationsOutline />
+            <span className={styles.text}>Alumni</span>
+          </Link>
+        </li>
+        <li>
           <Link className={`${styles.link} ${router.pathname === "/login/blogs" ? styles.active : ""}`} href="/login/blogs">
           <TbBrandBlogger />
             <span className={styles.text}>Blogs</span>
