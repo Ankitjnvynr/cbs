@@ -1,9 +1,43 @@
 import conf from "../lib/conf";
 
 export class AlumniService {
+    baseURI;
+
     constructor() {
         // Setting up the base URI for alumni
         this.baseURI = `${conf.apiBaseUri}/api/v1/alumni`;
+    }
+
+    async addRecord({ studentName, fatherName, email, mobile, nationality, yearOfAdmission }) {
+        try {
+            const response = await fetch(this.contactUri, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    studentName,
+                    fatherName,
+                    email,
+                    mobile,
+                    nationality,
+                    yearOfAdmission,
+                }),
+            });
+            console.log("Response from server at adding:", response);
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(
+                    `Failed to save data. Status: ${response.status}. Message: ${errorData.message || "Unknown error"}`
+                );
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error("Error in saving data:", error);
+            throw error;
+        }
     }
 
     // Get all alumni records with pagination
@@ -35,14 +69,19 @@ export class AlumniService {
     }
 
     // Update an existing alumni record
-    async updateRecord(id, updatedData) {
+    async updateRecord(id, data) {
         try {
-            const response = await fetch(`${this.baseURI}/${id}`, {
+            const payload = {
+                ...data,
+                id,
+            };
+
+            const response = await fetch(`${this.baseURI}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(updatedData),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {
@@ -54,7 +93,7 @@ export class AlumniService {
 
             return await response.json();
         } catch (error) {
-            console.error("Error in updating data:", error.message);
+            console.log("Error in updating data:", error.message);
             throw error;
         }
     }
@@ -62,11 +101,12 @@ export class AlumniService {
     // Delete an alumni record
     async deleteRecord(id) {
         try {
-            const response = await fetch(`${this.baseURI}/${id}`, {
+            const response = await fetch(`${this.baseURI}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                body: JSON.stringify({ id })
             });
 
             if (!response.ok) {
@@ -78,11 +118,30 @@ export class AlumniService {
 
             return { message: "Record deleted successfully." };
         } catch (error) {
-            console.error("Error in deleting data:", error.message);
+            console.log("Error in deleting data:", error.message);
             throw error;
         }
     }
-}
+
+    async upload (id) {
+        try {
+            const response = await fetch(`${this.baseURI}`, {
+                method: "POST",
+                body: JSON.stringify({ id })
+            });
+    
+            const result = await response.json();
+            console.log("Response is:", result);
+    
+            if (response.ok) {
+                getAlumniResponse(); // Refresh data after successful upload
+            }
+        } catch (error) {
+            console.error("Error uploading file:", error.message);
+        }
+    };    
+
+};
 
 const alumniService = new AlumniService();
 export default alumniService;

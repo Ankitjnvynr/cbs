@@ -45,6 +45,23 @@ export default function ExcelReader() {
       console.error("Error reading file:", error);
     };
   };
+  
+  // const upload = async (event) => {
+  //   const file = event.target.files[0];
+  //   if (!file) return;
+
+  //   const reader = new FileReader();
+  //   reader.readAsArrayBuffer(file);
+
+  //   reader.onload = async (e) => {
+  //       const bufferArray = e.target.result;
+  //       const workbook = XLSX.read(bufferArray, { type: "array" });
+  //       const sheetName = workbook.SheetNames[0];
+  //       const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+  //       setData(sheetData);
+  //   }
+  // }
 
   return (
     <Box className="border">
@@ -124,6 +141,17 @@ export default function ExcelReader() {
               </Table>
             </TableContainer>
           )}
+          <input
+            accept=".xlsx, .xls"
+            style={{ display: "none" }}
+            type="file"
+            // onChange={upload}
+          />
+          <label >
+            <Button variant="contained" component="span" fullWidth>
+              Save
+            </Button>
+          </label>
         </Box>
       </Modal>
     </Box>
