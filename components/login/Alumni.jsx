@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoginLayout from "./parts/LoginLayout";
 import AlumniList from "./parts/AlumniList";
 import alumniService from "../../services/alumni";
-
 import ExcelReader from "./parts/ExcelReader";
-
 import {
   CircularProgress,
   TextField,
@@ -14,38 +12,47 @@ import {
   Pagination,
   Stack,
 } from "@mui/material";
+import DownloadFilterData from "./parts/DownloadFilterData";
 
 export default function Alumni() {
   const [alumni, setAlumni] = useState([]);
-
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // 1-based for UI
   const [totalPages, setTotalPages] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [selectedId, setSelectedId] = useState(null);
   const [filters, setFilters] = useState({
-        studentName: "",
-        fatherName: "",
-        email: "",
-        mobile: "",
-        nationality: "",
-        yearOfAdmission: "",
-        page: currentPage,
-    });
+    studentName: "",
+    fatherName: "",
+    email: "",
+    mobile: "",
+    nationality: "",
+    yearOfAdmission: "",
+    designation: "",
+  });
 
   const getAlumniResponse = async () => {
     setLoading(true);
-    const response = await alumniService.getRecords();
-    console.log("alumni response ", response);
-    if (response.code === 200) {
-      setAlumni(response.data);
-      // setCurrentPage(response.pagination.current_page);
-      // setTotalPages(response.pagination.total_pages);
+    try {
+      // Convert from 1-based (UI) to 0-based (API) page numbering
+      const response = await alumniService.getRecords(currentPage - 1, itemsPerPage, filters);
+      console.log("alumni response ", response);
+      if (response.code === 200) {
+        setAlumni(response.data);
+        setTotalPages(response.pagination.totalPages);
+        setTotalRecords(response.pagination.total);
+      }
+    } catch (error) {
+      console.error("Error fetching alumni records:", error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
     getAlumniResponse();
-  }, [filters]);
+  }, [currentPage, itemsPerPage, filters]); // Reload when page, limit or filters change
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -53,6 +60,8 @@ export default function Alumni() {
       ...prev,
       [name]: value,
     }));
+    // Reset to first page when filters change
+    setCurrentPage(1);
   };
 
   const handleFilterReset = () => {
@@ -63,28 +72,47 @@ export default function Alumni() {
       mobile: "",
       nationality: "",
       yearOfAdmission: "",
-      page: 1,
+      designation: "",
     });
-    getAlumniResponse();
+    
+    // Reset to first page
+    setCurrentPage(1);
   };
 
   const handlePageChange = (event, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      page: value,
-    }));
+    setCurrentPage(value);
   };
+
+  const handleUpload = async () => {
+    if (selectedId) {
+      const response = await alumniService.uploadRecord(selectedId);
+      console.log(response);
+      getAlumniResponse();
+    }
+  };
+
+  // Calculate the start index for the current page (for row numbering)
+  const startIndex = (currentPage - 1) * itemsPerPage;
 
   return (
     <LoginLayout>
-
-  <h5>Alumni List Form</h5>
-
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15px" }}
-      className="flex gap-2 p-0 mb-1" >
-    <ExcelReader />
+      <h5>Alumni List Form</h5>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "15px",
+          }}
+          className="flex gap-2 p-0 mb-1"
+        >
+          <ExcelReader />
+          <div className="flex justify-end gap-2 p-0 mb-1">
+            <DownloadFilterData filters={filters} />
+          </div>
+        </div>
       </div>
-
       <Box sx={{ mb: 3 }}>
         <Stack
           spacing={{ xs: 1, sm: 2 }}
@@ -95,7 +123,6 @@ export default function Alumni() {
           <h6>Filters</h6>
           <Button onClick={handleFilterReset}>Reset</Button>
         </Stack>
-        
         <span className="flex"></span>
         <Grid container spacing={0.5}>
           <Grid item xs={12} sm={3}>
@@ -128,7 +155,6 @@ export default function Alumni() {
               fullWidth
             />
           </Grid>
-
           <Grid item xs={12} sm={3}>
             <TextField
               size="small"
@@ -136,17 +162,9 @@ export default function Alumni() {
               name="mobile"
               value={filters.mobile}
               onChange={handleFilterChange}
-              
               fullWidth
-            >
-              {/* <MenuItem selected value="">
-                All
-              </MenuItem>
-              <MenuItem value="pending">Pending</MenuItem>
-              <MenuItem value="called">Called</MenuItem> */}
-            </TextField>
+            />
           </Grid>
-
           <Grid item xs={12} sm={3}>
             <TextField
               size="small"
@@ -157,7 +175,6 @@ export default function Alumni() {
               fullWidth
             />
           </Grid>
-
           <Grid item xs={12} sm={3}>
             <TextField
               size="small"
@@ -168,29 +185,45 @@ export default function Alumni() {
               fullWidth
             />
           </Grid>
-
+          <Grid item xs={12} sm={3}>
+            <TextField
+              size="small"
+              label="Profession"
+              name="designation"
+              value={filters.designation}
+              onChange={handleFilterChange}
+              fullWidth
+            />
+          </Grid>
         </Grid>
       </Box>
-
-    {loading ? (
-            <CircularProgress />
-          ) : (
-            <>
-    <AlumniList 
-      getAlumniResponse={getAlumniResponse}
-      rows = {alumni}
-      currentPage={(currentPage - 1) * 10}
-      />
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-                  <Pagination
-                    count={totalPages}
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    color="primary"
-                  />
-                </Box>
-                </>
-          )}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <AlumniList
+            getAlumniResponse={getAlumniResponse}
+            rows={alumni}
+            setSelectedId={setSelectedId}
+            startIndex={startIndex}
+          />
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={handlePageChange}
+              color="primary"
+            />
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+            <div>
+              Showing {totalRecords > 0 ? startIndex + 1 : 0} 
+              {" - "} 
+              {Math.min((currentPage) * itemsPerPage, totalRecords)} of {totalRecords} entries
+            </div>
+          </Box>
+        </>
+      )}
     </LoginLayout>
   );
 }
