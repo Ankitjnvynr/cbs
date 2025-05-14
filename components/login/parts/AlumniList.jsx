@@ -24,6 +24,7 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
   const [openDelete, setOpenDelete] = React.useState(false);
   const [openEdit, setOpenEdit] = React.useState(false);
   const [deleteId, setDeleteId] = React.useState(null);
+  const [editId, setEditId] = React.useState(null); // Added separate state for edit ID
   const [editData, setEditData] = React.useState({
     studentName: "",
     fatherName: "",
@@ -45,19 +46,6 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
     setDeleteId(null);
   };
 
-  // const handleDelete = async () => {
-  //   if (deleteId) {
-  //     try {
-  //       const response = await alumniService.deleteRecord(deleteId);
-  //       console.log(response);
-  //       getAlumniResponse();
-  //     } catch (error) {
-  //       console.error("Failed to delete record:", error);
-  //     }
-  //   }
-  //   handleCloseDelete();
-  // };
-
   const handleDelete = async () => {
     if (deleteId) {
       try {
@@ -68,10 +56,12 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
         console.error("error in deleting record:", error);
       }
     }
-    handleCloseEdit();
+    handleCloseDelete();
   }
 
   const handleClickOpenEdit = (row) => {
+    // Store the ID separately
+    setEditId(row.id);
     setEditData({
       studentName: row.studentName || "",
       fatherName: row.fatherName || "",
@@ -114,6 +104,7 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
   const handleCloseEdit = () => {
     setOpenEdit(false);
     setSelectedId(null);
+    setEditId(null); // Clear edit ID
     setEditData({
       studentName: "",
       fatherName: "",
@@ -136,8 +127,15 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
 
   const handleEditSave = async () => {
     try {
-      const response = await alumniService.updateRecord(deleteId, editData);
-      console.log("response is ", response);
+      // Use editId instead of deleteId for update
+      if (!editId) {
+        console.error("No edit ID provided");
+        return;
+      }
+      
+      console.log("Updating record with ID:", editId, "and data:", editData);
+      const response = await alumniService.updateRecord(editId, editData);
+      console.log("Update response:", response);
       getAlumniResponse();
     } catch (error) {
       console.error("Failed to update record:", error);
@@ -271,6 +269,14 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
           label="Year Of Admission"
           name="yearOfAdmission"
           value={editData.yearOfAdmission}
+          onChange={handleEditChange}
+          fullWidth
+        />
+        <TextField
+          margin="dense"
+          label="Designation"
+          name="designation"
+          value={editData.designation}
           onChange={handleEditChange}
           fullWidth
         />
@@ -410,15 +416,7 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
           />
           <TextField
             margin="dense"
-            label="Designation"
-            name="designation"
-            value={editData.designation}
-            onChange={handleEditChange}
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            label="Idcard"
+            label="ID Card"
             name="idcard"
             value={editData.idcard}
             onChange={handleEditChange}
@@ -426,7 +424,7 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
           />
           <TextField
             margin="dense"
-            label="OfferLetter"
+            label="Offer Letter"
             name="offerLetter"
             value={editData.offerLetter}
             onChange={handleEditChange}
@@ -504,7 +502,7 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
           {/* System Fields */}
           <TextField
             margin="dense"
-            label="Created_at"
+            label="Created At"
             name="created_at"
             value={editData.created_at}
             onChange={handleEditChange}
@@ -513,7 +511,7 @@ export default function AlumniList({ rows, getAlumniResponse, setSelectedId, sta
           />
           <TextField
             margin="dense"
-            label="Updated_at"
+            label="Updated At"
             name="updated_at"
             value={editData.updated_at}
             onChange={handleEditChange}
