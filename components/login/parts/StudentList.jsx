@@ -10,7 +10,7 @@ import conf from "../../../lib/conf";
 import { Badge, Button, Menu, MenuItem, Typography } from "@mui/material";
 import { FiMoreHorizontal } from "react-icons/fi";
 
-export default function StudentList({ rows }) {
+export default function StudentList({ rows, currentPage }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,6 +21,7 @@ export default function StudentList({ rows }) {
   };
   return (
     <TableContainer component={Paper}>
+      
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
@@ -41,14 +42,15 @@ export default function StudentList({ rows }) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {sr + 1}
+                {(currentPage-1)*10 + sr +1}
               </TableCell>
               <TableCell align="left" style={{ display: "flex", gap: 10 }}>
                 <img
                   style={{
-                    width: "50px",
-                    height: "50px",
+                    width: "40px",
+                    height: "40px",
                     borderRadius: "50%",
+                    aspectRatio:"1/1",
                     objectFit: "cover",
                   }}
                   src={

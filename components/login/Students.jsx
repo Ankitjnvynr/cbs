@@ -26,6 +26,7 @@ import authService from "../../services/auth";
 
 export default function Students() {
   const [isLoading, setIsLoading] = useState(true);
+  const [totalRecords,setTotalRecords]=useState(0)
   const [totalStudents, setTotalStudents] = useState(0);
 
   const [students, setStudents] = useState([]);
@@ -61,6 +62,7 @@ export default function Students() {
       setStudents(response.data);
       setTotalPages(Math.ceil(response.total_students / filters.limit));
       setTotalStudents(response.total_students);
+      setTotalRecords(response.total_records)
     }
     setIsLoading(false);
   };
@@ -183,16 +185,17 @@ export default function Students() {
       </div>
 
       {/* Student List */}
-      {isLoading ? <CircularProgress /> : <StudentList rows={students} />}
+      {isLoading ? <CircularProgress /> : <StudentList rows={students} currentPage = {filters.page} />}
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4">
+      <div style={{display:"flex", justifyContent:"space-between",alignItems:'center'}} className="flex justify-center mt-4">
         <Pagination
           count={totalPages}
           page={filters.page}
           onChange={handlePageChange}
           color="primary"
         />
+        <div>showing: { totalRecords}/{ totalStudents}</div>
       </div>
 
       {/* Filter Modal */}
@@ -316,6 +319,8 @@ export default function Students() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      
     </LoginLayout>
   );
 }
