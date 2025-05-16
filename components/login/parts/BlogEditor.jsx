@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -162,12 +161,8 @@ const BlogEditor = ({ updateBlog, setUpdateBlog, getBlogs, setIsblogList }) => {
       toast.error(error.message);
     }
   };
-=======
-import React from 'react'
->>>>>>> mahak
 
   return (
-<<<<<<< HEAD
     <Box sx={styles.container}>
       <Box sx={styles.sidebar}>
         <Typography variant="h6">Blog Settings</Typography>
@@ -208,8 +203,3 @@ import React from 'react'
 };
 
 export default BlogEditor;
-=======
-    <div>BlogEditor</div>
-  )
-}
->>>>>>> mahak

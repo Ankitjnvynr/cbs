@@ -7,7 +7,7 @@ import Footer from '../../components/footer/Footer';
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../components/CursorMaus/CursorMaus';
-import Director from '../../components/director/Director';
+
 function director() {
   return (
     <Fragment>

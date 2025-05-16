@@ -9,6 +9,8 @@ import Phone from "/public/images/telephone.svg";
 import CursorMaus from "../../components/CursorMaus/CursorMaus";
 import Director from "../../components/director/Director";
 import Head from "next/head";
+
+
 function director() {
   return (
     <Fragment>
@@ -33,7 +35,7 @@ function director() {
     
 <Gallery/>
 
-    
+
       <Footer />
       <Scrollbar />
       <CursorMaus />

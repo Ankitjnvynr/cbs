@@ -13,7 +13,7 @@ const Download = () => {
         { id: 9, name: "EE 6 month Industrial training evaluation form CBS", link: "/documents/n632433d9bbc42 (1).docx" },
         { id: 10, name: "Extension of approval for the academic year 2021-22", link: "/documents/Extensionof approvalfoheacademicyear2021-22.pdf" },
         { id: 11, name: "Student Feedback Form", link: "/documents/n6324603516735 (1).pdf" },
-        { id: 12, name: "Staff Feedback Form", link: "/documents/hn6324603e9a687 (1).pdf" },
+        { id: 12, name: "Staff Feedback Form", link: "/documents/n6324603e9a687 (1).pdf" },
       ];
     
       return (
