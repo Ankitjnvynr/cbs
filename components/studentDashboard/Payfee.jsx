@@ -5,9 +5,9 @@ const Payfee = () => {
   const [open, setOpen] = useState(false);
 
   const qrCodeImage = "/images/upiqr.png"; // Replace with your actual QR code image path
-  const upiId = "9711275333m@pnb"; // Your UPI ID
+  const upiId = "MSCBSGROUPOFINSTITUTIONS.eazypay@icici"; // Your UPI ID
   const upiUrl =
-    "upi://pay?pa=9711275333m@pnb&pn=CHBHIM SINGH INSTITUTE OF SCIENCE AND TECHNOLOGY TRUST&mc=8220&tn=&am=&cu=INR&url=&mode=02"; // Your UPI Payment URL
+    "upi://pay?pa=MSCBSGROUPOFINSTITUTIONS.eazypay@icici"; // Your UPI Payment URL
 
   const handleOpen = () => {
     setOpen(true);

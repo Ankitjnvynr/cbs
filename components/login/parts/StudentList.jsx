@@ -1,4 +1,6 @@
 import * as React from 'react';
+import studentService from '../../../services/students'
+import {toast} from 'react-toastify'
 import {
   Table, TableBody, TableCell, TableContainer, TableHead,
   TableRow, Paper, Badge, Button, Menu, MenuItem,
@@ -8,12 +10,12 @@ import {
 import { FiMoreHorizontal } from "react-icons/fi";
 import conf from "../../../lib/conf";
 
-export default function StudentList({ rows, currentPage }) {
+export default function StudentList({ rows, currentPage,getStudents }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [menuRowId, setMenuRowId] = React.useState(null);
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [selectedStudent, setSelectedStudent] = React.useState(null);
-
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const handleClick = (event, row) => {
@@ -44,11 +46,23 @@ export default function StudentList({ rows, currentPage }) {
     });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Handle save logic here
-    console.log("Updated student data:", selectedStudent);
+    const result = await studentService.updateStudent(selectedStudent.id,selectedStudent)
+    console.log("Updated student data:", result);
+    if (result.code==200){
+      getStudents()
+      toast.success(result.message)
+    }
     handleEditClose();
   };
+
+  const handleDelete = () => {
+    // onDelete(selectedStudent);
+    setDeleteConfirmOpen(false);
+    handleClose();
+  };
+
 
   return (
     <>
@@ -116,7 +130,7 @@ export default function StudentList({ rows, currentPage }) {
                     }}
                   >
                     <MenuItem onClick={handleEditOpen}>Edit</MenuItem>
-                    <MenuItem onClick={handleClose}>Delete</MenuItem>
+                    {/* <MenuItem onClick={handleDelete}>Delete</MenuItem> */}
                   </Menu>
                 </TableCell>
               </TableRow>
@@ -126,50 +140,44 @@ export default function StudentList({ rows, currentPage }) {
       </TableContainer>
 
       {/* Edit Modal */}
-      <Dialog open={editModalOpen} onClose={handleEditClose} fullWidth maxWidth="sm">
+      <Dialog open={editModalOpen} onClose={handleEditClose} fullScreen>
         <DialogTitle>Edit Student Details</DialogTitle>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
-          <TextField
-            label="First Name"
-            name="first_name"
-            value={selectedStudent?.first_name || ""}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            label="Email"
-            name="email"
-            value={selectedStudent?.email || ""}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            label="Phone"
-            name="phone"
-            value={selectedStudent?.phone || ""}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            label="Roll No"
-            name="rollno"
-            value={selectedStudent?.rollno || ""}
-            onChange={handleChange}
-            fullWidth
-          />
-          <TextField
-            label="Course"
-            name="course_name"
-            value={selectedStudent?.course_name || ""}
-            onChange={handleChange}
-            fullWidth
-          />
+        <DialogContent sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mt: 1 }}>
+          <TextField label="First Name" name="first_name" value={selectedStudent?.first_name || ""} onChange={handleChange} fullWidth />
+          <TextField label="Last Name" name="last_name" value={selectedStudent?.last_name || ""} onChange={handleChange} fullWidth />
+          <TextField label="Email" name="email" value={selectedStudent?.email || ""} onChange={handleChange} fullWidth />
+          <TextField label="Phone" name="phone" value={selectedStudent?.phone || ""} onChange={handleChange} fullWidth />
+          <TextField label="Roll No" name="rollno" value={selectedStudent?.rollno || ""} onChange={handleChange} fullWidth />
+          <TextField label="Course" name="course_name" value={selectedStudent?.course_name || ""} onChange={handleChange} fullWidth />
+          <TextField label="Father's Name" name="father_name" value={selectedStudent?.father_name || ""} onChange={handleChange} fullWidth />
+          <TextField label="Mother's Name" name="mother_name" value={selectedStudent?.mother_name || ""} onChange={handleChange} fullWidth />
+          <TextField label="Date of Birth" name="dob" value={selectedStudent?.dob || ""} onChange={handleChange} fullWidth />
+          <TextField label="Country" name="country" value={selectedStudent?.country || ""} onChange={handleChange} fullWidth />
+          <TextField label="State" name="state" value={selectedStudent?.state || ""} onChange={handleChange} fullWidth />
+          <TextField label="District" name="district" value={selectedStudent?.district || ""} onChange={handleChange} fullWidth />
+          <TextField label="Address" name="address" value={selectedStudent?.address || ""} onChange={handleChange} fullWidth />
+          <TextField label="Profile Picture URL" name="picture" value={selectedStudent?.picture || ""} onChange={handleChange} fullWidth />
+          <TextField label="Verified Status" name="is_verified" value={selectedStudent?.is_verified || ""} onChange={handleChange} fullWidth />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleEditClose}>Cancel</Button>
           <Button variant="contained" onClick={handleSave}>Save</Button>
         </DialogActions>
       </Dialog>
+
+
+
+      <Dialog open={deleteConfirmOpen} onClose={() => setDeleteConfirmOpen(false)}>
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>
+          <Typography>Are you sure you want to delete this student?</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteConfirmOpen(false)}>Cancel</Button>
+          <Button onClick={handleDelete} variant="contained" color="error">Delete</Button>
+        </DialogActions>
+      </Dialog>
+
     </>
   );
 }

@@ -185,7 +185,7 @@ export default function Students() {
       </div>
 
       {/* Student List */}
-      {isLoading ? <CircularProgress /> : <StudentList rows={students} currentPage = {filters.page} />}
+      {isLoading ? <CircularProgress /> : <StudentList rows={students} getStudents={getStudents} currentPage = {filters.page} />}
 
       {/* Pagination */}
       <div style={{display:"flex", justifyContent:"space-between",alignItems:'center'}} className="flex justify-center mt-4">
