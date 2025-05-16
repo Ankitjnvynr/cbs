@@ -1,88 +1,90 @@
 import conf from "../lib/conf";
 
-export class AlumniService {
-    constructor() {
-        // Setting up the base URI for alumni
-        this.baseURI = `${conf.apiBaseUri}/api/v1/alumni`;
-    }
+// Create base API URL from configuration
+const API_URL = `${conf.apiBaseUri}/api/v1/alumni`;
 
-    // Get all alumni records with pagination
-    async getRecords(queryParams = {}) {
-        try {
-            const queryString = new URLSearchParams(queryParams).toString();
-            const response = await fetch(
-                `${this.baseURI}?${queryString}`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    `Failed to fetch records. Status: ${response.status}. Message: ${errorData.message || "Unknown error"}`
-                );
-            }
-
-            return await response.json(); // Return records and pagination metadata
-        } catch (error) {
-            console.error("Error in fetching data:", error.message);
-            throw error;
+const alumniService = {
+  getRecords: async (page = 0, limit = 10, filters = {}) => {
+    try {
+      // Create query parameters for pagination and filters
+      let queryParams = `?page=${page}&limit=${limit}`;
+      // Add any filters that have values
+      Object.keys(filters).forEach(key => {
+        if (filters[key]) {
+          queryParams += `&${key}=${encodeURIComponent(filters[key])}`;
         }
+      });
+
+      const response = await fetch(`${API_URL}${queryParams}`);
+      const result = await response.json();
+      return {
+        code: response.status,
+        data: result.data,
+        pagination: result.pagination
+      };
+    } catch (error) {
+      console.error('Error fetching alumni records:', error);
+      throw error;
     }
+  },
 
-    // Update an existing alumni record
-    async updateRecord(id, updatedData) {
-        try {
-            const response = await fetch(`${this.baseURI}/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedData),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    `Failed to update record. Status: ${response.status}. Message: ${errorData.message || "Unknown error"}`
-                );
-            }
-
-            return await response.json();
-        } catch (error) {
-            console.error("Error in updating data:", error.message);
-            throw error;
-        }
+  createRecord: async (data) => {
+    try {
+      const response = await fetch(`${API_URL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error creating alumni record:', error);
+      throw error;
     }
+  },
 
-    // Delete an alumni record
-    async deleteRecord(id) {
-        try {
-            const response = await fetch(`${this.baseURI}/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    `Failed to delete record. Status: ${response.status}. Message: ${errorData.message || "Unknown error"}`
-                );
-            }
-
-            return { message: "Record deleted successfully." };
-        } catch (error) {
-            console.error("Error in deleting data:", error.message);
-            throw error;
-        }
+  updateRecord: async (id, data) => {
+    try {
+      // Make sure id is included in the data
+      const payload = { ...data, id };
+      const response = await fetch(`${API_URL}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error updating alumni record:', error);
+      throw error;
     }
-}
+  },
 
-const alumniService = new AlumniService();
+  deleteRecord: async (id) => {
+    try {
+      const response = await fetch(`${API_URL}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id })
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error deleting alumni record:', error);
+      throw error;
+    }
+  },
+
+  uploadRecord: async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/upload`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id })
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error uploading alumni record:', error);
+      throw error;
+    }
+  }
+};
+
 export default alumniService;
