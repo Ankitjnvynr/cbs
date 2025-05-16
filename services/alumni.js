@@ -8,7 +8,6 @@ const alumniService = {
     try {
       // Create query parameters for pagination and filters
       let queryParams = `?page=${page}&limit=${limit}`;
-
       // Add any filters that have values
       Object.keys(filters).forEach(key => {
         if (filters[key]) {
@@ -18,7 +17,6 @@ const alumniService = {
 
       const response = await fetch(`${API_URL}${queryParams}`);
       const result = await response.json();
-
       return {
         code: response.status,
         data: result.data,
