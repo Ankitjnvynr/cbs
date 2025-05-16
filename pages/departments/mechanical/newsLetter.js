@@ -7,7 +7,6 @@ import Footer from '../../../components/footer/Footer';
 import Logo from '/public/images/cbslogo.png'
 import Phone from '/public/images/telephone.svg'
 import CursorMaus from '../../../components/CursorMaus/CursorMaus';
-import newsletter from '../../../components/departments/newsletter';
 
 function director() {
   return (

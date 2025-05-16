@@ -36,7 +36,7 @@ export default function Alumni() {
     setLoading(true);
     try {
       // Convert from 1-based (UI) to 0-based (API) page numbering
-      const response = await alumniService.getRecords(currentPage - 1, itemsPerPage, filters);
+      const response = await alumniService.getRecords(currentPage, itemsPerPage, filters);
       console.log("alumni response ", response);
       if (response.code === 200) {
         setAlumni(response.data);
@@ -44,7 +44,7 @@ export default function Alumni() {
         setTotalRecords(response.pagination.total);
       }
     } catch (error) {
-      console.error("Error fetching alumni records:", error);
+      console.log("Error fetching alumni records:", error);
     } finally {
       setLoading(false);
     }
