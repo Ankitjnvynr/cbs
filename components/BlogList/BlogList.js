@@ -8,9 +8,6 @@ import blogService from '../../services/BlogService.js';
 import conf from '../../lib/conf.js';
 
 
-const ClickHandler = () =>{
-    window.scrollTo(10, 0);
- }
 
 const BlogList = (props) => {
 
